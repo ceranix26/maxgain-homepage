@@ -1,0 +1,5 @@
+
+const menu=document.querySelector('.menu-btn'),nav=document.querySelector('.nav-links');if(menu){menu.addEventListener('click',()=>{const o=nav.classList.toggle('open');menu.setAttribute('aria-expanded',o)});}document.querySelectorAll('.nav-links a').forEach(a=>a.addEventListener('click',()=>nav.classList.remove('open')));
+document.querySelectorAll('[data-lang]').forEach(b=>b.addEventListener('click',()=>{const l=b.dataset.lang;document.documentElement.lang=l;document.querySelectorAll('[data-ko][data-en]').forEach(e=>e.textContent=e.dataset[l]);document.querySelectorAll('[data-lang]').forEach(x=>x.classList.toggle('active',x===b));}));
+document.querySelectorAll('.mail-form').forEach(form=>form.addEventListener('submit',e=>{e.preventDefault();const f=new FormData(form),subject=`MAXGAIN Inquiry - ${f.get('part')||f.get('subject')||'Website'}`;let body='';for(const [k,v] of f.entries())body+=`${k}: ${v}
+`;location.href=`mailto:sales@maxgain.co.kr?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;}));

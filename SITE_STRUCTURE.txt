@@ -1,0 +1,38 @@
+MAXGAIN CERANIX-style modular structure
+
+index.html
+about.html
+products/
+  index.html
+  capacitors.html
+  resistors.html
+  inductors.html
+  semiconductors.html
+  power-protection.html
+  other-components.html
+applications/
+  index.html
+  industrial.html
+  communication-rf.html
+  power-energy.html
+  mobility.html
+  consumer-iot.html
+  optics-sensing.html
+product-search.html
+data/products.json
+manufacturers.html
+services.html
+resources.html
+contact.html
+assets/css/style.css
+assets/js/main.js
+assets/images/
+assets/videos/
+assets/documents/
+
+운영 원칙
+- 제품군 메인, 세부 제품 페이지, Applications와 통합 검색을 분리합니다.
+- 제품 검색 데이터는 data/products.json에서 관리합니다.
+- 검증된 공개 데이터만 Published 처리합니다.
+- 가격, 원가, 고객명, 내부 재고는 외부 데이터에 포함하지 않습니다.
+- SHOP은 포함하지 않습니다.

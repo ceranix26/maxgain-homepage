@@ -1,0 +1,30 @@
+[
+  {
+    "id": "sample-cap-001",
+    "category": "Capacitors",
+    "subcategory": "MLCC",
+    "manufacturer": "Sample",
+    "partNumber": "EXAMPLE-001",
+    "primarySpec": "Replace with verified public data",
+    "application": [
+      "Industrial"
+    ],
+    "lifecycle": "Draft",
+    "status": "Draft",
+    "datasheet": ""
+  },
+  {
+    "id": "sample-res-001",
+    "category": "Resistors",
+    "subcategory": "Chip Resistor",
+    "manufacturer": "Sample",
+    "partNumber": "EXAMPLE-002",
+    "primarySpec": "Replace with verified public data",
+    "application": [
+      "Power"
+    ],
+    "lifecycle": "Draft",
+    "status": "Draft",
+    "datasheet": ""
+  }
+]
