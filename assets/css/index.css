@@ -1,0 +1,126 @@
+/* =========================================================
+   MAXGAIN SYSTEMS - Index page only
+   Manufacturing partner logo marquee
+   ========================================================= */
+
+.partner-section {
+  overflow: hidden;
+}
+
+.partner-marquee {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 36px;
+  padding: 30px 0;
+  border-top: 1px solid #e1e6eb;
+  border-bottom: 1px solid #e1e6eb;
+}
+
+.partner-marquee::before,
+.partner-marquee::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 70px;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.partner-marquee::before {
+  left: 0;
+  background: linear-gradient(90deg, #f6f8fa 0%, rgba(246, 248, 250, 0) 100%);
+}
+
+.partner-marquee::after {
+  right: 0;
+  background: linear-gradient(270deg, #f6f8fa 0%, rgba(246, 248, 250, 0) 100%);
+}
+
+.partner-track {
+  display: flex;
+  align-items: center;
+  width: max-content;
+  animation: partner-scroll 30s linear infinite;
+  will-change: transform;
+}
+
+.partner-group {
+  display: flex;
+  align-items: center;
+  gap: 72px;
+  padding-right: 72px;
+  flex-shrink: 0;
+}
+
+.partner-item {
+  width: 180px;
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 auto;
+  text-decoration: none;
+}
+
+.partner-item img {
+  display: block;
+  max-width: 170px;
+  max-height: 58px;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  opacity: 0.88;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.partner-item:hover img {
+  opacity: 1;
+  transform: scale(1.04);
+}
+
+.partner-marquee:hover .partner-track {
+  animation-play-state: paused;
+}
+
+.partner-more {
+  display: inline-block;
+  margin-top: 24px;
+}
+
+@keyframes partner-scroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+@media (max-width: 800px) {
+  .partner-marquee {
+    margin-top: 28px;
+    padding: 24px 0;
+  }
+
+  .partner-group {
+    gap: 42px;
+    padding-right: 42px;
+  }
+
+  .partner-item {
+    width: 145px;
+    height: 60px;
+  }
+
+  .partner-item img {
+    max-width: 135px;
+    max-height: 48px;
+  }
+
+  .partner-marquee::before,
+  .partner-marquee::after {
+    width: 32px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .partner-track { animation: none; }
+}
