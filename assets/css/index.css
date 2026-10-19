@@ -3,6 +3,44 @@
    Manufacturing partner logo marquee
    ========================================================= */
 
+/* =========================================================
+   HERO VIDEO
+   ========================================================= */
+
+.hero-video {
+  display: block;
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+}
+
+/* 영상 위 가독성용 오버레이 */
+.hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  background: linear-gradient(
+    90deg,
+    rgba(35, 34, 36, 0.82) 0%,
+    rgba(35, 34, 36, 0.55) 48%,
+    rgba(35, 34, 36, 0.25) 100%
+  );
+  pointer-events: none;
+}
+
+.hero::after {
+  z-index: 1;
+}
+
+.hero .container {
+  position: relative;
+  z-index: 2;
+}
+
 .partner-section {
   overflow: hidden;
 }
@@ -90,8 +128,13 @@
 }
 
 @keyframes partner-scroll {
-  from { transform: translateX(0); }
-  to { transform: translateX(-50%); }
+  from {
+    transform: translateX(0);
+  }
+
+  to {
+    transform: translateX(-50%);
+  }
 }
 
 @media (max-width: 800px) {
@@ -122,5 +165,7 @@
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .partner-track { animation: none; }
+  .partner-track {
+    animation: none;
+  }
 }
