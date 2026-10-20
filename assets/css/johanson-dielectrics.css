@@ -1,0 +1,217 @@
+/* Johanson Dielectrics product hub and child pages */
+.jd-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 42px
+}
+
+.jd-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 235px;
+    padding: 28px;
+    background: #fff;
+    border: 1px solid var(--line);
+    color: inherit;
+    text-decoration: none;
+    transition: .22s
+}
+
+.jd-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+    opacity: .20;
+    pointer-events: none
+}
+
+.jd-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(255, 255, 255, .32);
+    pointer-events: none
+}
+
+.jd-card:hover {
+    transform: translateY(-3px);
+    border-color: #f3b17e;
+    box-shadow: 0 10px 28px rgba(35, 34, 36, .08)
+}
+
+.jd-card .num {
+    font-size: .75rem;
+    font-weight: 800;
+    color: #f5822a;
+    margin-bottom: 28px
+}
+
+.jd-card h3 {
+    margin: 0 0 10px;
+    font-size: 1.1rem
+}
+
+.jd-card p {
+    margin: 0;
+    color: #4f5e69;
+    line-height: 1.7;
+    font-size: .9rem
+}
+
+.jd-card .go {
+    margin-top: auto;
+    padding-top: 22px;
+    color: #f5822a;
+    font-weight: 700
+}
+
+.jd-card:nth-child(1)::before {
+    background-image: url('../images/manufacture/johanson-dielectrics-images/surface-mount-mlcc.png')
+}
+
+.jd-card:nth-child(2)::before {
+    background-image: url('../images/manufacture/johanson-dielectrics-images/high-voltage-mlcc.png')
+}
+
+.jd-card:nth-child(3)::before {
+    background-image: url('../images/manufacture/johanson-dielectrics-images/ac-safety-capacitors.png')
+}
+
+.jd-card:nth-child(4)::before {
+    background-image: url('../images/manufacture/johanson-dielectrics-images/automotive-capacitors.png')
+}
+
+.jd-card:nth-child(5)::before {
+    background-image: url('../images/manufacture/johanson-dielectrics-images/emi-x2y-filters.png')
+}
+
+.jd-card:nth-child(6)::before {
+    background-image: url('../images/manufacture/johanson-dielectrics-images/high-temperature-capacitors.png')
+}
+
+.jd-card:nth-child(7)::before {
+    background-image: url('../images/manufacture/johanson-dielectrics-images/leaded-capacitors.png')
+}
+
+.jd-card:nth-child(8)::before {
+    background-image: url('../images/manufacture/johanson-dielectrics-images/planar-array-capacitors.png')
+}
+
+.jd-card:nth-child(9)::before {
+    background-image: url('../images/manufacture/johanson-dielectrics-images/capstrate-substrates.png')
+}
+
+.jd-split {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: 70px
+}
+
+.jd-copy {
+    color: #61707c;
+    line-height: 1.85
+}
+
+.jd-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 26px
+}
+
+.jd-tags span {
+    border: 1px solid var(--line);
+    background: #fff;
+    padding: 8px 11px;
+    font-size: .78rem
+}
+
+.jd-detail-hero {
+    padding: 150px 0 65px;
+    background: #f5f7f9;
+    border-bottom: 1px solid var(--line)
+}
+
+.jd-detail-hero h1 {
+    font-size: clamp(2.3rem, 5vw, 4rem);
+    margin: 12px 0 15px
+}
+
+.jd-detail-hero p {
+    max-width: 780px;
+    color: #63717d;
+    line-height: 1.75
+}
+
+.jd-detail-image {
+    margin-top: 30px;
+    max-width: 560px;
+    height: 280px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border: 1px solid var(--line);
+    padding: 24px
+}
+
+.jd-detail-image img {
+    max-width: 100%;
+    max-height: 100%;
+    object-fit: contain
+}
+
+.jd-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 30px
+}
+
+.jd-list div {
+    padding: 18px 20px;
+    border: 1px solid var(--line);
+    background: #fff;
+    line-height: 1.6
+}
+
+.resource-links {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 28px
+}
+
+@media(max-width:850px) {
+    .jd-grid {
+        grid-template-columns: 1fr 1fr
+    }
+
+    .jd-split {
+        grid-template-columns: 1fr;
+        gap: 30px
+    }
+
+    .jd-list {
+        grid-template-columns: 1fr
+    }
+}
+
+@media(max-width:560px) {
+    .jd-grid {
+        grid-template-columns: 1fr
+    }
+
+    .jd-detail-image {
+        height: 220px
+    }
+}
