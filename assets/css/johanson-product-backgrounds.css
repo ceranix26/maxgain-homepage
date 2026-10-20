@@ -1,0 +1,43 @@
+/* Johanson Technology product-card background images
+   Image source folder:
+   assets/images/manufacture/johanson-product-images/
+*/
+
+.jt-card {
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #fff;
+}
+
+.jt-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: contain;
+  opacity: 0.20;
+  pointer-events: none;
+}
+
+/* Keep text clear over the 20% background image */
+.jt-card::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  background: rgba(255,255,255,0.28);
+  pointer-events: none;
+}
+
+.jt-card:nth-child(1)::before { background-image: url('../images/manufacture/johanson-product-images/rf-antennas.png'); }
+.jt-card:nth-child(2)::before { background-image: url('../images/manufacture/johanson-product-images/integrated-passives.png'); }
+.jt-card:nth-child(3)::before { background-image: url('../images/manufacture/johanson-product-images/rf-capacitors.png'); }
+.jt-card:nth-child(4)::before { background-image: url('../images/manufacture/johanson-product-images/rf-inductors.png'); }
+.jt-card:nth-child(5)::before { background-image: url('../images/manufacture/johanson-product-images/modules-substrates.png'); }
+.jt-card:nth-child(6)::before { background-image: url('../images/manufacture/johanson-product-images/rf-prototyping-kits.png'); }
+.jt-card:nth-child(7)::before { background-image: url('../images/manufacture/johanson-product-images/emi-filters.png'); }
+.jt-card:nth-child(8)::before { background-image: url('../images/manufacture/johanson-product-images/high-reliability.png'); }
+.jt-card:nth-child(9)::before { background-image: url('../images/manufacture/johanson-product-images/custom-rf.png'); }
