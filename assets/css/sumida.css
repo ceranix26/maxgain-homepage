@@ -1,0 +1,176 @@
+.sd-split {
+    display: grid;
+    grid-template-columns: .9fr 1.1fr;
+    gap: 70px
+}
+
+.sd-copy {
+    color: #61707c;
+    line-height: 1.85
+}
+
+.sd-tags {
+    display: flex;
+    gap: 8px;
+    flex-wrap: wrap;
+    margin-top: 24px
+}
+
+.sd-tags span {
+    padding: 8px 11px;
+    border: 1px solid var(--line);
+    background: #fff;
+    font-size: .78rem
+}
+
+.sd-actions,
+.cta-actions {
+    display: flex;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin-top: 26px
+}
+
+.sd-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    margin-top: 42px
+}
+
+.sd-card {
+    position: relative;
+    isolation: isolate;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    min-height: 255px;
+    padding: 27px;
+    background: #fff;
+    border: 1px solid var(--line);
+    color: inherit;
+    text-decoration: none
+}
+
+.sd-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -2;
+    background: center/cover no-repeat;
+    opacity: .20
+}
+
+.sd-card::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: rgba(255, 255, 255, .44)
+}
+
+.sd-card:nth-child(1)::before {
+    background-image: url('../images/manufacture/sumida-images/power-inductors.png')
+}
+
+.sd-card:nth-child(2)::before {
+    background-image: url('../images/manufacture/sumida-images/power-transformers.png')
+}
+
+.sd-card:nth-child(3)::before {
+    background-image: url('../images/manufacture/sumida-images/signal-magnetics.png')
+}
+
+.sd-card:nth-child(4)::before {
+    background-image: url('../images/manufacture/sumida-images/emc.png')
+}
+
+.sd-card:nth-child(5)::before {
+    background-image: url('../images/manufacture/sumida-images/sensors-modules.png')
+}
+
+.sd-card:nth-child(6)::before {
+    background-image: url('../images/manufacture/sumida-images/ceramic-emc.png')
+}
+
+.sd-card .num {
+    color: #f5822a;
+    font-size: .76rem;
+    font-weight: 800;
+    margin-bottom: 28px
+}
+
+.sd-card h3 {
+    margin: 0 0 10px
+}
+
+.sd-card p {
+    margin: 0;
+    color: #4f5e69;
+    line-height: 1.7
+}
+
+.sd-card .go {
+    margin-top: auto;
+    padding-top: 22px;
+    color: #f5822a;
+    font-weight: 700
+}
+
+.sd-detail {
+    padding: 150px 0 65px;
+    background: #f5f7f9
+}
+
+.sd-detail h1 {
+    font-size: clamp(2.3rem, 5vw, 4rem);
+    margin: 12px 0
+}
+
+.sd-image {
+    height: 310px;
+    overflow: hidden;
+    border: 1px solid var(--line);
+    margin-top: 30px
+}
+
+.sd-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover
+}
+
+.sd-list {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 14px;
+    margin-top: 30px
+}
+
+.sd-list article {
+    padding: 22px;
+    border: 1px solid var(--line)
+}
+
+.sd-list p {
+    color: #61707c;
+    line-height: 1.65
+}
+
+@media(max-width:900px) {
+    .sd-grid {
+        grid-template-columns: 1fr 1fr
+    }
+
+    .sd-split {
+        grid-template-columns: 1fr
+    }
+}
+
+@media(max-width:600px) {
+
+    .sd-grid,
+    .sd-list {
+        grid-template-columns: 1fr
+    }
+}
