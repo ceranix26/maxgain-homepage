@@ -30,7 +30,7 @@ function collectInventoryRows(node, output=[]) {
   if (Array.isArray(node)) {
     for (const item of node) collectInventoryRows(item,output);
   } else if (node && typeof node === 'object') {
-    const code = node.PROD_CD ?? node.PROD_CODE ?? node.ITEM_CD;
+    const code = node.PROD_DES;
     const qty = node.BAL_QTY ?? node.BALANCE_QTY ?? node.QTY;
     if (code != null && qty != null) output.push({partNumber:String(code).trim(),quantity:Number(String(qty).replaceAll(',',''))||0});
     for (const value of Object.values(node)) collectInventoryRows(value,output);
