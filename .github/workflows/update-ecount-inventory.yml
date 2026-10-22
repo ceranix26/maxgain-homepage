@@ -1,0 +1,37 @@
+name: Update ECOUNT inventory status
+on:
+  schedule:
+    - cron: '10 21 * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency:
+  group: ecount-inventory-update
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - name: Fetch ECOUNT inventory
+        env:
+          ECOUNT_COM_CODE: ${{ secrets.ECOUNT_COM_CODE }}
+          ECOUNT_USER_ID: ${{ secrets.ECOUNT_USER_ID }}
+          ECOUNT_API_CERT_KEY: ${{ secrets.ECOUNT_API_CERT_KEY }}
+          ECOUNT_ZONE: ${{ secrets.ECOUNT_ZONE }}
+          ECOUNT_API_MODE: ${{ secrets.ECOUNT_API_MODE }}
+        run: node scripts/update-ecount-inventory.mjs
+      - name: Commit inventory status when changed
+        run: |
+          if git diff --quiet -- data/inventory-status.json; then
+            echo "No inventory status changes."
+            exit 0
+          fi
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add data/inventory-status.json
+          git commit -m "Update ECOUNT inventory status"
+          git push
