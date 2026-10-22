@@ -43,7 +43,7 @@ const sessionId = deepFind(login,'SESSION_ID');
 if (!sessionId) throw new Error(`SESSION_ID not found: ${JSON.stringify(login).slice(0,1000)}`);
 
 const inventory = await post(`${host}/OAPI/V2/InventoryBalance/GetListInventoryBalanceStatusByLocation?SESSION_ID=${encodeURIComponent(sessionId)}`, {
-  SESSION_ID:sessionId, BASE_DATE:baseDate, COM_CODE, USER_ID, ZONE, API_CERT_KEY, LAN_TYPE:'ko-KR'
+  SESSION_ID:sessionId, BASE_DATE:baseDate, ZERO_FLAG:'Y', BAL_FLAG:'Y', DEL_GUBUN:'Y', COM_CODE, USER_ID, ZONE, API_CERT_KEY, LAN_TYPE:'ko-KR'
 });
 const rows = collectInventoryRows(inventory);
 if (!rows.length) throw new Error(`No inventory rows found. Verify the ECOUNT response schema and account permissions.`);
