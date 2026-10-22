@@ -12,7 +12,9 @@
 <body>
   <header class="header">
     <div class="container nav">
-      <a class="brand" href="index.html"><img src="assets/images/maxgain-logo.png" alt="MAXGAIN SYSTEMS"></a>
+      <a class="brand" href="index.html">
+        <img src="assets/images/maxgain-logo.png" alt="MAXGAIN SYSTEMS">
+      </a>
       <button class="menu-btn" aria-label="메뉴 열기" aria-expanded="false">☰</button>
       <nav class="nav-links">
         <a href="about.html" data-ko="회사소개" data-en="About">회사소개</a>
@@ -20,7 +22,10 @@
         <a href="product-search.html" class="active" data-ko="제품검색" data-en="Product Search">제품검색</a>
         <a href="resources.html" data-ko="자료실" data-en="Resources">자료실</a>
         <a href="contact.html" data-ko="문의" data-en="Contact">문의</a>
-        <div class="lang"><button class="active" data-lang="ko">KO</button><button data-lang="en">EN</button></div>
+        <div class="lang">
+          <button class="active" data-lang="ko">KO</button>
+          <button data-lang="en">EN</button>
+        </div>
       </nav>
     </div>
   </header>
@@ -30,9 +35,10 @@
       <div class="container">
         <div class="breadcrumb">HOME / PRODUCT SEARCH</div>
         <h1>Product Search</h1>
-        <p data-ko="Part Number, 제조사, 제품 분류를 기준으로 제품과 재고 상태를 검색합니다."
-          data-en="Search products and inventory status by part number, manufacturer, and category.">Part Number, 제조사,
-          제품 분류를 기준으로 제품과 재고 상태를 검색합니다.</p>
+        <p data-ko="Part Number를 입력하여 실시간 재고 상태를 확인합니다."
+          data-en="Enter a part number to check its current inventory status.">
+          Part Number를 입력하여 실시간 재고 상태를 확인합니다.
+        </p>
       </div>
     </section>
 
@@ -40,23 +46,21 @@
       <div class="container">
         <div class="form">
           <div class="form-grid">
-            <div class="field">
-              <label for="keyword" data-ko="검색어" data-en="Keyword">검색어</label>
-              <input id="keyword" type="search" placeholder="Part Number / Manufacturer / Category" autocomplete="off">
-            </div>
-            <div class="field">
-              <label for="category" data-ko="제품 분류" data-en="Category">제품 분류</label>
-              <select id="category">
-                <option value="">All</option>
-              </select>
+            <div class="field full">
+              <label for="keyword" data-ko="Part Number" data-en="Part Number">Part Number</label>
+              <input id="keyword" type="search" placeholder="예: YST-1103A" data-placeholder-ko="예: YST-1103A"
+                data-placeholder-en="Example: YST-1103A" autocomplete="off" spellcheck="false">
             </div>
             <div class="field full">
-              <button class="btn btn-primary" id="searchBtn" type="button" data-ko="제품 검색" data-en="Search Products">제품
+              <button class="btn btn-primary" id="searchBtn" type="button" data-ko="재고 검색" data-en="Search Inventory">재고
                 검색</button>
             </div>
           </div>
         </div>
-        <div id="searchSummary" class="notice" style="margin-top:20px" aria-live="polite"></div>
+
+        <div id="searchSummary" class="notice" style="margin-top:20px" aria-live="polite">
+          재고 정보를 불러오는 중입니다.
+        </div>
         <div id="results" class="grid-3" style="margin-top:28px"></div>
       </div>
     </section>
@@ -65,10 +69,12 @@
   <footer>
     <div class="container">
       <div class="footer-grid">
-        <div><img class="footer-logo" src="assets/images/maxgain-logo.png" alt="MAXGAIN SYSTEMS">
+        <div>
+          <img class="footer-logo" src="assets/images/maxgain-logo.png" alt="MAXGAIN SYSTEMS">
           <p data-ko="전자부품 유통 · 글로벌 소싱 · 대체품 및 단종품 대응"
-            data-en="Electronic component distribution, global sourcing and obsolete part support">전자부품 유통 · 글로벌 소싱 ·
-            대체품 및 단종품 대응</p>
+            data-en="Electronic component distribution, global sourcing and obsolete part support">
+            전자부품 유통 · 글로벌 소싱 · 대체품 및 단종품 대응
+          </p>
         </div>
         <div>
           <h3 class="footer-title" data-ko="바로가기" data-en="Quick Links">바로가기</h3>
@@ -87,78 +93,144 @@
             <li>Tel. 02-430-3927</li>
             <li>Fax. 02-430-3928</li>
             <li data-ko="서울 구로구 경인로53길 15, 업무A동 508호"
-              data-en="Room 508, Building A, 15 Gyeongin-ro 53-gil, Guro-gu, Seoul">서울 구로구 경인로53길 15, 업무A동 508호</li>
+              data-en="Room 508, Building A, 15 Gyeongin-ro 53-gil, Guro-gu, Seoul">
+              서울 구로구 경인로53길 15, 업무A동 508호
+            </li>
           </ul>
         </div>
       </div>
-      <div class="legal"><span>© 2026 MAXGAIN SYSTEMS. All rights reserved.</span><span><a href="privacy.html">Privacy
-            Policy</a> · <a href="terms.html">Terms</a></span></div>
+      <div class="legal">
+        <span>© 2026 MAXGAIN SYSTEMS. All rights reserved.</span>
+        <span><a href="privacy.html">Privacy Policy</a> · <a href="terms.html">Terms</a></span>
+      </div>
     </div>
   </footer>
+
   <script src="assets/js/main.js"></script>
   <script>
-    const $ = id => document.getElementById(id);
-    let products = [];
-    let inventory = {};
+    (() => {
+      const byId = id => document.getElementById(id);
+      const keywordInput = byId('keyword');
+      const searchButton = byId('searchBtn');
+      const summary = byId('searchSummary');
+      const results = byId('results');
+      let inventoryItems = [];
+      let loaded = false;
 
-    function inventoryMap(data) {
-      const map = {};
-      const rows = Array.isArray(data) ? data : (Array.isArray(data?.items) ? data.items : []);
-      for (const row of rows) {
-        const key = String(row.partNumber ?? row.itemCode ?? row.code ?? row.PROD_CD ?? '').trim().toLowerCase();
-        if (key) map[key] = row;
+      const escapeHtml = value => String(value ?? '').replace(/[&<>"']/g, character => ({
+        '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'
+      })[character]);
+
+      function currentLanguage() {
+        return document.documentElement.lang === 'en' ? 'en' : 'ko';
       }
-      return map;
-    }
 
-    function stockText(p) {
-      const key = String(p.partNumber ?? p.itemCode ?? p.code ?? '').trim().toLowerCase();
-      const s = inventory[key];
-      if (!s) return { label: '재고 확인 필요', cls: 'stock-unknown' };
-      const explicit = String(s.status ?? s.inventoryStatus ?? '').trim();
-      if (explicit) return { label: explicit, cls: 'stock-known' };
-      const qty = Number(s.quantity ?? s.qty ?? s.balance ?? s.BAL_QTY);
-      if (Number.isFinite(qty)) return qty > 0 ? { label: '재고 있음', cls: 'stock-in' } : { label: '재고 없음', cls: 'stock-out' };
-      return { label: '재고 확인 필요', cls: 'stock-unknown' };
-    }
+      function message(ko, en) {
+        return currentLanguage() === 'en' ? en : ko;
+      }
 
-    function text(v) { return v == null ? '' : String(v); }
-    function esc(v) { return text(v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+      function normalize(value) {
+        return String(value ?? '').trim().toUpperCase().replace(/\s+/g, '');
+      }
 
-    function populateCategories() {
-      const cats = [...new Set(products.map(p => p.category).filter(Boolean))].sort();
-      $('category').innerHTML = '<option value="">All</option>' + cats.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('');
-    }
+      function render() {
+        const rawKeyword = keywordInput.value.trim();
+        const keyword = normalize(rawKeyword);
 
-    function render() {
-      const k = $('keyword').value.trim().toLowerCase();
-      const c = $('category').value;
-      const rows = products.filter(p => {
-        if (p.status && String(p.status).toLowerCase() !== 'published') return false;
-        const hay = [p.partNumber, p.manufacturer, p.category, p.subcategory, p.primarySpec, p.application].map(text).join(' ').toLowerCase();
-        return (!c || p.category === c) && (!k || hay.includes(k));
+        if (!loaded) {
+          summary.textContent = message('재고 정보를 불러오는 중입니다.', 'Loading inventory data.');
+          results.innerHTML = '';
+          return;
+        }
+
+        if (!keyword) {
+          summary.textContent = message(
+            `${inventoryItems.length.toLocaleString()}개 Part Number의 재고 정보를 검색할 수 있습니다.`,
+            `Inventory status is available for ${inventoryItems.length.toLocaleString()} part numbers.`
+          );
+          results.innerHTML = '';
+          keywordInput.focus();
+          return;
+        }
+
+        const exactMatches = inventoryItems.filter(item => item.normalized === keyword);
+        const partialMatches = exactMatches.length ? exactMatches : inventoryItems
+          .filter(item => item.normalized.includes(keyword))
+          .slice(0, 50);
+
+        if (!partialMatches.length) {
+          summary.textContent = message(
+            `“${rawKeyword}”와 일치하는 Part Number를 찾을 수 없습니다.`,
+            `No part number matching “${rawKeyword}” was found.`
+          );
+          results.innerHTML = '';
+          return;
+        }
+
+        summary.textContent = exactMatches.length
+          ? message('정확히 일치하는 Part Number를 찾았습니다.', 'An exact part number match was found.')
+          : message(
+            `${partialMatches.length.toLocaleString()}개의 유사 Part Number를 찾았습니다.`,
+            `${partialMatches.length.toLocaleString()} similar part numbers were found.`
+          );
+
+        results.innerHTML = partialMatches.map(item => {
+          const inStock = item.status === 'in-stock';
+          const badgeClass = inStock ? 'stock-in' : 'stock-out';
+          const fallbackLabel = inStock
+            ? message('재고 있음', 'In stock')
+            : message('재고 없음', 'Out of stock');
+
+          return `
+        <article class="card product-card">
+          <div class="product-card-head">
+            <div>
+              <h3>${escapeHtml(item.partNumber)}</h3>
+              <p>${message('Part Number', 'Part Number')}</p>
+            </div>
+            <span class="stock-badge ${badgeClass}">${escapeHtml(item.label || fallbackLabel)}</span>
+          </div>
+        </article>`;
+        }).join('');
+      }
+
+      async function initialize() {
+        try {
+          const response = await fetch('data/inventory-status.json', { cache: 'no-store' });
+          if (!response.ok) throw new Error(`HTTP ${response.status}`);
+
+          const data = await response.json();
+          inventoryItems = Object.entries(data.items || {}).map(([partNumber, info]) => ({
+            partNumber,
+            normalized: normalize(partNumber),
+            status: info?.status || 'out-of-stock',
+            label: info?.label || ''
+          })).filter(item => item.partNumber);
+
+          loaded = true;
+          render();
+        } catch (error) {
+          console.error('Inventory load failed:', error);
+          loaded = false;
+          summary.textContent = message(
+            '재고 정보를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.',
+            'Inventory data could not be loaded. Please try again later.'
+          );
+          results.innerHTML = '';
+        }
+      }
+
+      searchButton.addEventListener('click', render);
+      keywordInput.addEventListener('keydown', event => {
+        if (event.key === 'Enter') render();
       });
-      $('searchSummary').textContent = rows.length ? `${rows.length.toLocaleString()}개 제품을 찾았습니다.` : '검색 조건에 맞는 제품이 없습니다.';
-      $('results').innerHTML = rows.map(p => {
-        const st = stockText(p);
-        return `<article class="card product-card"><div class="product-card-head"><div><h3>${esc(p.partNumber || p.name || 'Product')}</h3><p>${esc(p.manufacturer || '')}</p></div><span class="stock-badge ${st.cls}">${esc(st.label)}</span></div><p>${esc([p.category, p.subcategory].filter(Boolean).join(' / '))}</p>${p.primarySpec ? `<p>${esc(p.primarySpec)}</p>` : ''}</article>`;
-      }).join('');
-    }
 
-    async function init() {
-      const [p, i] = await Promise.all([
-        fetch('data/products.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : []).catch(() => []),
-        fetch('data/inventory-status.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : {}).catch(() => ({}))
-      ]);
-      products = Array.isArray(p) ? p : (Array.isArray(p?.items) ? p.items : []);
-      inventory = inventoryMap(i);
-      populateCategories();
-      render();
-    }
-    $('searchBtn').addEventListener('click', render);
-    $('keyword').addEventListener('keydown', e => { if (e.key === 'Enter') render(); });
-    $('category').addEventListener('change', render);
-    init();
+      document.querySelectorAll('[data-lang]').forEach(button => {
+        button.addEventListener('click', () => setTimeout(render, 0));
+      });
+
+      initialize();
+    })();
   </script>
 </body>
 
