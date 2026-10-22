@@ -2,73 +2,164 @@
 <html lang="ko">
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>제품 검색 | MAXGAIN SYSTEMS</title>
-    <link rel="stylesheet" href="assets/css/style.css">
-    <link rel="stylesheet" href="assets/css/product-search.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Product Search | MAXGAIN SYSTEMS</title>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <link rel="stylesheet" href="assets/css/product-search.css">
 </head>
 
 <body>
-    <header class="header">
-        <div class="container nav"><a class="brand" href="index.html"><img src="assets/images/maxgain-logo.png"
-                    alt="MAXGAIN SYSTEMS"></a><button class="menu-btn" aria-label="메뉴 열기"
-                aria-expanded="false">☰</button>
-            <nav class="nav-links"><a href="about.html" data-ko="회사소개" data-en="About">회사소개</a><a
-                    href="manufacturers.html" data-ko="제조사" data-en="Manufacturers">제조사</a><a href="product-search.html"
-                    data-ko="제품 검색" data-en="Product Search">제품 검색</a><a href="resources.html" data-ko="자료실"
-                    data-en="Resources">자료실</a><a href="contact.html" data-ko="문의" data-en="Contact">문의</a>
-                <div class="lang"><button class="active" data-lang="ko">KO</button><button data-lang="en">EN</button>
-                </div>
-            </nav>
-        </div>
-    </header>
-    <main>
-        <section class="subhero">
-            <div class="container">
-                <div class="breadcrumb">HOME / PRODUCT SEARCH</div>
-                <h1 data-ko="제품 검색" data-en="Product Search">제품 검색</h1>
-                <p data-ko="Part Number, 제조사 및 제품군을 기준으로 검색하고 현재 재고 상태를 확인합니다."
-                    data-en="Search by part number, manufacturer or category and check current stock status.">Part
-                    Number, 제조사 및 제품군을 기준으로 검색하고 현재 재고 상태를 확인합니다.</p>
+  <header class="header">
+    <div class="container nav">
+      <a class="brand" href="index.html"><img src="assets/images/maxgain-logo.png" alt="MAXGAIN SYSTEMS"></a>
+      <button class="menu-btn" aria-label="메뉴 열기" aria-expanded="false">☰</button>
+      <nav class="nav-links">
+        <a href="about.html" data-ko="회사소개" data-en="About">회사소개</a>
+        <a href="manufacturers.html" data-ko="제조사" data-en="Manufacturers">제조사</a>
+        <a href="product-search.html" class="active" data-ko="제품검색" data-en="Product Search">제품검색</a>
+        <a href="resources.html" data-ko="자료실" data-en="Resources">자료실</a>
+        <a href="contact.html" data-ko="문의" data-en="Contact">문의</a>
+        <div class="lang"><button class="active" data-lang="ko">KO</button><button data-lang="en">EN</button></div>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <section class="subhero">
+      <div class="container">
+        <div class="breadcrumb">HOME / PRODUCT SEARCH</div>
+        <h1>Product Search</h1>
+        <p data-ko="Part Number, 제조사, 제품 분류를 기준으로 제품과 재고 상태를 검색합니다."
+          data-en="Search products and inventory status by part number, manufacturer, and category.">Part Number, 제조사,
+          제품 분류를 기준으로 제품과 재고 상태를 검색합니다.</p>
+      </div>
+    </section>
+
+    <section class="section soft">
+      <div class="container">
+        <div class="form">
+          <div class="form-grid">
+            <div class="field">
+              <label for="keyword" data-ko="검색어" data-en="Keyword">검색어</label>
+              <input id="keyword" type="search" placeholder="Part Number / Manufacturer / Category" autocomplete="off">
             </div>
-        </section>
-        <section class="section soft">
-            <div class="container">
-                <div class="form">
-                    <div class="form-grid">
-                        <div class="field"><label>Keyword</label><input id="keyword"
-                                placeholder="Part Number / Manufacturer / Category"></div>
-                        <div class="field"><label>Category</label><select id="category">
-                                <option value="">All</option>
-                                <option>Capacitors</option>
-                                <option>Resistors</option>
-                                <option>Inductors</option>
-                                <option>Transformers</option>
-                                <option>RF Components</option>
-                            </select></div>
-                        <div class="field full"><button class="btn btn-primary" id="searchBtn" type="button"
-                                data-ko="제품 검색" data-en="Search Products">제품 검색</button></div>
-                    </div>
-                </div>
-                <div id="results" class="grid-3" style="margin-top:28px"></div>
-                <p id="stockUpdated" class="stock-updated"></p>
+            <div class="field">
+              <label for="category" data-ko="제품 분류" data-en="Category">제품 분류</label>
+              <select id="category">
+                <option value="">All</option>
+              </select>
             </div>
-        </section>
-    </main>
-    <footer>
-        <div class="container">
-            <div class="legal"><span>© 2026 MAXGAIN SYSTEMS. All rights reserved.</span></div>
+            <div class="field full">
+              <button class="btn btn-primary" id="searchBtn" type="button" data-ko="제품 검색" data-en="Search Products">제품
+                검색</button>
+            </div>
+          </div>
         </div>
-    </footer>
-    <script src="assets/js/main.js"></script>
-    <script>
-        let products = [], inventory = { items: {} };
-        const esc = s => String(s ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
-        async function load() { [products, inventory] = await Promise.all([fetch('data/products.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : []).catch(() => []), fetch('data/inventory-status.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : ({ items: {} })).catch(() => ({ items: {} }))]); run(); const el = document.getElementById('stockUpdated'); el.textContent = inventory.updatedAt ? `재고 기준: ${new Date(inventory.updatedAt).toLocaleString('ko-KR')}` : '재고 정보가 아직 동기화되지 않았습니다.'; }
-        function run() { const k = document.getElementById('keyword').value.trim().toLowerCase(), c = document.getElementById('category').value; const list = products.filter(p => p.status === 'Published' && (!c || p.category === c) && (!k || JSON.stringify(p).toLowerCase().includes(k))); document.getElementById('results').innerHTML = list.length ? list.map(p => { const stock = inventory.items?.[p.partNumber]; const cls = stock?.status === 'in-stock' ? 'stock-in' : stock?.status === 'out-of-stock' ? 'stock-out' : 'stock-unknown'; const label = stock?.label || '재고 확인 중'; return `<article class="card search-result-card"><h3>${esc(p.partNumber)}</h3><p>${esc(p.manufacturer)} · ${esc(p.category)}${p.subcategory ? ' / ' + esc(p.subcategory) : ''}</p><p>${esc(p.primarySpec || '')}</p><span class="stock-badge ${cls}">${esc(label)}</span></article>` }).join('') : '<div class="notice">검색 결과가 없습니다.</div>'; }
-        document.getElementById('searchBtn').onclick = run; document.getElementById('keyword').addEventListener('keydown', e => { if (e.key === 'Enter') run() }); load();
-    </script>
+        <div id="searchSummary" class="notice" style="margin-top:20px" aria-live="polite"></div>
+        <div id="results" class="grid-3" style="margin-top:28px"></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="container">
+      <div class="footer-grid">
+        <div><img class="footer-logo" src="assets/images/maxgain-logo.png" alt="MAXGAIN SYSTEMS">
+          <p data-ko="전자부품 유통 · 글로벌 소싱 · 대체품 및 단종품 대응"
+            data-en="Electronic component distribution, global sourcing and obsolete part support">전자부품 유통 · 글로벌 소싱 ·
+            대체품 및 단종품 대응</p>
+        </div>
+        <div>
+          <h3 class="footer-title" data-ko="바로가기" data-en="Quick Links">바로가기</h3>
+          <ul class="footer-links">
+            <li><a href="about.html">About</a></li>
+            <li><a href="manufacturers.html">Manufacturers</a></li>
+            <li><a href="product-search.html">Product Search</a></li>
+            <li><a href="resources.html">Resources</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div>
+          <h3 class="footer-title" data-ko="연락처" data-en="Contact">연락처</h3>
+          <ul class="footer-links">
+            <li>sales@maxgain.co.kr</li>
+            <li>Tel. 02-430-3927</li>
+            <li>Fax. 02-430-3928</li>
+            <li data-ko="서울 구로구 경인로53길 15, 업무A동 508호"
+              data-en="Room 508, Building A, 15 Gyeongin-ro 53-gil, Guro-gu, Seoul">서울 구로구 경인로53길 15, 업무A동 508호</li>
+          </ul>
+        </div>
+      </div>
+      <div class="legal"><span>© 2026 MAXGAIN SYSTEMS. All rights reserved.</span><span><a href="privacy.html">Privacy
+            Policy</a> · <a href="terms.html">Terms</a></span></div>
+    </div>
+  </footer>
+  <script src="assets/js/main.js"></script>
+  <script>
+    const $ = id => document.getElementById(id);
+    let products = [];
+    let inventory = {};
+
+    function inventoryMap(data) {
+      const map = {};
+      const rows = Array.isArray(data) ? data : (Array.isArray(data?.items) ? data.items : []);
+      for (const row of rows) {
+        const key = String(row.partNumber ?? row.itemCode ?? row.code ?? row.PROD_CD ?? '').trim().toLowerCase();
+        if (key) map[key] = row;
+      }
+      return map;
+    }
+
+    function stockText(p) {
+      const key = String(p.partNumber ?? p.itemCode ?? p.code ?? '').trim().toLowerCase();
+      const s = inventory[key];
+      if (!s) return { label: '재고 확인 필요', cls: 'stock-unknown' };
+      const explicit = String(s.status ?? s.inventoryStatus ?? '').trim();
+      if (explicit) return { label: explicit, cls: 'stock-known' };
+      const qty = Number(s.quantity ?? s.qty ?? s.balance ?? s.BAL_QTY);
+      if (Number.isFinite(qty)) return qty > 0 ? { label: '재고 있음', cls: 'stock-in' } : { label: '재고 없음', cls: 'stock-out' };
+      return { label: '재고 확인 필요', cls: 'stock-unknown' };
+    }
+
+    function text(v) { return v == null ? '' : String(v); }
+    function esc(v) { return text(v).replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); }
+
+    function populateCategories() {
+      const cats = [...new Set(products.map(p => p.category).filter(Boolean))].sort();
+      $('category').innerHTML = '<option value="">All</option>' + cats.map(c => `<option value="${esc(c)}">${esc(c)}</option>`).join('');
+    }
+
+    function render() {
+      const k = $('keyword').value.trim().toLowerCase();
+      const c = $('category').value;
+      const rows = products.filter(p => {
+        if (p.status && String(p.status).toLowerCase() !== 'published') return false;
+        const hay = [p.partNumber, p.manufacturer, p.category, p.subcategory, p.primarySpec, p.application].map(text).join(' ').toLowerCase();
+        return (!c || p.category === c) && (!k || hay.includes(k));
+      });
+      $('searchSummary').textContent = rows.length ? `${rows.length.toLocaleString()}개 제품을 찾았습니다.` : '검색 조건에 맞는 제품이 없습니다.';
+      $('results').innerHTML = rows.map(p => {
+        const st = stockText(p);
+        return `<article class="card product-card"><div class="product-card-head"><div><h3>${esc(p.partNumber || p.name || 'Product')}</h3><p>${esc(p.manufacturer || '')}</p></div><span class="stock-badge ${st.cls}">${esc(st.label)}</span></div><p>${esc([p.category, p.subcategory].filter(Boolean).join(' / '))}</p>${p.primarySpec ? `<p>${esc(p.primarySpec)}</p>` : ''}</article>`;
+      }).join('');
+    }
+
+    async function init() {
+      const [p, i] = await Promise.all([
+        fetch('data/products.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : []).catch(() => []),
+        fetch('data/inventory-status.json', { cache: 'no-store' }).then(r => r.ok ? r.json() : {}).catch(() => ({}))
+      ]);
+      products = Array.isArray(p) ? p : (Array.isArray(p?.items) ? p.items : []);
+      inventory = inventoryMap(i);
+      populateCategories();
+      render();
+    }
+    $('searchBtn').addEventListener('click', render);
+    $('keyword').addEventListener('keydown', e => { if (e.key === 'Enter') render(); });
+    $('category').addEventListener('change', render);
+    init();
+  </script>
 </body>
 
 </html>
