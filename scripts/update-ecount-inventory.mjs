@@ -13,7 +13,7 @@ const host = `https://${HOST_PREFIX}${ZONE}.ecount.com`;
 const baseDate = new Intl.DateTimeFormat('en-CA', {timeZone:'Asia/Seoul',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date()).replaceAll('-','');
 
 async function post(url, body) {
-  const response = await fetch(url, {method:'POST',headers:{'Accept':'application/json','Content-Type':'application/json'},body:JSON.stringify(body)});
+  const response = await fetch(url, {method:'POST',headers:{'Accept':'application/json','Accept-Encoding':'identity','Content-Type':'application/json'},body:JSON.stringify(body)});
   const text = await response.text();
   if (!response.ok) throw new Error(`${response.status} ${url}: ${text.slice(0,500)}`);
   let data; try { data = JSON.parse(text); } catch { throw new Error(`Non-JSON response from ${url}: ${text.slice(0,500)}`); }
