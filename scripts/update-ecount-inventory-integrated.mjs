@@ -284,6 +284,14 @@ for (const [partNumber, info] of [...partNumberMap.entries()].slice(0, 5)) {
     status: info.quantity > 0 ? 'in-stock' : 'out-of-stock'
   });
 }
+function getStockLevel(quantity) {
+  if (quantity <= 0) return '재고 없음';
+  if (quantity < 100) return '소량';
+  if (quantity < 500) return '100+';
+  if (quantity < 1000) return '500+';
+  return '1,000+';
+}
+
 const items = Object.fromEntries(
   [...partNumberMap.entries()]
     .sort(([a], [b]) => a.localeCompare(b))
@@ -291,7 +299,8 @@ const items = Object.fromEntries(
       partNumber,
       {
         status: info.quantity > 0 ? 'in-stock' : 'out-of-stock',
-        label: info.quantity > 0 ? '재고 있음' : '재고 없음'
+        label: info.quantity > 0 ? '재고 있음' : '재고 없음',
+        stockLevel: getStockLevel(info.quantity)
       }
     ])
 );
