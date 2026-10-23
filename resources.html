@@ -135,11 +135,11 @@
             <div class="container">
                 <div class="resource-grid">
                     <article class="resource-card"><span class="kicker">RESOURCE LIBRARY</span>
-                        <h3 data-ko="Crystal-Optech" data-en="Crystal-Optech">Crystal-Optech</h3>
-                        <p data-ko="Crystal-Optech 카탈로그, 데이터시트 및 기술자료"
-                            data-en="Crystal-Optech catalogs, product information and technical resources">
-                            Crystal-Optech 카탈로그, 데이터시트 및 기술자료</p><a class="btn btn-primary"
-                            href="resources/crystal-optech/crystal-optech.html" data-ko="자료 보기"
+                        <h3 data-ko="Johanson Technology" data-en="Johanson Technology">Johanson Technology</h3>
+                        <p data-ko="Johanson Technology 카탈로그, 데이터시트 및 기술자료"
+                            data-en="Johanson Technology catalogs, datasheets and technical resources">Johanson
+                            Technology 카탈로그, 데이터시트 및 기술자료</p><a class="btn btn-primary"
+                            href="resources/johanson-technology/johanson-technology.html" data-ko="자료 보기"
                             data-en="View Resources">자료 보기</a>
                     </article>
                     <article class="resource-card"><span class="kicker">RESOURCE LIBRARY</span>
@@ -151,11 +151,18 @@
                             data-en="View Resources">자료 보기</a>
                     </article>
                     <article class="resource-card"><span class="kicker">RESOURCE LIBRARY</span>
-                        <h3 data-ko="Johanson Technology" data-en="Johanson Technology">Johanson Technology</h3>
-                        <p data-ko="Johanson Technology 카탈로그, 데이터시트 및 기술자료"
-                            data-en="Johanson Technology catalogs, datasheets and technical resources">Johanson
-                            Technology 카탈로그, 데이터시트 및 기술자료</p><a class="btn btn-primary"
-                            href="resources/johanson-technology/johanson-technology.html" data-ko="자료 보기"
+                        <h3 data-ko="Viking" data-en="Viking">Viking</h3>
+                        <p data-ko="Viking 카탈로그, 데이터시트 및 기술자료"
+                            data-en="Viking catalogs, datasheets and technical resources">Viking 카탈로그, 데이터시트 및 기술자료</p>
+                        <a class="btn btn-primary" href="resources/viking/viking.html" data-ko="자료 보기"
+                            data-en="View Resources">자료 보기</a>
+                    </article>
+                    <article class="resource-card"><span class="kicker">RESOURCE LIBRARY</span>
+                        <h3 data-ko="Crystal-Optech" data-en="Crystal-Optech">Crystal-Optech</h3>
+                        <p data-ko="Crystal-Optech 카탈로그, 데이터시트 및 기술자료"
+                            data-en="Crystal-Optech catalogs, product information and technical resources">
+                            Crystal-Optech 카탈로그, 데이터시트 및 기술자료</p><a class="btn btn-primary"
+                            href="resources/crystal-optech/crystal-optech.html" data-ko="자료 보기"
                             data-en="View Resources">자료 보기</a>
                     </article>
                     <article class="resource-card"><span class="kicker">RESOURCE LIBRARY</span>
@@ -163,12 +170,6 @@
                         <p data-ko="Mentech 카탈로그, 데이터시트 및 기술자료" data-en="Mentech datasheets and technical resources">
                             Mentech 카탈로그, 데이터시트 및 기술자료</p><a class="btn btn-primary"
                             href="resources/mentech/mentech.html" data-ko="자료 보기" data-en="View Resources">자료 보기</a>
-                    </article>
-                    <article class="resource-card"><span class="kicker">RESOURCE LIBRARY</span>
-                        <h3 data-ko="기타 자료" data-en="Other Resources">기타 자료</h3>
-                        <p data-ko="기타 기술 및 참고 자료" data-en="Other technical and reference resources">기타 기술 및 참고 자료</p><a
-                            class="btn btn-primary" href="resources/other/other.html" data-ko="자료 보기"
-                            data-en="View Resources">자료 보기</a>
                     </article>
                     <article class="resource-card"><span class="kicker">RESOURCE LIBRARY</span>
                         <h3 data-ko="SJM Prewell" data-en="SJM Prewell">SJM Prewell</h3>
@@ -185,10 +186,9 @@
                             data-en="View Resources">자료 보기</a>
                     </article>
                     <article class="resource-card"><span class="kicker">RESOURCE LIBRARY</span>
-                        <h3 data-ko="Viking" data-en="Viking">Viking</h3>
-                        <p data-ko="Viking 카탈로그, 데이터시트 및 기술자료"
-                            data-en="Viking catalogs, datasheets and technical resources">Viking 카탈로그, 데이터시트 및 기술자료</p>
-                        <a class="btn btn-primary" href="resources/viking/viking.html" data-ko="자료 보기"
+                        <h3 data-ko="기타 자료" data-en="Other Resources">기타 자료</h3>
+                        <p data-ko="기타 기술 및 참고 자료" data-en="Other technical and reference resources">기타 기술 및 참고 자료</p><a
+                            class="btn btn-primary" href="resources/other/other.html" data-ko="자료 보기"
                             data-en="View Resources">자료 보기</a>
                     </article>
                 </div>
@@ -229,9 +229,6 @@
         </div>
     </footer>
     <script src="assets/js/main.js"></script>
-    <script>
-        (() => { const KEY = 'maxgain-language'; function apply(lang) { lang = lang === 'en' ? 'en' : 'ko'; document.documentElement.lang = lang; document.querySelectorAll('[data-ko][data-en]').forEach(el => { el.textContent = lang === 'en' ? el.dataset.en : el.dataset.ko }); document.querySelectorAll('[data-placeholder-ko][data-placeholder-en]').forEach(el => { el.placeholder = lang === 'en' ? el.dataset.placeholderEn : el.dataset.placeholderKo }); document.querySelectorAll('[data-lang]').forEach(b => b.classList.toggle('active', b.dataset.lang === lang)); localStorage.setItem(KEY, lang); window.dispatchEvent(new CustomEvent('maxgain:languagechange', { detail: { language: lang } })); } document.querySelectorAll('[data-lang]').forEach(b => b.addEventListener('click', () => apply(b.dataset.lang))); apply(localStorage.getItem(KEY) || 'ko'); window.MAXGAIN_LANGUAGE = { apply, current: () => localStorage.getItem(KEY) || 'ko' }; })();
-    </script>
 </body>
 
 </html>
