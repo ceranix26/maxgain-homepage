@@ -1,0 +1,181 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Sumida Resources | MAXGAIN SYSTEMS</title>
+    <link rel="stylesheet" href="../../assets/css/style.css">
+    <style>
+        .resource-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 22px
+        }
+
+        .resource-card,
+        .doc-card {
+            background: #fff;
+            border: 1px solid #e1e7ee;
+            border-radius: 18px;
+            padding: 26px;
+            box-shadow: 0 8px 24px rgba(21, 52, 91, .07)
+        }
+
+        .resource-card {
+            display: flex;
+            flex-direction: column;
+            min-height: 210px
+        }
+
+        .resource-card h3,
+        .doc-card h3 {
+            color: #102f56;
+            margin: 10px 0
+        }
+
+        .resource-card p {
+            color: #64748b;
+            flex: 1
+        }
+
+        .kicker {
+            color: #52749a;
+            font-size: .78rem;
+            font-weight: 800;
+            letter-spacing: .08em
+        }
+
+        .resource-list {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 18px
+        }
+
+        .toolbar {
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            align-items: end;
+            margin: 24px 0
+        }
+
+        .toolbar .field {
+            flex: 1 1 260px
+        }
+
+        .type {
+            display: inline-flex;
+            padding: 5px 9px;
+            border-radius: 999px;
+            background: #eef4fb;
+            color: #15345b;
+            font-size: .78rem;
+            font-weight: 700
+        }
+
+        .empty {
+            grid-column: 1/-1;
+            padding: 34px;
+            border: 1px dashed #cbd5e1;
+            border-radius: 16px;
+            text-align: center;
+            color: #64748b;
+            background: #fff
+        }
+
+        .back {
+            margin-bottom: 22px
+        }
+
+        @media(max-width:900px) {
+
+            .resource-grid,
+            .resource-list {
+                grid-template-columns: repeat(2, 1fr)
+            }
+        }
+
+        @media(max-width:600px) {
+
+            .resource-grid,
+            .resource-list {
+                grid-template-columns: 1fr
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <header class="header">
+        <div class="container nav"><a class="brand" href="../../index.html"><img
+                    src="../../assets/images/maxgain-logo.png" alt="MAXGAIN SYSTEMS"></a><button class="menu-btn"
+                aria-label="메뉴 열기" aria-expanded="false">☰</button>
+            <nav class="nav-links"><a href="../../about.html" data-ko="회사소개" data-en="About">회사소개</a><a
+                    href="../../manufacturers.html" data-ko="제조사" data-en="Manufacturers">제조사</a><a
+                    href="../../product-search.html" data-ko="제품검색" data-en="Product Search">제품검색</a><a
+                    href="../../resources.html" class="active" data-ko="자료실" data-en="Resources">자료실</a><a
+                    href="../../contact.html" data-ko="문의" data-en="Contact">문의</a>
+                <div class="lang"><button class="active" data-lang="ko">KO</button><button data-lang="en">EN</button>
+                </div>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <section class="subhero">
+            <div class="container">
+                <div class="breadcrumb">HOME / RESOURCES / SUMIDA</div>
+                <h1>Sumida</h1>
+                <p>Sumida 자료를 확인하세요.</p>
+            </div>
+        </section>
+        <section class="section soft">
+            <div class="container">
+                <div class="back"><a class="btn btn-outline" href="../../resources.html">← 자료실로 돌아가기</a></div>
+                <div class="toolbar">
+                    <div class="field"><label for="q">자료 검색</label><input id="q" type="search" placeholder="제목 / 자료 유형">
+                    </div>
+                    <div class="field"><label for="t">자료 유형</label><select id="t">
+                            <option value="">All</option>
+                        </select></div>
+                </div>
+                <div id="list" class="resource-list">
+                    <div class="empty">자료를 불러오는 중입니다.</div>
+                </div>
+            </div>
+        </section>
+    </main>
+    <footer>
+        <div class="container">
+            <div class="footer-grid">
+                <div><img class="footer-logo" src="../../assets/images/maxgain-logo.png" alt="MAXGAIN SYSTEMS">
+                    <p>전자부품 유통 · 글로벌 소싱 · 대체품 및 단종품 대응</p>
+                </div>
+                <div>
+                    <h3 class="footer-title">바로가기</h3>
+                    <ul class="footer-links">
+                        <li><a href="../../about.html">About</a></li>
+                        <li><a href="../../manufacturers.html">Manufacturers</a></li>
+                        <li><a href="../../product-search.html">Product Search</a></li>
+                        <li><a href="../../resources.html">Resources</a></li>
+                        <li><a href="../../contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h3 class="footer-title">연락처</h3>
+                    <ul class="footer-links">
+                        <li>sales@maxgain.co.kr</li>
+                        <li>Tel. 02-430-3927</li>
+                        <li>Fax. 02-430-3928</li>
+                        <li>서울 구로구 경인로53길 15, 업무A동 508호</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="legal"><span>© 2026 MAXGAIN SYSTEMS. All rights reserved.</span></div>
+        </div>
+    </footer>
+    <script src="../../assets/js/main.js"></script>
+    <script>(() => { const list = document.getElementById('list'), q = document.getElementById('q'), t = document.getElementById('t'); let docs = []; const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c])); function render() { const k = q.value.trim().toLowerCase(), ty = t.value; const rows = docs.filter(x => (!ty || x.type === ty) && (!k || [x.title, x.type, x.description].join(' ').toLowerCase().includes(k))); list.innerHTML = rows.length ? rows.map(x => `<article class="doc-card"><span class="kicker">${esc(x.manufacturer || 'Sumida')}</span><h3>${esc(x.title || 'Resource')}</h3><p>${esc(x.description || '')}</p><div><span class="type">${esc(x.type || 'Document')}</span></div><p><a class="btn btn-primary" href="${esc(x.file || '#')}" ${x.external ? 'target="_blank" rel="noopener noreferrer"' : ''}>${esc(x.buttonLabel || '자료 보기')}</a></p></article>`).join('') : '<div class="empty">등록된 자료가 없습니다.</div>'; } async function init() { try { const r = await fetch('../../data/resources/sumida/resources.json', { cache: 'no-store' }); if (!r.ok) throw new Error(`HTTP ${r.status}`); const data = await r.json(); docs = Array.isArray(data) ? data : (data.items || []); const types = [...new Set(docs.map(x => x.type).filter(Boolean))].sort(); t.innerHTML = '<option value="">All</option>' + types.map(v => `<option value="${esc(v)}">${esc(v)}</option>`).join(''); render(); } catch (e) { console.error(e); list.innerHTML = '<div class="empty">자료 목록을 불러오지 못했습니다.</div>'; } } q.addEventListener('input', render); t.addEventListener('change', render); init(); })();</script>
+</body>
+
+</html>
