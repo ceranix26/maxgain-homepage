@@ -4,10 +4,136 @@
       "manufacturer": "Johanson Technology",
       "title": "Johanson Product Catalog",
       "type": "Catalog",
-      "description": "Johanson Technology 공식 제품 카탈로그",
+      "description": "Johanson Technology 공식 RF, Microwave 및 세라믹 부품 종합 카탈로그",
       "file": "https://www.johansontechnology.com/docs/4933/johanson_product_catalog.pdf",
       "external": true,
       "buttonLabel": "카탈로그 보기"
+    },
+    {
+      "manufacturer": "Johanson Technology",
+      "title": "AN103 - Nordic nRF5340 RF Front-End",
+      "type": "Application Note",
+      "description": "Nordic Semiconductor nRF5340-CLAA와 2450FM05A0045001T Integrated Passive Device 적용 가이드",
+      "file": "https://www.johansontechnology.com/docs/3269/johanson-an103_XRdhSiC.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "Johanson Technology",
+      "title": "AN100 - Semtech SX1261 / SX1262 / LLCC68 915MHz",
+      "type": "Application Note",
+      "description": "Semtech SX1261, SX1262 및 LLCC68용 902~928MHz RF Front-End 설계 가이드",
+      "file": "https://www.johansontechnology.com/docs/3030/jti-an100_uxENrCF.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "Johanson Technology",
+      "title": "AN101 - Semtech SX1261 / SX1262 / LLCC68 868MHz / 915MHz",
+      "type": "Application Note",
+      "description": "0900FM15K0039 Integrated Passive Device를 사용하는 863~928MHz RF Front-End 설계 가이드",
+      "file": "https://www.johansontechnology.com/docs/4476/Johanson_AN101.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "Johanson Technology",
+      "title": "Nordic nRF51822 / nRF51422 Balun Filter",
+      "type": "Application Note",
+      "description": "Nordic nRF51822 및 nRF51422와 2450BM14E0003 Balun Filter 적용 가이드",
+      "file": "https://www.johansontechnology.com/docs/2355/jti-an020_sRpjbJ8.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "Johanson Technology",
+      "title": "Nordic nRF24LE1 Balun Application Note",
+      "type": "Application Note",
+      "description": "Nordic nRF24LE1 QFN32와 2450BM14A0002 Balun 적용 가이드",
+      "file": "https://www.johansontechnology.com/docs/2450/nRF24LE1-QFN32-app-note_XmLCb0r.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "Johanson Technology",
+      "title": "2.4GHz Directional RHCP Automotive Antenna",
+      "type": "Application Note",
+      "description": "2440AT62B0085002U Directional RHCP Antenna의 자동차 및 무선통신 응용 가이드",
+      "file": "https://www.johansontechnology.com/docs/4836/johanson-technology-_directional-rhcp-antenna-2-4ghz-automotive-app-note.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "Johanson Technology",
+      "title": "Understanding Chip Capacitors",
+      "type": "Technical Guide",
+      "description": "Chip Capacitor의 구조와 기본 동작을 설명하는 공식 기술자료",
+      "file": "https://www.johansontechnology.com/docs/28/understanding-chip-capacitors.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "Johanson Technology",
+      "title": "Thin Film Design Guide",
+      "type": "Design Guide",
+      "description": "Johanson Technology 공식 Thin Film 기판 및 설계 가이드",
+      "file": "https://www.johansontechnology.com/downloads/johanson-thin-film-design-guide.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "Johanson Technology",
+      "title": "Designer Libraries",
+      "type": "Designer Library",
+      "description": "S-Parameter, AWR MWO, Gensys, Keysight ADS 및 RF 설계 라이브러리",
+      "file": "https://www.johansontechnology.com/designer-libraries",
+      "external": true,
+      "buttonLabel": "설계자료 보기 ↗"
+    },
+    {
+      "manufacturer": "Johanson Technology",
+      "title": "S-Parameter Measurement Application Note",
+      "type": "Application Note",
+      "description": "고주파 세라믹 부품의 S-Parameter 측정 관련 공식 기술자료",
+      "file": "https://www.johansontechnology.com/s-parameter-app-note",
+      "external": true,
+      "buttonLabel": "기술자료 보기 ↗"
+    },
+    {
+      "manufacturer": "Johanson Technology",
+      "title": "Chip Antenna Selection Guide",
+      "type": "Design Guide",
+      "description": "응용 주파수와 설계조건에 따른 Chip Antenna 선정 도구",
+      "file": "https://www.johansontechnology.com/chip-antenna-selection",
+      "external": true,
+      "buttonLabel": "선정 가이드 보기 ↗"
+    },
+    {
+      "manufacturer": "Johanson Technology",
+      "title": "Chip Antenna Mounting and Tuning Techniques",
+      "type": "Technical Guide",
+      "description": "Chip Antenna PCB 배치, 장착 및 튜닝 관련 공식 기술자료",
+      "file": "https://www.johansontechnology.com/tuning",
+      "external": true,
+      "buttonLabel": "기술자료 보기 ↗"
+    },
+    {
+      "manufacturer": "Johanson Technology",
+      "title": "JTISoft",
+      "type": "Design Tool",
+      "description": "Johanson Technology 공식 RF 부품 모델링 및 설계 소프트웨어",
+      "file": "https://jtisoft.johansontechnology.com/",
+      "external": true,
+      "buttonLabel": "설계 도구 열기 ↗"
+    },
+    {
+      "manufacturer": "Johanson Technology",
+      "title": "Avago AppCAD",
+      "type": "Design Tool",
+      "description": "RF 및 Microwave 회로 계산을 지원하는 공식 AppCAD 다운로드 페이지",
+      "file": "https://www.johansontechnology.com/downloads/avago-appcad/",
+      "external": true,
+      "buttonLabel": "도구 보기 ↗"
     }
   ]
 }

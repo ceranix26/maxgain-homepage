@@ -4,10 +4,109 @@
       "manufacturer": "Johanson Dielectrics",
       "title": "Johanson Product Catalog",
       "type": "Catalog",
-      "description": "Johanson Dielectrics 공식 제품 카탈로그",
+      "description": "Johanson Dielectrics 공식 Power Electronic 및 Ceramic Capacitor 종합 카탈로그",
       "file": "https://www.johansondielectrics.com/docs/4933/johanson_product_catalog.pdf",
       "external": true,
       "buttonLabel": "카탈로그 보기"
+    },
+    {
+      "manufacturer": "Johanson Dielectrics",
+      "title": "Safety Certified Capacitors Application Notes",
+      "type": "Application Note",
+      "description": "X 및 Y Safety Capacitor의 회로 적용, Impulse Voltage 및 Endurance Test 설명자료",
+      "file": "https://www.johansondielectrics.com/docs/3956/safety-certified-application-notes.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "Johanson Dielectrics",
+      "title": "AC Safety Capacitors",
+      "type": "Product Guide",
+      "description": "AC Safety Ceramic Capacitor 제품 및 기술정보",
+      "file": "https://www.johansondielectrics.com/docs/4611/johanson-ac-safety-capacitors.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "Johanson Dielectrics",
+      "title": "X2Y EMI Filter Evaluation and PCB Design Guide",
+      "type": "Design Guide",
+      "description": "X2Y EMI Filter 평가, 연결방법 및 PCB Layout 설계 가이드",
+      "file": "https://www.johansondielectrics.com/docs/3961/x2y-filter-evaluation-and-pcb-design-guide.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "Johanson Dielectrics",
+      "title": "X2Y Filter for Brushed DC Motor",
+      "type": "Application Note",
+      "description": "Brushed DC Motor의 전원선 노이즈 저감을 위한 X2Y EMI Filter 적용 가이드",
+      "file": "https://www.johansondielectrics.com/docs/3930/emi-as-emi-filter-for-dc-motor-with-brushes.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "Johanson Dielectrics",
+      "title": "High Capacitance Leaded Ceramic Capacitors",
+      "type": "Application Note",
+      "description": "고전압·고전력 응용용 Leaded Ceramic Capacitor 제품 및 적용자료",
+      "file": "https://www.johansondielectrics.com/docs/4468/johanson-north-american-power-leaded-app-note.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "Johanson Dielectrics",
+      "title": "High Voltage PolyTerm Ceramic Capacitors",
+      "type": "Datasheet",
+      "description": "기판 휨과 기계적 스트레스에 대한 내성이 강화된 High Voltage PolyTerm MLCC 자료",
+      "file": "https://www.johansondielectrics.com/docs/3782/high-voltage-polyterm-ceramic-capacitors.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "Johanson Dielectrics",
+      "title": "Sn/Pb SMT Application Notes",
+      "type": "Application Note",
+      "description": "MLCC 예열, Reflow, Wave Soldering 및 Thermal Shock 방지 가이드",
+      "file": "https://www.johansondielectrics.com/docs/3958/sn-pb-smt-application-notes_ZCY4Glx.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "Johanson Dielectrics",
+      "title": "High-Temperature Radial Leaded Capacitors 200°C",
+      "type": "Datasheet",
+      "description": "최대 200°C 환경용 Radial Leaded Ceramic Capacitor 제품자료",
+      "file": "https://www.johansondielectrics.com/docs/4305/johanson-leaded-radial-200c-rated_Wo7nFlX.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "Johanson Dielectrics",
+      "title": "Radial Leaded Switchmode Capacitors",
+      "type": "Datasheet",
+      "description": "Switchmode 응용용 Radial Leaded Ceramic Capacitor 제품자료",
+      "file": "https://www.johansondielectrics.com/docs/4882/johanson_radial_leaded_switchmode.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "Johanson Dielectrics",
+      "title": "CapStrate Design Guide",
+      "type": "Design Guide",
+      "description": "Bulk Capacitance Embedded Ceramic Substrate인 CapStrate 공식 설계 가이드",
+      "file": "https://www.johansondielectrics.com/downloads/johanson-capstrate-design-guide.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "Johanson Dielectrics",
+      "title": "S21 Plotter",
+      "type": "Design Tool",
+      "description": "X2Y EMI Filter의 주파수 특성 검토를 위한 공식 S21 Plotter",
+      "file": "https://s21plotter.johansondielectrics.com/",
+      "external": true,
+      "buttonLabel": "설계 도구 열기 ↗"
     }
   ]
 }
