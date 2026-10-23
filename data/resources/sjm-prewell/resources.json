@@ -1,3 +1,112 @@
 {
-  "items": []
+  "items": [
+    {
+      "manufacturer": "SJM PREWELL",
+      "title": "SJM PREWELL Catalogue",
+      "type": "Catalog Index",
+      "description": "SJM PREWELL 공식 카탈로그 및 제품 자료 목록",
+      "file": "https://www.prewell.com/en/sub/bbs_list.php?code=catalog",
+      "external": true,
+      "buttonLabel": "카탈로그 목록 보기 ↗"
+    },
+    {
+      "manufacturer": "SJM PREWELL",
+      "title": "PK831 / PK83X CATV Amplifier",
+      "type": "Datasheet",
+      "description": "40~1500MHz CATV Amplifier 공식 데이터시트",
+      "file": "https://www.prewell.com/en/sub/01_download.php?idx=187&pds=1",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "SJM PREWELL",
+      "title": "PLG01 Low Noise Amplifier",
+      "type": "Datasheet",
+      "description": "1000~2500MHz GPS 및 무선통신용 Low Noise Amplifier 데이터시트",
+      "file": "http://www.prewell.com/en/sub/01_download.php?idx=108&pds=1",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "SJM PREWELL",
+      "title": "PG741 Wideband Gain Block",
+      "type": "Datasheet",
+      "description": "50~5000MHz Wideband Gain Block 공식 데이터시트",
+      "file": "https://www.prewell.com/en/sub/01_download.php?idx=316&pds=1",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "SJM PREWELL",
+      "title": "PM210 Ultra-Linear Mixer",
+      "type": "Datasheet",
+      "description": "0.15~2.7GHz RF 범위를 지원하는 Ultra-Linear Mixer 데이터시트",
+      "file": "https://www.prewell.com/en/sub/01_download.php?idx=145&pds=1",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "SJM PREWELL",
+      "title": "PW250-63 Wideband Gain Block",
+      "type": "Datasheet",
+      "description": "5~6000MHz Wideband Gain Block 공식 데이터시트",
+      "file": "http://www.prewell.com/en/sub/01_download.php?idx=44&pds=1",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "SJM PREWELL",
+      "title": "PL05S Low Noise Amplifier",
+      "type": "Datasheet",
+      "description": "1700~5000MHz 5G 및 무선 인프라용 Low Noise Amplifier 데이터시트",
+      "file": "http://prewell.com/en/sub/01_download.php?idx=151&pds=1",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "SJM PREWELL",
+      "title": "PW290-63 Wideband Gain Block",
+      "type": "Datasheet",
+      "description": "5~3000MHz Wideband Gain Block 공식 데이터시트",
+      "file": "http://www.prewell.com/en/sub/01_download.php?idx=43&pds=1",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "SJM PREWELL",
+      "title": "PNW255 / PNW254 Wideband Gain Block",
+      "type": "Datasheet",
+      "description": "5~3000MHz 저전류 Wideband Gain Block 데이터시트",
+      "file": "https://www.prewell.com/en/sub/01_download.php?idx=113&pds=1",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "SJM PREWELL",
+      "title": "PW11A Gain Block",
+      "type": "Datasheet",
+      "description": "5~500MHz 고선형 Gain Block 공식 데이터시트",
+      "file": "http://prewell.com/en/sub/01_download.php?idx=7&pds=1",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "SJM PREWELL",
+      "title": "PD35A Power Divider",
+      "type": "Datasheet",
+      "description": "3000~5000MHz Power Divider 공식 데이터시트",
+      "file": "https://prewell.com/en/sub/01_download.php?idx=139&pds=1",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "SJM PREWELL",
+      "title": "PNW355 Wideband Gain Block",
+      "type": "Datasheet",
+      "description": "20~5000MHz 5G NR 대응 Wideband Gain Block 데이터시트",
+      "file": "http://www.prewell.com/en/sub/01_download.php?idx=141&pds=1",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    }
+  ]
 }

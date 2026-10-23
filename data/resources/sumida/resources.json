@@ -1,3 +1,130 @@
 {
-  "items": []
+  "items": [
+    {
+      "manufacturer": "SUMIDA CORPORATION",
+      "title": "SUMIDA Components Catalogue 2023",
+      "type": "Catalog",
+      "description": "SUMIDA Components GmbH의 Inductors, Capacitors 및 Ceramics 제품 카탈로그",
+      "file": "https://www.sumida.com/info-centre/downloads/SUMIDA_Components_Catalogue_2023.1749549548.pdf",
+      "external": true,
+      "buttonLabel": "카탈로그 보기"
+    },
+    {
+      "manufacturer": "SUMIDA CORPORATION",
+      "title": "Product Search",
+      "type": "Product Guide",
+      "description": "SUMIDA 공식 제품 검색 및 제품 정보 페이지",
+      "file": "https://products.sumida.com/ProductsInfo/?lang=en",
+      "external": true,
+      "buttonLabel": "제품 검색하기 ↗"
+    },
+    {
+      "manufacturer": "SUMIDA CORPORATION",
+      "title": "Design Support",
+      "type": "Technical Guide",
+      "description": "제품 선정 도구, 비교 도구, 문의 양식과 다운로드 센터를 제공하는 공식 기술지원 페이지",
+      "file": "https://products.sumida.com/ProductsInfo/Support/?lang=en",
+      "external": true,
+      "buttonLabel": "기술지원 보기 ↗"
+    },
+    {
+      "manufacturer": "SUMIDA CORPORATION",
+      "title": "Signal Transformers",
+      "type": "Product Guide",
+      "description": "Pulse Transformer, Automotive BMS Transformer 및 RF Communication Transformer 제품 정보",
+      "file": "https://products.sumida.com/ProductsInfo/ProductGuide/SignalTransformers/",
+      "external": true,
+      "buttonLabel": "제품군 보기 ↗"
+    },
+    {
+      "manufacturer": "SUMIDA CORPORATION",
+      "title": "Info Centre & Catalog",
+      "type": "Catalog Index",
+      "description": "SUMIDA 공식 카탈로그와 제품 자료 목록",
+      "file": "https://www.sumida.com/info-centre/?lang=en",
+      "external": true,
+      "buttonLabel": "자료 목록 보기 ↗"
+    },
+    {
+      "manufacturer": "SUMIDA CORPORATION",
+      "title": "CDRH6D38 SMD Power Inductor",
+      "type": "Datasheet",
+      "description": "SUMIDA 공식 CDRH6D38 SMD Power Inductor 데이터시트",
+      "file": "https://products.sumida.com/products/pdf/CDRH6D38%202025.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "SUMIDA CORPORATION",
+      "title": "CDR7D43MN SMD Power Inductor",
+      "type": "Datasheet",
+      "description": "SUMIDA 공식 CDR7D43MN SMD Power Inductor 데이터시트",
+      "file": "https://products.sumida.com/products/pdf/CDR7D43MN%20Ver2024.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "SUMIDA CORPORATION",
+      "title": "CDEPH6211 SMD Power Inductor",
+      "type": "Datasheet",
+      "description": "Flat Wire Winding을 적용한 SUMIDA 공식 CDEPH6211 SMD Power Inductor 데이터시트",
+      "file": "https://products.sumida.com/products/pdf/CDEPH6211%20%28en%29.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "SUMIDA CORPORATION",
+      "title": "CD43T125 Automotive SMD Power Inductor",
+      "type": "Datasheet",
+      "description": "AEC-Q200 조건이 명시된 SUMIDA 공식 CD43T125 Automotive Power Inductor 데이터시트",
+      "file": "https://products.sumida.com/products/pdf/CD43T125.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "SUMIDA CORPORATION",
+      "title": "CDH70D48 SMD Power Inductor",
+      "type": "Datasheet",
+      "description": "LED Lighting 입력 필터용 SUMIDA 공식 CDH70D48 SMD Power Inductor 데이터시트",
+      "file": "https://products.sumida.com/products/pdf/CDH70D48%20ver.2.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "SUMIDA CORPORATION",
+      "title": "AS737 LF Transmitter Antenna",
+      "type": "Datasheet",
+      "description": "PEPS, Smart Key 및 Security System용 SUMIDA 공식 AS737 LF Transmitter Antenna 데이터시트",
+      "file": "https://products.sumida.com/products/pdf/Datasheet-AS737.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "SUMIDA CORPORATION",
+      "title": "CEEH55 Current Sense Transformer",
+      "type": "Datasheet",
+      "description": "최대 20A 정격의 SUMIDA 공식 CEEH55 SMD Current Sense Transformer 데이터시트",
+      "file": "https://products.sumida.com/products/pdf/CEEH55.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "SUMIDA CORPORATION",
+      "title": "CMG65 IFT Coil",
+      "type": "Datasheet",
+      "description": "10~250kHz 동작 범위의 SUMIDA 공식 CMG65 Variable Shielded IFT Coil 데이터시트",
+      "file": "https://products.sumida.com/products/pdf/CMG65.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    },
+    {
+      "manufacturer": "SUMIDA CORPORATION",
+      "title": "CEEH159 Automotive SMD Transformer",
+      "type": "Datasheet",
+      "description": "AEC-Q200 조건이 명시된 IGBT Gate Drive용 SUMIDA 공식 CEEH159 Automotive Transformer 데이터시트",
+      "file": "https://products.sumida.com/products/pdf/CEEH159%20Ver03.pdf",
+      "external": true,
+      "buttonLabel": "PDF 보기"
+    }
+  ]
 }

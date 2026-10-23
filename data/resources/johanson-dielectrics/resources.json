@@ -1,3 +1,13 @@
 {
-  "items": []
+  "items": [
+    {
+      "manufacturer": "Johanson Dielectrics",
+      "title": "Johanson Product Catalog",
+      "type": "Catalog",
+      "description": "Johanson Dielectrics 공식 제품 카탈로그",
+      "file": "https://www.johansondielectrics.com/docs/4933/johanson_product_catalog.pdf",
+      "external": true,
+      "buttonLabel": "카탈로그 보기"
+    }
+  ]
 }

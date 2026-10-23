@@ -1,3 +1,13 @@
 {
-  "items": []
+  "items": [
+    {
+      "manufacturer": "Johanson Technology",
+      "title": "Johanson Product Catalog",
+      "type": "Catalog",
+      "description": "Johanson Technology 공식 제품 카탈로그",
+      "file": "https://www.johansontechnology.com/docs/4933/johanson_product_catalog.pdf",
+      "external": true,
+      "buttonLabel": "카탈로그 보기"
+    }
+  ]
 }

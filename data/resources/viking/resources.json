@@ -1,3 +1,40 @@
 {
-  "items": []
+  "items": [
+    {
+      "manufacturer": "Viking",
+      "title": "Capacitor Catalog",
+      "type": "Catalog",
+      "description": "Viking 공식 Capacitor 제품 카탈로그",
+      "file": "https://www.viking.com.tw/Templates/att/Capacitor%20Catalog.pdf?lng=zh-TW",
+      "external": true,
+      "buttonLabel": "카탈로그 보기"
+    },
+    {
+      "manufacturer": "Viking",
+      "title": "Inductor Catalog",
+      "type": "Catalog",
+      "description": "Viking 공식 Inductor 제품 카탈로그",
+      "file": "https://www.viking.com.tw/Templates/att/Inductor%20Catalog.pdf?lng=zh-TW",
+      "external": true,
+      "buttonLabel": "카탈로그 보기"
+    },
+    {
+      "manufacturer": "Viking",
+      "title": "Resistor Catalog 1",
+      "type": "Catalog",
+      "description": "Viking 공식 Resistor 제품 카탈로그 Part 1",
+      "file": "https://www.viking.com.tw/Templates/att/Resistor%20Catalog-1.pdf?lng=zh-TW",
+      "external": true,
+      "buttonLabel": "카탈로그 보기"
+    },
+    {
+      "manufacturer": "Viking",
+      "title": "Resistor Catalog 2",
+      "type": "Catalog",
+      "description": "Viking 공식 Resistor 제품 카탈로그 Part 2",
+      "file": "https://www.viking.com.tw/Templates/att/Resistor%20Catalog-2.pdf?lng=zh-TW",
+      "external": true,
+      "buttonLabel": "카탈로그 보기"
+    }
+  ]
 }
