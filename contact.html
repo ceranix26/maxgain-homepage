@@ -128,26 +128,18 @@
             overflow: hidden
         }
 
-        .map-visual {
-            min-height: 300px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            padding: 34px;
-            background: linear-gradient(135deg, #eaf1f8, #f7fafc);
-            text-align: center
+        .map-embed {
+            position: relative;
+            width: 100%;
+            height: 420px;
+            background: #eaf1f8
         }
 
-        .map-pin {
-            width: 54px;
-            height: 54px;
-            border-radius: 50%;
-            background: #15345b;
-            color: #fff;
-            display: grid;
-            place-items: center;
-            margin: 0 auto 14px;
-            font-size: 1.45rem
+        .map-embed iframe {
+            display: block;
+            width: 100%;
+            height: 100%;
+            border: 0
         }
 
         .map-actions {
@@ -292,13 +284,10 @@
         <section class="section">
             <div class="container">
                 <div class="map-card">
-                    <div class="map-visual">
-                        <div>
-                            <div class="map-pin">●</div>
-                            <h2>MAXGAIN SYSTEMS</h2>
-                            <p>서울특별시 구로구 경인로53길 15<br>중앙유통단지 업무A동 508호</p>
-                        </div>
-                    </div>
+                    <div class="map-embed"><iframe
+                            src="https://www.google.com/maps/embed?pb=!1m5!3m3!1m2!1s0x357ca2012d5c39cf%3A0xfcf8c45f62eface6!2z7ISc7Jq47Yq567OE7IucIEdWMkcrUUY5!5e0!3m2!1sko!2skr!4v1792720779040!5m2!1sko!2skr"
+                            title="MAXGAIN SYSTEMS Google Map" loading="lazy" allowfullscreen
+                            referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
                     <div class="map-actions">
                         <p data-ko="정확한 건물 위치는 Google 지도에서 확인하실 수 있습니다."
                             data-en="Open Google Maps to view the selected building location.">정확한 건물 위치는 Google 지도에서
