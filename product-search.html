@@ -66,7 +66,7 @@
       scroll-snap-type: x mandatory;
       scroll-behavior: smooth;
       scrollbar-width: thin;
-      scrollbar-color: #aebdcd transparent;
+      scroll-color: #aebdcd transparent;
       padding: 3px 2px 12px
     }
 
@@ -122,6 +122,26 @@
     .stock-out {
       color: #a33a32;
       background: #fff0ef
+    }
+
+    .stock-result {
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 8px;
+      flex-wrap: wrap
+    }
+
+    .stock-level {
+      display: inline-flex;
+      align-items: center;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: #eef4fb;
+      color: #15345b;
+      font-size: .82rem;
+      font-weight: 700;
+      white-space: nowrap
     }
 
     .featured-loading {
@@ -191,20 +211,16 @@
 
 <body>
   <header class="header">
-    <div class="container nav">
-      <a class="brand" href="index.html"><img src="assets/images/maxgain-logo.png" alt="MAXGAIN SYSTEMS"></a>
-      <button class="menu-btn" aria-label="메뉴 열기" aria-expanded="false">☰</button>
-      <nav class="nav-links">
-        <a href="about.html" data-ko="회사소개" data-en="About">회사소개</a>
-        <a href="manufacturers.html" data-ko="제조사" data-en="Manufacturers">제조사</a>
-        <a href="product-search.html" class="active" data-ko="제품검색" data-en="Product Search">제품검색</a>
-        <a href="resources.html" data-ko="자료실" data-en="Resources">자료실</a>
-        <a href="contact.html" data-ko="문의" data-en="Contact">문의</a>
+    <div class="container nav"><a class="brand" href="index.html"><img src="assets/images/maxgain-logo.png"
+          alt="MAXGAIN SYSTEMS"></a><button class="menu-btn" aria-label="메뉴 열기" aria-expanded="false">☰</button>
+      <nav class="nav-links"><a href="about.html" data-ko="회사소개" data-en="About">회사소개</a><a href="manufacturers.html"
+          data-ko="제조사" data-en="Manufacturers">제조사</a><a href="product-search.html" class="active" data-ko="제품검색"
+          data-en="Product Search">제품검색</a><a href="resources.html" data-ko="자료실" data-en="Resources">자료실</a><a
+          href="contact.html" data-ko="문의" data-en="Contact">문의</a>
         <div class="lang"><button class="active" data-lang="ko">KO</button><button data-lang="en">EN</button></div>
       </nav>
     </div>
   </header>
-
   <main>
     <section class="subhero">
       <div class="container">
@@ -214,7 +230,6 @@
           data-en="Enter a part number to check its current inventory status.">Part Number를 입력하여 현재 재고 상태를 확인합니다.</p>
       </div>
     </section>
-
     <section class="section soft">
       <div class="container">
         <section class="featured-stock" aria-labelledby="featuredTitle">
@@ -226,10 +241,9 @@
                 data-en="Browse 30 randomly selected in-stock products. Select a card to search it instantly.">현재 재고가 있는
                 제품 중 30개를 무작위로 보여드립니다. 카드를 누르면 바로 검색됩니다.</p>
             </div>
-            <div class="featured-actions">
-              <button class="slider-btn" id="featuredPrev" type="button" aria-label="이전 제품">‹</button>
-              <button class="slider-btn" id="featuredNext" type="button" aria-label="다음 제품">›</button>
-            </div>
+            <div class="featured-actions"><button class="slider-btn" id="featuredPrev" type="button"
+                aria-label="이전 제품">‹</button><button class="slider-btn" id="featuredNext" type="button"
+                aria-label="다음 제품">›</button></div>
           </div>
           <div class="featured-viewport" id="featuredViewport" tabindex="0" aria-label="추천 재고 제품 목록">
             <div class="featured-track" id="featuredTrack">
@@ -237,29 +251,20 @@
             </div>
           </div>
         </section>
-
         <div class="search-divider"></div>
-
         <div class="form">
           <div class="form-grid">
-            <div class="field full">
-              <label for="keyword">Part Number</label>
-              <input id="keyword" type="search" placeholder="예: YST-1103A" data-placeholder-ko="예: YST-1103A"
-                data-placeholder-en="Example: YST-1103A" autocomplete="off" spellcheck="false">
-            </div>
-            <div class="field full">
-              <button class="btn btn-primary" id="searchBtn" type="button" data-ko="재고 검색" data-en="Search Inventory">재고
-                검색</button>
-            </div>
+            <div class="field full"><label for="keyword">Part Number</label><input id="keyword" type="search"
+                placeholder="예: YST-1103A" autocomplete="off" spellcheck="false"></div>
+            <div class="field full"><button class="btn btn-primary" id="searchBtn" type="button" data-ko="재고 검색"
+                data-en="Search Inventory">재고 검색</button></div>
           </div>
         </div>
-
         <div id="searchSummary" class="notice" style="margin-top:20px" aria-live="polite">재고 정보를 불러오는 중입니다.</div>
         <div id="results" class="grid-3" style="margin-top:28px"></div>
       </div>
     </section>
   </main>
-
   <footer>
     <div class="container">
       <div class="footer-grid">
@@ -293,114 +298,22 @@
             Policy</a> · <a href="terms.html">Terms</a></span></div>
     </div>
   </footer>
-
   <script src="assets/js/main.js"></script>
   <script>
     (() => {
-      const $ = id => document.getElementById(id);
-      const keywordInput = $('keyword');
-      const summary = $('searchSummary');
-      const results = $('results');
-      const featuredTrack = $('featuredTrack');
-      const featuredViewport = $('featuredViewport');
-      let inventoryItems = [];
-      let featuredItems = [];
-      let loaded = false;
-
-      const esc = value => String(value ?? '').replace(/[&<>"']/g, character => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[character]));
-      const lang = () => document.documentElement.lang === 'en' ? 'en' : 'ko';
-      const msg = (ko, en) => lang() === 'en' ? en : ko;
-      const normalize = value => String(value ?? '').trim().toUpperCase().replace(/\s+/g, '');
-
-      function randomSample(items, count) {
-        const copy = items.slice();
-        for (let i = copy.length - 1; i > 0; i--) {
-          const j = Math.floor(Math.random() * (i + 1));
-          [copy[i], copy[j]] = [copy[j], copy[i]];
-        }
-        return copy.slice(0, Math.min(count, copy.length));
-      }
-
-      function renderFeatured() {
-        if (!featuredItems.length) {
-          featuredTrack.innerHTML = `<p class="featured-loading">${msg('표시할 재고 제품이 없습니다.', 'No in-stock products are available.')}</p>`;
-          return;
-        }
-        featuredTrack.innerHTML = featuredItems.map(item => `
-      <button class="featured-card" type="button" data-part-number="${esc(item.partNumber)}" aria-label="${esc(item.partNumber)} 검색">
-        <strong>${esc(item.partNumber)}</strong>
-        <span class="stock-badge stock-in">${msg('재고 있음', 'In stock')}</span>
-      </button>`).join('');
-
-        featuredTrack.querySelectorAll('.featured-card').forEach(card => {
-          card.addEventListener('click', () => {
-            keywordInput.value = card.dataset.partNumber || '';
-            renderSearch();
-            summary.scrollIntoView({ behavior: 'smooth', block: 'center' });
-          });
-        });
-      }
-
-      function renderSearch() {
-        const raw = keywordInput.value.trim();
-        const keyword = normalize(raw);
-        if (!loaded) {
-          summary.textContent = msg('재고 정보를 불러오는 중입니다.', 'Loading inventory data.');
-          results.innerHTML = '';
-          return;
-        }
-        if (!keyword) {
-          summary.textContent = msg(`${inventoryItems.length.toLocaleString()}개 Part Number의 재고 정보를 검색할 수 있습니다.`, `Inventory status is available for ${inventoryItems.length.toLocaleString()} part numbers.`);
-          results.innerHTML = '';
-          keywordInput.focus();
-          return;
-        }
-
-        const exact = inventoryItems.filter(item => item.normalized === keyword);
-        const matches = exact.length ? exact : inventoryItems.filter(item => item.normalized.includes(keyword)).slice(0, 50);
-        if (!matches.length) {
-          summary.textContent = msg(`“${raw}”와 일치하는 Part Number를 찾을 수 없습니다.`, `No part number matching “${raw}” was found.`);
-          results.innerHTML = '';
-          return;
-        }
-
-        summary.textContent = exact.length ? msg('정확히 일치하는 Part Number를 찾았습니다.', 'An exact part number match was found.') : msg(`${matches.length.toLocaleString()}개의 유사 Part Number를 찾았습니다.`, `${matches.length.toLocaleString()} similar part numbers were found.`);
-        results.innerHTML = matches.map(item => {
-          const inStock = item.status === 'in-stock';
-          return `<article class="card product-card"><div class="product-card-head"><div><h3>${esc(item.partNumber)}</h3><p>Part Number</p></div><span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${inStock ? msg('재고 있음', 'In stock') : msg('재고 없음', 'Out of stock')}</span></div></article>`;
-        }).join('');
-      }
-
-      function scrollFeatured(direction) {
-        const card = featuredTrack.querySelector('.featured-card');
-        const gap = 16;
-        const amount = card ? (card.getBoundingClientRect().width + gap) * 5 : featuredViewport.clientWidth * .9;
-        featuredViewport.scrollBy({ left: direction * amount, behavior: 'smooth' });
-      }
-
-      async function initialize() {
-        try {
-          const response = await fetch('data/inventory-status.json', { cache: 'no-store' });
-          if (!response.ok) throw new Error(`HTTP ${response.status}`);
-          const data = await response.json();
-          inventoryItems = Object.entries(data.items || {}).map(([partNumber, info]) => ({ partNumber, normalized: normalize(partNumber), status: info?.status || 'out-of-stock' })).filter(item => item.partNumber);
-          featuredItems = randomSample(inventoryItems.filter(item => item.status === 'in-stock'), 30);
-          loaded = true;
-          renderFeatured();
-          renderSearch();
-        } catch (error) {
-          console.error('Inventory load failed:', error);
-          featuredTrack.innerHTML = `<p class="featured-loading">${msg('추천 제품을 불러오지 못했습니다.', 'Featured products could not be loaded.')}</p>`;
-          summary.textContent = msg('재고 정보를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.', 'Inventory data could not be loaded. Please try again later.');
-        }
-      }
-
-      $('searchBtn').addEventListener('click', renderSearch);
-      keywordInput.addEventListener('keydown', event => { if (event.key === 'Enter') renderSearch(); });
-      $('featuredPrev').addEventListener('click', () => scrollFeatured(-1));
-      $('featuredNext').addEventListener('click', () => scrollFeatured(1));
-      document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => setTimeout(() => { renderFeatured(); renderSearch(); }, 0)));
-      initialize();
+      const $ = id => document.getElementById(id), keywordInput = $('keyword'), summary = $('searchSummary'), results = $('results'), featuredTrack = $('featuredTrack'), featuredViewport = $('featuredViewport');
+      let inventoryItems = [], featuredItems = [], loaded = false, featuredAutoTimer = null, featuredAutoPaused = false;
+      const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+      const lang = () => document.documentElement.lang === 'en' ? 'en' : 'ko', msg = (ko, en) => lang() === 'en' ? en : ko, normalize = v => String(v ?? '').trim().toUpperCase().replace(/\s+/g, '');
+      function randomSample(items, count) { const copy = items.slice(); for (let i = copy.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1));[copy[i], copy[j]] = [copy[j], copy[i]]; } return copy.slice(0, Math.min(count, copy.length)); }
+      function renderFeatured() { if (!featuredItems.length) { featuredTrack.innerHTML = `<p class="featured-loading">${msg('표시할 재고 제품이 없습니다.', 'No in-stock products are available.')}</p>`; return; } featuredTrack.innerHTML = featuredItems.map(item => `<button class="featured-card" type="button" data-part-number="${esc(item.partNumber)}"><strong>${esc(item.partNumber)}</strong><span class="stock-badge stock-in">${msg('재고 있음', 'In stock')}</span></button>`).join(''); featuredTrack.querySelectorAll('.featured-card').forEach(card => card.addEventListener('click', () => { keywordInput.value = card.dataset.partNumber || ''; renderSearch(); summary.scrollIntoView({ behavior: 'smooth', block: 'center' }); })); }
+      function renderSearch() { const raw = keywordInput.value.trim(), keyword = normalize(raw); if (!loaded) { summary.textContent = msg('재고 정보를 불러오는 중입니다.', 'Loading inventory data.'); results.innerHTML = ''; return; } if (!keyword) { summary.textContent = msg(`${inventoryItems.length.toLocaleString()}개 Part Number의 재고 정보를 검색할 수 있습니다.`, `Inventory status is available for ${inventoryItems.length.toLocaleString()} part numbers.`); results.innerHTML = ''; return; } const exact = inventoryItems.filter(item => item.normalized === keyword), matches = exact.length ? exact : inventoryItems.filter(item => item.normalized.includes(keyword)).slice(0, 50); if (!matches.length) { summary.textContent = msg(`“${raw}”와 일치하는 Part Number를 찾을 수 없습니다.`, `No part number matching “${raw}” was found.`); results.innerHTML = ''; return; } summary.textContent = exact.length ? msg('정확히 일치하는 Part Number를 찾았습니다.', 'An exact part number match was found.') : msg(`${matches.length.toLocaleString()}개의 유사 Part Number를 찾았습니다.`, `${matches.length.toLocaleString()} similar part numbers were found.`); results.innerHTML = matches.map(item => { const inStock = item.status === 'in-stock'; return `<article class="card product-card"><div class="product-card-head"><div><h3>${esc(item.partNumber)}</h3><p>Part Number</p></div><div class="stock-result"><span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${inStock ? msg('재고 있음', 'In stock') : msg('재고 없음', 'Out of stock')}</span>${inStock && item.stockLevel ? `<span class="stock-level">${esc(item.stockLevel)}</span>` : ''}</div></div></article>`; }).join(''); }
+      function cardStep() { const card = featuredTrack.querySelector('.featured-card'); return card ? card.getBoundingClientRect().width + 16 : featuredViewport.clientWidth * .9; }
+      function scrollFeatured(direction, count = 5) { featuredViewport.scrollBy({ left: direction * cardStep() * count, behavior: 'smooth' }); }
+      function stopFeaturedAutoSlide() { if (featuredAutoTimer) { clearInterval(featuredAutoTimer); featuredAutoTimer = null; } }
+      function startFeaturedAutoSlide() { stopFeaturedAutoSlide(); if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; featuredAutoTimer = setInterval(() => { if (featuredAutoPaused) return; const card = featuredTrack.querySelector('.featured-card'); if (!card) return; const step = cardStep(), maxScroll = featuredViewport.scrollWidth - featuredViewport.clientWidth; if (featuredViewport.scrollLeft >= maxScroll - step * .5) { featuredViewport.scrollTo({ left: 0, behavior: 'smooth' }); } else { featuredViewport.scrollBy({ left: step, behavior: 'smooth' }); } }, 4000); }
+      async function initialize() { try { const response = await fetch('data/inventory-status.json', { cache: 'no-store' }); if (!response.ok) throw new Error(`HTTP ${response.status}`); const data = await response.json(); inventoryItems = Object.entries(data.items || {}).map(([partNumber, info]) => ({ partNumber, normalized: normalize(partNumber), status: info?.status || 'out-of-stock', stockLevel: info?.stockLevel || '' })).filter(item => item.partNumber); featuredItems = randomSample(inventoryItems.filter(item => item.status === 'in-stock'), 30); loaded = true; renderFeatured(); renderSearch(); startFeaturedAutoSlide(); } catch (error) { console.error('Inventory load failed:', error); featuredTrack.innerHTML = `<p class="featured-loading">${msg('추천 제품을 불러오지 못했습니다.', 'Featured products could not be loaded.')}</p>`; summary.textContent = msg('재고 정보를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.', 'Inventory data could not be loaded. Please try again later.'); } }
+      $('searchBtn').addEventListener('click', renderSearch); keywordInput.addEventListener('keydown', e => { if (e.key === 'Enter') renderSearch(); }); $('featuredPrev').addEventListener('click', () => scrollFeatured(-1)); $('featuredNext').addEventListener('click', () => scrollFeatured(1)); featuredViewport.addEventListener('mouseenter', () => { featuredAutoPaused = true; }); featuredViewport.addEventListener('mouseleave', () => { featuredAutoPaused = false; }); featuredViewport.addEventListener('touchstart', () => { featuredAutoPaused = true; }, { passive: true }); featuredViewport.addEventListener('touchend', () => { featuredAutoPaused = false; }, { passive: true }); featuredViewport.addEventListener('focusin', () => { featuredAutoPaused = true; }); featuredViewport.addEventListener('focusout', () => { featuredAutoPaused = false; }); document.addEventListener('visibilitychange', () => { featuredAutoPaused = document.hidden; }); document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => setTimeout(() => { renderFeatured(); renderSearch(); }, 0))); initialize();
     })();
   </script>
 </body>
