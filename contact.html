@@ -4,14 +4,195 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <meta name="description" content="MAXGAIN SYSTEMS">
+    <meta name="description" content="MAXGAIN SYSTEMS 견적, 샘플, 기술 및 납기 문의">
     <title>Contact | MAXGAIN SYSTEMS</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap"
-        rel="stylesheet">
     <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .contact-layout {
+            display: grid;
+            grid-template-columns: .9fr 1.25fr;
+            gap: 34px;
+            align-items: start
+        }
+
+        .contact-panel,
+        .contact-form-card,
+        .map-card {
+            background: #fff;
+            border: 1px solid #e0e7ef;
+            border-radius: 18px;
+            box-shadow: 0 10px 28px rgba(21, 52, 91, .07)
+        }
+
+        .contact-panel {
+            padding: 30px
+        }
+
+        .contact-form-card {
+            padding: 30px
+        }
+
+        .contact-info {
+            display: grid;
+            gap: 18px;
+            margin-top: 24px
+        }
+
+        .contact-info-item {
+            padding-top: 16px;
+            border-top: 1px solid #edf1f5
+        }
+
+        .contact-info-item strong {
+            display: block;
+            color: #15345b;
+            margin-bottom: 6px
+        }
+
+        .contact-info-item a {
+            color: inherit
+        }
+
+        .form-grid {
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            gap: 18px
+        }
+
+        .field {
+            display: flex;
+            flex-direction: column;
+            gap: 7px
+        }
+
+        .field.full {
+            grid-column: 1/-1
+        }
+
+        .field label {
+            font-weight: 700;
+            color: #193957
+        }
+
+        .field input,
+        .field select,
+        .field textarea {
+            width: 100%;
+            box-sizing: border-box;
+            border: 1px solid #d6dee8;
+            border-radius: 10px;
+            padding: 12px 13px;
+            background: #fff;
+            font: inherit;
+            color: #172b40
+        }
+
+        .field textarea {
+            min-height: 150px;
+            resize: vertical
+        }
+
+        .consent {
+            display: flex;
+            gap: 10px;
+            align-items: flex-start;
+            color: #536779;
+            font-size: .92rem
+        }
+
+        .consent input {
+            margin-top: 3px
+        }
+
+        .form-status {
+            display: none;
+            margin-top: 15px;
+            padding: 12px 14px;
+            border-radius: 10px
+        }
+
+        .form-status.success {
+            display: block;
+            background: #e8f7ef;
+            color: #086b40
+        }
+
+        .form-status.error {
+            display: block;
+            background: #fff0ef;
+            color: #9a302b
+        }
+
+        .map-card {
+            margin-top: 28px;
+            overflow: hidden
+        }
+
+        .map-visual {
+            min-height: 300px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 34px;
+            background: linear-gradient(135deg, #eaf1f8, #f7fafc);
+            text-align: center
+        }
+
+        .map-pin {
+            width: 54px;
+            height: 54px;
+            border-radius: 50%;
+            background: #15345b;
+            color: #fff;
+            display: grid;
+            place-items: center;
+            margin: 0 auto 14px;
+            font-size: 1.45rem
+        }
+
+        .map-actions {
+            padding: 20px 24px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            flex-wrap: wrap
+        }
+
+        .map-actions p {
+            margin: 0;
+            color: #536779
+        }
+
+        .honeypot {
+            position: absolute !important;
+            left: -10000px !important;
+            width: 1px !important;
+            height: 1px !important;
+            overflow: hidden !important
+        }
+
+        @media(max-width:860px) {
+            .contact-layout {
+                grid-template-columns: 1fr
+            }
+        }
+
+        @media(max-width:600px) {
+            .form-grid {
+                grid-template-columns: 1fr
+            }
+
+            .field.full {
+                grid-column: auto
+            }
+
+            .contact-panel,
+            .contact-form-card {
+                padding: 22px
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -19,13 +200,10 @@
         <div class="container nav"><a class="brand" href="index.html"><img src="assets/images/maxgain-logo.png"
                     alt="MAXGAIN SYSTEMS"></a><button class="menu-btn" aria-label="메뉴 열기"
                 aria-expanded="false">☰</button>
-            <nav class="nav-links"><a href="about.html" class="" data-ko="회사소개" data-en="About">회사소개</a><a
-                    href="products/index.html" class="" data-ko="제품" data-en="Products">제품</a><a
-                    href="applications/index.html" class="" data-ko="적용분야" data-en="Applications">적용분야</a><a
-                    href="product-search.html" data-ko="제품 검색" data-en="Product Search">제품 검색</a><a
-                    href="manufacturers.html" class="" data-ko="제조사" data-en="Manufacturers">제조사</a><a
-                    href="services.html" class="" data-ko="서비스" data-en="Services">서비스</a><a href="resources.html"
-                    class="" data-ko="자료실" data-en="Resources">자료실</a><a href="contact.html" class="active" data-ko="문의"
+            <nav class="nav-links"><a href="about.html" data-ko="회사소개" data-en="About">회사소개</a><a
+                    href="manufacturers.html" data-ko="제조사" data-en="Manufacturers">제조사</a><a href="product-search.html"
+                    data-ko="제품검색" data-en="Product Search">제품검색</a><a href="resources.html" data-ko="자료실"
+                    data-en="Resources">자료실</a><a href="contact.html" class="active" data-ko="문의"
                     data-en="Contact">문의</a>
                 <div class="lang"><button class="active" data-lang="ko">KO</button><button data-lang="en">EN</button>
                 </div>
@@ -37,67 +215,101 @@
             <div class="container">
                 <div class="breadcrumb">HOME / CONTACT & RFQ</div>
                 <h1 data-ko="견적 및 문의" data-en="Contact & RFQ">견적 및 문의</h1>
-                <p data-ko="Part Number, 제조사, 수량과 요구 납기를 보내주시면 확인 후 회신드리겠습니다."
-                    data-en="Send the part number, manufacturer, quantity and required date for review.">Part Number,
-                    제조사, 수량과 요구 납기를 보내주시면 확인 후 회신드리겠습니다.</p>
+                <p data-ko="제조사와 Part Number, 요구 사양, 예상 수량과 희망 납기를 알려주시면 검토에 도움이 됩니다."
+                    data-en="For faster review, include the manufacturer, part number, required specifications, estimated quantity and requested delivery date.">
+                    제조사와 Part Number, 요구 사양, 예상 수량과 희망 납기를 알려주시면 검토에 도움이 됩니다.</p>
             </div>
         </section>
         <section class="section soft">
-            <div class="container contact-grid">
-                <div>
+            <div class="container contact-layout">
+                <aside class="contact-panel">
                     <div class="eyebrow">CONTACT</div>
-                    <h2 class="title">MAXGAIN SYSTEMS</h2>
-                    <p class="lead" data-ko="전자부품 견적, 대체품 및 기술 자료 문의를 보내주세요."
-                        data-en="Contact us for component quotations, alternatives and technical resources.">전자부품 견적,
-                        대체품 및 기술 자료 문의를 보내주세요.</p>
-                    <ul class="contact-list">
-                        <li><b>Email</b><br>sales@maxgain.co.kr</li>
-                        <li><b>Tel</b><br>02-430-3927</li>
-                        <li><b>Fax</b><br>02-430-3928</li>
-                        <li><b>Address</b><br><span data-ko="서울특별시 구로구 경인로53길 15, 중앙유통단지 업무A동 508호"
-                                data-en="Room 508, Building A, 15 Gyeongin-ro 53-gil, Guro-gu, Seoul, Korea">서울특별시 구로구
-                                경인로53길 15, 중앙유통단지 업무A동 508호</span></li>
-                    </ul>
-                </div>
-                <form class="form mail-form">
-                    <div class="form-grid">
-                        <div class="field"><label data-ko="담당자명 *" data-en="Name *">담당자명 *</label><input name="name"
-                                required></div>
-                        <div class="field"><label data-ko="회사명 *" data-en="Company *">회사명 *</label><input name="company"
-                                required></div>
-                        <div class="field"><label>Email *</label><input type="email" name="email" required></div>
-                        <div class="field"><label data-ko="연락처" data-en="Phone">연락처</label><input name="phone"></div>
-                        <div class="field full"><label>Part Number / Manufacturer *</label><input name="part" required>
+                    <h2 data-ko="MAXGAIN SYSTEMS" data-en="MAXGAIN SYSTEMS">MAXGAIN SYSTEMS</h2>
+                    <p data-ko="견적, 샘플, 기술 검토 및 납기 문의를 보내주세요."
+                        data-en="Contact us for quotations, samples, technical review and delivery inquiries.">견적, 샘플,
+                        기술 검토 및 납기 문의를 보내주세요.</p>
+                    <div class="contact-info">
+                        <div class="contact-info-item"><strong>Email</strong><a
+                                href="mailto:sales@maxgain.co.kr">sales@maxgain.co.kr</a></div>
+                        <div class="contact-info-item"><strong>Tel</strong><a href="tel:+8224303927">02-430-3927</a>
                         </div>
-                        <div class="field"><label data-ko="수량" data-en="Quantity">수량</label><input name="quantity">
-                        </div>
-                        <div class="field"><label data-ko="요구 납기" data-en="Required Date">요구 납기</label><input
-                                type="date" name="required_date"></div>
-                        <div class="field full"><label data-ko="문의 내용" data-en="Message">문의 내용</label><textarea
-                                name="message"></textarea></div>
-                        <div class="field full"><button class="btn btn-primary" type="submit" data-ko="이메일로 문의하기"
-                                data-en="Send by Email">이메일로 문의하기</button></div>
+                        <div class="contact-info-item"><strong>Fax</strong><span>02-430-3928</span></div>
+                        <div class="contact-info-item"><strong data-ko="주소" data-en="Address">주소</strong><span
+                                data-ko="서울특별시 구로구 경인로53길 15, 중앙유통단지 업무A동 508호"
+                                data-en="Room 508, Building A, Jungang Distribution Complex, 15 Gyeongin-ro 53-gil, Guro-gu, Seoul">서울특별시
+                                구로구 경인로53길 15, 중앙유통단지 업무A동 508호</span></div>
                     </div>
-                </form>
+                </aside>
+                <div class="contact-form-card">
+                    <div class="eyebrow">INQUIRY</div>
+                    <h2 data-ko="문의 보내기" data-en="Send an Inquiry">문의 보내기</h2>
+                    <form id="contactForm" action="https://formspree.io/f/mnppayeb" method="POST">
+                        <input type="hidden" name="_subject" value="MAXGAIN SYSTEMS 홈페이지 문의">
+                        <div class="honeypot" aria-hidden="true"><label>Website<input type="text" name="_gotcha"
+                                    tabindex="-1" autocomplete="off"></label></div>
+                        <div class="form-grid">
+                            <div class="field"><label for="company" data-ko="회사명 *" data-en="Company *">회사명
+                                    *</label><input id="company" name="company" required maxlength="100"></div>
+                            <div class="field"><label for="name" data-ko="담당자명 *" data-en="Name *">담당자명 *</label><input
+                                    id="name" name="name" required maxlength="80"></div>
+                            <div class="field"><label for="email" data-ko="이메일 *" data-en="Email *">이메일 *</label><input
+                                    id="email" name="email" type="email" required maxlength="120"></div>
+                            <div class="field"><label for="phone" data-ko="연락처" data-en="Phone">연락처</label><input
+                                    id="phone" name="phone" type="tel" maxlength="40"></div>
+                            <div class="field"><label for="type" data-ko="문의 유형 *" data-en="Inquiry Type *">문의 유형
+                                    *</label><select id="type" name="inquiry_type" required>
+                                    <option value="">선택</option>
+                                    <option value="quotation">견적 문의</option>
+                                    <option value="sample">샘플 문의</option>
+                                    <option value="technical">기술 문의</option>
+                                    <option value="delivery">납기 문의</option>
+                                    <option value="other">기타</option>
+                                </select></div>
+                            <div class="field"><label for="quantity" data-ko="예상 수량" data-en="Estimated Quantity">예상
+                                    수량</label><input id="quantity" name="quantity" maxlength="50"></div>
+                            <div class="field full"><label for="part" data-ko="제조사 / Part Number / 요구 사양"
+                                    data-en="Manufacturer / Part Number / Specification">제조사 / Part Number / 요구
+                                    사양</label><input id="part" name="product_details" maxlength="300"></div>
+                            <div class="field full"><label for="delivery" data-ko="희망 납기"
+                                    data-en="Requested Delivery Date">희망 납기</label><input id="delivery"
+                                    name="requested_delivery" maxlength="100"></div>
+                            <div class="field full"><label for="message" data-ko="문의 내용 *" data-en="Message *">문의 내용
+                                    *</label><textarea id="message" name="message" required maxlength="4000"></textarea>
+                            </div>
+                            <div class="field full"><label class="consent"><input type="checkbox" name="privacy_consent"
+                                        value="동의" required><span data-ko="문의 회신을 위해 입력한 정보의 수집 및 이용에 동의합니다. *"
+                                        data-en="I consent to the collection and use of the information provided for responding to this inquiry. *">문의
+                                        회신을 위해 입력한 정보의 수집 및 이용에 동의합니다. *</span></label></div>
+                            <div class="field full"><button id="submitBtn" class="btn btn-primary" type="submit"
+                                    data-ko="문의 보내기" data-en="Send Inquiry">문의 보내기</button>
+                                <div id="formStatus" class="form-status" role="status" aria-live="polite"></div>
+                            </div>
+                        </div>
+                    </form>
+                </div>
             </div>
         </section>
         <section class="section">
             <div class="container">
-                <div class="map" data-ko="지도 또는 네이버·카카오 지도 링크 연결 영역" data-en="Map or external map link area">지도 또는
-                    네이버·카카오 지도 링크 연결 영역</div>
+                <div class="map-card">
+                    <div class="map-visual">
+                        <div>
+                            <div class="map-pin">●</div>
+                            <h2>MAXGAIN SYSTEMS</h2>
+                            <p>서울특별시 구로구 경인로53길 15<br>중앙유통단지 업무A동 508호</p>
+                        </div>
+                    </div>
+                    <div class="map-actions">
+                        <p data-ko="정확한 건물 위치는 Google 지도에서 확인하실 수 있습니다."
+                            data-en="Open Google Maps to view the selected building location.">정확한 건물 위치는 Google 지도에서
+                            확인하실 수 있습니다.</p><a class="btn btn-primary" href="https://maps.app.goo.gl/FBBxGjj8TvxjCaC97"
+                            target="_blank" rel="noopener noreferrer" data-ko="Google 지도에서 보기"
+                            data-en="View on Google Maps">Google 지도에서 보기</a>
+                    </div>
+                </div>
             </div>
         </section>
     </main>
-    <section class="cta">
-        <div class="container cta-row">
-            <div>
-                <h2 data-ko="필요한 부품을 찾고 계신가요?" data-en="Looking for a component?">필요한 부품을 찾고 계신가요?</h2>
-                <p data-ko="Part Number와 수량을 보내주시면 확인 후 회신드리겠습니다."
-                    data-en="Send the part number and quantity and we will review your request.">Part Number와 수량을 보내주시면
-                    확인 후 회신드리겠습니다.</p>
-            </div><a class="btn btn-dark" href="contact.html" data-ko="견적 문의" data-en="Request a Quote">견적 문의</a>
-        </div>
-    </section>
     <footer>
         <div class="container">
             <div class="footer-grid">
@@ -110,7 +322,8 @@
                     <h3 class="footer-title" data-ko="바로가기" data-en="Quick Links">바로가기</h3>
                     <ul class="footer-links">
                         <li><a href="about.html">About</a></li>
-                        <li><a href="products/index.html">Products</a></li>
+                        <li><a href="manufacturers.html">Manufacturers</a></li>
+                        <li><a href="product-search.html">Product Search</a></li>
                         <li><a href="resources.html">Resources</a></li>
                         <li><a href="contact.html">Contact</a></li>
                     </ul>
@@ -121,9 +334,7 @@
                         <li>sales@maxgain.co.kr</li>
                         <li>Tel. 02-430-3927</li>
                         <li>Fax. 02-430-3928</li>
-                        <li data-ko="서울 구로구 경인로53길 15, 업무A동 508호"
-                            data-en="Room 508, Building A, 15 Gyeongin-ro 53-gil, Guro-gu, Seoul">서울 구로구 경인로53길 15, 업무A동
-                            508호</li>
+                        <li>서울 구로구 경인로53길 15, 업무A동 508호</li>
                     </ul>
                 </div>
             </div>
@@ -132,6 +343,9 @@
         </div>
     </footer>
     <script src="assets/js/main.js"></script>
+    <script>
+        (() => { const form = document.getElementById('contactForm'), btn = document.getElementById('submitBtn'), status = document.getElementById('formStatus'); form.addEventListener('submit', async e => { e.preventDefault(); if (!form.reportValidity()) return; btn.disabled = true; const original = btn.textContent; btn.textContent = '전송 중...'; status.className = 'form-status'; status.textContent = ''; try { const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } }); if (!res.ok) throw new Error('Form submission failed'); form.reset(); status.className = 'form-status success'; status.textContent = '문의가 정상적으로 접수되었습니다. 확인 후 회신드리겠습니다.'; } catch (err) { console.error(err); status.className = 'form-status error'; status.textContent = '문의 전송에 실패했습니다. 잠시 후 다시 시도하거나 sales@maxgain.co.kr로 문의해 주세요.'; } finally { btn.disabled = false; btn.textContent = original; } }); })();
+    </script>
 </body>
 
 </html>
