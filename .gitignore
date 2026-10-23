@@ -1,0 +1,5 @@
+
+# ECOUNT local backup/test files
+*.backup
+data/inventory-status-integrated.json
+data/inventory-status.before-integrated.json
