@@ -28,7 +28,12 @@ const ATTRIBUTE_FIELDS = [
 ];
 
 function parseArguments() {
-  const options = { dryRun: false, retry: false, limit: Infinity };
+  const options = {
+    dryRun: false,
+    retry: false,
+    includeLowConfidence: false,
+    limit: Infinity
+  };
   const args = process.argv.slice(2);
 
   for (let i = 0; i < args.length; i += 1) {
@@ -37,6 +42,8 @@ function parseArguments() {
       options.dryRun = true;
     } else if (argument === '--retry') {
       options.retry = true;
+    } else if (argument === '--include-low-confidence') {
+      options.includeLowConfidence = true;
     } else if (argument === '--limit') {
       const rawLimit = args[++i];
       if (!rawLimit || !/^\d+$/.test(rawLimit) || Number(rawLimit) < 1) {
@@ -70,12 +77,13 @@ function validateItemsFile(data, label, allowMissingVersion = false) {
   return data;
 }
 
-function isLikelyPartNumber(value) {
+function isHighConfidencePartNumber(value) {
   const partNumber = String(value ?? '').trim();
-  if (!partNumber || /\s/.test(partNumber)) return false;
-  if (/^\d+(?:\.\d+)?[-x×]\d+(?:\.\d+)?(?:mm|cm|inch|in)$/i.test(partNumber)) return false;
-  if (!/[0-9]/.test(partNumber)) return false;
-  return /^[a-z0-9._/+()-]+$/i.test(partNumber);
+  return partNumber.length >= 5 &&
+    !/\s/.test(partNumber) &&
+    /[A-Za-z]/.test(partNumber) &&
+    /\d/.test(partNumber) &&
+    /^[A-Za-z0-9._/+\\-]+$/.test(partNumber);
 }
 
 function normalizeCount(results) {
@@ -251,16 +259,25 @@ async function main() {
     ...Object.keys(review.items),
     ...Object.keys(unresolved.items)
   ]);
-  const candidates = inventoryPartNumbers.filter(partNumber =>
-    isLikelyPartNumber(partNumber) &&
+  const unprocessedInventoryPartNumbers = inventoryPartNumbers.filter(partNumber =>
+    String(partNumber ?? '').trim() &&
     !specified.has(partNumber) &&
     (options.retry || !alreadyProcessed.has(partNumber))
   );
+  const highConfidenceCandidates = unprocessedInventoryPartNumbers
+    .filter(isHighConfidencePartNumber);
+  const lowConfidenceCandidates = unprocessedInventoryPartNumbers
+    .filter(partNumber => !isHighConfidencePartNumber(partNumber));
+  const candidates = options.includeLowConfidence
+    ? [...highConfidenceCandidates, ...lowConfidenceCandidates]
+    : highConfidenceCandidates;
   const requestedPartNumbers = candidates.slice(0, options.limit);
   const summary = {
     inventoryTotal: inventoryPartNumbers.length,
     alreadySpecified: inventoryPartNumbers.filter(partNumber => specified.has(partNumber)).length,
     eligible: candidates.length,
+    highConfidence: highConfidenceCandidates.length,
+    lowConfidenceSkipped: options.includeLowConfidence ? 0 : lowConfidenceCandidates.length,
     apiRequests: 0,
     singleExactMatches: 0,
     multipleExactMatches: 0,
