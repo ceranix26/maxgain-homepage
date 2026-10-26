@@ -8,3 +8,6 @@ data/inventory-status.before-integrated.json
 .impeccable/config.local.json
 .impeccable/hook.cache.json
 .impeccable/live/
+
+# Generated product specification backups
+data/product-specs.backup.json

@@ -27,6 +27,334 @@
         "Width": "0.50±0.05 mm",
         "Height": "0.50±0.05 mm"
       }
+    },
+    "0402B104K160CT": {
+      "manufacturer": "Walsin",
+      "category": "MLCC",
+      "specs": {
+        "Series": "General Purpose Caps",
+        "Case Size": "0402",
+        "Dielectric": "X7R",
+        "Capacitance": "100nF",
+        "Tolerance": "±10%",
+        "Rated Voltage": "16Vdc",
+        "Length": "1.00±0.05 mm",
+        "Width": "0.50±0.05 mm",
+        "Height": "0.50±0.05 mm",
+        "Insulation Resistance": "≧5G-ohm",
+        "Dissipation Factor": "≦5%"
+      },
+      "source": {
+        "title": "Walsin Technology Datasheet",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/datasheet/WTC_MLCC_General_Purpose.pdf"
+      },
+      "ecd": {
+        "title": "Walsin ECD",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/ecd/0402B104K160CT-IN.pdf"
+      }
+    },
+    "0402B104K250CT": {
+      "manufacturer": "Walsin",
+      "category": "MLCC",
+      "specs": {
+        "Series": "General Purpose Caps",
+        "Case Size": "0402",
+        "Dielectric": "X7R",
+        "Capacitance": "100nF",
+        "Tolerance": "±10%",
+        "Rated Voltage": "25Vdc",
+        "Length": "1.00±0.05 mm",
+        "Width": "0.50±0.05 mm",
+        "Height": "0.50±0.05 mm",
+        "Insulation Resistance": "≧5G-ohm",
+        "Dissipation Factor": "≦10%"
+      },
+      "source": {
+        "title": "Walsin Technology Datasheet",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/datasheet/WTC_MLCC_General_Purpose.pdf"
+      },
+      "ecd": {
+        "title": "Walsin ECD",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/ecd/0402B104K250CT-IN.pdf"
+      }
+    },
+    "0402B152K500CT": {
+      "manufacturer": "Walsin",
+      "category": "MLCC",
+      "specs": {
+        "Series": "General Purpose Caps",
+        "Case Size": "0402",
+        "Dielectric": "X7R",
+        "Capacitance": "1500pF",
+        "Tolerance": "±10%",
+        "Rated Voltage": "50Vdc",
+        "Length": "1.00±0.05 mm",
+        "Width": "0.50±0.05 mm",
+        "Height": "0.50±0.05 mm"
+      },
+      "source": {
+        "title": "Walsin Technology Datasheet",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/datasheet/WTC_MLCC_General_Purpose.pdf"
+      },
+      "ecd": {
+        "title": "Walsin ECD",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/ecd/0402B152K500CT-IN.pdf"
+      }
+    },
+    "0402B153K250CT": {
+      "manufacturer": "Walsin",
+      "category": "MLCC",
+      "specs": {
+        "Series": "General Purpose Caps",
+        "Case Size": "0402",
+        "Dielectric": "X7R",
+        "Capacitance": "15nF",
+        "Tolerance": "±10%",
+        "Rated Voltage": "25Vdc",
+        "Length": "1.00±0.05 mm",
+        "Width": "0.50±0.05 mm",
+        "Height": "0.50±0.05 mm"
+      },
+      "source": {
+        "title": "Walsin Technology Datasheet",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/datasheet/WTC_MLCC_General_Purpose.pdf"
+      },
+      "ecd": {
+        "title": "Walsin ECD",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/ecd/0402B153K250CT-IN.pdf"
+      }
+    },
+    "0402B224K160CT": {
+      "manufacturer": "Walsin",
+      "category": "MLCC",
+      "specs": {
+        "Series": "General Purpose Caps",
+        "Case Size": "0402",
+        "Dielectric": "X7R",
+        "Capacitance": "220nF",
+        "Tolerance": "±10%",
+        "Rated Voltage": "16Vdc",
+        "Length": "1.00±0.05 mm",
+        "Width": "0.50±0.05 mm",
+        "Height": "0.50±0.05 mm"
+      },
+      "source": {
+        "title": "Walsin Technology Datasheet",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/datasheet/WTC_MLCC_General_Purpose.pdf"
+      },
+      "ecd": {
+        "title": "Walsin ECD",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/ecd/0402B224K160CT-IN.pdf"
+      }
+    },
+    "0402B272K500CT": {
+      "manufacturer": "Walsin",
+      "category": "MLCC",
+      "specs": {
+        "Series": "General Purpose Caps",
+        "Case Size": "0402",
+        "Dielectric": "X7R",
+        "Capacitance": "2700pF",
+        "Tolerance": "±10%",
+        "Rated Voltage": "50Vdc",
+        "Length": "1.00±0.05 mm",
+        "Width": "0.50±0.05 mm",
+        "Height": "0.50±0.05 mm"
+      },
+      "source": {
+        "title": "Walsin Technology Datasheet",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/datasheet/WTC_MLCC_General_Purpose.pdf"
+      },
+      "ecd": {
+        "title": "Walsin ECD",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/ecd/0402B272K500CT-IN.pdf"
+      }
+    },
+    "0402B273K160CT": {
+      "manufacturer": "Walsin",
+      "category": "MLCC",
+      "specs": {
+        "Series": "General Purpose Caps",
+        "Case Size": "0402",
+        "Dielectric": "X7R",
+        "Capacitance": "27nF",
+        "Tolerance": "±10%",
+        "Rated Voltage": "16Vdc",
+        "Length": "1.00±0.05 mm",
+        "Width": "0.50±0.05 mm",
+        "Height": "0.50±0.05 mm"
+      },
+      "source": {
+        "title": "Walsin Technology Datasheet",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/datasheet/WTC_MLCC_General_Purpose.pdf"
+      },
+      "ecd": {
+        "title": "Walsin ECD",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/ecd/0402B273K160CT-IN.pdf"
+      }
+    },
+    "0402B333K160CT": {
+      "manufacturer": "Walsin",
+      "category": "MLCC",
+      "specs": {
+        "Series": "General Purpose Caps",
+        "Case Size": "0402",
+        "Dielectric": "X7R",
+        "Capacitance": "33nF",
+        "Tolerance": "±10%",
+        "Rated Voltage": "16Vdc",
+        "Length": "1.00±0.05 mm",
+        "Width": "0.50±0.05 mm",
+        "Height": "0.50±0.05 mm"
+      },
+      "source": {
+        "title": "Walsin Technology Datasheet",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/datasheet/WTC_MLCC_General_Purpose.pdf"
+      },
+      "ecd": {
+        "title": "Walsin ECD",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/ecd/0402B333K160CT-IN.pdf"
+      }
+    },
+    "0402B391K500CT": {
+      "manufacturer": "Walsin",
+      "category": "MLCC",
+      "specs": {
+        "Series": "General Purpose Caps",
+        "Case Size": "0402",
+        "Dielectric": "X7R",
+        "Capacitance": "390pF",
+        "Tolerance": "±10%",
+        "Rated Voltage": "50Vdc",
+        "Length": "1.00±0.05 mm",
+        "Width": "0.50±0.05 mm",
+        "Height": "0.50±0.05 mm"
+      },
+      "source": {
+        "title": "Walsin Technology Datasheet",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/datasheet/WTC_MLCC_General_Purpose.pdf"
+      },
+      "ecd": {
+        "title": "Walsin ECD",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/ecd/0402B391K500CT-IN.pdf"
+      }
+    },
+    "0402B471K500CT": {
+      "manufacturer": "Walsin",
+      "category": "MLCC",
+      "specs": {
+        "Series": "General Purpose Caps",
+        "Case Size": "0402",
+        "Dielectric": "X7R",
+        "Capacitance": "470pF",
+        "Tolerance": "±10%",
+        "Rated Voltage": "50Vdc",
+        "Length": "1.00±0.05 mm",
+        "Width": "0.50±0.05 mm",
+        "Height": "0.50±0.05 mm"
+      },
+      "source": {
+        "title": "Walsin Technology Datasheet",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/datasheet/WTC_MLCC_General_Purpose.pdf"
+      },
+      "ecd": {
+        "title": "Walsin ECD",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/ecd/0402B471K500CT-IN.pdf"
+      }
+    },
+    "0402B473K160CT": {
+      "manufacturer": "Walsin",
+      "category": "MLCC",
+      "specs": {
+        "Series": "General Purpose Caps",
+        "Case Size": "0402",
+        "Dielectric": "X7R",
+        "Capacitance": "47nF",
+        "Tolerance": "±10%",
+        "Rated Voltage": "16Vdc",
+        "Length": "1.00±0.05 mm",
+        "Width": "0.50±0.05 mm",
+        "Height": "0.50±0.05 mm"
+      },
+      "source": {
+        "title": "Walsin Technology Datasheet",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/datasheet/WTC_MLCC_General_Purpose.pdf"
+      },
+      "ecd": {
+        "title": "Walsin ECD",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/ecd/0402B473K160CT-IN.pdf"
+      }
+    },
+    "0402B511K500CT": {
+      "manufacturer": "Walsin",
+      "category": "MLCC",
+      "specs": {
+        "Series": "General Purpose Caps",
+        "Case Size": "0402",
+        "Dielectric": "X7R",
+        "Capacitance": "510pF",
+        "Tolerance": "±10%",
+        "Rated Voltage": "50Vdc",
+        "Length": "1.00±0.05 mm",
+        "Width": "0.50±0.05 mm",
+        "Height": "0.50±0.05 mm"
+      },
+      "source": {
+        "title": "Walsin Technology Datasheet",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/datasheet/WTC_MLCC_General_Purpose.pdf"
+      },
+      "ecd": {
+        "title": "Walsin ECD",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/ecd/N.pdf"
+      }
+    },
+    "0402B561K500CT": {
+      "manufacturer": "Walsin",
+      "category": "MLCC",
+      "specs": {
+        "Series": "General Purpose Caps",
+        "Case Size": "0402",
+        "Dielectric": "X7R",
+        "Capacitance": "560pF",
+        "Tolerance": "±10%",
+        "Rated Voltage": "50Vdc",
+        "Length": "1.00±0.05 mm",
+        "Width": "0.50±0.05 mm",
+        "Height": "0.50±0.05 mm",
+        "Insulation Resistance": "≧10G-ohm",
+        "Dissipation Factor": "≦2.5%"
+      },
+      "source": {
+        "title": "Walsin Technology Datasheet",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/datasheet/WTC_MLCC_General_Purpose.pdf"
+      },
+      "ecd": {
+        "title": "Walsin ECD",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/ecd/0402B561K500CT-IN.pdf"
+      }
+    },
+    "0402B682K500CT": {
+      "manufacturer": "Walsin",
+      "category": "MLCC",
+      "specs": {
+        "Series": "General Purpose Caps",
+        "Case Size": "0402",
+        "Dielectric": "X7R",
+        "Capacitance": "6800pF",
+        "Tolerance": "±10%",
+        "Rated Voltage": "50Vdc",
+        "Length": "1.00±0.05 mm",
+        "Width": "0.50±0.05 mm",
+        "Height": "0.50±0.05 mm"
+      },
+      "source": {
+        "title": "Walsin Technology Datasheet",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/datasheet/WTC_MLCC_General_Purpose.pdf"
+      },
+      "ecd": {
+        "title": "Walsin ECD",
+        "url": "https://www.passivecomponent.com/wp-content/uploads/ecd/0402B682K500CT-IN.pdf"
+      }
     }
   }
 }
