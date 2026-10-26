@@ -12,6 +12,21 @@
         "Dielectric": "X7R",
         "Operating Temperature": "-55°C to +125°C"
       }
+    },
+    "0402B103K500CT": {
+      "manufacturer": "Walsin",
+      "category": "MLCC",
+      "specs": {
+        "Series": "General Purpose Caps",
+        "Case Size": "0402",
+        "Dielectric": "X7R",
+        "Capacitance": "10 nF",
+        "Tolerance": "±10%",
+        "Rated Voltage": "50 VDC",
+        "Length": "1.00±0.05 mm",
+        "Width": "0.50±0.05 mm",
+        "Height": "0.50±0.05 mm"
+      }
     }
   }
 }
