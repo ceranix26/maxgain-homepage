@@ -193,17 +193,33 @@
   word-break: break-word;
 }
 
-.product-detail-source {
-  margin-top: 18px;
-  font-size: .9rem;
-  overflow-wrap: anywhere;
+.product-detail-documents {
+  display: grid;
+  gap: 10px;
+  margin-top: 20px;
+  padding-top: 16px;
+  border-top: 1px solid var(--line);
 }
 
-.product-detail-source a {
+.product-detail-documents h3 {
+  margin: 0;
+  color: #53616b;
+  font-size: .88rem;
+  line-height: 1.4;
+}
+
+.product-detail-documents a {
+  width: fit-content;
   color: #a84300;
   font-weight: 700;
   text-decoration: underline;
   text-underline-offset: 3px;
+  overflow-wrap: anywhere;
+}
+
+.product-detail-documents a:focus-visible {
+  outline: 3px solid #a84300;
+  outline-offset: 3px;
 }
 
 .featured-card {

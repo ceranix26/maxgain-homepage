@@ -339,16 +339,34 @@
           ['manufacturer', msg('제조사', 'Manufacturer')],
           ['category', msg('카테고리', 'Category')]
         ].filter(([key]) => typeof details?.[key] === 'string' && details[key].trim());
-        const sourceUrl = typeof details?.source?.url === 'string' ? details.source.url.trim() : '';
-        let safeSourceUrl = '';
-        try {
-          const url = new URL(sourceUrl);
-          if (url.protocol === 'https:' || url.protocol === 'http:') safeSourceUrl = url.href;
-        } catch {}
-        const sourceTitle = typeof details?.source?.title === 'string' && details.source.title.trim()
-          ? details.source.title.trim()
-          : safeSourceUrl;
-        productDetailContent.innerHTML = `<div class="product-detail-part"><span>${msg('Part Number', 'Part Number')}</span><strong>${esc(item.partNumber)}</strong></div><div class="product-detail-stock"><span>${msg('현재 재고 상태', 'Current stock status')}</span><span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${inStock ? msg('재고 있음', 'In stock') : msg('재고 없음', 'Out of stock')}</span>${inStock && item.stockLevel ? `<span class="stock-level">${esc(item.stockLevel)}</span>` : ''}</div>${metadata.length ? `<div class="product-detail-meta">${metadata.map(([key, label]) => `<div class="product-detail-spec"><strong>${label}</strong><span>${esc(details[key].trim())}</span></div>`).join('')}</div>` : ''}${specs.length ? `<dl class="product-detail-specs">${specs.map(([name, value]) => `<div class="product-detail-spec"><dt>${esc(name)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>` : `<p class="product-detail-pending">${msg('상세 규격 정보 준비 중입니다. 정확한 규격은 문의해 주세요.', 'Detailed specifications are being prepared. Please contact us for confirmed specifications.')}</p>`}${safeSourceUrl ? `<p class="product-detail-source"><a href="${esc(safeSourceUrl)}" target="_blank" rel="noopener noreferrer">${esc(sourceTitle)}</a></p>` : ''}`;
+        const getDocument = document => {
+          const url = typeof document?.url === 'string' ? document.url.trim() : '';
+          try {
+            const parsedUrl = new URL(url);
+            if (parsedUrl.protocol !== 'https:' && parsedUrl.protocol !== 'http:') return null;
+            return {
+              url: parsedUrl.href,
+              title: typeof document.title === 'string' && document.title.trim()
+                ? document.title.trim()
+                : parsedUrl.href
+            };
+          } catch {
+            return null;
+          }
+        };
+        const sourceDocument = getDocument(details?.source);
+        const ecdDocument = getDocument(details?.ecd);
+        const technicalDocuments = [
+          sourceDocument && {
+            ...sourceDocument,
+            label: msg('공식 Datasheet', 'Official Datasheet')
+          },
+          ecdDocument && {
+            ...ecdDocument,
+            label: msg('제품 ECD', 'Product ECD')
+          }
+        ].filter(Boolean);
+        productDetailContent.innerHTML = `<div class="product-detail-part"><span>${msg('Part Number', 'Part Number')}</span><strong>${esc(item.partNumber)}</strong></div><div class="product-detail-stock"><span>${msg('현재 재고 상태', 'Current stock status')}</span><span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${inStock ? msg('재고 있음', 'In stock') : msg('재고 없음', 'Out of stock')}</span>${inStock && item.stockLevel ? `<span class="stock-level">${esc(item.stockLevel)}</span>` : ''}</div>${metadata.length ? `<div class="product-detail-meta">${metadata.map(([key, label]) => `<div class="product-detail-spec"><strong>${label}</strong><span>${esc(details[key].trim())}</span></div>`).join('')}</div>` : ''}${specs.length ? `<dl class="product-detail-specs">${specs.map(([name, value]) => `<div class="product-detail-spec"><dt>${esc(name)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>` : `<p class="product-detail-pending">${msg('상세 규격 정보 준비 중입니다. 정확한 규격은 문의해 주세요.', 'Detailed specifications are being prepared. Please contact us for confirmed specifications.')}</p>`}${technicalDocuments.length ? `<div class="product-detail-documents"><h3>${msg('기술 자료', 'Technical Documents')}</h3>${technicalDocuments.map(document => `<a href="${esc(document.url)}" title="${esc(document.title)}" target="_blank" rel="noopener noreferrer">${document.label}</a>`).join('')}</div>` : ''}`;
       }
       async function loadProductSpecs() {
         try {
