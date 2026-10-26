@@ -3,3 +3,8 @@
 *.backup
 data/inventory-status-integrated.json
 data/inventory-status.before-integrated.json
+
+# Impeccable local runtime data
+.impeccable/config.local.json
+.impeccable/hook.cache.json
+.impeccable/live/
