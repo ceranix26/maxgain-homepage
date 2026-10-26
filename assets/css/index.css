@@ -15,6 +15,11 @@
   color: var(--accent-text);
 }
 
+.nav-links>a:hover,
+.nav-links>a.active {
+  color: var(--accent-text);
+}
+
 .lang button:not(.active) {
   color: var(--control-muted);
 }
