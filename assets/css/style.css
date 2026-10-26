@@ -561,8 +561,9 @@ tr:last-child td {
 }
 
 .footer {
-    background: #e9edf1;
-    color: #343235;
+    background: #eef2f5;
+    border-top: 1px solid var(--line);
+    color: var(--ink);
     padding: 56px 0 24px
 }
 
@@ -711,5 +712,414 @@ tr:last-child td {
 @media(prefers-reduced-motion:reduce) {
     * {
         scroll-behavior: auto !important
+    }
+}
+
+body:not(:has(.hero)) .subhero,
+body:not(:has(.hero)) .maker-hero,
+body:not(:has(.hero)) .mf-detail-hero,
+body:not(:has(.hero)) .jt-detail-hero,
+body:not(:has(.hero)) .jd-detail-hero,
+body:not(:has(.hero)) .mt-detail-hero,
+body:not(:has(.hero)) .pw-detail,
+body:not(:has(.hero)) .sd-detail,
+body:not(:has(.hero)) .crystal-subhero {
+    padding-top: 154px;
+    padding-bottom: 72px;
+    color: #fff;
+    background: var(--charcoal);
+    border-bottom: 1px solid #4b494c;
+}
+
+body:not(:has(.hero)) .subhero::after {
+    content: none;
+}
+
+body:not(:has(.hero)) .subhero h1,
+body:not(:has(.hero)) .maker-hero h1,
+body:not(:has(.hero)) .mf-detail-hero h1,
+body:not(:has(.hero)) .jt-detail-hero h1,
+body:not(:has(.hero)) .jd-detail-hero h1,
+body:not(:has(.hero)) .mt-detail-hero h1,
+body:not(:has(.hero)) .pw-detail h1,
+body:not(:has(.hero)) .sd-detail h1,
+body:not(:has(.hero)) .crystal-subhero h1 {
+    max-width: 900px;
+    margin: 12px 0 16px;
+    color: #fff;
+    font-size: clamp(2.25rem, 5vw, 3.65rem);
+    line-height: 1.08;
+    letter-spacing: -.035em;
+}
+
+body:not(:has(.hero)) .subhero p,
+body:not(:has(.hero)) .maker-hero p,
+body:not(:has(.hero)) .mf-detail-hero p,
+body:not(:has(.hero)) .jt-detail-hero p,
+body:not(:has(.hero)) .jd-detail-hero p,
+body:not(:has(.hero)) .mt-detail-hero p,
+body:not(:has(.hero)) .crystal-subhero p {
+    max-width: 760px;
+    color: #e2e5e7;
+    line-height: 1.75;
+}
+
+body:not(:has(.hero)) .breadcrumb,
+body:not(:has(.hero)) .maker-label {
+    color: #ffbc83;
+    font-size: .76rem;
+    font-weight: 800;
+    letter-spacing: .12em;
+}
+
+body:not(:has(.hero)) .section {
+    padding-top: 84px;
+    padding-bottom: 84px;
+}
+
+body:not(:has(.hero)) .about-intro,
+body:not(:has(.hero)) .history {
+    padding-top: 84px;
+    padding-bottom: 84px;
+}
+
+body:not(:has(.hero)) .soft,
+body:not(:has(.hero)) .philosophy {
+    background: #f5f6f7;
+}
+
+body:not(:has(.hero)) .title {
+    color: var(--charcoal);
+    font-size: clamp(1.9rem, 3.7vw, 2.8rem);
+    line-height: 1.16;
+    letter-spacing: -.03em;
+}
+
+body:not(:has(.hero)) .eyebrow,
+body:not(:has(.hero)) .about-kicker,
+body:not(:has(.hero)) .manufacturer-card .manufacturer-arrow,
+body:not(:has(.hero)) .philosophy-no,
+body:not(:has(.hero)) .timeline-year {
+    color: #a84300;
+}
+
+body:not(:has(.hero)) .lead,
+body:not(:has(.hero)) .about-copy,
+body:not(:has(.hero)) .about-summary p,
+body:not(:has(.hero)) .mf-copy,
+body:not(:has(.hero)) .jt-copy,
+body:not(:has(.hero)) .jd-copy,
+body:not(:has(.hero)) .mt-copy,
+body:not(:has(.hero)) .pw-copy,
+body:not(:has(.hero)) .sd-copy,
+body:not(:has(.hero)) .maker-overview p,
+body:not(:has(.hero)) .mf-detail-hero p,
+body:not(:has(.hero)) .mf-list p,
+body:not(:has(.hero)) .jt-detail-hero p,
+body:not(:has(.hero)) .jd-detail-hero p,
+body:not(:has(.hero)) .mt-detail-hero p {
+    color: #5e6973;
+}
+
+body:not(:has(.hero)) .card p {
+    color: #53616b;
+}
+
+body:not(:has(.hero)) .btn {
+    min-height: 49px;
+    padding-right: 24px;
+    padding-left: 24px;
+    border-radius: 3px;
+    font-weight: 700;
+    transition: background-color .2s ease, border-color .2s ease, color .2s ease, transform .2s ease;
+}
+
+body:not(:has(.hero)) .btn-primary {
+    background: #a84300;
+    color: #fff;
+}
+
+body:not(:has(.hero)) .btn-primary:hover {
+    background: #8f3600;
+    transform: translateY(-2px);
+}
+
+body:not(:has(.hero)) .btn-dark {
+    background: var(--charcoal);
+    color: #fff;
+}
+
+body:not(:has(.hero)) .btn-dark:hover {
+    background: #242326;
+    transform: translateY(-2px);
+}
+
+body:not(:has(.hero)) .btn-outline {
+    border-color: #a84300;
+    color: #a84300;
+}
+
+body:not(:has(.hero)) .btn-outline:hover {
+    background: #a84300;
+    color: #fff;
+}
+
+body:not(:has(.hero)) .cta .btn-outline {
+    border-color: #fff;
+    color: #fff;
+}
+
+body:not(:has(.hero)) .cta .btn-outline:hover {
+    background: #fff;
+    color: var(--charcoal);
+}
+
+body:not(:has(.hero)) .btn:focus-visible,
+body:not(:has(.hero)) .nav-links a:focus-visible,
+body:not(:has(.hero)) .lang button:focus-visible,
+body:not(:has(.hero)) .menu-btn:focus-visible,
+body:not(:has(.hero)) .footer-links a:focus-visible,
+body:not(:has(.hero)) .legal a:focus-visible,
+body:not(:has(.hero)) .manufacturer-card:focus-visible,
+body:not(:has(.hero)) .mf-card:focus-visible,
+body:not(:has(.hero)) .jt-card:focus-visible,
+body:not(:has(.hero)) .jd-card:focus-visible,
+body:not(:has(.hero)) .mt-card:focus-visible,
+body:not(:has(.hero)) .pw-card:focus-visible,
+body:not(:has(.hero)) .sd-card:focus-visible,
+body:not(:has(.hero)) .viking-card:focus-visible,
+body:not(:has(.hero)) .crystal-card:focus-visible {
+    outline: 3px solid #a84300;
+    outline-offset: 3px;
+}
+
+body:not(:has(.hero)) .card,
+body:not(:has(.hero)) .philosophy-card,
+body:not(:has(.hero)) .manufacturer-card,
+body:not(:has(.hero)) .product-family,
+body:not(:has(.hero)) .mf-card,
+body:not(:has(.hero)) .jt-card,
+body:not(:has(.hero)) .jd-card,
+body:not(:has(.hero)) .mt-card,
+body:not(:has(.hero)) .pw-card,
+body:not(:has(.hero)) .sd-card,
+body:not(:has(.hero)) .viking-card,
+body:not(:has(.hero)) .crystal-card,
+body:not(:has(.hero)) .mf-list article,
+body:not(:has(.hero)) .jt-list div,
+body:not(:has(.hero)) .jd-list div,
+body:not(:has(.hero)) .mt-list article,
+body:not(:has(.hero)) .pw-list article,
+body:not(:has(.hero)) .sd-list article,
+body:not(:has(.hero)) .crystal-product {
+    border-color: var(--line);
+    border-radius: 4px;
+    box-shadow: none;
+}
+
+body:not(:has(.hero)) .card:hover,
+body:not(:has(.hero)) .manufacturer-card:hover,
+body:not(:has(.hero)) .mf-card:hover,
+body:not(:has(.hero)) .jt-card:hover,
+body:not(:has(.hero)) .jd-card:hover,
+body:not(:has(.hero)) .mt-card:hover,
+body:not(:has(.hero)) .pw-card:hover,
+body:not(:has(.hero)) .sd-card:hover,
+body:not(:has(.hero)) .viking-card:hover,
+body:not(:has(.hero)) .crystal-card:hover {
+    transform: translateY(-2px);
+    border-color: #c97a45;
+    box-shadow: 0 5px 16px rgba(52, 50, 53, .08);
+}
+
+body:not(:has(.hero)) :is(.mf-card, .jt-card, .jd-card, .mt-card, .pw-card, .sd-card, .viking-card, .crystal-card)::before {
+    opacity: .08;
+}
+
+body:not(:has(.hero)) :is(.mf-card, .jt-card, .jd-card, .mt-card, .pw-card, .sd-card, .viking-card, .crystal-card)::after {
+    background: rgba(255, 255, 255, .82);
+}
+
+body:not(:has(.hero)) .maker-logo,
+body:not(:has(.hero)) .maker-logo img,
+body:not(:has(.hero)) .mf-detail-image,
+body:not(:has(.hero)) .jt-facts,
+body:not(:has(.hero)) .jd-detail-image,
+body:not(:has(.hero)) .mt-image,
+body:not(:has(.hero)) .pw-image,
+body:not(:has(.hero)) .sd-image,
+body:not(:has(.hero)) .crystal-hero-image {
+    border-radius: 4px;
+}
+
+body:not(:has(.hero)) .maker-logo {
+    border-color: var(--line);
+    box-shadow: none;
+}
+
+body:not(:has(.hero)) .maker-body {
+    padding-top: 84px;
+    padding-bottom: 84px;
+}
+
+body:not(:has(.hero)) .manufacturer-card {
+    grid-template-columns: 180px 1fr 24px;
+    min-height: 150px;
+    padding: 24px;
+    gap: 24px;
+}
+
+body:not(:has(.hero)) .maker-overview,
+body:not(:has(.hero)) .mf-split,
+body:not(:has(.hero)) .jt-split,
+body:not(:has(.hero)) .jd-split,
+body:not(:has(.hero)) .mt-split,
+body:not(:has(.hero)) .pw-split,
+body:not(:has(.hero)) .sd-split {
+    gap: 56px;
+}
+
+body:not(:has(.hero)) .manufacturer-card h3,
+body:not(:has(.hero)) .product-family h3,
+body:not(:has(.hero)) .mf-card h3,
+body:not(:has(.hero)) .jt-card h3,
+body:not(:has(.hero)) .jd-card h3,
+body:not(:has(.hero)) .mt-card h3,
+body:not(:has(.hero)) .pw-card h3,
+body:not(:has(.hero)) .sd-card h3,
+body:not(:has(.hero)) .viking-card h3,
+body:not(:has(.hero)) .crystal-card h3 {
+    color: var(--charcoal);
+    line-height: 1.35;
+}
+
+body:not(:has(.hero)) .manufacturer-card p,
+body:not(:has(.hero)) .mf-card p,
+body:not(:has(.hero)) .jt-card p,
+body:not(:has(.hero)) .jd-card p,
+body:not(:has(.hero)) .mt-card p,
+body:not(:has(.hero)) .pw-card p,
+body:not(:has(.hero)) .sd-card p,
+body:not(:has(.hero)) .viking-card p,
+body:not(:has(.hero)) .crystal-card p {
+    color: #5e6973;
+}
+
+body:not(:has(.hero)) .manufacturer-arrow,
+body:not(:has(.hero)) .mf-card .go,
+body:not(:has(.hero)) .jt-card .go,
+body:not(:has(.hero)) .jd-card .go,
+body:not(:has(.hero)) .mt-card .go,
+body:not(:has(.hero)) .pw-card .go,
+body:not(:has(.hero)) .sd-card .go,
+body:not(:has(.hero)) .viking-card .go,
+body:not(:has(.hero)) .crystal-card .go,
+body:not(:has(.hero)) .mf-card .num,
+body:not(:has(.hero)) .jt-card .num,
+body:not(:has(.hero)) .jd-card .num,
+body:not(:has(.hero)) .mt-card .num,
+body:not(:has(.hero)) .pw-card .num,
+body:not(:has(.hero)) .sd-card .num,
+body:not(:has(.hero)) .viking-card .num,
+body:not(:has(.hero)) .crystal-card .num {
+    color: #a84300;
+}
+
+body:not(:has(.hero)) .cta {
+    background: linear-gradient(110deg, #a84300, #8f3600);
+}
+
+body:not(:has(.hero)) footer {
+    background: #eef2f5;
+    border-top: 1px solid var(--line);
+    color: var(--ink);
+}
+
+body:not(:has(.hero)) .footer-title {
+    color: var(--charcoal);
+}
+
+body:not(:has(.hero)) .footer-grid p,
+body:not(:has(.hero)) .footer-links,
+body:not(:has(.hero)) .legal {
+    color: #53616b;
+}
+
+body:not(:has(.hero)) .footer-links a:hover,
+body:not(:has(.hero)) .legal a:hover {
+    color: #a84300;
+}
+
+body:not(:has(.hero)) .legal {
+    border-top-color: #d9dde0;
+}
+
+body:not(:has(.hero)) .nav-links>a:hover,
+body:not(:has(.hero)) .nav-links>a.active {
+    color: #a84300;
+    border-bottom-color: #a84300;
+}
+
+body:not(:has(.hero)) .lang button:not(.active) {
+    color: #53616b;
+}
+
+@media(max-width:960px) {
+    body:not(:has(.hero)) .manufacturer-card {
+        grid-template-columns: 170px 1fr 24px;
+    }
+}
+
+@media(max-width:640px) {
+    body:not(:has(.hero)) .subhero,
+    body:not(:has(.hero)) .maker-hero,
+    body:not(:has(.hero)) .mf-detail-hero,
+    body:not(:has(.hero)) .jt-detail-hero,
+    body:not(:has(.hero)) .jd-detail-hero,
+    body:not(:has(.hero)) .mt-detail-hero,
+    body:not(:has(.hero)) .pw-detail,
+    body:not(:has(.hero)) .sd-detail,
+    body:not(:has(.hero)) .crystal-subhero {
+        padding-top: 140px;
+        padding-bottom: 60px;
+    }
+
+    body:not(:has(.hero)) .section,
+    body:not(:has(.hero)) .maker-body,
+    body:not(:has(.hero)) .about-intro,
+    body:not(:has(.hero)) .history {
+        padding-top: 68px;
+        padding-bottom: 68px;
+    }
+
+    body:not(:has(.hero)) .maker-overview,
+    body:not(:has(.hero)) .mf-split,
+    body:not(:has(.hero)) .jt-split,
+    body:not(:has(.hero)) .jd-split,
+    body:not(:has(.hero)) .mt-split,
+    body:not(:has(.hero)) .pw-split,
+    body:not(:has(.hero)) .sd-split {
+        gap: 30px;
+    }
+
+    body:not(:has(.hero)) .manufacturer-card {
+        grid-template-columns: 1fr 24px;
+        padding: 22px;
+    }
+}
+
+@media(prefers-reduced-motion:reduce) {
+    body:not(:has(.hero)) .btn,
+    body:not(:has(.hero)) .card,
+    body:not(:has(.hero)) .manufacturer-card,
+    body:not(:has(.hero)) .mf-card,
+    body:not(:has(.hero)) .jt-card,
+    body:not(:has(.hero)) .jd-card,
+    body:not(:has(.hero)) .mt-card,
+    body:not(:has(.hero)) .pw-card,
+    body:not(:has(.hero)) .sd-card,
+    body:not(:has(.hero)) .viking-card,
+    body:not(:has(.hero)) .crystal-card {
+        transition: none;
     }
 }

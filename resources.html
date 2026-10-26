@@ -10,37 +10,46 @@
         .resource-grid {
             display: grid;
             grid-template-columns: repeat(3, minmax(0, 1fr));
-            gap: 22px
+            gap: 18px
         }
 
         .resource-card,
         .doc-card {
             background: #fff;
-            border: 1px solid #e1e7ee;
-            border-radius: 18px;
-            padding: 26px;
-            box-shadow: 0 8px 24px rgba(21, 52, 91, .07)
+            border: 1px solid #d9dde0;
+            border-radius: 4px;
+            padding: 28px;
+            box-shadow: none
         }
 
         .resource-card {
             display: flex;
             flex-direction: column;
-            min-height: 210px
+            min-height: 210px;
+            transition: border-color .2s ease, box-shadow .2s ease
+        }
+
+        .resource-card:hover,
+        .doc-card:hover {
+            border-color: #c97a45;
+            box-shadow: 0 5px 16px rgba(52, 50, 53, .08)
         }
 
         .resource-card h3,
         .doc-card h3 {
-            color: #102f56;
-            margin: 10px 0
+            color: #343235;
+            margin: 10px 0;
+            line-height: 1.35
         }
 
         .resource-card p {
-            color: #64748b;
-            flex: 1
+            color: #53616b;
+            flex: 1;
+            line-height: 1.65
         }
 
         .kicker {
-            color: #52749a;
+            color: #a84300;
             font-size: .78rem;
             font-weight: 800;
             letter-spacing: .08em
@@ -67,25 +76,36 @@
         .type {
             display: inline-flex;
             padding: 5px 9px;
-            border-radius: 999px;
-            background: #eef4fb;
-            color: #15345b;
+            border-radius: 3px;
+            background: #f5f6f7;
+            color: #343235;
             font-size: .78rem;
             font-weight: 700
         }
 
         .empty {
             grid-column: 1/-1;
-            padding: 34px;
-            border: 1px dashed #cbd5e1;
-            border-radius: 16px;
+            padding: 30px;
+            border: 1px solid #d9dde0;
+            border-radius: 4px;
             text-align: center;
-            color: #64748b;
-            background: #fff
+            color: #53616b;
+            background: #f5f6f7
         }
 
         .back {
             margin-bottom: 22px
+        }
+
+        .toolbar .field input,
+        .toolbar .field select {
+            border-radius: 3px
+        }
+
+        .toolbar .field input:focus-visible,
+        .toolbar .field select:focus-visible {
+            outline: 3px solid #a84300;
+            outline-offset: 2px
         }
 
         @media(max-width:900px) {

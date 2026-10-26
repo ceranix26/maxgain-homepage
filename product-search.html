@@ -27,7 +27,7 @@
 
     .featured-subtitle {
       margin: 5px 0 0;
-      color: #64748b;
+      color: #53616b;
       font-size: .94rem
     }
 
@@ -41,23 +41,23 @@
       width: 42px;
       height: 42px;
       border: 1px solid #dbe2ea;
-      border-radius: 50%;
+      border-radius: 3px;
       background: #fff;
-      color: #15345b;
+      color: #343235;
       font-size: 1.45rem;
       line-height: 1;
       cursor: pointer;
-      box-shadow: 0 4px 14px rgba(15, 35, 60, .08)
+      box-shadow: none
     }
 
     .slider-btn:hover {
-      background: #15345b;
+      background: #343235;
       color: #fff
     }
 
     .slider-btn:focus-visible,
     .featured-card:focus-visible {
-      outline: 3px solid #54a4ff;
+      outline: 3px solid #a84300;
       outline-offset: 2px
     }
 
@@ -81,24 +81,24 @@
       scroll-snap-align: start;
       min-width: 0;
       text-align: left;
-      border: 1px solid #e1e7ee;
-      border-radius: 15px;
+      border: 1px solid #d9dde0;
+      border-radius: 4px;
       background: #fff;
       padding: 20px;
       cursor: pointer;
-      box-shadow: 0 8px 24px rgba(21, 52, 91, .07);
+      box-shadow: none;
       transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease
     }
 
     .featured-card:hover {
-      transform: translateY(-3px);
-      box-shadow: 0 12px 28px rgba(21, 52, 91, .13);
-      border-color: #9eb9d5
+      transform: translateY(-2px);
+      box-shadow: 0 5px 16px rgba(52, 50, 53, .08);
+      border-color: #c97a45
     }
 
     .featured-card strong {
       display: block;
-      color: #102f56;
+      color: #343235;
       font-size: 1rem;
       line-height: 1.35;
       overflow-wrap: anywhere;
@@ -108,7 +108,7 @@
     .stock-badge {
       display: inline-flex;
       align-items: center;
-      border-radius: 999px;
+      border-radius: 3px;
       padding: 6px 10px;
       font-size: .82rem;
       font-weight: 700
@@ -136,9 +136,10 @@
       display: inline-flex;
       align-items: center;
       padding: 6px 10px;
-      border-radius: 999px;
-      background: #eef4fb;
-      color: #15345b;
+      border-radius: 3px;
+      border: 1px solid #d9dde0;
+      background: #f5f6f7;
+      color: #343235;
       font-size: .82rem;
       font-weight: 700;
       white-space: nowrap
@@ -146,7 +147,7 @@
 
     .featured-loading {
       grid-column: 1/-1;
-      color: #64748b;
+      color: #53616b;
       padding: 22px 2px
     }
 
@@ -165,6 +166,14 @@
 
     .product-card h3 {
       overflow-wrap: anywhere
+    }
+
+    .featured-card:focus-visible,
+    .slider-btn:focus-visible,
+    .product-card:focus-visible,
+    #keyword:focus-visible {
+      outline: 3px solid #a84300;
+      outline-offset: 3px
     }
 
     @media(max-width:1100px) {
