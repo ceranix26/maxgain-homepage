@@ -5,6 +5,52 @@ function fail(message) {
   process.exitCode = 1;
 }
 
+function diagnosticPropertyNames(value, apiKey) {
+  if (!value || typeof value !== 'object' || Array.isArray(value)) return [];
+  return Object.keys(value).map(name => apiKey ? name.split(apiKey).join('[REDACTED]') : name);
+}
+
+function redactApiKey(value, apiKey) {
+  if (typeof value === 'string') {
+    return apiKey ? value.split(apiKey).join('[REDACTED]') : value;
+  }
+  if (Array.isArray(value)) return value.map(item => redactApiKey(item, apiKey));
+  if (value && typeof value === 'object') {
+    return Object.fromEntries(Object.entries(value).map(([name, item]) => [
+      name === apiKey ? '[REDACTED]' : name,
+      redactApiKey(item, apiKey)
+    ]));
+  }
+  return value;
+}
+
+function diagnoseUnexpectedResponse(data, status, apiKey) {
+  const diagnostic = {
+    httpStatus: status,
+    topLevelPropertyNames: diagnosticPropertyNames(data, apiKey)
+  };
+  const results = data?.SearchResults;
+
+  if (results !== undefined) {
+    diagnostic.searchResultsPropertyNames = diagnosticPropertyNames(results, apiKey);
+    diagnostic.partsIsArray = Array.isArray(results?.Parts);
+    if (Array.isArray(results?.Parts)) {
+      diagnostic.partsLength = results.Parts.length;
+    }
+    for (const field of ['NumberOfResult', 'NumberOfResults']) {
+      if (Object.hasOwn(results, field)) {
+        diagnostic[field] = {
+          typeof: typeof results[field],
+          rawValue: redactApiKey(results[field], apiKey)
+        };
+      }
+    }
+  }
+
+  console.error(JSON.stringify(diagnostic, null, 2));
+  process.exitCode = 1;
+}
+
 async function main() {
   const [searchedPartNumber] = process.argv.slice(2);
   if (process.argv.slice(2).length !== 1 || !searchedPartNumber.trim()) {
@@ -57,13 +103,23 @@ async function main() {
   const results = data?.SearchResults;
   if (data?.Errors?.length || results?.Errors?.length || !results ||
       !Array.isArray(results.Parts)) {
-    fail('Mouser API returned an invalid or unsuccessful response.');
+    diagnoseUnexpectedResponse(data, response.status, apiKey);
     return;
   }
 
-  const numberOfResults = Number(results.NumberOfResults);
+  const countField = Object.hasOwn(results, 'NumberOfResult')
+    ? 'NumberOfResult'
+    : Object.hasOwn(results, 'NumberOfResults')
+      ? 'NumberOfResults'
+      : '';
+  const rawCount = countField ? results[countField] : results.Parts.length;
+  const numberOfResults = typeof rawCount === 'number'
+    ? rawCount
+    : typeof rawCount === 'string' && /^\d+$/.test(rawCount)
+      ? Number(rawCount)
+      : Number.NaN;
   if (!Number.isInteger(numberOfResults) || numberOfResults < 0) {
-    fail('Mouser API response did not include a valid result count.');
+    diagnoseUnexpectedResponse(data, response.status, apiKey);
     return;
   }
 
@@ -87,12 +143,12 @@ async function main() {
       return match;
     });
 
-  console.log(JSON.stringify({
+  console.log(JSON.stringify(redactApiKey({
     searchedPartNumber,
     numberOfResults,
     exactMatchCount: exactMatches.length,
     exactMatches
-  }, null, 2));
+  }, apiKey), null, 2));
 }
 
 await main();
