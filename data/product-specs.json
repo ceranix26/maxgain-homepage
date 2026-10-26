@@ -1,4 +1,17 @@
 {
   "version": 1,
-  "items": {}
+  "items": {
+    "0402B102J500CT": {
+      "manufacturer": "Walsin",
+      "category": "MLCC",
+      "specs": {
+        "Case Size": "0402 (1005 Metric)",
+        "Capacitance": "1000 pF",
+        "Tolerance": "±5%",
+        "Rated Voltage": "50 V",
+        "Dielectric": "X7R",
+        "Operating Temperature": "-55°C to +125°C"
+      }
+    }
+  }
 }
