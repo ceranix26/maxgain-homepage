@@ -109,6 +109,11 @@
   will-change: transform;
 }
 
+.partner-track.is-paused,
+.partner-track:focus-within {
+  animation-play-state: paused;
+}
+
 .partner-group {
   display: flex;
   align-items: center;
@@ -149,7 +154,32 @@
 
 .partner-more {
   display: inline-block;
+}
+
+.partner-actions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 16px;
   margin-top: 24px;
+}
+
+.partner-motion-toggle {
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--accent-text);
+  border-radius: 3px;
+  background: transparent;
+  color: var(--accent-text);
+  font: inherit;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.partner-motion-toggle:hover {
+  background: var(--accent-text);
+  color: #fff;
 }
 
 @keyframes partner-scroll {
@@ -192,5 +222,9 @@
 @media (prefers-reduced-motion: reduce) {
   .partner-track {
     animation: none;
+  }
+
+  .partner-motion-toggle {
+    display: none;
   }
 }
