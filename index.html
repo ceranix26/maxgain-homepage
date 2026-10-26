@@ -198,6 +198,155 @@
         });
 
         updatePartnerMotionLabel();
+
+        const partnerMarquee = document.querySelector(".partner-marquee");
+        const touchMarquee = window.matchMedia("(max-width: 800px) and (pointer: coarse)");
+        const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+        if (partnerMarquee) {
+            let resumeTimer;
+            let activePointerId = null;
+            let startX = 0;
+            let lastX = 0;
+            let partnerAnimation = null;
+            let cycleWidth = 0;
+            let isDragging = false;
+            let suppressClick = false;
+
+            function touchInteractionEnabled() {
+                return touchMarquee.matches && !reducedMotion.matches;
+            }
+
+            function pauseForInteraction() {
+                if (!touchInteractionEnabled()) return;
+
+                window.clearTimeout(resumeTimer);
+                partnerTrack.classList.add("is-paused");
+            }
+
+            function resumeAfterInactivity() {
+                if (!touchInteractionEnabled()) return;
+
+                window.clearTimeout(resumeTimer);
+                resumeTimer = window.setTimeout(() => {
+                    if (touchInteractionEnabled() && !partnerMarquee.contains(document.activeElement)) {
+                        partnerTrack.classList.remove("is-paused");
+                    }
+                }, 4000);
+            }
+
+            function moveTrack(distance) {
+                const duration = partnerAnimation?.effect?.getComputedTiming().duration;
+
+                if (!partnerAnimation || typeof duration !== "number" || cycleWidth === 0) return;
+
+                const currentTime = Number(partnerAnimation.currentTime ?? 0);
+                const nextTime = (currentTime - distance / cycleWidth * duration) % duration;
+                partnerAnimation.currentTime = (nextTime + duration) % duration;
+            }
+
+            partnerMarquee.addEventListener("pointerdown", event => {
+                if (!touchInteractionEnabled()) return;
+                if (!event.isPrimary || event.button !== 0) return;
+
+                pauseForInteraction();
+                activePointerId = event.pointerId;
+                startX = event.clientX;
+                lastX = event.clientX;
+                partnerAnimation = partnerTrack.getAnimations().find(
+                    item => item.animationName === "partner-scroll"
+                );
+                cycleWidth = partnerTrack.getBoundingClientRect().width / 2;
+                isDragging = false;
+            });
+
+            document.addEventListener("pointermove", event => {
+                if (!touchInteractionEnabled() || event.pointerId !== activePointerId) return;
+
+                window.clearTimeout(resumeTimer);
+                const distanceFromStart = event.clientX - startX;
+
+                if (!isDragging && Math.abs(distanceFromStart) > 10) {
+                    isDragging = true;
+                    partnerTrack.classList.add("is-dragging");
+                    moveTrack(distanceFromStart);
+                } else if (isDragging) {
+                    moveTrack(event.clientX - lastX);
+                }
+
+                lastX = event.clientX;
+
+                if (isDragging) event.preventDefault();
+            }, { passive: false });
+
+            function finishPointerInteraction(event) {
+                if (event.pointerId !== activePointerId) return;
+
+                activePointerId = null;
+                partnerTrack.classList.remove("is-dragging");
+                partnerAnimation = null;
+                cycleWidth = 0;
+
+                if (isDragging && event.type === "pointerup") {
+                    suppressClick = true;
+                    window.setTimeout(() => {
+                        suppressClick = false;
+                    }, 0);
+                }
+
+                isDragging = false;
+                resumeAfterInactivity();
+            }
+
+            document.addEventListener("pointerup", finishPointerInteraction);
+            document.addEventListener("pointercancel", finishPointerInteraction);
+
+            partnerMarquee.addEventListener("click", event => {
+                if (!touchInteractionEnabled() || !suppressClick) return;
+
+                event.preventDefault();
+                event.stopImmediatePropagation();
+                suppressClick = false;
+            }, true);
+
+            partnerMarquee.addEventListener("focusin", pauseForInteraction);
+            partnerMarquee.addEventListener("focusout", () => {
+                window.setTimeout(() => {
+                    if (!partnerMarquee.contains(document.activeElement)) {
+                        resumeAfterInactivity();
+                    }
+                }, 0);
+            });
+            partnerMarquee.addEventListener("keydown", () => {
+                pauseForInteraction();
+                resumeAfterInactivity();
+            });
+
+            touchMarquee.addEventListener("change", event => {
+                if (event.matches) return;
+
+                window.clearTimeout(resumeTimer);
+                activePointerId = null;
+                isDragging = false;
+                partnerTrack.classList.remove("is-dragging");
+
+                if (!reducedMotion.matches) {
+                    partnerTrack.classList.remove("is-paused");
+                }
+            });
+
+            reducedMotion.addEventListener("change", event => {
+                if (event.matches) {
+                    window.clearTimeout(resumeTimer);
+                    activePointerId = null;
+                    isDragging = false;
+                    partnerTrack.classList.remove("is-dragging");
+                    if (touchMarquee.matches) partnerTrack.classList.add("is-paused");
+                } else if (touchMarquee.matches) {
+                    partnerTrack.classList.remove("is-paused");
+                }
+            });
+        }
     </script>
     <script>
         document.addEventListener("DOMContentLoaded", function () {

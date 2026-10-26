@@ -148,12 +148,15 @@
   transform: scale(1.04);
 }
 
-.partner-marquee:hover .partner-track {
-  animation-play-state: paused;
+@media (hover: hover) and (pointer: fine) {
+  .partner-marquee:hover .partner-track {
+    animation-play-state: paused;
+  }
 }
 
 .partner-more {
   display: inline-block;
+  margin-top: 0;
 }
 
 .partner-actions {
@@ -216,6 +219,25 @@
   .partner-marquee::before,
   .partner-marquee::after {
     width: 32px;
+  }
+}
+
+@media (max-width: 800px) and (pointer: coarse) {
+  .partner-marquee {
+    touch-action: pan-y pinch-zoom;
+  }
+
+  .partner-track {
+    cursor: grab;
+  }
+
+  .partner-track.is-dragging {
+    cursor: grabbing;
+    user-select: none;
+  }
+
+  .partner-motion-toggle {
+    display: none;
   }
 }
 
