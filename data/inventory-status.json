@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-25T23:00:09.374Z",
-  "baseDate": "20261026",
+  "updatedAt": "2026-10-26T23:00:09.466Z",
+  "baseDate": "20261027",
   "source": "ECOUNT",
   "items": {
     "501": {
@@ -259,10 +259,6 @@
       "status": "in-stock",
       "label": "재고 있음"
     },
-    "0603B103K500CT": {
-      "status": "in-stock",
-      "label": "재고 있음"
-    },
     "0603B104J500CT": {
       "status": "in-stock",
       "label": "재고 있음"
@@ -448,10 +444,6 @@
       "label": "재고 있음"
     },
     "0805B101K500CT": {
-      "status": "in-stock",
-      "label": "재고 있음"
-    },
-    "0805B103K500CT": {
       "status": "in-stock",
       "label": "재고 있음"
     },
@@ -808,8 +800,8 @@
       "label": "재고 있음"
     },
     "101U40Y102MT4W-****-AA": {
-      "status": "in-stock",
-      "label": "재고 있음"
+      "status": "out-of-stock",
+      "label": "재고 없음"
     },
     "102R15N101JV4E": {
       "status": "in-stock",
@@ -3695,6 +3687,10 @@
       "status": "in-stock",
       "label": "재고 있음"
     },
+    "AO4407A": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
     "AO4468": {
       "status": "in-stock",
       "label": "재고 있음"
@@ -4068,10 +4064,6 @@
       "label": "재고 있음"
     },
     "BAP64Q,125": {
-      "status": "in-stock",
-      "label": "재고 있음"
-    },
-    "BAR64-04": {
       "status": "in-stock",
       "label": "재고 있음"
     },
@@ -5331,6 +5323,10 @@
       "status": "out-of-stock",
       "label": "재고 없음"
     },
+    "CR 1/2-10 J": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
     "CR 1/2-47": {
       "status": "in-stock",
       "label": "재고 있음"
@@ -5347,11 +5343,23 @@
       "status": "in-stock",
       "label": "재고 있음"
     },
+    "CR 1/4-22J": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
     "CR 1/4-43K": {
       "status": "in-stock",
       "label": "재고 있음"
     },
     "CR 1/4-470 J": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
+    "CR 1/4-680 J": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
+    "CR 1/4-6K8 J": {
       "status": "in-stock",
       "label": "재고 있음"
     },
@@ -6539,6 +6547,10 @@
       "status": "in-stock",
       "label": "재고 있음"
     },
+    "CT357B": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
     "CV15378": {
       "status": "in-stock",
       "label": "재고 있음"
@@ -6876,6 +6888,10 @@
       "label": "재고 있음"
     },
     "EEV-TG1H221Q": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
+    "EKB3A102K08BS5N": {
       "status": "in-stock",
       "label": "재고 있음"
     },
@@ -7675,10 +7691,6 @@
       "status": "in-stock",
       "label": "재고 있음"
     },
-    "HBLS1608-R22J 0.6A_M": {
-      "status": "in-stock",
-      "label": "재고 있음"
-    },
     "HBLS1608-R27J_M": {
       "status": "in-stock",
       "label": "재고 있음"
@@ -7799,6 +7811,10 @@
       "status": "in-stock",
       "label": "재고 있음"
     },
+    "HP1-P25": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
     "HSM107ST": {
       "status": "in-stock",
       "label": "재고 있음"
@@ -7904,6 +7920,10 @@
       "label": "재고 있음"
     },
     "IR-0622-H": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
+    "IR13파이-470": {
       "status": "in-stock",
       "label": "재고 있음"
     },
@@ -8103,6 +8123,10 @@
       "status": "in-stock",
       "label": "재고 있음"
     },
+    "KMG 35 VB 470 (M)": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
     "KMG 400V 202mF": {
       "status": "in-stock",
       "label": "재고 있음"
@@ -8136,6 +8160,10 @@
       "label": "재고 있음"
     },
     "KMG 50 VB 4.7 (M)": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
+    "KMG 50 VB 47 (M)": {
       "status": "in-stock",
       "label": "재고 있음"
     },
@@ -8504,10 +8532,6 @@
       "label": "재고 있음"
     },
     "LM2592HVSX-3.3": {
-      "status": "in-stock",
-      "label": "재고 있음"
-    },
-    "LM2902DR2G": {
       "status": "in-stock",
       "label": "재고 있음"
     },
@@ -8967,6 +8991,10 @@
       "status": "in-stock",
       "label": "재고 있음"
     },
+    "LRP12FTWRR010": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
     "LRP12FTWSR010": {
       "status": "in-stock",
       "label": "재고 있음"
@@ -9056,8 +9084,8 @@
       "label": "재고 있음"
     },
     "LSN5845-470M": {
-      "status": "in-stock",
-      "label": "재고 있음"
+      "status": "out-of-stock",
+      "label": "재고 없음"
     },
     "LSN5845-8R2M": {
       "status": "in-stock",
@@ -9084,6 +9112,10 @@
       "label": "재고 있음"
     },
     "LTL-2300HR": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
+    "LTV-217-C-G": {
       "status": "in-stock",
       "label": "재고 있음"
     },
@@ -9803,6 +9835,10 @@
       "status": "in-stock",
       "label": "재고 있음"
     },
+    "MOR 1T-0R33 J": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
     "MOR 1T-0R5 J": {
       "status": "in-stock",
       "label": "재고 있음"
@@ -9827,6 +9863,10 @@
       "status": "in-stock",
       "label": "재고 있음"
     },
+    "MOR 1T-47K J": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
     "MOR 1T-68 J": {
       "status": "in-stock",
       "label": "재고 있음"
@@ -9840,6 +9880,10 @@
       "label": "재고 있음"
     },
     "MOR 2T-0R3 J": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
+    "MOR 2T-100K J": {
       "status": "in-stock",
       "label": "재고 있음"
     },
@@ -9975,10 +10019,6 @@
       "status": "in-stock",
       "label": "재고 있음"
     },
-    "MVK 6.3TP 16 VC 100 (M)": {
-      "status": "in-stock",
-      "label": "재고 있음"
-    },
     "MX25L1606EM1I-12G": {
       "status": "in-stock",
       "label": "재고 있음"
@@ -10044,6 +10084,10 @@
       "label": "재고 있음"
     },
     "NHA 2.5TP 400 VB 2.2 (M)": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
+    "NHA 400 VB 100 (M)": {
       "status": "in-stock",
       "label": "재고 있음"
     },
@@ -10264,6 +10308,10 @@
       "label": "재고 있음"
     },
     "OTM609Y-YG-1": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
+    "P5L45F-A": {
       "status": "in-stock",
       "label": "재고 있음"
     },
@@ -10660,14 +10708,6 @@
       "label": "재고 있음"
     },
     "PW210": {
-      "status": "in-stock",
-      "label": "재고 있음"
-    },
-    "PW350": {
-      "status": "in-stock",
-      "label": "재고 있음"
-    },
-    "PW550": {
       "status": "in-stock",
       "label": "재고 있음"
     },
@@ -11439,6 +11479,10 @@
       "status": "in-stock",
       "label": "재고 있음"
     },
+    "RC0603JR-0756R": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
     "RC0805FR-07180KL": {
       "status": "in-stock",
       "label": "재고 있음"
@@ -12196,6 +12240,14 @@
       "label": "재고 있음"
     },
     "SCDP502W102K4GV001E": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
+    "SCE2E332M12BW7": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
+    "SCF2E103Z14BW7": {
       "status": "in-stock",
       "label": "재고 있음"
     },
@@ -13395,6 +13447,10 @@
       "status": "in-stock",
       "label": "재고 있음"
     },
+    "VJ1111D220GXLQJ": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
     "VLS3015ET-2R2M": {
       "status": "in-stock",
       "label": "재고 있음"
@@ -14544,6 +14600,10 @@
       "label": "재고 있음"
     },
     "YW396-02V": {
+      "status": "in-stock",
+      "label": "재고 있음"
+    },
+    "YW396-05V": {
       "status": "in-stock",
       "label": "재고 있음"
     },
