@@ -19,8 +19,10 @@
     <header class="header">
         <div class="container nav"><a class="brand" href="index.html"><img src="assets/images/maxgain-logo.png"
                     alt="MAXGAIN SYSTEMS"></a><button class="menu-btn" aria-label="메뉴 열기"
-                aria-expanded="false">☰</button>
-            <nav class="nav-links"><a href="about.html" data-ko="회사소개" data-en="About">회사소개</a><a
+                data-menu-open-ko="메뉴 열기" data-menu-open-en="Open menu"
+                data-menu-close-ko="메뉴 닫기" data-menu-close-en="Close menu"
+                aria-controls="primary-navigation" aria-expanded="false">☰</button>
+            <nav class="nav-links" id="primary-navigation"><a href="about.html" data-ko="회사소개" data-en="About">회사소개</a><a
                     href="manufacturers.html" data-ko="제조사" data-en="Manufacturers">제조사</a><a href="product-search.html"
                     data-ko="제품 검색" data-en="Product Search">제품 검색</a><a href="resources.html" data-ko="자료실"
                     data-en="Resources">자료실</a><a href="contact.html" data-ko="문의" data-en="Contact">문의</a>
@@ -30,7 +32,8 @@
         </div>
     </header>
     <main>
-        <section class="hero"><video class="hero-video" autoplay muted loop playsinline
+        <section class="hero"><video class="hero-video" muted loop playsinline preload="metadata" controls
+                aria-label="배경 영상" data-video-label-ko="배경 영상" data-video-label-en="Background video"
                 poster="assets/images/hero-supplychain.jpg">
                 <source src="assets/movie/maxgain-main-web.mp4" type="video/mp4">
             </video>
@@ -158,7 +161,7 @@
         </div>
     </footer>
     <script src="assets/js/main.js"></script>
-    <script>document.addEventListener("DOMContentLoaded", function () { const heroVideo = document.querySelector(".hero-video"); if (heroVideo) { heroVideo.playbackRate = 0.7; heroVideo.defaultPlaybackRate = 0.7; } });</script>
+    <script>document.addEventListener("DOMContentLoaded", function () { const heroVideo = document.querySelector(".hero-video"); if (heroVideo) { heroVideo.playbackRate = 0.7; heroVideo.defaultPlaybackRate = 0.7; if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) { heroVideo.play().catch(error => console.warn("Hero video could not autoplay:", error)); } } });</script>
 </body>
 
 </html>

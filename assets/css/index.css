@@ -3,6 +3,26 @@
    Manufacturing partner logo marquee
    ========================================================= */
 
+:root {
+  --accent-text: #a84300;
+  --cta-orange-start: #a84300;
+  --cta-orange-end: #8f3600;
+  --control-muted: #53616b;
+}
+
+.section .eyebrow,
+.section .link {
+  color: var(--accent-text);
+}
+
+.lang button:not(.active) {
+  color: var(--control-muted);
+}
+
+.cta {
+  background: linear-gradient(110deg, var(--cta-orange-start), var(--cta-orange-end));
+}
+
 /* =========================================================
    HERO VIDEO
    ========================================================= */

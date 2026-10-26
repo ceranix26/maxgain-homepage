@@ -1,17 +1,47 @@
 const menu = document.querySelector('.menu-btn');
 const nav = document.querySelector('.nav-links');
 
+function syncLocalizedControls(language) {
+  if (menu) {
+    const state = menu.getAttribute('aria-expanded') === 'true';
+    const label = state ? 'menuClose' : 'menuOpen';
+    menu.setAttribute('aria-label', menu.dataset[`${label}${language === 'en' ? 'En' : 'Ko'}`]);
+  }
+
+  const heroVideo = document.querySelector('.hero-video');
+  if (heroVideo) {
+    heroVideo.setAttribute(
+      'aria-label',
+      language === 'en' ? heroVideo.dataset.videoLabelEn : heroVideo.dataset.videoLabelKo
+    );
+  }
+}
+
 if (menu && nav) {
   menu.addEventListener('click', () => {
     const open = nav.classList.toggle('open');
     menu.setAttribute('aria-expanded', open);
+    syncLocalizedControls(document.documentElement.lang);
   });
 }
 
 document.querySelectorAll('.nav-links a').forEach(a => {
   a.addEventListener('click', () => {
-    if (nav) nav.classList.remove('open');
+    if (nav) {
+      nav.classList.remove('open');
+      menu?.setAttribute('aria-expanded', 'false');
+      syncLocalizedControls(document.documentElement.lang);
+    }
   });
+});
+
+document.addEventListener('keydown', event => {
+  if (event.key === 'Escape' && nav?.classList.contains('open')) {
+    nav.classList.remove('open');
+    menu?.setAttribute('aria-expanded', 'false');
+    syncLocalizedControls(document.documentElement.lang);
+    menu?.focus();
+  }
 });
 
 
@@ -31,6 +61,7 @@ function applyLanguage(lang) {
   const language = lang === 'en' ? 'en' : 'ko';
 
   document.documentElement.lang = language;
+  syncLocalizedControls(language);
 
   /*
    * 일반 텍스트
