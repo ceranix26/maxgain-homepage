@@ -16,6 +16,8 @@ const PRODUCT_FIELDS = [
   'Description',
   'Category',
   'DataSheetUrl',
+  'ProductDetailUrl',
+  'ProductUrl',
   'LifecycleStatus',
   'ROHSStatus'
 ];
@@ -134,7 +136,13 @@ function copyProduct(product, apiKey) {
       output[field] = safelyCopy(product[field], apiKey);
     }
   }
+  const productAttributes = product.ProductAttributes;
+  if (Array.isArray(productAttributes) ||
+      (productAttributes && typeof productAttributes === 'object')) {
+    output.ProductAttributes = safelyCopy(productAttributes, apiKey);
+  }
   for (const field of ATTRIBUTE_FIELDS) {
+    if (field === 'ProductAttributes') continue;
     const value = product[field];
     if (Array.isArray(value) || (value && typeof value === 'object')) {
       output[field] = safelyCopy(value, apiKey);
