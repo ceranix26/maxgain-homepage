@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-10-27T04:08:35.136Z",
-  "baseDate": "20261027",
+  "updatedAt": "2026-10-27T23:00:25.044Z",
+  "baseDate": "20261028",
   "source": "ECOUNT",
-  "totalPartNumbers": 22030,
+  "totalPartNumbers": 22033,
   "items": {
     "2": {
       "status": "out-of-stock",
@@ -538,6 +538,11 @@
       "status": "in-stock",
       "label": "재고 있음",
       "stockLevel": "100+"
+    },
+    "0050579404": {
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "010-11FS": {
       "status": "out-of-stock",
@@ -15990,9 +15995,9 @@
       "stockLevel": "1,000+"
     },
     "251R14S1R8BV4T": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "251R14S200GV4T": {
       "status": "out-of-stock",
@@ -16127,7 +16132,7 @@
     "251R14S4R7BV4T": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "stockLevel": "500+"
     },
     "251R14S4R7CV4T": {
       "status": "out-of-stock",
@@ -18280,9 +18285,9 @@
       "stockLevel": "재고 없음"
     },
     "2N5551S-RTK0": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "2N7000": {
       "status": "in-stock",
@@ -26738,11 +26743,6 @@
       "status": "out-of-stock",
       "label": "재고 없음",
       "stockLevel": "재고 없음"
-    },
-    "70066-0178": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
     },
     "7015M12Z": {
       "status": "out-of-stock",
@@ -35229,6 +35229,11 @@
       "label": "재고 없음",
       "stockLevel": "재고 없음"
     },
+    "CC0402KRX7R7BB104": {
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
+    },
     "CC0402KRX7R8BB104": {
       "status": "out-of-stock",
       "label": "재고 없음",
@@ -35410,9 +35415,9 @@
       "stockLevel": "재고 없음"
     },
     "CC0603JRNPO9BN101": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "CC0603JRNPO9BN120": {
       "status": "out-of-stock",
@@ -77199,7 +77204,17 @@
       "label": "재고 있음",
       "stockLevel": "1,000+"
     },
+    "QSCP251Q3R9B1GV003T": {
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
+    },
     "QSCP251Q470J1GV003T": {
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
+    },
+    "QSCP251Q4R7B1GV003T": {
       "status": "in-stock",
       "label": "재고 있음",
       "stockLevel": "1,000+"
@@ -89055,9 +89070,9 @@
       "stockLevel": "재고 없음"
     },
     "RWFS 1T-J/10R": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "500+"
     },
     "RWN 1N J 0R2": {
       "status": "out-of-stock",
@@ -97364,6 +97379,11 @@
       "label": "재고 없음",
       "stockLevel": "재고 없음"
     },
+    "TSC2003IPWR": {
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "소량"
+    },
     "TSK 3.5*2": {
       "status": "out-of-stock",
       "label": "재고 없음",
@@ -98923,11 +98943,6 @@
       "status": "in-stock",
       "label": "재고 있음",
       "stockLevel": "1,000+"
-    },
-    "W-CC0402KRX7R7BB104": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
     },
     "W-CC0603JRNP09BN151": {
       "status": "in-stock",
