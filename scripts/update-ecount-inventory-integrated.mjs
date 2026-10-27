@@ -6,6 +6,8 @@ const USER_ID = process.env.ECOUNT_USER_ID;
 const ZONE = process.env.ECOUNT_ZONE;
 const TEST_KEY = process.env.ECOUNT_API_CERT_KEY;
 const PROD_KEY = process.env.ECOUNT_API_CERT_KEY;
+const MAX_PRODUCT_REQUESTS = 20;
+const PRODUCT_CODE_UPPER_BOUND = 'ZZZZZZZZZZZZZZZZZZZZ';
 
 for (const [name, value] of Object.entries({
   ECOUNT_COM_CODE: COM_CODE,
@@ -112,23 +114,33 @@ async function getProducts(sessionId, from = '', to = '') {
 
 async function getAllProducts(sessionId) {
   const products = new Map();
+  const seenProductCodes = new Set();
   let rawRowCount = 0;
   let fromProductCode = '';
 
-  while (true) {
-    const rows = await getProducts(sessionId, fromProductCode);
+  for (let requestNumber = 1; requestNumber <= MAX_PRODUCT_REQUESTS; requestNumber += 1) {
+    const previousCursor = fromProductCode;
+    const rows = previousCursor
+      ? await getProducts(sessionId, previousCursor, PRODUCT_CODE_UPPER_BOUND)
+      : await getProducts(sessionId);
     rawRowCount += rows.length;
 
     if (rows.length === 0) break;
 
-    let nextProductCode = fromProductCode;
+    const lastRow = rows.at(-1);
+    if (lastRow?.PROD_CD == null || String(lastRow.PROD_CD).trim() === '') {
+      throw new Error(`Product Master request ${requestNumber} ended with a row missing PROD_CD.`);
+    }
+
+    let newProductCodes = 0;
     for (const row of rows) {
       const prodCd = String(row.PROD_CD ?? '').trim();
       const partNumber = String(row.PROD_DES ?? '').trim();
       if (!prodCd) continue;
 
-      if (!nextProductCode || prodCd > nextProductCode) {
-        nextProductCode = prodCd;
+      if (!seenProductCodes.has(prodCd)) {
+        newProductCodes += 1;
+        seenProductCodes.add(prodCd);
       }
       if (!partNumber) continue;
 
@@ -141,17 +153,14 @@ async function getAllProducts(sessionId) {
       });
     }
 
-    if (!nextProductCode) {
-      throw new Error('Product Master returned rows without a usable PROD_CD cursor.');
+    console.log(`PRODUCT MASTER REQUEST ${requestNumber} NEW UNIQUE CODES:`, newProductCodes);
+    const nextCursor = lastRow.PROD_CD;
+    if (newProductCodes === 0 && String(nextCursor) === String(previousCursor)) break;
+    fromProductCode = nextCursor;
+
+    if (requestNumber === MAX_PRODUCT_REQUESTS) {
+      throw new Error(`Product Master pagination exceeded the ${MAX_PRODUCT_REQUESTS}-request safety limit.`);
     }
-    if (nextProductCode === fromProductCode) {
-      const hasOnlyCursorRow = rows.every(row =>
-        String(row.PROD_CD ?? '').trim() === fromProductCode
-      );
-      if (hasOnlyCursorRow) break;
-      throw new Error(`Product Master pagination did not advance beyond PROD_CD ${fromProductCode}.`);
-    }
-    fromProductCode = nextProductCode;
   }
 
   return { products, rawRowCount };
@@ -252,6 +261,11 @@ async function updateInventory(testSession) {
   console.log('UNIQUE PRODUCT CODES:', productMap.size);
   if (productMap.size < 10_000) {
     console.warn(`WARNING: Product Master returned only ${productMap.size} unique products.`);
+  }
+  if (productMap.size < 10_000) {
+    throw new Error(
+      `Refusing to update inventory: Product Master returned ${productMap.size} valid products; at least 10000 are required.`
+    );
   }
 
   console.log('\n=== INVENTORY ===');
@@ -368,16 +382,36 @@ async function updateInventory(testSession) {
   };
 
   const fs = await import('node:fs/promises');
-
   await fs.mkdir('data', { recursive: true });
 
-  await fs.writeFile(
-    'data/inventory-status.json',
-    JSON.stringify(output, null, 2) + '\n',
-    'utf8'
-  );
+  validateInventoryOutput(output, productMap.size, inStock, outOfStock);
+  const temporaryPath = `data/inventory-status.json.${process.pid}.tmp`;
+  try {
+    await fs.writeFile(temporaryPath, JSON.stringify(output, null, 2) + '\n', {
+      encoding: 'utf8',
+      flag: 'wx'
+    });
+    const temporaryOutput = JSON.parse(await fs.readFile(temporaryPath, 'utf8'));
+    validateInventoryOutput(temporaryOutput, productMap.size, inStock, outOfStock);
+    await fs.rename(temporaryPath, 'data/inventory-status.json');
+  } catch (error) {
+    await fs.rm(temporaryPath, { force: true });
+    throw error;
+  }
 
   console.log(
     `Integrated inventory JSON created: ${Object.keys(items).length} Part Numbers`
   );
+}
+
+function validateInventoryOutput(output, uniqueProductCount, inStock, outOfStock) {
+  if (uniqueProductCount < 10_000) {
+    throw new Error(`Cannot write inventory with only ${uniqueProductCount} unique Product Master products.`);
+  }
+  if (output.totalPartNumbers !== inStock + outOfStock) {
+    throw new Error('Cannot write inventory: total Part Numbers do not equal in-stock plus out-of-stock.');
+  }
+  if (!output.items || Object.keys(output.items).length !== output.totalPartNumbers) {
+    throw new Error('Cannot write inventory: items count does not equal totalPartNumbers.');
+  }
 }
