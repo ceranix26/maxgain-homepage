@@ -24,6 +24,18 @@ function redactApiKey(value, apiKey) {
   return value;
 }
 
+function getHttpsImageUrl(value) {
+  if (typeof value !== 'string' || !value || value !== value.trim() ||
+      /[\s\u0000-\u001f]/.test(value) || !/^https:\/\//i.test(value)) {
+    return '';
+  }
+  try {
+    return new URL(value).protocol === 'https:' ? value : '';
+  } catch {
+    return '';
+  }
+}
+
 function diagnoseUnexpectedResponse(data, status, apiKey) {
   const diagnostic = {
     httpStatus: status,
@@ -133,12 +145,21 @@ async function main() {
         'Description',
         'Category',
         'DataSheetUrl',
+        'ImagePath',
         'LifecycleStatus',
         'ROHSStatus'
       ]) {
         if (part[field] !== undefined && part[field] !== null) {
           match[field] = part[field];
         }
+      }
+      const imageUrl = getHttpsImageUrl(part.ImagePath);
+      if (imageUrl) {
+        match.image = {
+          url: imageUrl,
+          source: 'Mouser',
+          type: 'representative'
+        };
       }
       return match;
     });

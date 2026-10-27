@@ -115,6 +115,18 @@ function safelyCopy(value, apiKey) {
   return value;
 }
 
+function getHttpsImageUrl(value) {
+  if (typeof value !== 'string' || !value || value !== value.trim() ||
+      /[\s\u0000-\u001f]/.test(value) || !/^https:\/\//i.test(value)) {
+    return '';
+  }
+  try {
+    return new URL(value).protocol === 'https:' ? value : '';
+  } catch {
+    return '';
+  }
+}
+
 function copyProduct(product, apiKey) {
   const output = {};
   for (const field of PRODUCT_FIELDS) {
@@ -127,6 +139,14 @@ function copyProduct(product, apiKey) {
     if (Array.isArray(value) || (value && typeof value === 'object')) {
       output[field] = safelyCopy(value, apiKey);
     }
+  }
+  const imageUrl = getHttpsImageUrl(product.ImagePath);
+  if (imageUrl) {
+    output.image = {
+      url: safelyCopy(imageUrl, apiKey),
+      source: 'Mouser',
+      type: 'representative'
+    };
   }
   return output;
 }
