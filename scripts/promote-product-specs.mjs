@@ -9,6 +9,17 @@ const INVENTORY_PATH = path.join(DATA_DIR, 'inventory-status.json');
 const SPECS_PATH = path.join(DATA_DIR, 'product-specs.json');
 const BACKUP_PATH = path.join(DATA_DIR, 'product-specs.backup.json');
 const ATTRIBUTE_COLLECTIONS = ['ProductAttributes', 'Attributes', 'Specifications'];
+const NON_TECHNICAL_ATTRIBUTES = new Set([
+  'packaging',
+  'standard pack qty',
+  'factory pack quantity',
+  'minimum order quantity',
+  'unit weight',
+  'shipping weight',
+  'price',
+  'pricing',
+  'lead time'
+]);
 
 function parseArguments() {
   const options = { dryRun: false, overwrite: false, limit: Infinity };
@@ -151,7 +162,7 @@ function getImage(candidate) {
   return result;
 }
 
-function makeRecord(candidate, duplicateNames) {
+function makeRecord(candidate, specs) {
   const manufacturer = nonEmptyString(candidate.Manufacturer);
   const category = nonEmptyString(candidate.Category);
   if (!manufacturer || !category) return null;
@@ -164,7 +175,6 @@ function makeRecord(candidate, duplicateNames) {
   if (lifecycle) record.lifecycle = lifecycle;
   if (rohs) record.rohs = rohs;
 
-  const specs = collectSpecifications(candidate, duplicateNames);
   if (Object.keys(specs).length) record.specs = specs;
 
   const sourceUrl = getSourceUrl(candidate);
@@ -218,6 +228,7 @@ async function main() {
     existingSkipped: 0,
     numericOnlySkipped: 0,
     ambiguousSkipped: 0,
+    insufficientTechnicalSpecs: 0,
     invalidSkipped: 0,
     duplicateAttributes: 0,
     errors: 0
@@ -261,13 +272,23 @@ async function main() {
     }
 
     const duplicates = [];
-    const record = makeRecord(candidate, duplicates);
+    const specs = collectSpecifications(candidate, duplicates);
+    summary.duplicateAttributes += duplicates.length;
+    if (duplicates.length) duplicateReports.push({ partNumber: inventoryPartNumber, attributes: duplicates });
+
+    const hasTechnicalAttribute = Object.keys(specs).some(name =>
+      !NON_TECHNICAL_ATTRIBUTES.has(name.trim().toLowerCase())
+    );
+    if (!hasTechnicalAttribute) {
+      summary.insufficientTechnicalSpecs += 1;
+      continue;
+    }
+
+    const record = makeRecord(candidate, specs);
     if (!record) {
       summary.invalidSkipped += 1;
       continue;
     }
-    summary.duplicateAttributes += duplicates.length;
-    if (duplicates.length) duplicateReports.push({ partNumber: inventoryPartNumber, attributes: duplicates });
     proposals.push({ partNumber: inventoryPartNumber, record });
   }
 
