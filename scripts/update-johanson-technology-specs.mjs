@@ -152,6 +152,13 @@ function labeledValues(html) {
       .map(([, cell]) => htmlText(cell));
     if (cells.length >= 2 && cells[0]) fields.set(cells[0].replace(/:\s*$/, '').toLowerCase(), cells.slice(1).join(' ').trim());
   }
+  for (const [, item] of html.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li\s*>/gi)) {
+    const firstElement = item.search(/</);
+    if (firstElement < 0) continue;
+    const label = htmlText(item.slice(0, firstElement)).replace(/:\s*$/, '').toLowerCase();
+    const value = htmlText(item.slice(firstElement));
+    if (label && value) fields.set(label, value);
+  }
   return fields;
 }
 
@@ -278,7 +285,7 @@ function parseDetailPage(html, detailUrl) {
     const name = rawName.trim().replace(/\s+/g, ' ');
     const value = rawValue.trim();
     if (!name || !value ||
-        /^(part number|global part number|legacy part number|description|life cycle stage|lifecycle stage|manufacturer|manufacturer name|company|company name|johanson company|brand|product brand|product category|product family|family|product type|category)$/i.test(name) ||
+        /^(part number|johanson part number|global part number|legacy part number|legacy p\/n|description|life cycle stage|lifecycle stage|manufacturer|manufacturer name|company|company name|johanson company|brand|product brand|product category|product family|family|product type|category)$/i.test(name) ||
         Object.hasOwn(specs, name)) return;
     specs[name] = value;
   };
@@ -290,6 +297,12 @@ function parseDetailPage(html, detailUrl) {
   for (const [, definitionList] of html.matchAll(/<dl\b[^>]*>([\s\S]*?)<\/dl\s*>/gi)) {
     const entries = [...definitionList.matchAll(/<dt\b[^>]*>([\s\S]*?)<\/dt\s*>\s*<dd\b[^>]*>([\s\S]*?)<\/dd\s*>/gi)];
     for (const [, name, value] of entries) addSpec(htmlText(name), htmlText(value));
+  }
+  for (const [, item] of html.matchAll(/<li\b[^>]*>([\s\S]*?)<\/li\s*>/gi)) {
+    const firstElement = item.search(/</);
+    if (firstElement < 0) continue;
+    const name = htmlText(item.slice(0, firstElement)).replace(/:\s*$/, '');
+    addSpec(name, htmlText(item.slice(firstElement)));
   }
 
   for (const [, attributes, anchorContents] of html.matchAll(/<a\b([^>]*)>([\s\S]*?)<\/a\s*>/gi)) {
