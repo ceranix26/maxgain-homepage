@@ -82,7 +82,7 @@ async function login(host, key) {
   return sessionId;
 }
 
-async function getProducts(sessionId, from = '') {
+async function getProducts(sessionId, from = '', to = '') {
   const body = {
     SESSION_ID: sessionId,
     PROD_CD: '',
@@ -90,6 +90,7 @@ async function getProducts(sessionId, from = '') {
     COMMA_FLAG: 'N'
   };
   if (from) body.FROM_PROD_CD = from;
+  if (to) body.TO_PROD_CD = to;
 
   const result = await post(
     `${PROD_HOST}/OAPI/V2/InventoryBasic/GetBasicProductsList?SESSION_ID=${encodeURIComponent(sessionId)}`,
@@ -157,10 +158,28 @@ async function getAllProducts(sessionId) {
 }
 
 async function diagnoseProductPagination(sessionId) {
-  let fromProductCode = '';
+  const requests = [
+    { label: 'Unbounded', from: '', to: '' },
+    { label: 'FROM only', from: '2203-009900', to: '' },
+    {
+      label: 'FROM and TO',
+      from: '2203-009900',
+      to: 'ZZZZZZZZZZZZZZZZZZZZ'
+    },
+    {
+      label: 'Known historical next range',
+      from: '2203-010049',
+      to: 'ZZZZZZZZZZZZZZZZZZZZ'
+    },
+    {
+      label: 'Later historical range',
+      from: 'M-0653',
+      to: 'ZZZZZZZZZZZZZZZZZZZZ'
+    }
+  ];
 
-  for (let requestNumber = 1; requestNumber <= 5; requestNumber += 1) {
-    const rows = await getProducts(sessionId, fromProductCode);
+  for (const [index, request] of requests.entries()) {
+    const rows = await getProducts(sessionId, request.from, request.to);
     const productCodes = rows
       .map(row => String(row.PROD_CD ?? '').trim())
       .filter(Boolean);
@@ -168,39 +187,19 @@ async function diagnoseProductPagination(sessionId) {
     const sortedProductCodes = [...uniqueProductCodes].sort((a, b) =>
       a < b ? -1 : a > b ? 1 : 0
     );
-    const minimumProductCode = sortedProductCodes[0] ?? null;
-    const maximumProductCode = sortedProductCodes.at(-1) ?? null;
 
-    console.log(`\nPRODUCT MASTER REQUEST ${requestNumber}`);
-    console.log('FROM_PROD_CD:', fromProductCode || '(not set)');
+    console.log(`\nPRODUCT MASTER REQUEST ${index + 1}: ${request.label}`);
+    console.log('FROM_PROD_CD:', request.from || '(not set)');
+    console.log('TO_PROD_CD:', request.to || '(not set)');
     console.log('ROW COUNT:', rows.length);
     console.log('FIRST PROD_CD:', productCodes[0] ?? null);
     console.log('LAST PROD_CD:', productCodes.at(-1) ?? null);
     console.log('UNIQUE PROD_CD VALUES:', uniqueProductCodes.length);
-    console.log('MINIMUM PROD_CD:', minimumProductCode);
-    console.log('MAXIMUM PROD_CD:', maximumProductCode);
-
-    if (requestNumber === 1 || fromProductCode) {
-      console.log('FIRST 10 PROD_CD VALUES:', productCodes.slice(0, 10));
-      console.log('LAST 10 PROD_CD VALUES:', productCodes.slice(-10));
-    }
-
-    if (!rows.length) {
-      console.log('Pagination stopped: response contained no rows.');
-      return;
-    }
-    if (!maximumProductCode || maximumProductCode <= fromProductCode) {
-      console.log(
-        `CURSOR FAILED TO ADVANCE: previous cursor "${fromProductCode || '(not set)'}", ` +
-        `response maximum "${maximumProductCode ?? '(none)'}".`
-      );
-      return;
-    }
-
-    fromProductCode = maximumProductCode;
+    console.log('MINIMUM PROD_CD:', sortedProductCodes[0] ?? null);
+    console.log('MAXIMUM PROD_CD:', sortedProductCodes.at(-1) ?? null);
+    console.log('FIRST 10 PROD_CD VALUES:', productCodes.slice(0, 10));
+    console.log('LAST 10 PROD_CD VALUES:', productCodes.slice(-10));
   }
-
-  console.log('Pagination diagnostic stopped after the 5-request limit.');
 }
 
 function collectInventory(node, output = []) {
