@@ -323,7 +323,7 @@
     (() => {
       const $ = id => document.getElementById(id), keywordInput = $('keyword'), summary = $('searchSummary'), results = $('results'), featuredTrack = $('featuredTrack'), featuredViewport = $('featuredViewport');
       let inventoryItems = [], featuredItems = [], productSpecs = {}, productAliasMap = {}, productAliasData = { aliases: {} }, inventorySource = {}, loaded = false, featuredAutoTimer = null, featuredAutoPaused = false, selectedPartNumber = '', exclusionDiagnosticLogged = false;
-      const nonProductPatterns = ['택배', '배송', '운임', '수수료', '포장비', '작업비', '가공비', '금형비', 'SHIPPING', 'FREIGHT', 'DELIVERY', 'HANDLING', 'TOOLING', 'SAMPLE', 'FILTER TAPE', 'ADAPTER', 'TOOL', 'CHIP외'];
+      const nonProductPatterns = ['택배', '배송', '운임', '수수료', '포장비', '작업비', '가공비', '금형비','샘플', 'SHIPPING', 'FREIGHT', 'DELIVERY', 'HANDLING', 'TOOLING', 'SAMPLE', 'FILTER TAPE', 'ADAPTER', 'TOOL', 'CHIP외'];
       const productDetailContent = $('productDetailContent');
       const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
       const lang = () => document.documentElement.lang === 'en' ? 'en' : 'ko', msg = (ko, en) => lang() === 'en' ? en : ko, normalize = v => String(v ?? '').trim().toUpperCase().replace(/\s+/g, ''), partNumberKey = v => String(v ?? '').trim().toUpperCase();
