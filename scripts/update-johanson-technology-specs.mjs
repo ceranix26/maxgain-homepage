@@ -217,7 +217,8 @@ function parseDetailPage(html, detailUrl) {
   const labeledFields = labeledValues(html);
   const companyEvidence = {
     manufacturer: readNamedField(labeledFields, [
-      'manufacturer', 'manufacturer name', 'company', 'company name', 'brand', 'product brand'
+      'manufacturer', 'manufacturer name', 'company', 'company name', 'johanson company',
+      'brand', 'product brand'
     ]),
     productCategory: readNamedField(labeledFields, [
       'product category', 'product family', 'family', 'product type', 'category'
@@ -277,7 +278,7 @@ function parseDetailPage(html, detailUrl) {
     const name = rawName.trim().replace(/\s+/g, ' ');
     const value = rawValue.trim();
     if (!name || !value ||
-        /^(part number|global part number|legacy part number|description|life cycle stage|lifecycle stage)$/i.test(name) ||
+        /^(part number|global part number|legacy part number|description|life cycle stage|lifecycle stage|manufacturer|manufacturer name|company|company name|johanson company|brand|product brand|product category|product family|family|product type|category)$/i.test(name) ||
         Object.hasOwn(specs, name)) return;
     specs[name] = value;
   };
