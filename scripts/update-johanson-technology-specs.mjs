@@ -5,20 +5,32 @@ import { fileURLToPath } from 'node:url';
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const DATA_DIR = path.join(ROOT, 'data');
 const INVENTORY_PATH = path.join(DATA_DIR, 'inventory-status.json');
+const MANUFACTURERS_PATH = path.join(DATA_DIR, 'product-manufacturers.json');
 const SPECS_PATH = path.join(DATA_DIR, 'product-specs.json');
 const ALIASES_PATH = path.join(DATA_DIR, 'product-aliases.json');
-const REVIEW_PATH = path.join(DATA_DIR, 'johanson-technology-review.json');
-const SPECS_BACKUP_PATH = path.join(DATA_DIR, 'product-specs.backup.json');
-const ALIASES_BACKUP_PATH = path.join(DATA_DIR, 'product-aliases.backup.json');
-const SEARCH_URL = 'https://www.johansontechnology.com/search/pn/';
-const BASE_URL = 'https://www.johansontechnology.com';
+const COMPANIES = {
+  technology: {
+    name: 'Johanson Technology',
+    host: 'www.johansontechnology.com',
+    searchUrl: 'https://www.johansontechnology.com/search/pn/',
+    reviewPath: path.join(DATA_DIR, 'johanson-technology-review.json')
+  },
+  dielectrics: {
+    name: 'Johanson Dielectrics',
+    host: 'www.johansondielectrics.com',
+    searchUrl: 'https://www.johansondielectrics.com/search/pn/',
+    reviewPath: path.join(DATA_DIR, 'johanson-dielectrics-review.json')
+  }
+};
 const REQUEST_DELAY_MS = 1_000;
+const MAX_REQUESTS = 200;
 let lastRequestAt = 0;
+let totalRequests = 0;
 
 function parseArguments() {
   const options = {
     dryRun: false,
-    overwrite: false,
+    retry: false,
     limit: Infinity,
     limitProvided: false,
     partNumber: ''
@@ -27,8 +39,8 @@ function parseArguments() {
   for (let i = 0; i < args.length; i += 1) {
     if (args[i] === '--dry-run') {
       options.dryRun = true;
-    } else if (args[i] === '--overwrite') {
-      options.overwrite = true;
+    } else if (args[i] === '--retry') {
+      options.retry = true;
     } else if (args[i] === '--limit') {
       const value = args[++i];
       if (!value || !/^\d+$/.test(value) || Number(value) < 1) {
@@ -107,13 +119,19 @@ function attributesFromTag(tag) {
   return attributes;
 }
 
-function safeJohansonUrl(value, allowRelative = false) {
+function safeJohansonUrl(value, baseUrl, expectedCompany) {
   if (typeof value !== 'string' || !value.trim() ||
       /[\s\u0000-\u001f]/.test(value.trim())) return '';
   try {
-    const url = new URL(value.trim(), allowRelative ? BASE_URL : undefined);
+    const url = new URL(value.trim(), baseUrl);
     if (url.protocol !== 'https:' || url.username || url.password) return '';
-    if (url.hostname !== new URL(BASE_URL).hostname) return '';
+    const hostname = url.hostname.replace(/^www\./i, '');
+    const allowedCompanies = expectedCompany ? [expectedCompany] : Object.values(COMPANIES);
+    const allowed = allowedCompanies.some(company => {
+      const root = company.host.replace(/^www\./i, '');
+      return hostname === root || hostname.endsWith(`.${root}`);
+    });
+    if (!allowed) return '';
     return url.href;
   } catch {
     return '';
@@ -145,7 +163,7 @@ function readNamedField(fields, names) {
   return '';
 }
 
-function parseSearchResults(html) {
+function parseSearchResults(html, company) {
   const results = [];
   const rows = [...html.matchAll(/<tr\b[^>]*>([\s\S]*?)<\/tr\s*>/gi)].map(match => match[1]);
   const headers = rows.flatMap(row => {
@@ -172,7 +190,7 @@ function parseSearchResults(html) {
     const detailHref = [...block.matchAll(/<a\b([^>]*)>/gi)]
       .map(([, tag]) => attributesFromTag(tag).href || '')
       .find(href => /\/part\/[^/?#]+\/?/i.test(href));
-    const safeDetailUrl = safeJohansonUrl(detailHref, true);
+    const safeDetailUrl = safeJohansonUrl(detailHref, company.searchUrl, company);
     const pathPartNumber = safeDetailUrl?.match(/\/part\/([^/?#]+)\/?/i)?.[1] || '';
     const globalPartNumber = readNamedField(fields, ['Part Number', 'Global Part Number']) || decodeHtml(pathPartNumber);
     const legacyPartNumber = readNamedField(fields, ['Legacy Part Number']);
@@ -191,8 +209,11 @@ function parseSearchResults(html) {
 
 function parseDetailPage(html, detailUrl) {
   const specs = {};
-  const source = safeJohansonUrl(detailUrl);
-  let infoPdf = '';
+  const company = Object.values(COMPANIES).find(candidate =>
+    new URL(detailUrl).hostname.replace(/^www\./i, '') === candidate.host.replace(/^www\./i, '')
+  );
+  const source = company ? safeJohansonUrl(detailUrl, company.searchUrl, company) : '';
+  const documents = new Map();
 
   const addSpec = (rawName, rawValue) => {
     const name = rawName.trim().replace(/\s+/g, ' ');
@@ -216,16 +237,23 @@ function parseDetailPage(html, detailUrl) {
     const href = attributesFromTag(attributes).href || '';
     if (!/\.pdf(?:[?#]|$)/i.test(href)) continue;
     const anchorText = htmlText(anchorContents);
-    if (!/product|information|datasheet|data sheet|specification/i.test(anchorText) &&
+    if (!/product|information|datasheet|data sheet|specification|technical/i.test(anchorText) &&
         !/product|information|datasheet|specification/i.test(href)) continue;
-    const resolved = safeJohansonUrl(href, true);
-    if (resolved) {
-      infoPdf = resolved;
-      break;
-    }
+    const resolved = company ? safeJohansonUrl(href, detailUrl, company) : '';
+    if (!resolved) continue;
+    const label = `${anchorText} ${href}`.toLowerCase();
+    const type = /datasheet|data sheet|product data|specification/i.test(label)
+      ? 'datasheet'
+      : 'product-information';
+    if (!documents.has(type)) documents.set(type, resolved);
   }
 
-  return { specs, source, infoPdf };
+  return {
+    specs,
+    source,
+    datasheetUrl: documents.get('datasheet') ?? '',
+    infoPdf: documents.get('product-information') ?? documents.get('datasheet') ?? ''
+  };
 }
 
 function normalizePartNumber(value) {
@@ -236,15 +264,17 @@ function isHttpFailureStop(status) {
   return status === 401 || status === 403 || status === 429;
 }
 
-async function fetchHtml(url, onRequest, redirectCount = 0) {
+async function fetchHtml(url, onRequest, allowedHost, redirectCount = 0) {
+  if (totalRequests >= MAX_REQUESTS) throw new Error('Reached the 200-request execution limit.');
   const wait = REQUEST_DELAY_MS - (Date.now() - lastRequestAt);
   if (lastRequestAt && wait > 0) await new Promise(resolve => setTimeout(resolve, wait));
   lastRequestAt = Date.now();
+  totalRequests += 1;
   onRequest();
   const response = await fetch(url, {
     headers: {
       Accept: 'text/html',
-      'User-Agent': 'MAXGAIN Johanson Technology specification lookup/1.0'
+      'User-Agent': 'MAXGAIN Johanson manufacturer specification lookup/1.0'
     },
     redirect: 'manual',
     signal: AbortSignal.timeout(20_000)
@@ -256,11 +286,12 @@ async function fetchHtml(url, onRequest, redirectCount = 0) {
     if (!location) throw new Error(`HTTP ${response.status} without redirect location`);
     if (redirectCount >= 5) throw new Error('Exceeded the maximum redirect count');
     const target = new URL(location, url);
-    if (target.protocol !== 'https:' || target.hostname !== new URL(BASE_URL).hostname ||
+    if (target.protocol !== 'https:' ||
+        target.hostname.replace(/^www\./i, '') !== allowedHost.replace(/^www\./i, '') ||
         target.username || target.password) {
       throw new Error('Rejected non-official or non-HTTPS redirect');
     }
-    return fetchHtml(target.href, onRequest, redirectCount + 1);
+    return fetchHtml(target.href, onRequest, allowedHost, redirectCount + 1);
   }
   if (!response.ok) {
     await response.body?.cancel();
@@ -276,23 +307,45 @@ async function fetchHtml(url, onRequest, redirectCount = 0) {
   return response.text();
 }
 
-async function writeAtomic(filePath, content) {
-  const temporary = `${filePath}.${process.pid}.tmp`;
-  try {
-    await fs.writeFile(temporary, content, { encoding: 'utf8', flag: 'wx' });
-    await fs.rename(temporary, filePath);
-  } catch (error) {
-    await fs.rm(temporary, { force: true });
-    throw error;
+async function writeAtomically(outputs) {
+  const timestamp = new Date().toISOString().replaceAll(':', '-');
+  const changed = [];
+  for (const [filePath, value] of outputs) {
+    const content = `${JSON.stringify(value, null, 2)}\n`;
+    let existing;
+    try {
+      existing = JSON.parse(await fs.readFile(filePath, 'utf8'));
+    } catch (error) {
+      if (error.code !== 'ENOENT') throw error;
+    }
+    if (JSON.stringify(existing) !== JSON.stringify(value)) {
+      changed.push({ filePath, content, existed: existing !== undefined });
+    }
   }
-}
+  if (!changed.length) return [];
 
-async function backupIfPresent(filePath, backupPath) {
-  try {
-    await fs.copyFile(filePath, backupPath, fs.constants.COPYFILE_EXCL);
-  } catch (error) {
-    if (error.code !== 'ENOENT') throw error;
+  const backups = [];
+  for (const entry of changed) {
+    if (!entry.existed) continue;
+    const backupPath = `${entry.filePath}.backup-${timestamp}`;
+    await fs.copyFile(entry.filePath, backupPath, fs.constants.COPYFILE_EXCL);
+    backups.push(path.relative(ROOT, backupPath));
   }
+
+  const staged = [];
+  try {
+    for (const [index, entry] of changed.entries()) {
+      const temporaryPath = `${entry.filePath}.${process.pid}.${index}.tmp`;
+      await fs.writeFile(temporaryPath, entry.content, { encoding: 'utf8', flag: 'wx' });
+      JSON.parse(await fs.readFile(temporaryPath, 'utf8'));
+      staged.push({ temporaryPath, filePath: entry.filePath });
+    }
+    for (const entry of staged) await fs.rename(entry.temporaryPath, entry.filePath);
+  } catch (error) {
+    for (const entry of staged) await fs.rm(entry.temporaryPath, { force: true });
+    throw new Error(`Could not atomically write Johanson data: ${error.message}`);
+  }
+  return backups;
 }
 
 function mergeAlias(aliasMap, alias, primary) {
@@ -308,236 +361,465 @@ function mergeAlias(aliasMap, alias, primary) {
   return { added: !currentEntry };
 }
 
+function isCandidatePartNumber(partNumber) {
+  const value = partNumber.trim();
+  if (value.length < 6 || /\s/.test(value) ||
+      !/^[A-Z0-9][A-Z0-9._/+\\-]*$/i.test(value)) return false;
+  if (!/[A-Z]/i.test(value) || !/\d/.test(value)) return false;
+  return /^[A-Z]{1,8}\d[A-Z0-9._/+\\-]{3,}$/i.test(value) ||
+    /^\d{3,5}[A-Z]{1,}[A-Z0-9._/+\\-]{2,}$/i.test(value);
+}
+
+function isJohansonManufacturer(record) {
+  return typeof record?.manufacturer === 'string' &&
+    /^Johanson (Technology|Dielectrics)$/i.test(record.manufacturer.trim());
+}
+
+function isInStock(inventoryRecord) {
+  return inventoryRecord?.status === 'in-stock';
+}
+
+function createCompanySummary(candidates) {
+  return {
+    candidates,
+    requests: 0,
+    legacyExact: 0,
+    globalExact: 0,
+    aliasesAdded: 0,
+    manufacturerVerified: 0,
+    specsAdded: 0,
+    review: 0,
+    unresolved: 0,
+    errors: 0
+  };
+}
+
+function makeManufacturerRecord(company) {
+  return {
+    manufacturer: company.name,
+    source: 'manufacturer-product-search',
+    confidence: 'verified'
+  };
+}
+
+function normalizeOfficialRecords(results, inventoryPartNumber) {
+  const key = normalizePartNumber(inventoryPartNumber);
+  const exact = results.filter(result =>
+    normalizePartNumber(result.globalPartNumber) === key ||
+    normalizePartNumber(result.legacyPartNumber) === key
+  );
+  return [...new Map(exact.map(result => [
+    normalizePartNumber(result.globalPartNumber),
+    result
+  ])).values()];
+}
+
+function mergeOfficialSpecs(existing, incoming) {
+  if (existing && existing.manufacturer !== incoming.manufacturer) return null;
+  if (!existing) return incoming;
+  const specs = { ...(existing.specs ?? {}) };
+  const existingLegacy = Array.isArray(existing.partNumbers?.legacy)
+    ? existing.partNumbers.legacy
+    : [];
+  const incomingLegacy = Array.isArray(incoming.partNumbers?.legacy)
+    ? incoming.partNumbers.legacy
+    : [];
+  for (const [name, value] of Object.entries(incoming.specs ?? {})) {
+    if (!Object.hasOwn(specs, name)) specs[name] = value;
+  }
+  return {
+    ...incoming,
+    ...existing,
+    manufacturer: incoming.manufacturer,
+    category: existing.category ?? incoming.category,
+    partNumbers: {
+      ...incoming.partNumbers,
+      ...existing.partNumbers,
+      primary: incoming.partNumbers.primary,
+      legacy: [...new Set([
+        ...existingLegacy,
+        ...incomingLegacy
+      ])]
+    },
+    specs,
+    source: existing.source ?? incoming.source,
+    ...(existing.sourceDocument || incoming.sourceDocument
+      ? { sourceDocument: existing.sourceDocument ?? incoming.sourceDocument }
+      : {})
+  };
+}
+
 async function main() {
   const options = parseArguments();
   const inventoryData = await readJson(INVENTORY_PATH, 'inventory-status.json');
-  const inventory = requireItems(inventoryData, 'inventory-status.json', false);
+  const manufacturersData = await readJson(MANUFACTURERS_PATH, 'product-manufacturers.json');
   const specsData = await readJson(SPECS_PATH, 'product-specs.json');
-  const approvedSpecs = requireItems(specsData, 'product-specs.json');
   const aliasData = await readJson(ALIASES_PATH, 'product-aliases.json', { version: 1, aliases: {} });
+  const inventory = requireItems(inventoryData, 'inventory-status.json', false);
+  const manufacturerItems = requireItems(manufacturersData, 'product-manufacturers.json');
+  const specItems = requireItems(specsData, 'product-specs.json');
   if (!aliasData || aliasData.version !== 1 || !aliasData.aliases ||
       typeof aliasData.aliases !== 'object' || Array.isArray(aliasData.aliases)) {
     throw new Error('product-aliases.json must contain version 1 and an aliases object.');
   }
-  const existingReview = await readJson(REVIEW_PATH, 'johanson-technology-review.json', {
-    version: 1,
-    items: {}
-  });
-  const review = requireItems(existingReview, 'johanson-technology-review.json');
+
+  const reviewFiles = {};
+  const reviewItems = {};
+  const summaries = {};
+  for (const [key, company] of Object.entries(COMPANIES)) {
+    const data = await readJson(company.reviewPath, `${company.name} review`, {
+      version: 1,
+      items: {}
+    });
+    reviewFiles[key] = data;
+    reviewItems[key] = requireItems(data, `${company.name} review`);
+    summaries[key] = createCompanySummary(0);
+  }
+
   const inventoryPartNumbers = Object.keys(inventory).filter(partNumber => partNumber.trim());
-  let candidatePartNumbers;
+  let candidates = inventoryPartNumbers.filter(partNumber =>
+    isCandidatePartNumber(partNumber) &&
+    (!manufacturerItems[partNumber]?.manufacturer ||
+      isJohansonManufacturer(manufacturerItems[partNumber]))
+  );
   if (options.partNumber) {
-    const matches = inventoryPartNumbers.filter(partNumber =>
+    const exact = inventoryPartNumbers.filter(partNumber =>
       normalizePartNumber(partNumber) === normalizePartNumber(options.partNumber)
     );
-    if (!matches.length) {
-      throw new Error(`Part Number "${options.partNumber}" was not found in inventory-status.json.`);
+    if (exact.length !== 1) {
+      throw new Error(`Part Number "${options.partNumber}" must match exactly one inventory key.`);
     }
-    if (matches.length > 1) {
-      throw new Error(`Part Number "${options.partNumber}" matches multiple inventory keys case-insensitively.`);
+    if (!isCandidatePartNumber(exact[0])) {
+      throw new Error(`Part Number "${options.partNumber}" is not a plausible alphanumeric manufacturer Part Number.`);
     }
-    candidatePartNumbers = matches;
-  } else {
-    candidatePartNumbers = inventoryPartNumbers.slice(0, options.limit);
+    candidates = exact;
   }
-  const aliases = { ...aliasData.aliases };
-  const reviewUpdates = {};
-  const specUpdates = {};
-  const summary = {
-    inventoryTotal: inventoryPartNumbers.length,
-    candidates: candidatePartNumbers.length,
-    apiRequests: 0,
-    exactGlobalMatches: 0,
-    exactLegacyMatches: 0,
-    ambiguous: 0,
-    aliasesProposed: 0,
-    aliasesWritten: 0,
-    specRecordsProposed: 0,
-    specRecordsWritten: 0,
-    review: 0,
-    errors: 0
-  };
-  let stopped = false;
+  candidates.sort((left, right) =>
+    Number(isInStock(inventory[right])) - Number(isInStock(inventory[left])) ||
+    (left < right ? -1 : left > right ? 1 : 0)
+  );
+  candidates = candidates.slice(0, options.limit);
+  for (const summary of Object.values(summaries)) summary.candidates = candidates.length;
 
-  for (const inventoryPartNumber of candidatePartNumbers) {
-    const searchUrl = new URL(SEARCH_URL);
-    searchUrl.searchParams.set('s', inventoryPartNumber);
-    let searchResults;
-    try {
-      searchResults = parseSearchResults(await fetchHtml(searchUrl.href, () => {
-        summary.apiRequests += 1;
-      }));
-    } catch (error) {
-      summary.errors += 1;
-      summary.review += 1;
-      reviewUpdates[inventoryPartNumber] = {
-        status: 'lookup-error',
-        originalPartNumber: inventoryPartNumber,
-        reason: error.message
-      };
-      console.error(`ERROR ${inventoryPartNumber}: ${error.message}`);
-      if (isHttpFailureStop(error.status)) {
-        stopped = true;
+  const manufacturerUpdates = { ...manufacturerItems };
+  const specUpdates = { ...specItems };
+  const aliases = { ...aliasData.aliases };
+  const updatedReviewItems = Object.fromEntries(
+    Object.entries(reviewItems).map(([key, value]) => [key, { ...value }])
+  );
+  const updates = { manufacturers: new Set() };
+  let requestLimitReached = false;
+
+  for (const inventoryPartNumber of candidates) {
+    if (totalRequests >= MAX_REQUESTS) {
+      requestLimitReached = true;
+      break;
+    }
+    if (!options.retry && Object.values(updatedReviewItems).some(items =>
+      Object.hasOwn(items, inventoryPartNumber)
+    )) continue;
+    const matchesByCompany = new Map();
+    const lookupErrors = [];
+    const ambiguousCompanies = new Set();
+    let searchesCompleted = 0;
+    for (const [key, company] of Object.entries(COMPANIES)) {
+      if (totalRequests >= MAX_REQUESTS) {
+        requestLimitReached = true;
         break;
       }
+      const summary = summaries[key];
+      const searchUrl = new URL(company.searchUrl);
+      searchUrl.searchParams.set('s', inventoryPartNumber);
+      let results;
+      try {
+        results = parseSearchResults(await fetchHtml(
+          searchUrl.href,
+          () => { summary.requests += 1; },
+          company.host
+        ), company);
+        searchesCompleted += 1;
+      } catch (error) {
+        if (totalRequests >= MAX_REQUESTS) requestLimitReached = true;
+        summary.errors += 1;
+        lookupErrors.push({ company: company.name, message: error.message });
+        if (totalRequests >= MAX_REQUESTS || isHttpFailureStop(error.status)) {
+          requestLimitReached = totalRequests >= MAX_REQUESTS;
+          break;
+        }
+        continue;
+      }
+      const exactResults = normalizeOfficialRecords(results, inventoryPartNumber);
+      if (exactResults.length > 1) {
+        summary.review += 1;
+        ambiguousCompanies.add(key);
+        updatedReviewItems[key][inventoryPartNumber] = {
+          status: 'ambiguous-exact-matches',
+          originalPartNumber: inventoryPartNumber,
+          matches: exactResults
+        };
+      } else if (exactResults.length === 1) {
+        matchesByCompany.set(key, exactResults[0]);
+      }
+    }
+
+    if (lookupErrors.length) {
+      for (const [key] of Object.entries(COMPANIES)) {
+        summaries[key].unresolved += 1;
+        updatedReviewItems[key][inventoryPartNumber] = {
+          status: totalRequests >= MAX_REQUESTS ? 'request-limit-reached' : 'lookup-error',
+          originalPartNumber: inventoryPartNumber,
+          errors: lookupErrors
+        };
+      }
       continue;
     }
 
-    const key = normalizePartNumber(inventoryPartNumber);
-    const exact = searchResults.filter(result =>
-      normalizePartNumber(result.globalPartNumber) === key ||
-      normalizePartNumber(result.legacyPartNumber) === key
-    );
-    const uniqueMatches = [...new Map(exact.map(result => [
-      normalizePartNumber(result.globalPartNumber),
-      result
-    ])).values()];
+    if (searchesCompleted < Object.keys(COMPANIES).length) {
+      for (const [key] of Object.entries(COMPANIES)) {
+        summaries[key].unresolved += 1;
+        updatedReviewItems[key][inventoryPartNumber] = {
+          status: 'request-limit-reached',
+          originalPartNumber: inventoryPartNumber
+        };
+      }
+      continue;
+    }
 
-    if (uniqueMatches.length > 1) {
-      summary.ambiguous += 1;
+    if (ambiguousCompanies.size) continue;
+
+    if (matchesByCompany.size > 1) {
+      for (const [key] of matchesByCompany) {
+        summaries[key].review += 1;
+        updatedReviewItems[key][inventoryPartNumber] = {
+          status: 'cross-company-exact-match',
+          originalPartNumber: inventoryPartNumber,
+          matches: [...matchesByCompany.entries()].map(([companyKey, result]) => ({
+            manufacturer: COMPANIES[companyKey].name,
+            globalPartNumber: result.globalPartNumber,
+            legacyPartNumber: result.legacyPartNumber
+          }))
+        };
+      }
+      continue;
+    }
+
+    if (matchesByCompany.size === 0) {
+      if (lookupErrors.length) {
+        for (const [key, company] of Object.entries(COMPANIES)) {
+          if (!options.retry && updatedReviewItems[key][inventoryPartNumber]) continue;
+          summaries[key].unresolved += 1;
+          updatedReviewItems[key][inventoryPartNumber] = {
+            status: requestLimitReached ? 'request-limit-reached' : 'lookup-error',
+            originalPartNumber: inventoryPartNumber,
+            errors: lookupErrors
+          };
+        }
+      } else {
+        for (const [key] of Object.entries(COMPANIES)) {
+          if (!options.retry && updatedReviewItems[key][inventoryPartNumber]) continue;
+          summaries[key].unresolved += 1;
+          updatedReviewItems[key][inventoryPartNumber] = {
+            status: 'no-exact-match',
+            originalPartNumber: inventoryPartNumber
+          };
+        }
+      }
+      continue;
+    }
+
+    const [[companyKey, match]] = matchesByCompany;
+    const company = COMPANIES[companyKey];
+    const summary = summaries[companyKey];
+    const inputKey = normalizePartNumber(inventoryPartNumber);
+    const globalKey = normalizePartNumber(match.globalPartNumber);
+    const matchedByGlobal = normalizePartNumber(match.globalPartNumber) === inputKey;
+    if (matchedByGlobal) summary.globalExact += 1;
+    else summary.legacyExact += 1;
+
+    const manufacturerTargets = [...new Set([inventoryPartNumber, match.globalPartNumber])];
+    const manufacturerConflict = manufacturerTargets.find(partNumber => {
+      const existing = manufacturerUpdates[partNumber];
+      return existing && (existing.confidence === 'verified'
+        ? existing.manufacturer !== company.name
+        : existing.manufacturer !== company.name);
+    });
+    if (manufacturerConflict) {
       summary.review += 1;
-      reviewUpdates[inventoryPartNumber] = {
-        status: 'ambiguous-exact-matches',
+      updatedReviewItems[companyKey][inventoryPartNumber] = {
+        status: 'manufacturer-conflict',
         originalPartNumber: inventoryPartNumber,
-        matches: uniqueMatches
+        globalPartNumber: match.globalPartNumber,
+        existingManufacturer: manufacturerUpdates[manufacturerConflict].manufacturer
       };
-      console.log(`REVIEW ${inventoryPartNumber}: ${uniqueMatches.length} exact products`);
       continue;
     }
-    if (!uniqueMatches.length) {
+
+    const existingSpec = specUpdates[match.globalPartNumber] ??
+      specUpdates[inventoryPartNumber];
+    const conflictingSpec = [...new Set([match.globalPartNumber, inventoryPartNumber])]
+      .map(partNumber => specUpdates[partNumber])
+      .find(record => record && record.manufacturer !== company.name);
+    if (conflictingSpec) {
       summary.review += 1;
-      reviewUpdates[inventoryPartNumber] = {
-        status: 'no-exact-match',
-        originalPartNumber: inventoryPartNumber
+      updatedReviewItems[companyKey][inventoryPartNumber] = {
+        status: 'specification-conflict',
+        originalPartNumber: inventoryPartNumber,
+        globalPartNumber: match.globalPartNumber,
+        existingManufacturer: conflictingSpec.manufacturer ?? null
       };
       continue;
     }
 
-    const match = uniqueMatches[0];
-    const matchedByGlobal = normalizePartNumber(match.globalPartNumber) === key;
-    if (matchedByGlobal) summary.exactGlobalMatches += 1;
-    else summary.exactLegacyMatches += 1;
-
-    const aliasesForProduct = [...new Set([match.globalPartNumber, match.legacyPartNumber]
-      .filter(value => typeof value === 'string' && value.trim()))];
+    const aliasesForProduct = match.legacyPartNumber &&
+      normalizePartNumber(match.legacyPartNumber) !== globalKey
+      ? [match.legacyPartNumber]
+      : [];
     const aliasConflicts = [];
-    const proposedAliases = { ...aliases };
-    let aliasCount = 0;
-    const aliasesAdded = [];
+    const aliasesCandidate = { ...aliases };
+    let aliasesAdded = 0;
     for (const alias of aliasesForProduct) {
-      const result = mergeAlias(proposedAliases, alias, match.globalPartNumber);
+      const result = mergeAlias(aliasesCandidate, alias, match.globalPartNumber);
       if (result.conflict) aliasConflicts.push(result.conflict);
-      else if (result.added) {
-        aliasCount += 1;
-        aliasesAdded.push(alias);
+      else if (result.added) aliasesAdded += 1;
+    }
+    if (aliasConflicts.length) {
+      summary.review += 1;
+      updatedReviewItems[companyKey][inventoryPartNumber] = {
+        status: 'alias-conflict',
+        originalPartNumber: inventoryPartNumber,
+        globalPartNumber: match.globalPartNumber,
+        conflicts: aliasConflicts
+      };
+      continue;
+    }
+    Object.assign(aliases, aliasesCandidate);
+    summary.aliasesAdded += aliasesAdded;
+
+    for (const partNumber of manufacturerTargets) {
+      const existing = manufacturerUpdates[partNumber];
+      if (!existing || existing.manufacturer === company.name) {
+        if (!existing || existing.confidence !== 'verified') {
+          manufacturerUpdates[partNumber] = makeManufacturerRecord(company);
+          updates.manufacturers.add(partNumber);
+        }
       }
     }
-    if (!aliasConflicts.length) {
-      Object.assign(aliases, proposedAliases);
-      summary.aliasesProposed += aliasCount;
-      for (const alias of aliasesAdded) {
-        console.log(`${options.dryRun ? 'WOULD MAP' : 'PREPARED ALIAS'} ${alias} -> ${match.globalPartNumber}`);
-      }
-    }
+    summary.manufacturerVerified += 1;
 
     let detail;
     try {
-      const detailHtml = await fetchHtml(match.detailUrl, () => {
-        summary.apiRequests += 1;
-      });
+      if (totalRequests >= MAX_REQUESTS) {
+        throw new Error('Reached the 200-request execution limit before detail lookup.');
+      }
+      const detailHtml = await fetchHtml(
+        match.detailUrl,
+        () => { summary.requests += 1; },
+        company.host
+      );
       detail = parseDetailPage(detailHtml, match.detailUrl);
     } catch (error) {
       summary.errors += 1;
-      summary.review += 1;
-      reviewUpdates[inventoryPartNumber] = {
+      summary.unresolved += 1;
+      updatedReviewItems[companyKey][inventoryPartNumber] = {
         status: 'detail-lookup-error',
         originalPartNumber: inventoryPartNumber,
         ...match,
         reason: error.message
       };
-      console.error(`ERROR detail ${match.globalPartNumber}: ${error.message}`);
-      if (isHttpFailureStop(error.status)) {
-        stopped = true;
-        break;
-      }
       continue;
     }
 
     const record = {
-      manufacturer: 'Johanson Technology',
+      manufacturer: company.name,
+      ...(existingSpec?.category ? { category: existingSpec.category } : {}),
       partNumbers: {
+        ...(existingSpec?.partNumbers ?? {}),
         primary: match.globalPartNumber,
-        ...(match.legacyPartNumber ? { legacy: [match.legacyPartNumber] } : {})
+        legacy: [...new Set([
+          ...(existingSpec?.partNumbers?.legacy ?? []),
+          ...(match.legacyPartNumber ? [match.legacyPartNumber] : [])
+        ])]
       },
-      ...(match.lifecycle ? { lifecycle: match.lifecycle } : {}),
-      ...(match.description ? { description: match.description } : {}),
+      ...(match.lifecycle ? { lifecycle: match.lifecycle } : existingSpec?.lifecycle
+        ? { lifecycle: existingSpec.lifecycle }
+        : {}),
+      ...(match.description ? { description: match.description } : existingSpec?.description
+        ? { description: existingSpec.description }
+        : {}),
       source: {
         type: 'manufacturer',
-        name: 'Johanson Technology',
-        title: 'Johanson Technology Product Data',
+        name: company.name,
+        title: `${company.name} Product Data`,
         url: detail.source
       },
-      ...(detail.infoPdf ? { sourceDocument: { title: 'Product Information PDF', url: detail.infoPdf } } : {})
+      ...(detail.infoPdf ? {
+        sourceDocument: { title: 'Product Information PDF', url: detail.infoPdf }
+      } : {}),
+      ...(detail.datasheetUrl ? {
+        datasheet: { title: `${company.name} Datasheet`, url: detail.datasheetUrl }
+      } : {}),
+      specs: { ...detail.specs, ...(existingSpec?.specs ?? {}) }
     };
-
-    const hasExistingSpec = Object.hasOwn(approvedSpecs, match.globalPartNumber);
-    if (aliasConflicts.length) {
+    const mergedSpec = mergeOfficialSpecs(existingSpec, record);
+    if (!mergedSpec) {
       summary.review += 1;
-      reviewUpdates[inventoryPartNumber] = {
-        status: 'alias-conflict',
+      updatedReviewItems[companyKey][inventoryPartNumber] = {
+        status: 'specification-conflict',
         originalPartNumber: inventoryPartNumber,
-        ...match,
-        conflicts: aliasConflicts,
-        record
+        globalPartNumber: match.globalPartNumber
       };
-      console.warn(`REVIEW ${inventoryPartNumber}: alias mapping conflict`);
-    } else if (Object.keys(detail.specs).length && (!hasExistingSpec || options.overwrite)) {
-      record.specs = detail.specs;
-      specUpdates[match.globalPartNumber] = record;
-      summary.specRecordsProposed += 1;
-      console.log(`${options.dryRun ? 'WOULD ADD' : 'PREPARED'} ${match.globalPartNumber} (legacy: ${match.legacyPartNumber || 'none'})`);
-      console.log(JSON.stringify(record, null, 2));
+      continue;
+    }
+    if (!Object.keys(detail.specs).length && !existingSpec?.specs) {
+      summary.unresolved += 1;
+      updatedReviewItems[companyKey][inventoryPartNumber] = {
+        status: 'insufficient-official-structured-specifications',
+        originalPartNumber: inventoryPartNumber,
+        globalPartNumber: match.globalPartNumber
+      };
     } else {
-      summary.review += 1;
-      reviewUpdates[inventoryPartNumber] = {
-        status: hasExistingSpec && !options.overwrite ? 'existing-specification' : 'insufficient-structured-specifications',
-        originalPartNumber: inventoryPartNumber,
-        ...match,
-        specsFound: Object.keys(detail.specs).length,
-        record
-      };
-      console.log(`REVIEW ${inventoryPartNumber}: ${reviewUpdates[inventoryPartNumber].status}`);
+      const specificationChanged = !existingSpec ||
+        JSON.stringify(existingSpec) !== JSON.stringify(mergedSpec);
+      specUpdates[match.globalPartNumber] = mergedSpec;
+      if (specificationChanged) summary.specsAdded += 1;
+      delete updatedReviewItems[companyKey][inventoryPartNumber];
     }
   }
 
+  const outputs = [
+    [MANUFACTURERS_PATH, {
+      ...manufacturersData,
+      ...(updates.manufacturers.size ? { updatedAt: new Date().toISOString() } : {}),
+      items: manufacturerUpdates
+    }],
+    [ALIASES_PATH, { ...aliasData, version: 1, aliases }],
+    [SPECS_PATH, { ...specsData, version: 1, items: specUpdates }],
+    ...Object.entries(COMPANIES).map(([key, company]) => [
+      company.reviewPath,
+      {
+        ...reviewFiles[key],
+        version: 1,
+        items: updatedReviewItems[key]
+      }
+    ])
+  ];
+
+  let backups = [];
   if (options.dryRun) {
-    console.log('Dry run: JSON files and backups were not modified or created.');
-  } else if (!stopped && summary.errors === 0) {
-    const mergedSpecs = { ...approvedSpecs, ...specUpdates };
-    const mergedReview = { ...review, ...reviewUpdates };
-    const specsOutput = `${JSON.stringify({ ...specsData, items: mergedSpecs }, null, 2)}\n`;
-    const reviewOutput = `${JSON.stringify({ ...existingReview, version: 1, items: mergedReview }, null, 2)}\n`;
-    const aliasesOutput = `${JSON.stringify({ ...aliasData, version: 1, aliases }, null, 2)}\n`;
-
-    if (Object.keys(specUpdates).length) await backupIfPresent(SPECS_PATH, SPECS_BACKUP_PATH);
-    if (summary.aliasesProposed) await backupIfPresent(ALIASES_PATH, ALIASES_BACKUP_PATH);
-    await fs.mkdir(DATA_DIR, { recursive: true });
-    if (summary.aliasesProposed) {
-      await writeAtomic(ALIASES_PATH, aliasesOutput);
-      summary.aliasesWritten = summary.aliasesProposed;
-    }
-    if (Object.keys(specUpdates).length) {
-      await writeAtomic(SPECS_PATH, specsOutput);
-      summary.specRecordsWritten = Object.keys(specUpdates).length;
-    }
-    if (Object.keys(reviewUpdates).length) await writeAtomic(REVIEW_PATH, reviewOutput);
+    console.log('Dry run: no files or backups were written.');
   } else {
-    console.error('Outputs were not written because lookups did not complete successfully.');
+    backups = await writeAtomically(outputs);
   }
-
-  console.log('Summary:');
-  console.log(JSON.stringify(summary, null, 2));
-  if (summary.errors) process.exitCode = 1;
+  console.log(JSON.stringify({
+    mode: options.dryRun ? 'dry-run' : 'complete',
+    requestLimitReached,
+    totalRequests,
+    companies: summaries,
+    backups
+  }, null, 2));
+  if (Object.values(summaries).some(summary => summary.errors > 0)) {
+    process.exitCode = 1;
+  }
 }
 
 try {
