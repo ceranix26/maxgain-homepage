@@ -17,6 +17,12 @@ for (const [name, value] of Object.entries({
   if (!value) throw new Error(`Missing environment variable: ${name}`);
 }
 
+const args = process.argv.slice(2);
+if (args.some(argument => argument !== '--diagnose-products')) {
+  throw new Error(`Unknown argument: ${args.find(argument => argument !== '--diagnose-products')}`);
+}
+const diagnoseProducts = args.includes('--diagnose-products');
+
 async function post(url, body) {
   const response = await fetch(url, {
     method: 'POST',
@@ -150,6 +156,53 @@ async function getAllProducts(sessionId) {
   return { products, rawRowCount };
 }
 
+async function diagnoseProductPagination(sessionId) {
+  let fromProductCode = '';
+
+  for (let requestNumber = 1; requestNumber <= 5; requestNumber += 1) {
+    const rows = await getProducts(sessionId, fromProductCode);
+    const productCodes = rows
+      .map(row => String(row.PROD_CD ?? '').trim())
+      .filter(Boolean);
+    const uniqueProductCodes = [...new Set(productCodes)];
+    const sortedProductCodes = [...uniqueProductCodes].sort((a, b) =>
+      a < b ? -1 : a > b ? 1 : 0
+    );
+    const minimumProductCode = sortedProductCodes[0] ?? null;
+    const maximumProductCode = sortedProductCodes.at(-1) ?? null;
+
+    console.log(`\nPRODUCT MASTER REQUEST ${requestNumber}`);
+    console.log('FROM_PROD_CD:', fromProductCode || '(not set)');
+    console.log('ROW COUNT:', rows.length);
+    console.log('FIRST PROD_CD:', productCodes[0] ?? null);
+    console.log('LAST PROD_CD:', productCodes.at(-1) ?? null);
+    console.log('UNIQUE PROD_CD VALUES:', uniqueProductCodes.length);
+    console.log('MINIMUM PROD_CD:', minimumProductCode);
+    console.log('MAXIMUM PROD_CD:', maximumProductCode);
+
+    if (requestNumber === 1 || fromProductCode) {
+      console.log('FIRST 10 PROD_CD VALUES:', productCodes.slice(0, 10));
+      console.log('LAST 10 PROD_CD VALUES:', productCodes.slice(-10));
+    }
+
+    if (!rows.length) {
+      console.log('Pagination stopped: response contained no rows.');
+      return;
+    }
+    if (!maximumProductCode || maximumProductCode <= fromProductCode) {
+      console.log(
+        `CURSOR FAILED TO ADVANCE: previous cursor "${fromProductCode || '(not set)'}", ` +
+        `response maximum "${maximumProductCode ?? '(none)'}".`
+      );
+      return;
+    }
+
+    fromProductCode = maximumProductCode;
+  }
+
+  console.log('Pagination diagnostic stopped after the 5-request limit.');
+}
+
 function collectInventory(node, output = []) {
   if (Array.isArray(node)) {
     for (const item of node) {
@@ -187,137 +240,145 @@ function collectInventory(node, output = []) {
 console.log('=== PRODUCT MASTER ===');
 
 const testSession = await login(PROD_HOST, TEST_KEY);
-const { products: productMap, rawRowCount } = await getAllProducts(testSession);
-
-console.log('PRODUCT MASTER RAW ROWS:', rawRowCount);
-console.log('UNIQUE PRODUCT CODES:', productMap.size);
-if (productMap.size < 10_000) {
-  console.warn(`WARNING: Product Master returned only ${productMap.size} unique products.`);
+if (diagnoseProducts) {
+  await diagnoseProductPagination(testSession);
+} else {
+  await updateInventory(testSession);
 }
 
-console.log('\n=== INVENTORY ===');
+async function updateInventory(testSession) {
+  const { products: productMap, rawRowCount } = await getAllProducts(testSession);
 
-const prodSession = await login(INV_HOST, PROD_KEY);
-
-const baseDate = new Intl.DateTimeFormat('en-CA', {
-  timeZone: 'Asia/Seoul',
-  year: 'numeric',
-  month: '2-digit',
-  day: '2-digit'
-})
-  .format(new Date())
-  .replaceAll('-', '');
-
-const inventoryResponse = await post(
-  `${INV_HOST}/OAPI/V2/InventoryBalance/GetListInventoryBalanceStatusByLocation?SESSION_ID=${encodeURIComponent(prodSession)}`,
-  {
-    SESSION_ID: prodSession,
-    BASE_DATE: baseDate,
-    ZERO_FLAG: 'Y',
-    BAL_FLAG: 'Y',
-    DEL_GUBUN: 'Y',
-    COM_CODE,
-    USER_ID,
-    ZONE,
-    API_CERT_KEY: PROD_KEY,
-    LAN_TYPE: 'ko-KR'
+  console.log('PRODUCT MASTER RAW ROWS:', rawRowCount);
+  console.log('UNIQUE PRODUCT CODES:', productMap.size);
+  if (productMap.size < 10_000) {
+    console.warn(`WARNING: Product Master returned only ${productMap.size} unique products.`);
   }
-);
 
-const inventoryRows = collectInventory(inventoryResponse);
+  console.log('\n=== INVENTORY ===');
 
-console.log('RAW INVENTORY ROWS:', inventoryRows.length);
+  const prodSession = await login(INV_HOST, PROD_KEY);
 
-const inventoryMap = new Map();
+  const baseDate = new Intl.DateTimeFormat('en-CA', {
+    timeZone: 'Asia/Seoul',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit'
+  })
+    .format(new Date())
+    .replaceAll('-', '');
 
-for (const row of inventoryRows) {
-  inventoryMap.set(
-    row.prodCd,
-    (inventoryMap.get(row.prodCd) || 0) + row.quantity
+  const inventoryResponse = await post(
+    `${INV_HOST}/OAPI/V2/InventoryBalance/GetListInventoryBalanceStatusByLocation?SESSION_ID=${encodeURIComponent(prodSession)}`,
+    {
+      SESSION_ID: prodSession,
+      BASE_DATE: baseDate,
+      ZERO_FLAG: 'Y',
+      BAL_FLAG: 'Y',
+      DEL_GUBUN: 'Y',
+      COM_CODE,
+      USER_ID,
+      ZONE,
+      API_CERT_KEY: PROD_KEY,
+      LAN_TYPE: 'ko-KR'
+    }
+  );
+
+  const inventoryRows = collectInventory(inventoryResponse);
+
+  console.log('RAW INVENTORY ROWS:', inventoryRows.length);
+
+  const inventoryMap = new Map();
+
+  for (const row of inventoryRows) {
+    inventoryMap.set(
+      row.prodCd,
+      (inventoryMap.get(row.prodCd) || 0) + row.quantity
+    );
+  }
+
+  console.log('UNIQUE INVENTORY CODES:', inventoryMap.size);
+
+  console.log('\n=== MERGE ===');
+
+  const partNumberMap = new Map();
+
+  for (const product of productMap.values()) {
+    const quantity = inventoryMap.get(product.prodCd) || 0;
+    const existing = partNumberMap.get(product.partNumber);
+
+    if (!existing) {
+      partNumberMap.set(product.partNumber, {
+        quantity,
+        productCodes: [product.prodCd]
+      });
+    } else {
+      existing.quantity += quantity;
+      existing.productCodes.push(product.prodCd);
+    }
+  }
+
+  let inStock = 0;
+  let outOfStock = 0;
+
+  for (const item of partNumberMap.values()) {
+    if (item.quantity > 0) inStock++;
+    else outOfStock++;
+  }
+
+  console.log('TOTAL PART NUMBERS:', partNumberMap.size);
+  console.log('IN STOCK:', inStock);
+  console.log('OUT OF STOCK:', outOfStock);
+
+  console.log('\n=== SAMPLE ===');
+
+  for (const [partNumber, info] of [...partNumberMap.entries()].slice(0, 5)) {
+    console.log({
+      partNumber,
+      status: info.quantity > 0 ? 'in-stock' : 'out-of-stock'
+    });
+  }
+
+  function getStockLevel(quantity) {
+    if (quantity <= 0) return '재고 없음';
+    if (quantity < 100) return '소량';
+    if (quantity < 500) return '100+';
+    if (quantity < 1000) return '500+';
+    return '1,000+';
+  }
+
+  const items = Object.fromEntries(
+    [...partNumberMap.entries()]
+      .sort(([a], [b]) => a.localeCompare(b))
+      .map(([partNumber, info]) => [
+        partNumber,
+        {
+          status: info.quantity > 0 ? 'in-stock' : 'out-of-stock',
+          label: info.quantity > 0 ? '재고 있음' : '재고 없음',
+          stockLevel: getStockLevel(info.quantity)
+        }
+      ])
+  );
+
+  const output = {
+    updatedAt: new Date().toISOString(),
+    baseDate,
+    source: 'ECOUNT',
+    totalPartNumbers: Object.keys(items).length,
+    items
+  };
+
+  const fs = await import('node:fs/promises');
+
+  await fs.mkdir('data', { recursive: true });
+
+  await fs.writeFile(
+    'data/inventory-status.json',
+    JSON.stringify(output, null, 2) + '\n',
+    'utf8'
+  );
+
+  console.log(
+    `Integrated inventory JSON created: ${Object.keys(items).length} Part Numbers`
   );
 }
-
-console.log('UNIQUE INVENTORY CODES:', inventoryMap.size);
-
-console.log('\n=== MERGE ===');
-
-const partNumberMap = new Map();
-
-for (const product of productMap.values()) {
-  const quantity = inventoryMap.get(product.prodCd) || 0;
-  const existing = partNumberMap.get(product.partNumber);
-
-  if (!existing) {
-    partNumberMap.set(product.partNumber, {
-      quantity,
-      productCodes: [product.prodCd]
-    });
-  } else {
-    existing.quantity += quantity;
-    existing.productCodes.push(product.prodCd);
-  }
-}
-
-let inStock = 0;
-let outOfStock = 0;
-
-for (const item of partNumberMap.values()) {
-  if (item.quantity > 0) inStock++;
-  else outOfStock++;
-}
-
-console.log('TOTAL PART NUMBERS:', partNumberMap.size);
-console.log('IN STOCK:', inStock);
-console.log('OUT OF STOCK:', outOfStock);
-
-console.log('\n=== SAMPLE ===');
-
-for (const [partNumber, info] of [...partNumberMap.entries()].slice(0, 5)) {
-  console.log({
-    partNumber,
-    status: info.quantity > 0 ? 'in-stock' : 'out-of-stock'
-  });
-}
-
-function getStockLevel(quantity) {
-  if (quantity <= 0) return '재고 없음';
-  if (quantity < 100) return '소량';
-  if (quantity < 500) return '100+';
-  if (quantity < 1000) return '500+';
-  return '1,000+';
-}
-
-const items = Object.fromEntries(
-  [...partNumberMap.entries()]
-    .sort(([a], [b]) => a.localeCompare(b))
-    .map(([partNumber, info]) => [
-      partNumber,
-      {
-        status: info.quantity > 0 ? 'in-stock' : 'out-of-stock',
-        label: info.quantity > 0 ? '재고 있음' : '재고 없음',
-        stockLevel: getStockLevel(info.quantity)
-      }
-    ])
-);
-
-const output = {
-  updatedAt: new Date().toISOString(),
-  baseDate,
-  source: 'ECOUNT',
-  totalPartNumbers: Object.keys(items).length,
-  items
-};
-
-const fs = await import('node:fs/promises');
-
-await fs.mkdir('data', { recursive: true });
-
-await fs.writeFile(
-  'data/inventory-status.json',
-  JSON.stringify(output, null, 2) + '\n',
-  'utf8'
-);
-
-console.log(
-  `Integrated inventory JSON created: ${Object.keys(items).length} Part Numbers`
-);
