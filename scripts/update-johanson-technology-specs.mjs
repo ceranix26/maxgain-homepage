@@ -16,7 +16,13 @@ const REQUEST_DELAY_MS = 1_000;
 let lastRequestAt = 0;
 
 function parseArguments() {
-  const options = { dryRun: false, overwrite: false, limit: Infinity };
+  const options = {
+    dryRun: false,
+    overwrite: false,
+    limit: Infinity,
+    limitProvided: false,
+    partNumber: ''
+  };
   const args = process.argv.slice(2);
   for (let i = 0; i < args.length; i += 1) {
     if (args[i] === '--dry-run') {
@@ -29,9 +35,22 @@ function parseArguments() {
         throw new Error('--limit requires a positive integer.');
       }
       options.limit = Number(value);
+      options.limitProvided = true;
+    } else if (args[i] === '--part-number') {
+      const value = args[++i];
+      if (!value || value.startsWith('--') || !value.trim()) {
+        throw new Error('--part-number requires a non-empty part number.');
+      }
+      if (options.partNumber) {
+        throw new Error('--part-number may be supplied only once.');
+      }
+      options.partNumber = value;
     } else {
       throw new Error(`Unknown argument: ${args[i]}`);
     }
+  }
+  if (options.partNumber && options.limitProvided) {
+    throw new Error('--part-number cannot be used together with --limit.');
   }
   return options;
 }
@@ -306,7 +325,21 @@ async function main() {
   });
   const review = requireItems(existingReview, 'johanson-technology-review.json');
   const inventoryPartNumbers = Object.keys(inventory).filter(partNumber => partNumber.trim());
-  const candidatePartNumbers = inventoryPartNumbers.slice(0, options.limit);
+  let candidatePartNumbers;
+  if (options.partNumber) {
+    const matches = inventoryPartNumbers.filter(partNumber =>
+      normalizePartNumber(partNumber) === normalizePartNumber(options.partNumber)
+    );
+    if (!matches.length) {
+      throw new Error(`Part Number "${options.partNumber}" was not found in inventory-status.json.`);
+    }
+    if (matches.length > 1) {
+      throw new Error(`Part Number "${options.partNumber}" matches multiple inventory keys case-insensitively.`);
+    }
+    candidatePartNumbers = matches;
+  } else {
+    candidatePartNumbers = inventoryPartNumbers.slice(0, options.limit);
+  }
   const aliases = { ...aliasData.aliases };
   const reviewUpdates = {};
   const specUpdates = {};
