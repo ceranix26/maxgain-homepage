@@ -14,3 +14,9 @@ data/product-specs.backup.json
 
 # Node dependencies
 node_modules/
+
+# Generated manufacturer backups
+data/product-manufacturers.backup-*.json
+
+# Local manufacturer reference catalogs
+references/
