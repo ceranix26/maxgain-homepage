@@ -8,6 +8,7 @@ const TEST_KEY = process.env.ECOUNT_API_CERT_KEY;
 const PROD_KEY = process.env.ECOUNT_API_CERT_KEY;
 const MAX_PRODUCT_REQUESTS = 20;
 const PRODUCT_CODE_UPPER_BOUND = 'ZZZZZZZZZZZZZZZZZZZZ';
+const PRODUCT_REQUEST_DELAY_MS = 500;
 
 for (const [name, value] of Object.entries({
   ECOUNT_COM_CODE: COM_CODE,
@@ -120,6 +121,9 @@ async function getAllProducts(sessionId) {
 
   for (let requestNumber = 1; requestNumber <= MAX_PRODUCT_REQUESTS; requestNumber += 1) {
     const previousCursor = fromProductCode;
+    if (requestNumber > 1) {
+      await new Promise(resolve => setTimeout(resolve, PRODUCT_REQUEST_DELAY_MS));
+    }
     const rows = previousCursor
       ? await getProducts(sessionId, previousCursor, PRODUCT_CODE_UPPER_BOUND)
       : await getProducts(sessionId);
@@ -154,6 +158,8 @@ async function getAllProducts(sessionId) {
     }
 
     console.log(`PRODUCT MASTER REQUEST ${requestNumber} NEW UNIQUE CODES:`, newProductCodes);
+    if (rows.length < 10_000) break;
+
     const nextCursor = lastRow.PROD_CD;
     if (newProductCodes === 0 && String(nextCursor) === String(previousCursor)) break;
     fromProductCode = nextCursor;
