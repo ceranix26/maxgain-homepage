@@ -185,3 +185,12 @@ cross-company ownership resolution을 마무리해.
 
 데이터 파일은 수정하지 말고 dry-run 가능한 상태까지만 작업해.
 ```
+
+## Johanson 업데이트 - 2026-10-27
+
+- 공식 회사 표기: Johanson Technology = JTI, Johanson Dielectrics = JDI.
+- updater가 JTI/JDI를 각각 올바른 회사로 판별하는 모의 검증을 통과했다.
+- 실제 Codespaces 요청은 양사 검색 모두 HTTP 403을 반환했다. 브라우저에서 확인된 결과만으로는 전체 live dry-run을 완료하지 못했다.
+- 브라우저에서 `0400LP15A0122001E` 상세 페이지의 Company가 JTI인 것을 확인했다. 양사 페이지가 검색/상세 도구를 공유하고 canonical 도메인이 Company 표기와 다를 수 있으므로, canonical 도메인만으로 소유 회사를 판정하지 않는다.
+- 한쪽 상세 요청만 성공한 경우에도 그 페이지에 명시된 JTI/JDI를 기준으로 소유권을 판정할 수 있다. 상세 페이지가 보고한 canonical URL은 규격 source로 사용한다. 명시 회사 코드가 서로 충돌하면 cross-company review에 남긴다.
+- 데이터 JSON은 변경하지 않았다.

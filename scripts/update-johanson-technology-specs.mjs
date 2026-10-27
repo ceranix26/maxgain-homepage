@@ -212,8 +212,66 @@ function parseDetailPage(html, detailUrl) {
   const company = Object.values(COMPANIES).find(candidate =>
     new URL(detailUrl).hostname.replace(/^www\./i, '') === candidate.host.replace(/^www\./i, '')
   );
-  const source = company ? safeJohansonUrl(detailUrl, company.searchUrl, company) : '';
+  let source = company ? safeJohansonUrl(detailUrl, company.searchUrl, company) : '';
   const documents = new Map();
+  const labeledFields = labeledValues(html);
+  const companyEvidence = {
+    manufacturer: readNamedField(labeledFields, [
+      'manufacturer', 'manufacturer name', 'company', 'company name', 'brand', 'product brand'
+    ]),
+    productCategory: readNamedField(labeledFields, [
+      'product category', 'product family', 'family', 'product type', 'category'
+    ]),
+    canonicalUrl: source,
+    canonicalCompany: ''
+  };
+  for (const [tag] of html.matchAll(/<link\b[^>]*>/gi)) {
+    const attributes = attributesFromTag(tag);
+    if (attributes.rel?.toLowerCase().split(/\s+/).includes('canonical') && attributes.href) {
+      companyEvidence.canonicalUrl = safeJohansonUrl(attributes.href, detailUrl);
+      if (companyEvidence.canonicalUrl) source = companyEvidence.canonicalUrl;
+      break;
+    }
+  }
+  for (const [tag] of html.matchAll(/<meta\b[^>]*>/gi)) {
+    const attributes = attributesFromTag(tag);
+    const label = (attributes.property || attributes.name || '').toLowerCase();
+    const value = attributes.content?.trim() ?? '';
+    if (!value) continue;
+    if (!companyEvidence.manufacturer && /manufacturer|company|brand/.test(label)) {
+      companyEvidence.manufacturer = value;
+    }
+    if (!companyEvidence.productCategory && /category|product.?group|product.?type/.test(label)) {
+      companyEvidence.productCategory = value;
+    }
+  }
+  for (const [, attributes, contents] of html.matchAll(
+    /<script\b([^>]*)>([\s\S]*?)<\/script\s*>/gi
+  )) {
+    if (!/\btype\s*=\s*(['"])application\/(?:ld\+)?json\1/i.test(attributes)) continue;
+    try {
+      const structured = JSON.parse(contents);
+      const records = Array.isArray(structured) ? structured : [structured];
+      for (const record of records) {
+        const manufacturer = record?.manufacturer?.name ?? record?.brand?.name ??
+          record?.manufacturer ?? record?.brand;
+        const productCategory = record?.category ?? record?.productGroup ?? record?.additionalType;
+        if (!companyEvidence.manufacturer && typeof manufacturer === 'string') {
+          companyEvidence.manufacturer = manufacturer;
+        }
+        if (!companyEvidence.productCategory && typeof productCategory === 'string') {
+          companyEvidence.productCategory = productCategory;
+        }
+      }
+    } catch {
+      continue;
+    }
+  }
+  companyEvidence.canonicalCompany = Object.values(COMPANIES).find(candidate => {
+    if (!companyEvidence.canonicalUrl) return false;
+    return new URL(companyEvidence.canonicalUrl).hostname.replace(/^www\./i, '') ===
+      candidate.host.replace(/^www\./i, '');
+  })?.name ?? '';
 
   const addSpec = (rawName, rawValue) => {
     const name = rawName.trim().replace(/\s+/g, ' ');
@@ -251,6 +309,7 @@ function parseDetailPage(html, detailUrl) {
   return {
     specs,
     source,
+    companyEvidence,
     datasheetUrl: documents.get('datasheet') ?? '',
     infoPdf: documents.get('product-information') ?? documents.get('datasheet') ?? ''
   };
@@ -260,8 +319,8 @@ function normalizePartNumber(value) {
   return typeof value === 'string' ? value.trim().toUpperCase() : '';
 }
 
-function isHttpFailureStop(status) {
-  return status === 401 || status === 403 || status === 429;
+function isRateLimitStop(status) {
+  return status === 429;
 }
 
 async function fetchHtml(url, onRequest, allowedHost, redirectCount = 0) {
@@ -414,6 +473,108 @@ function normalizeOfficialRecords(results, inventoryPartNumber) {
   ])).values()];
 }
 
+function canonicalGlobalPartNumber(result) {
+  return normalizePartNumber(result.globalPartNumber);
+}
+
+function explicitCompanyKey(detail) {
+  const explicit = normalizePartNumber(detail.companyEvidence?.manufacturer)
+    .replace(/[.,]/g, '')
+    .replace(/\s+/g, ' ');
+  if (explicit === 'JTI' || explicit === 'JOHANSON TECHNOLOGY') return 'technology';
+  if (explicit === 'JDI' || explicit === 'JOHANSON DIELECTRICS') return 'dielectrics';
+  return '';
+}
+
+function isExplicitCategoryCompanyMatch(detail, company) {
+  const explicit = detail.companyEvidence?.productCategory.trim().toLowerCase();
+  return Boolean(explicit && explicit.includes(company.name.toLowerCase()));
+}
+
+async function fetchAuthoritativeDetail(company, result, summary) {
+  if (totalRequests >= MAX_REQUESTS) {
+    throw new Error('Reached the 200-request execution limit before detail lookup.');
+  }
+  const html = await fetchHtml(
+    result.detailUrl,
+    () => { summary.requests += 1; },
+    company.host
+  );
+  return parseDetailPage(html, result.detailUrl);
+}
+
+async function resolveSharedGlobalOwnership(matchesByCompany, summaryByCompany) {
+  const entries = [...matchesByCompany.entries()];
+  if (entries.length !== 2 ||
+      canonicalGlobalPartNumber(entries[0][1]) !== canonicalGlobalPartNumber(entries[1][1])) {
+    return null;
+  }
+
+  const details = new Map();
+  const errors = [];
+  for (const [key, result] of entries) {
+    const company = COMPANIES[key];
+    try {
+      details.set(key, await fetchAuthoritativeDetail(company, result, summaryByCompany[key]));
+    } catch (error) {
+      errors.push({ manufacturer: company.name, message: error.message });
+      if (totalRequests >= MAX_REQUESTS || isRateLimitStop(error.status)) break;
+    }
+  }
+
+  const valid = entries.filter(([key]) => details.has(key));
+  const explicitOwners = new Set(valid
+    .map(([key]) => explicitCompanyKey(details.get(key)))
+    .filter(Boolean));
+  if (explicitOwners.size === 1) {
+    const [key] = explicitOwners;
+    const owner = entries.find(([entryKey]) => entryKey === key);
+    const authoritativeEntry = valid.find(([entryKey]) =>
+      explicitCompanyKey(details.get(entryKey)) === key
+    );
+    const authoritativeDetail = authoritativeEntry
+      ? details.get(authoritativeEntry[0])
+      : null;
+    if (owner && authoritativeDetail) {
+      return {
+        companyKey: key,
+        match: owner[1],
+        detail: authoritativeDetail,
+        resolution: 'explicit-manufacturer'
+      };
+    }
+  }
+
+  const categoryMatches = valid.filter(([key]) =>
+    isExplicitCategoryCompanyMatch(details.get(key), COMPANIES[key])
+  );
+  if (explicitOwners.size === 0 && categoryMatches.length === 1) {
+    const [[key, result]] = categoryMatches;
+    return {
+      companyKey: key,
+      match: result,
+      detail: details.get(key),
+      resolution: 'explicit-product-category'
+    };
+  }
+
+  return {
+    unresolved: true,
+    globalPartNumber: canonicalGlobalPartNumber(entries[0][1]),
+    details: Object.fromEntries([...details].map(([key, detail]) => [
+      COMPANIES[key].name,
+      {
+        url: detail.source,
+        manufacturer: detail.companyEvidence?.manufacturer || null,
+        productCategory: detail.companyEvidence?.productCategory || null,
+        canonicalUrl: detail.companyEvidence?.canonicalUrl || null,
+        canonicalCompany: detail.companyEvidence?.canonicalCompany || null
+      }
+    ])),
+    errors
+  };
+}
+
 function mergeOfficialSpecs(existing, incoming) {
   if (existing && existing.manufacturer !== incoming.manufacturer) return null;
   if (!existing) return incoming;
@@ -548,7 +709,7 @@ async function main() {
         if (totalRequests >= MAX_REQUESTS) requestLimitReached = true;
         summary.errors += 1;
         lookupErrors.push({ company: company.name, message: error.message });
-        if (totalRequests >= MAX_REQUESTS || isHttpFailureStop(error.status)) {
+        if (totalRequests >= MAX_REQUESTS || isRateLimitStop(error.status)) {
           requestLimitReached = totalRequests >= MAX_REQUESTS;
           break;
         }
@@ -569,11 +730,19 @@ async function main() {
     }
 
     if (lookupErrors.length) {
-      for (const [key] of Object.entries(COMPANIES)) {
-        summaries[key].unresolved += 1;
+      for (const key of Object.keys(COMPANIES)) {
+        const hasExactMatch = matchesByCompany.has(key);
+        if (hasExactMatch) summaries[key].review += 1;
+        else summaries[key].unresolved += 1;
         updatedReviewItems[key][inventoryPartNumber] = {
-          status: totalRequests >= MAX_REQUESTS ? 'request-limit-reached' : 'lookup-error',
+          status: totalRequests >= MAX_REQUESTS ? 'request-limit-reached' : 'partial-search-error',
           originalPartNumber: inventoryPartNumber,
+          matches: [...matchesByCompany.entries()].map(([matchKey, result]) => ({
+            manufacturer: COMPANIES[matchKey].name,
+            globalPartNumber: result.globalPartNumber,
+            legacyPartNumber: result.legacyPartNumber,
+            detailUrl: result.detailUrl
+          })),
           errors: lookupErrors
         };
       }
@@ -593,20 +762,51 @@ async function main() {
 
     if (ambiguousCompanies.size) continue;
 
+    let resolvedDetail;
     if (matchesByCompany.size > 1) {
-      for (const [key] of matchesByCompany) {
-        summaries[key].review += 1;
-        updatedReviewItems[key][inventoryPartNumber] = {
-          status: 'cross-company-exact-match',
-          originalPartNumber: inventoryPartNumber,
-          matches: [...matchesByCompany.entries()].map(([companyKey, result]) => ({
-            manufacturer: COMPANIES[companyKey].name,
-            globalPartNumber: result.globalPartNumber,
-            legacyPartNumber: result.legacyPartNumber
-          }))
-        };
+      const globalPartNumbers = new Set(
+        [...matchesByCompany.values()].map(canonicalGlobalPartNumber)
+      );
+      if (globalPartNumbers.size > 1) {
+        for (const [key] of matchesByCompany) {
+          summaries[key].review += 1;
+          updatedReviewItems[key][inventoryPartNumber] = {
+            status: 'cross-company-exact-match',
+            originalPartNumber: inventoryPartNumber,
+            matches: [...matchesByCompany.entries()].map(([companyKey, result]) => ({
+              manufacturer: COMPANIES[companyKey].name,
+              globalPartNumber: result.globalPartNumber,
+              legacyPartNumber: result.legacyPartNumber
+            }))
+          };
+        }
+        continue;
       }
-      continue;
+
+      const ownership = await resolveSharedGlobalOwnership(matchesByCompany, summaries);
+      if (!ownership || ownership.unresolved) {
+        for (const [key] of matchesByCompany) {
+          summaries[key].review += 1;
+          updatedReviewItems[key][inventoryPartNumber] = {
+            status: 'cross-company-exact-match',
+            originalPartNumber: inventoryPartNumber,
+            globalPartNumber: ownership?.globalPartNumber ??
+              canonicalGlobalPartNumber([...matchesByCompany.values()][0]),
+            matches: [...matchesByCompany.entries()].map(([companyKey, result]) => ({
+              manufacturer: COMPANIES[companyKey].name,
+              globalPartNumber: result.globalPartNumber,
+              legacyPartNumber: result.legacyPartNumber,
+              detailUrl: result.detailUrl
+            })),
+            detailEvidence: ownership?.details ?? {},
+            errors: ownership?.errors ?? []
+          };
+        }
+        continue;
+      }
+      matchesByCompany.clear();
+      matchesByCompany.set(ownership.companyKey, ownership.match);
+      resolvedDetail = ownership.detail;
     }
 
     if (matchesByCompany.size === 0) {
@@ -712,27 +912,29 @@ async function main() {
     }
     summary.manufacturerVerified += 1;
 
-    let detail;
-    try {
-      if (totalRequests >= MAX_REQUESTS) {
-        throw new Error('Reached the 200-request execution limit before detail lookup.');
+    let detail = resolvedDetail;
+    if (!detail) {
+      try {
+        if (totalRequests >= MAX_REQUESTS) {
+          throw new Error('Reached the 200-request execution limit before detail lookup.');
+        }
+        const detailHtml = await fetchHtml(
+          match.detailUrl,
+          () => { summary.requests += 1; },
+          company.host
+        );
+        detail = parseDetailPage(detailHtml, match.detailUrl);
+      } catch (error) {
+        summary.errors += 1;
+        summary.unresolved += 1;
+        updatedReviewItems[companyKey][inventoryPartNumber] = {
+          status: 'detail-lookup-error',
+          originalPartNumber: inventoryPartNumber,
+          ...match,
+          reason: error.message
+        };
+        continue;
       }
-      const detailHtml = await fetchHtml(
-        match.detailUrl,
-        () => { summary.requests += 1; },
-        company.host
-      );
-      detail = parseDetailPage(detailHtml, match.detailUrl);
-    } catch (error) {
-      summary.errors += 1;
-      summary.unresolved += 1;
-      updatedReviewItems[companyKey][inventoryPartNumber] = {
-        status: 'detail-lookup-error',
-        originalPartNumber: inventoryPartNumber,
-        ...match,
-        reason: error.message
-      };
-      continue;
     }
 
     const record = {
