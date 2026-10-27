@@ -1,0 +1,93 @@
+name: Sync product images
+
+on:
+  workflow_dispatch:
+  push:
+    branches:
+      - main
+    paths:
+      - data/product-specs.json
+
+permissions:
+  contents: write
+
+concurrency:
+  group: maxgain-product-images
+  cancel-in-progress: true
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: main
+
+      - name: Setup Node.js 24
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+          cache: npm
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Check for remote product images
+        id: image_candidates
+        run: |
+          node --input-type=module <<'NODE'
+          import fs from 'node:fs';
+
+          const specs = JSON.parse(fs.readFileSync('data/product-specs.json', 'utf8'));
+          if (!specs || specs.version !== 1 || !specs.items || typeof specs.items !== 'object' || Array.isArray(specs.items)) {
+            throw new Error('product-specs.json must contain version 1 and an items object.');
+          }
+
+          const hasRemoteImage = Object.values(specs.items).some(product => {
+            const image = product?.image;
+            const value = typeof image === 'string' ? image : image?.url;
+            if (typeof value !== 'string' || !value.trim() || value !== value.trim() || /[\s\u0000-\u001f]/.test(value)) {
+              return false;
+            }
+
+            try {
+              const url = new URL(value);
+              return url.protocol === 'https:' && Boolean(url.hostname) && !url.username && !url.password;
+            } catch {
+              return false;
+            }
+          });
+
+          fs.appendFileSync(process.env.GITHUB_OUTPUT, `has_remote_images=${hasRemoteImage}\n`);
+          NODE
+
+      - name: Skip when no remote images exist
+        if: steps.image_candidates.outputs.has_remote_images != 'true'
+        run: echo "No remote product images to process."
+
+      - name: Optimize approved product images
+        if: steps.image_candidates.outputs.has_remote_images == 'true'
+        env:
+          PRODUCT_IMAGE_SYNC_SKIP_BACKUPS: '1'
+        run: node scripts/sync-product-images.mjs
+
+      - name: Commit and push product image changes
+        if: steps.image_candidates.outputs.has_remote_images == 'true'
+        run: |
+          if [ -z "$(git status --porcelain -- assets/images/products/ data/product-specs.json data/product-image-index.json)" ]; then
+            echo "No product image changes."
+            exit 0
+          fi
+
+          git add -- assets/images/products/ data/product-specs.json data/product-image-index.json
+          if git diff --cached --quiet; then
+            echo "No staged product image changes."
+            exit 0
+          fi
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git commit -m "Optimize product images"
+          git push origin HEAD:main
