@@ -16,14 +16,14 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: '20'
-      - name: Fetch ECOUNT inventory
+      - name: Fetch ECOUNT products and inventory
         env:
           ECOUNT_COM_CODE: ${{ secrets.ECOUNT_COM_CODE }}
           ECOUNT_USER_ID: ${{ secrets.ECOUNT_USER_ID }}
           ECOUNT_API_CERT_KEY: ${{ secrets.ECOUNT_API_CERT_KEY }}
           ECOUNT_ZONE: ${{ secrets.ECOUNT_ZONE }}
           ECOUNT_API_MODE: ${{ secrets.ECOUNT_API_MODE }}
-        run: node scripts/update-ecount-inventory.mjs
+        run: node scripts/update-ecount-inventory-integrated.mjs
       - name: Commit inventory status when changed
         run: |
           if git diff --quiet -- data/inventory-status.json; then

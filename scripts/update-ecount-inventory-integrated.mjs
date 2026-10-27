@@ -76,16 +76,14 @@ async function login(host, key) {
   return sessionId;
 }
 
-async function getProducts(sessionId, from = '', to = '') {
+async function getProducts(sessionId, from = '') {
   const body = {
     SESSION_ID: sessionId,
     PROD_CD: '',
     PROD_TYPE: '',
     COMMA_FLAG: 'N'
   };
-
   if (from) body.FROM_PROD_CD = from;
-  if (to) body.TO_PROD_CD = to;
 
   const result = await post(
     `${PROD_HOST}/OAPI/V2/InventoryBasic/GetBasicProductsList?SESSION_ID=${encodeURIComponent(sessionId)}`,
@@ -103,6 +101,53 @@ async function getProducts(sessionId, from = '', to = '') {
   }
 
   return rows;
+}
+
+async function getAllProducts(sessionId) {
+  const products = new Map();
+  let rawRowCount = 0;
+  let fromProductCode = '';
+
+  while (true) {
+    const rows = await getProducts(sessionId, fromProductCode);
+    rawRowCount += rows.length;
+
+    if (rows.length === 0) break;
+
+    let nextProductCode = fromProductCode;
+    for (const row of rows) {
+      const prodCd = String(row.PROD_CD ?? '').trim();
+      const partNumber = String(row.PROD_DES ?? '').trim();
+      if (!prodCd) continue;
+
+      if (!nextProductCode || prodCd > nextProductCode) {
+        nextProductCode = prodCd;
+      }
+      if (!partNumber) continue;
+
+      products.set(prodCd, {
+        prodCd,
+        partNumber,
+        size: String(row.SIZE_DES ?? '').trim(),
+        balFlag: String(row.BAL_FLAG ?? '').trim(),
+        prodType: String(row.PROD_TYPE ?? '').trim()
+      });
+    }
+
+    if (!nextProductCode) {
+      throw new Error('Product Master returned rows without a usable PROD_CD cursor.');
+    }
+    if (nextProductCode === fromProductCode) {
+      const hasOnlyCursorRow = rows.every(row =>
+        String(row.PROD_CD ?? '').trim() === fromProductCode
+      );
+      if (hasOnlyCursorRow) break;
+      throw new Error(`Product Master pagination did not advance beyond PROD_CD ${fromProductCode}.`);
+    }
+    fromProductCode = nextProductCode;
+  }
+
+  return { products, rawRowCount };
 }
 
 function collectInventory(node, output = []) {
@@ -142,64 +187,13 @@ function collectInventory(node, output = []) {
 console.log('=== PRODUCT MASTER ===');
 
 const testSession = await login(PROD_HOST, TEST_KEY);
+const { products: productMap, rawRowCount } = await getAllProducts(testSession);
 
-const page1 = await getProducts(testSession);
-
-console.log(
-  'PAGE 1:',
-  page1.length,
-  page1[0]?.PROD_CD,
-  '->',
-  page1.at(-1)?.PROD_CD
-);
-
-const page2 = await getProducts(
-  testSession,
-  '2203-010049',
-  'ZZZZZZZZZZZZZZZZZZZZ'
-);
-
-console.log(
-  'PAGE 2:',
-  page2.length,
-  page2[0]?.PROD_CD,
-  '->',
-  page2.at(-1)?.PROD_CD
-);
-
-const page3 = await getProducts(
-  testSession,
-  'M-0653',
-  'ZZZZZZZZZZZZZZZZZZZZ'
-);
-
-console.log(
-  'PAGE 3:',
-  page3.length,
-  page3[0]?.PROD_CD,
-  '->',
-  page3.at(-1)?.PROD_CD
-);
-
-const productMap = new Map();
-
-for (const row of [...page1, ...page2, ...page3]) {
-  const prodCd = String(row.PROD_CD ?? '').trim();
-  const partNumber = String(row.PROD_DES ?? '').trim();
-
-  if (!prodCd || !partNumber) continue;
-
-  productMap.set(prodCd, {
-    prodCd,
-    partNumber,
-    size: String(row.SIZE_DES ?? '').trim(),
-    balFlag: String(row.BAL_FLAG ?? '').trim(),
-    prodType: String(row.PROD_TYPE ?? '').trim()
-  });
-}
-
-console.log('RAW PRODUCT ROWS:', page1.length + page2.length + page3.length);
+console.log('PRODUCT MASTER RAW ROWS:', rawRowCount);
 console.log('UNIQUE PRODUCT CODES:', productMap.size);
+if (productMap.size < 10_000) {
+  console.warn(`WARNING: Product Master returned only ${productMap.size} unique products.`);
+}
 
 console.log('\n=== INVENTORY ===');
 
@@ -284,6 +278,7 @@ for (const [partNumber, info] of [...partNumberMap.entries()].slice(0, 5)) {
     status: info.quantity > 0 ? 'in-stock' : 'out-of-stock'
   });
 }
+
 function getStockLevel(quantity) {
   if (quantity <= 0) return '재고 없음';
   if (quantity < 100) return '소량';
