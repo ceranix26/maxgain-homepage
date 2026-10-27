@@ -356,12 +356,12 @@
         "url": "https://www.passivecomponent.com/wp-content/uploads/ecd/0402B682K500CT-IN.pdf"
       }
     },
-      "0402CS-16NXJLW": {
+    "0402CS-16NXJLW": {
       "manufacturer": "Coilcraft",
       "category": "RF Inductors - SMD",
       "description": "RF Inductors - SMD",
       "image": {
-        "url": "https://www.mouser.com/images/coilcraft/images/0603CS_series_t.jpg",
+        "url": "assets/images/products/d7aff0c0b79e6c7d.webp",
         "source": "Mouser",
         "type": "representative"
       }
