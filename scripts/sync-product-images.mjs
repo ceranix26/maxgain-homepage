@@ -18,6 +18,7 @@ const QUALITY_STEP = 4;
 const MAX_REDIRECTS = 5;
 const USER_AGENT = 'MAXGAIN Product Image Sync/1.0';
 const ALLOWED_FORMATS = new Set(['jpeg', 'png', 'webp', 'gif', 'tiff', 'avif']);
+const skipBackups = process.env.PRODUCT_IMAGE_SYNC_SKIP_BACKUPS === '1';
 
 function parseArguments() {
   const options = { dryRun: false, limit: Infinity };
@@ -367,11 +368,13 @@ async function main() {
   if (!options.dryRun && changed && summary.errors === 0) {
     const specsJson = `${JSON.stringify(specs, null, 2)}\n`;
     const indexJson = `${JSON.stringify(imageIndex, null, 2)}\n`;
-    await backupFile(SPECS_PATH, SPECS_BACKUP_PATH, specsJson);
-    await backupFile(INDEX_PATH, INDEX_BACKUP_PATH, JSON.stringify({
-      version: 1,
-      items: {}
-    }, null, 2) + '\n');
+    if (!skipBackups) {
+      await backupFile(SPECS_PATH, SPECS_BACKUP_PATH, specsJson);
+      await backupFile(INDEX_PATH, INDEX_BACKUP_PATH, JSON.stringify({
+        version: 1,
+        items: {}
+      }, null, 2) + '\n');
+    }
 
     await fs.mkdir(IMAGE_DIR, { recursive: true });
     for (const [hash, buffer] of newImageFiles) {
