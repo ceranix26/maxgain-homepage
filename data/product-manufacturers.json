@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-27T06:00:07.895Z",
+  "updatedAt": "2026-10-27T07:01:44.831Z",
   "items": {
     "0402B102J500CT":     {
       "manufacturer": "Walsin",
@@ -211,6 +211,1811 @@
       "manufacturer": "Coilcraft",
       "source": "approved-spec",
       "confidence": "verified"
+    },
+    "AL02GT10N":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC0150":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC1001":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC1002":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC1201":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC1241":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC1242":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC2000":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC2001":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC2051":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC2151":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC2201":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC22R0":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC2491":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC2492":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC2841N":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC3300":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC3831":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC4021":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC4532":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC4872":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC4991":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC49R9":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC4R99":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC5101":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC5601":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC5901":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC6491":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTC7501":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTD2001":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTD2051":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTD4992":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02BTD6812":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02DTC5102":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02DTD0220":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02DTD1201":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02DTD1500":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02DTD1801":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02DTD2000":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02DTD2001":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02DTD2201":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02DTD4990":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR02DTD5601":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTB3161":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC0100":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC1000":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC1001":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC1002":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC1003":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC1004":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC10R0":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC1102":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC1202":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC1203":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC1213":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC1501":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC1502":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC1503":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC1783":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC1800":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC2001":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC2002":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC2403":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC2702":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC3002":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC3013":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC3652":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC4701":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC4702":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC4703":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC4992":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC5602":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC6041":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC6493":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC6802":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC7503":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC9092":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC9101":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTC9102":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX0100":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX1001":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX1002":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX1003":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX1053":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX1501":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX1602":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX1621":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX1741":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX1801":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX2000":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX2001":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX2261":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX2491":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX2700":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX2802":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX3002":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX3300":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX3321":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX4120":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX4121":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX4222":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX4322":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX4701":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX4751":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX49R9":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX5621":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX5901":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTCX8871":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTN1003":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTN2501":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTN3003":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTS1001":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTS1201":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03BTS4990":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03CTD1843N":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03CTD3092N":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03DTC1002":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03DTC1003":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03DTC1602":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03DTC1603":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03DTC1742":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03DTC1802":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03DTC1842":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03DTC2003":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03DTC2612":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03DTC3202":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03DTC4023":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03DTC6192":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03DTC6491":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03DTC6R80":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR03DTC7502":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTB2000":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTC1002":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTC1242":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTC1500":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTC1502":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTC2002":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTC3303":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTC5901":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTC9931N":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTCV4990":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTCW1000":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTCW1002":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTCW1202":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTCW1541":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTCW1760":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTCW1873":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTCW2490":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTCW2701":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTCW2702":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTCW2712":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTCW2803":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTCW3001":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTCW3300":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTCW3743":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTCW4R99":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTCW5102":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTCW9762":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTD0280":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTD0340":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTD1001":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTD1500":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTD1502":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTD1503":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTD2260":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTD23R7":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTD2490":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTD24R3":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTD24R9":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTD2872":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTD3000":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTD3002":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTD4990":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTD4993":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTD5602":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTD7501":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTDW1650":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTDW5102":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTN1000":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTN1001":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTN1003":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTN1250":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTN1542":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTN1622":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTN2001":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTN2492":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05BTN6040":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05CTC4R02":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05CTC51R0":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05CTC5R60":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05DTD1R60":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTC1000":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTC1001":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTC1002":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTC1003":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTC1200":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTC1371":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTC1500":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTC2000":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTC2051":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTC2490":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTC2751":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTC3000":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTC3300":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTC3302":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTC3602":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTC3740":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTC4022":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTC64R9":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTC8062":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTD4202N":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTS1500":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTS2000":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTS2001":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTS2400":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTS3000":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTS3300":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTS3740":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR05FTS4300":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR06BTCV1000":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR06BTCV1001":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR06BTCV2491":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR06BTCV4990":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR06BTCV9000":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR06BTCV9001":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR06BTCV9002":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR06BTCV9003":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR06BTD1001":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR06BTD2202":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR06BTD3011":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR06BTD6811":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR06FTC2490":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR06FTD1000":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR06FTD1200":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR06FTD1502":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR06FTD2490":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR12BTD0560":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "AR12FTCT49R9":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CL02JT22N-S":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CL02JT7N5-S":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CL02ST2N0-S":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CL02ST2N2-S":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CL02ST2N4-S":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CL02ST3N0-S":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CL02ST4N7-S":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CL03ST3N6-S":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CL03ST3N9-S":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CL03ST4N3-S":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CL03ST5N1-S":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6----1K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6---12K4":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6---15K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6---16K5":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6---1K1":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6---20K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6---22R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6---24R9":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6---280K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6---2K32":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6---30R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6---33R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6---39K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6---39K2":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6---5R1":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6---90K9":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--100K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--100R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--10K5":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--12K7":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--12R1":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--13K3":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--14K3":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--17K8":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--1K33":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--1K78":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--1K91":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--24K9":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--255R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--2K94":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--30K1":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--30R9":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--31K6":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--32K4":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--3K65":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--422R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--45K3":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--487K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--49R9":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--4K42":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--69K8":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--6K34":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--715R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--8K25":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02FA6--953R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02JA6----0R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02JA6----2R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02JA6---12R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02JA6---22R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02JA6---47R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-02JA6---6R8":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7---10K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7---11K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7---15K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7---20K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7---2K2":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7---39K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7---3K3":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7---3R3":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7---43K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7---4K7":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7---59K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7---5K9":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7---6K8":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--100R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--105K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--137K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--13K3":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--220R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--255K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--280K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--2K43":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--2K61":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--30K9":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--316R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--348K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--34K8":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--412R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--41K2":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--422R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--453R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--499K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--49R9":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--4K12":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--5K62":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--90K9":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03FA7--953R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03JA7----0R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03JA7---18R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-03JA7---4R7":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-05FA7----1K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-05FA7----2K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-05FA7---4R7":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-05FA7---5K1":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-05FA7--100K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-05FA7--750R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-06FA7---20R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-06FA7---4R7":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-06FA7---75R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-06FA7--49R9":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-06FA7--549K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-06FL7---15MAC":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-06JA7---51R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-06JA7---75R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-12FA4---20K":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-12FA4--3K32":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CR-12FL4----1RAC":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "CRP12FL4---10R":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "HVR06JTEV5603":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "MC12JTB101564":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "MC12KTB101155":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
+    },
+    "MC20MTB500226":     {
+      "manufacturer": "Viking Tech",
+      "source": "official-catalog-pattern",
+      "confidence": "pattern-high"
     },
     "WA04X000PTL":     {
       "manufacturer": "Walsin",

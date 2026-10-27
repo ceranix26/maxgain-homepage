@@ -2,19 +2,32 @@ import fs from 'node:fs/promises';
 import path from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { classifyWalsinMlcc, classifyWalsinResistor } from './walsin-pattern-classifier.mjs';
+import { classifyVikingPartNumber } from './viking-pattern-classifier.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const INVENTORY_PATH = path.join(ROOT, 'data', 'inventory-status.json');
 const MANUFACTURERS_PATH = path.join(ROOT, 'data', 'product-manufacturers.json');
-const DRY_RUN = process.argv.includes('--dry-run');
-const ALLOWED_ARGUMENTS = new Set(['--dry-run']);
+const MANUFACTURER_OPTIONS = new Set(['walsin', 'viking', 'all']);
 
-function validateArguments() {
-  for (const argument of process.argv.slice(2)) {
-    if (!ALLOWED_ARGUMENTS.has(argument)) {
+function parseArguments() {
+  const options = { dryRun: false, manufacturer: 'all' };
+  const args = process.argv.slice(2);
+  for (let index = 0; index < args.length; index += 1) {
+    const argument = args[index];
+    if (argument === '--dry-run') {
+      options.dryRun = true;
+    } else if (argument === '--manufacturer') {
+      const value = args[index + 1];
+      if (!MANUFACTURER_OPTIONS.has(value)) {
+        throw new Error('--manufacturer must be followed by walsin, viking, or all.');
+      }
+      options.manufacturer = value;
+      index += 1;
+    } else {
       throw new Error(`Unknown argument: ${argument}`);
     }
   }
+  return options;
 }
 
 async function readJson(filePath, label) {
@@ -42,6 +55,11 @@ function requireItems(data, label) {
 function isWalsinRecord(record) {
   return typeof record?.manufacturer === 'string' &&
     record.manufacturer.trim().toLowerCase() === 'walsin';
+}
+
+function isVikingRecord(record) {
+  return typeof record?.manufacturer === 'string' &&
+    record.manufacturer.trim().toLowerCase() === 'viking tech';
 }
 
 function isKnownManufacturerRecord(record) {
@@ -102,7 +120,7 @@ async function writeAtomically(data) {
 }
 
 async function main() {
-  validateArguments();
+  const options = parseArguments();
 
   const inventory = requireItems(
     await readJson(INVENTORY_PATH, 'inventory-status.json'),
@@ -112,59 +130,105 @@ async function main() {
   validateManufacturerFile(manufacturerData);
   const manufacturers = manufacturerData.items;
   const partNumbers = Object.keys(inventory);
+  const selectedManufacturers = options.manufacturer === 'all'
+    ? ['walsin', 'viking']
+    : [options.manufacturer];
   const additions = [];
-  const conflicts = [];
-  const existingVerified = partNumbers.filter(partNumber =>
-    isWalsinRecord(manufacturers[partNumber]) &&
-    manufacturers[partNumber].confidence === 'verified'
-  ).length;
-  const existingPatternHigh = partNumbers.filter(partNumber =>
-    isWalsinRecord(manufacturers[partNumber]) &&
-    manufacturers[partNumber].confidence === 'pattern-high'
-  ).length;
-  let patternHighCandidates = 0;
-  let alreadyPresent = 0;
-  let patternReviewSkipped = 0;
+  const results = {};
+  const updatedItems = { ...manufacturers };
 
-  for (const partNumber of partNumbers) {
-    const classification = classifyWalsinMlcc(partNumber) ?? classifyWalsinResistor(partNumber);
-    if (!classification) continue;
+  for (const selectedManufacturer of selectedManufacturers) {
+    const isWalsin = selectedManufacturer === 'walsin';
+    const result = {
+      patternHighCandidates: 0,
+      added: 0,
+      alreadyPresent: 0,
+      conflicts: 0,
+      conflictDetails: [],
+      patternReviewSkipped: 0,
+      errors: 0
+    };
 
-    if (classification.pattern === 'pattern-review') {
-      patternReviewSkipped += 1;
-      continue;
-    }
-    if (classification.pattern !== 'pattern-high') continue;
+    for (const partNumber of partNumbers) {
+      const classification = isWalsin
+        ? classifyWalsinMlcc(partNumber) ?? classifyWalsinResistor(partNumber)
+        : classifyVikingPartNumber(partNumber);
+      if (!classification) continue;
 
-    patternHighCandidates += 1;
-    const existing = manufacturers[partNumber];
+      if (classification.pattern === 'pattern-review') {
+        result.patternReviewSkipped += 1;
+        continue;
+      }
+      if (classification.pattern !== 'pattern-high') continue;
 
-    if (!existing) {
-      additions.push({
-        partNumber,
-        record: {
-          manufacturer: 'Walsin',
+      result.patternHighCandidates += 1;
+      const existing = updatedItems[partNumber];
+      if (isWalsin) {
+        if (!existing) {
+          const record = {
+            manufacturer: 'Walsin',
+            source: 'official-catalog-pattern',
+            confidence: 'pattern-high'
+          };
+          additions.push({ partNumber, record });
+          updatedItems[partNumber] = record;
+          result.added += 1;
+        } else if (isWalsinRecord(existing)) {
+          result.alreadyPresent += 1;
+        } else {
+          result.conflictDetails.push({
+            partNumber,
+            existingManufacturer: isKnownManufacturerRecord(existing)
+              ? existing.manufacturer
+              : null,
+            reason: isKnownManufacturerRecord(existing)
+              ? 'Existing different manufacturer; preserved'
+              : 'Existing manufacturer record is incomplete; preserved'
+          });
+        }
+        continue;
+      }
+
+      if (existing?.confidence === 'verified') {
+        result.conflictDetails.push({
+          partNumber,
+          existingManufacturer: isKnownManufacturerRecord(existing)
+            ? existing.manufacturer
+            : null,
+          reason: 'Existing verified manufacturer mapping takes priority; preserved'
+        });
+      } else if (isWalsinRecord(existing) && existing.confidence === 'pattern-high') {
+        result.conflictDetails.push({
+          partNumber,
+          existingManufacturer: existing.manufacturer,
+          reason: 'Existing Walsin pattern-high classification takes priority; preserved'
+        });
+      } else if (!existing) {
+        const record = {
+          manufacturer: 'Viking Tech',
           source: 'official-catalog-pattern',
           confidence: 'pattern-high'
-        }
-      });
-      continue;
+        };
+        additions.push({ partNumber, record });
+        updatedItems[partNumber] = record;
+        result.added += 1;
+      } else if (isVikingRecord(existing) && existing.confidence === 'pattern-high') {
+        result.alreadyPresent += 1;
+      } else {
+        result.conflictDetails.push({
+          partNumber,
+          existingManufacturer: isKnownManufacturerRecord(existing)
+            ? existing.manufacturer
+            : null,
+          reason: isKnownManufacturerRecord(existing)
+            ? 'Existing manufacturer mapping or classification differs; preserved'
+            : 'Existing manufacturer record is incomplete; preserved'
+        });
+      }
     }
-
-    if (isWalsinRecord(existing)) {
-      alreadyPresent += 1;
-      continue;
-    }
-
-    conflicts.push({
-      partNumber,
-      existingManufacturer: isKnownManufacturerRecord(existing)
-        ? existing.manufacturer
-        : null,
-      reason: isKnownManufacturerRecord(existing)
-        ? 'Existing different manufacturer; preserved'
-        : 'Existing manufacturer record is incomplete; preserved'
-    });
+    result.conflicts = result.conflictDetails.length;
+    result.conflicts = result.conflictDetails.length;
+    results[selectedManufacturer] = result;
   }
 
   additions.sort((left, right) =>
@@ -172,12 +236,9 @@ async function main() {
   );
   const updatedData = {
     ...manufacturerData,
-    updatedAt: additions.length > 0 ? new Date().toISOString() : manufacturerData.updatedAt,
-    items: { ...manufacturers }
+    ...(additions.length > 0 ? { updatedAt: new Date().toISOString() } : {}),
+    items: updatedItems
   };
-  for (const { partNumber, record } of additions) {
-    updatedData.items[partNumber] = record;
-  }
 
   const knownBefore = partNumbers.reduce(
     (count, partNumber) => count + Number(isKnownManufacturerRecord(manufacturers[partNumber])),
@@ -185,27 +246,19 @@ async function main() {
   );
   const knownAfter = knownBefore + additions.length;
   const summary = {
-    inventoryTotal: partNumbers.length,
-    existingVerified,
-    existingPatternHigh,
-    patternHighCandidates,
-    added: additions.length,
-    alreadyPresent,
-    conflicts: conflicts.length,
-    conflictDetails: conflicts,
-    patternReviewSkipped,
-    errors: 0,
-    coverageAfter: {
-      known: knownAfter,
-      percent: partNumbers.length === 0
+    manufacturers: results,
+    overall: {
+      knownManufacturerCount: knownAfter,
+      coveragePercentage: partNumbers.length === 0
         ? 0
         : Number(((knownAfter / partNumbers.length) * 100).toFixed(2))
     }
   };
 
-  if (DRY_RUN) {
+  if (options.dryRun) {
     console.log(JSON.stringify({
       mode: 'dry-run',
+      selectedManufacturer: options.manufacturer,
       recordsThatWouldBeAdded: additions.map(({ partNumber, record }) => ({
         partNumber,
         ...record

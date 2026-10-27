@@ -6,11 +6,18 @@ import {
   classifyWalsinResistor,
   RESISTOR_FAMILIES
 } from './walsin-pattern-classifier.mjs';
+import {
+  classifyVikingPartNumber,
+  sampleVikingHigh,
+  VIKING_CATALOG_SERIES,
+  VIKING_CATALOG_SOURCES
+} from './viking-pattern-classifier.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const INVENTORY_PATH = path.join(ROOT, 'data', 'inventory-status.json');
 const MANUFACTURERS_PATH = path.join(ROOT, 'data', 'product-manufacturers.json');
 const SAMPLE_HIGH = process.argv.includes('--sample-high');
+const SAMPLE_VIKING_HIGH = process.argv.includes('--sample-viking-high');
 const comparePartNumbers = (left, right) => left < right ? -1 : left > right ? 1 : 0;
 
 async function readJson(filePath, label) {
@@ -49,6 +56,17 @@ function evenlySample(sortedItems, limit) {
   });
 }
 
+function countBy(items, keySelector) {
+  const counts = new Map();
+  for (const item of items) {
+    const key = keySelector(item);
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+  }
+  return Object.fromEntries([...counts].sort((left, right) =>
+    right[1] - left[1] || comparePartNumbers(left[0], right[0])
+  ));
+}
+
 async function main() {
   const inventory = requireItems(
     await readJson(INVENTORY_PATH, 'inventory-status.json'),
@@ -75,8 +93,46 @@ async function main() {
   const resistorHighByFamily = new Map();
   const resistorHighBySize = new Map();
   const conflicts = [];
+  const vikingHigh = [];
+  const vikingReview = [];
+  const vikingConflicts = [];
 
   for (const partNumber of partNumbers) {
+    const viking = classifyVikingPartNumber(partNumber);
+    if (viking) {
+      const existing = manufacturers[partNumber];
+      const mappedManufacturer = typeof existing?.manufacturer === 'string'
+        ? existing.manufacturer.trim()
+        : '';
+      const mappedViking = mappedManufacturer.toLowerCase() === 'viking' ||
+        mappedManufacturer.toLowerCase() === 'viking tech';
+      const existingWalsinPatternHigh = mappedManufacturer.toLowerCase() === 'walsin' &&
+        existing.confidence === 'pattern-high';
+      const existingPriority = existing?.confidence === 'verified' || existingWalsinPatternHigh;
+      const conflictsWithMapping = (mappedManufacturer && !mappedViking) || existingPriority;
+
+      if (conflictsWithMapping) {
+        vikingConflicts.push({
+          partNumber,
+          group: viking.group,
+          family: viking.family,
+          sizeCode: viking.sizeCode,
+          vikingClassification: viking.pattern,
+          existingManufacturer: mappedManufacturer || null,
+          existingConfidence: existing?.confidence ?? null,
+          reason: existingWalsinPatternHigh
+            ? 'Existing Walsin pattern-high classification takes priority.'
+            : existing?.confidence === 'verified'
+              ? 'Existing verified manufacturer mapping takes priority.'
+              : 'Existing manufacturer mapping takes priority.'
+        });
+      } else if (viking.pattern === 'pattern-high') {
+        vikingHigh.push({ partNumber, ...viking });
+      } else if (viking.pattern === 'pattern-review') {
+        vikingReview.push({ partNumber, ...viking });
+      }
+    }
+
     const mlcc = classifyWalsinMlcc(partNumber);
     if (mlcc) {
       mlccCandidates.push({
@@ -143,6 +199,24 @@ async function main() {
       reason: 'Family and size are not both present in the official Walsin resistor catalog shape, or the ordering pattern is not consistent with the catalog.'
     }));
 
+  if (SAMPLE_VIKING_HIGH) {
+    const sample = sampleVikingHigh(vikingHigh);
+    console.log(JSON.stringify({
+      mode: 'sample-viking-high',
+      sampleCount: sample.length,
+      candidates: sample.map(item => ({
+        'Part Number': item.partNumber,
+        manufacturer: 'Viking Tech',
+        'product group': item.group,
+        'family/series': item.family,
+        size: item.sizeCode,
+        'matched official pattern': item.matchedPattern,
+        'classification reason': item.reason
+      }))
+    }, null, 2));
+    return;
+  }
+
   if (SAMPLE_HIGH) {
     const candidateMlcc = mlccCandidates
       .filter(item => !verifiedWalsin.has(item.partNumber))
@@ -200,7 +274,19 @@ async function main() {
     patternReviewFirst50: reviewSample,
     conflictsWithKnownNonWalsinManufacturers: conflicts,
     mlccPatternHighCandidateList: mlccCandidates,
-    nearMatchesOutsideCatalogStructure: nearMatches
+    nearMatchesOutsideCatalogStructure: nearMatches,
+    viking: {
+      officialLocalCatalogs: VIKING_CATALOG_SOURCES,
+      officialSeriesByProductGroup: VIKING_CATALOG_SERIES,
+      patternHighTotal: vikingHigh.length,
+      patternReviewTotal: vikingReview.length,
+      patternHighByProductGroup: countBy(vikingHigh, item => item.group),
+      patternHighByFamilySeries: countBy(vikingHigh, item => `${item.group}: ${item.family}`),
+      patternHighBySizeCode: countBy(vikingHigh, item => `${item.group}: ${item.sizeCode ?? 'not applicable'}`),
+      patternReviewByProductGroup: countBy(vikingReview, item => item.group),
+      patternReviewByFamilySeries: countBy(vikingReview, item => `${item.group}: ${item.family}`),
+      conflictsWithExistingManufacturerMappings: vikingConflicts
+    }
   }, null, 2));
 }
 
