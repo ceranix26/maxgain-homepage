@@ -366,7 +366,47 @@
             label: msg('제품 ECD', 'Product ECD')
           }
         ].filter(Boolean);
-        productDetailContent.innerHTML = `<div class="product-detail-part"><span>${msg('Part Number', 'Part Number')}</span><strong>${esc(item.partNumber)}</strong></div><div class="product-detail-stock"><span>${msg('현재 재고 상태', 'Current stock status')}</span><span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${inStock ? msg('재고 있음', 'In stock') : msg('재고 없음', 'Out of stock')}</span>${inStock && item.stockLevel ? `<span class="stock-level">${esc(item.stockLevel)}</span>` : ''}</div>${metadata.length ? `<div class="product-detail-meta">${metadata.map(([key, label]) => `<div class="product-detail-spec"><strong>${label}</strong><span>${esc(details[key].trim())}</span></div>`).join('')}</div>` : ''}${specs.length ? `<dl class="product-detail-specs">${specs.map(([name, value]) => `<div class="product-detail-spec"><dt>${esc(name)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>` : `<p class="product-detail-pending">${msg('상세 규격 정보 준비 중입니다. 정확한 규격은 문의해 주세요.', 'Detailed specifications are being prepared. Please contact us for confirmed specifications.')}</p>`}${technicalDocuments.length ? `<div class="product-detail-documents"><h3>${msg('기술 자료', 'Technical Documents')}</h3>${technicalDocuments.map(document => `<a href="${esc(document.url)}" title="${esc(document.title)}" target="_blank" rel="noopener noreferrer">${document.label}</a>`).join('')}</div>` : ''}`;
+        const imageData = typeof details?.image === 'string'
+          ? { value: details.image.trim(), source: '', type: '' }
+          : details?.image && typeof details.image === 'object' && !Array.isArray(details.image)
+            ? {
+              value: typeof details.image.url === 'string' ? details.image.url.trim() : '',
+              source: typeof details.image.source === 'string' ? details.image.source.trim() : '',
+              type: typeof details.image.type === 'string' ? details.image.type.trim() : ''
+            }
+            : { value: '', source: '', type: '' };
+        const imageValue = imageData.value;
+        let safeImageSource = '';
+        if (imageValue.startsWith('assets/images/products/')) {
+          const segments = imageValue.split('/');
+          if (/^assets\/images\/products\/[A-Za-z0-9._/-]+$/.test(imageValue) &&
+              segments.every(segment => segment && segment !== '.' && segment !== '..')) {
+            safeImageSource = imageValue;
+          }
+        } else if (imageValue) {
+          try {
+            const imageUrl = new URL(imageValue);
+            if (imageUrl.protocol === 'https:' && !imageUrl.username && !imageUrl.password) {
+              safeImageSource = imageUrl.href;
+            }
+          } catch {}
+        }
+        const imageLabels = [];
+        if (imageData.type === 'representative') {
+          imageLabels.push(msg('제품군 대표 이미지', 'Representative product image'));
+        }
+        if (imageData.source) {
+          imageLabels.push(imageData.source === 'Mouser'
+            ? msg('출처: Mouser', 'Source: Mouser')
+            : msg(`출처: ${imageData.source}`, `Source: ${imageData.source}`));
+        }
+        const productImage = safeImageSource
+          ? `<div style="display:grid;justify-items:end;gap:4px;max-width:160px;min-width:0"><img class="product-detail-image" src="${esc(safeImageSource)}" alt="${esc(`${item.partNumber} ${msg('제품 이미지', 'product image')}`)}">${imageLabels.map(label => `<small>${esc(label)}</small>`).join('')}</div>`
+          : '';
+        productDetailContent.innerHTML = `<div class="product-detail-overview${productImage ? ' has-product-image' : ''}"><div class="product-detail-overview-info"><div class="product-detail-part"><span>${msg('Part Number', 'Part Number')}</span><strong>${esc(item.partNumber)}</strong></div><div class="product-detail-stock"><span>${msg('현재 재고 상태', 'Current stock status')}</span><span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${inStock ? msg('재고 있음', 'In stock') : msg('재고 없음', 'Out of stock')}</span>${inStock && item.stockLevel ? `<span class="stock-level">${esc(item.stockLevel)}</span>` : ''}</div></div>${productImage}</div>${metadata.length ? `<div class="product-detail-meta">${metadata.map(([key, label]) => `<div class="product-detail-spec"><strong>${label}</strong><span>${esc(details[key].trim())}</span></div>`).join('')}</div>` : ''}${specs.length ? `<dl class="product-detail-specs">${specs.map(([name, value]) => `<div class="product-detail-spec"><dt>${esc(name)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>` : `<p class="product-detail-pending">${msg('상세 규격 정보 준비 중입니다. 정확한 규격은 문의해 주세요.', 'Detailed specifications are being prepared. Please contact us for confirmed specifications.')}</p>`}${technicalDocuments.length ? `<div class="product-detail-documents"><h3>${msg('기술 자료', 'Technical Documents')}</h3>${technicalDocuments.map(document => `<a href="${esc(document.url)}" title="${esc(document.title)}" target="_blank" rel="noopener noreferrer">${document.label}</a>`).join('')}</div>` : ''}`;
+        productDetailContent.querySelector('.product-detail-image')?.addEventListener('error', event => {
+          event.currentTarget.parentElement.hidden = true;
+        }, { once: true });
       }
       async function loadProductSpecs() {
         try {
