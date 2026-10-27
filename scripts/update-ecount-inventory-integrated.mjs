@@ -8,7 +8,7 @@ const TEST_KEY = process.env.ECOUNT_API_CERT_KEY;
 const PROD_KEY = process.env.ECOUNT_API_CERT_KEY;
 const MAX_PRODUCT_REQUESTS = 20;
 const PRODUCT_CODE_UPPER_BOUND = 'ZZZZZZZZZZZZZZZZZZZZ';
-const PRODUCT_REQUEST_DELAY_MS = 500;
+const PRODUCT_REQUEST_DELAY_MS = 2_000;
 
 for (const [name, value] of Object.entries({
   ECOUNT_COM_CODE: COM_CODE,
