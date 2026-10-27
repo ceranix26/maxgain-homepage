@@ -284,8 +284,9 @@ function parseDetailPage(html, detailUrl) {
   const addSpec = (rawName, rawValue) => {
     const name = rawName.trim().replace(/\s+/g, ' ');
     const value = rawValue.trim();
-    if (!name || !value ||
+    if (!name || !value || /^(none|download)$/i.test(value) ||
         /^(part number|johanson part number|global part number|legacy part number|legacy p\/n|description|life cycle stage|lifecycle stage|manufacturer|manufacturer name|company|company name|johanson company|brand|product brand|product category|product family|family|product type|category)$/i.test(name) ||
+        /^download this information page$/i.test(name) ||
         Object.hasOwn(specs, name)) return;
     specs[name] = value;
   };

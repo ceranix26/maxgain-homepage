@@ -194,4 +194,5 @@ cross-company ownership resolution을 마무리해.
 - 브라우저에서 `0400LP15A0122001E` 상세 페이지의 Company가 JTI인 것을 확인했다. 양사 페이지가 검색/상세 도구를 공유하고 canonical 도메인이 Company 표기와 다를 수 있으므로, canonical 도메인만으로 소유 회사를 판정하지 않는다.
 - 한쪽 상세 요청만 성공한 경우에도 그 페이지에 명시된 JTI/JDI를 기준으로 소유권을 판정할 수 있다. 상세 페이지가 보고한 canonical URL은 규격 source로 사용한다. 명시 회사 코드가 서로 충돌하면 cross-company review에 남긴다.
 - Google VM에서는 검색 2회와 상세 2회가 성공했지만, 이전 파서는 `Johanson Company` 라벨을 읽지 못해 동일 GPN을 review에 남겼다. 제품 상세의 `li`/`span` 필드를 읽어 JTI/JDI를 회사 근거로 사용하고, 회사/품번 메타데이터를 기술 규격에서 제외한다. 모의 dry-run에서 JTI 소유권 및 canonical 상세 URL을 확인하고 실제 기술 필드만 보존하는 테스트를 통과했다.
+- Google VM의 최신 dry-run에서 `0400LP15A0122E`가 Johanson Technology의 Legacy PN으로 검증됐고, Global PN `0400LP15A0122001E`에 manufacturer/spec 제안이 생성됐다. 제안에는 `None` 값과 download 버튼 텍스트가 섞여 있어 이를 제외하도록 추가 정리했으며 모의 테스트를 통과했다. 실제 파일 기록은 아직 하지 않았다.
 - 데이터 JSON은 변경하지 않았다.
