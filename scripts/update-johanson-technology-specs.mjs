@@ -504,6 +504,12 @@ async function main() {
   const manufacturerUpdates = { ...manufacturerItems };
   const specUpdates = { ...specItems };
   const aliases = { ...aliasData.aliases };
+  const originalManufacturerItems = { ...manufacturerItems };
+  const originalSpecItems = { ...specItems };
+  const originalAliases = { ...aliasData.aliases };
+  const originalReviewItems = Object.fromEntries(
+    Object.entries(reviewItems).map(([key, value]) => [key, { ...value }])
+  );
   const updatedReviewItems = Object.fromEntries(
     Object.entries(reviewItems).map(([key, value]) => [key, { ...value }])
   );
@@ -806,7 +812,38 @@ async function main() {
 
   let backups = [];
   if (options.dryRun) {
-    console.log('Dry run: no files or backups were written.');
+    const changedEntries = (before, after) => Object.entries(after)
+      .filter(([key, value]) => JSON.stringify(before[key]) !== JSON.stringify(value))
+      .map(([key, value]) => ({ partNumber: key, ...value }));
+    const proposedReviews = Object.fromEntries(
+      Object.entries(updatedReviewItems).map(([key, items]) => [
+        COMPANIES[key].name,
+        {
+          updated: Object.fromEntries(Object.entries(items).filter(([partNumber, value]) =>
+            JSON.stringify(originalReviewItems[key][partNumber]) !== JSON.stringify(value)
+          )),
+          cleared: Object.keys(originalReviewItems[key])
+            .filter(partNumber => !Object.hasOwn(items, partNumber))
+        }
+      ])
+    );
+    console.log(JSON.stringify({
+      mode: 'dry-run',
+      persistence: 'No files, temporary outputs, or backups were written.',
+      totalRequests,
+      companies: summaries,
+      proposedManufacturerMappings: changedEntries(originalManufacturerItems, manufacturerUpdates),
+      proposedAliases: Object.entries(aliases)
+        .filter(([alias, primary]) => originalAliases[alias] !== primary)
+        .map(([alias, primary]) => ({ alias, primary })),
+      proposedSpecifications: changedEntries(originalSpecItems, specUpdates),
+      proposedReviewAndUnresolved: proposedReviews,
+      requestLimitReached
+    }, null, 2));
+    if (Object.values(summaries).some(summary => summary.errors > 0)) {
+      process.exitCode = 1;
+    }
+    return;
   } else {
     backups = await writeAtomically(outputs);
   }
