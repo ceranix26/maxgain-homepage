@@ -351,7 +351,9 @@ async function main() {
     exactLegacyMatches: 0,
     ambiguous: 0,
     aliasesProposed: 0,
+    aliasesWritten: 0,
     specRecordsProposed: 0,
+    specRecordsWritten: 0,
     review: 0,
     errors: 0
   };
@@ -421,14 +423,21 @@ async function main() {
     const aliasConflicts = [];
     const proposedAliases = { ...aliases };
     let aliasCount = 0;
+    const aliasesAdded = [];
     for (const alias of aliasesForProduct) {
       const result = mergeAlias(proposedAliases, alias, match.globalPartNumber);
       if (result.conflict) aliasConflicts.push(result.conflict);
-      else if (result.added) aliasCount += 1;
+      else if (result.added) {
+        aliasCount += 1;
+        aliasesAdded.push(alias);
+      }
     }
     if (!aliasConflicts.length) {
       Object.assign(aliases, proposedAliases);
       summary.aliasesProposed += aliasCount;
+      for (const alias of aliasesAdded) {
+        console.log(`${options.dryRun ? 'WOULD MAP' : 'PREPARED ALIAS'} ${alias} -> ${match.globalPartNumber}`);
+      }
     }
 
     let detail;
@@ -513,8 +522,14 @@ async function main() {
     if (Object.keys(specUpdates).length) await backupIfPresent(SPECS_PATH, SPECS_BACKUP_PATH);
     if (summary.aliasesProposed) await backupIfPresent(ALIASES_PATH, ALIASES_BACKUP_PATH);
     await fs.mkdir(DATA_DIR, { recursive: true });
-    if (summary.aliasesProposed) await writeAtomic(ALIASES_PATH, aliasesOutput);
-    if (Object.keys(specUpdates).length) await writeAtomic(SPECS_PATH, specsOutput);
+    if (summary.aliasesProposed) {
+      await writeAtomic(ALIASES_PATH, aliasesOutput);
+      summary.aliasesWritten = summary.aliasesProposed;
+    }
+    if (Object.keys(specUpdates).length) {
+      await writeAtomic(SPECS_PATH, specsOutput);
+      summary.specRecordsWritten = Object.keys(specUpdates).length;
+    }
     if (Object.keys(reviewUpdates).length) await writeAtomic(REVIEW_PATH, reviewOutput);
   } else {
     console.error('Outputs were not written because lookups did not complete successfully.');
