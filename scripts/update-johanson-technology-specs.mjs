@@ -8,6 +8,7 @@ const INVENTORY_PATH = path.join(DATA_DIR, 'inventory-status.json');
 const MANUFACTURERS_PATH = path.join(DATA_DIR, 'product-manufacturers.json');
 const SPECS_PATH = path.join(DATA_DIR, 'product-specs.json');
 const ALIASES_PATH = path.join(DATA_DIR, 'product-aliases.json');
+const CANDIDATES_PATH = path.join(DATA_DIR, 'product-candidates.json');
 const COMPANIES = {
   technology: {
     name: 'Johanson Technology',
@@ -674,6 +675,10 @@ async function main() {
     summaries[key] = createCompanySummary(0);
   }
 
+  const candidateData = await readJson(CANDIDATES_PATH, 'product-candidates.json', { version: 1, items: {} });
+  const candidateItems = { ...requireItems(candidateData, 'product-candidates.json') };
+  const originalCandidateItems = { ...candidateItems };
+
   const inventoryPartNumbers = Object.keys(inventory).filter(partNumber => partNumber.trim());
   let candidates = inventoryPartNumbers.filter(partNumber =>
     isCandidatePartNumber(partNumber) &&
@@ -724,6 +729,8 @@ async function main() {
       Object.hasOwn(items, inventoryPartNumber)
     )) continue;
     const matchesByCompany = new Map();
+    const priorCandidates = candidateItems[inventoryPartNumber];
+    delete candidateItems[inventoryPartNumber];
     const lookupErrors = [];
     const ambiguousCompanies = new Set();
     let searchesCompleted = 0;
@@ -762,6 +769,17 @@ async function main() {
       } else if (exactResults.length > 1) {
         summary.review += 1;
         ambiguousCompanies.add(key);
+        const known = candidateItems[inventoryPartNumber] ?? { candidates: [] };
+        for (const result of exactResults) {
+          if (!known.candidates.some(item =>
+            normalizePartNumber(item.partNumber) === normalizePartNumber(result.globalPartNumber))) {
+            known.candidates.push({
+              partNumber: result.globalPartNumber,
+              url: result.detailUrl
+            });
+          }
+        }
+        candidateItems[inventoryPartNumber] = known;
         updatedReviewItems[key][inventoryPartNumber] = {
           status: 'ambiguous-exact-matches',
           originalPartNumber: inventoryPartNumber,
@@ -773,6 +791,7 @@ async function main() {
     }
 
     if (lookupErrors.length) {
+      if (priorCandidates) candidateItems[inventoryPartNumber] = priorCandidates;
       for (const key of Object.keys(COMPANIES)) {
         const hasExactMatch = matchesByCompany.has(key);
         if (hasExactMatch) summaries[key].review += 1;
@@ -1045,6 +1064,9 @@ async function main() {
     }],
     [ALIASES_PATH, { ...aliasData, version: 1, aliases }],
     [SPECS_PATH, { ...specsData, version: 1, items: specUpdates }],
+    ...(Object.keys(candidateItems).length || Object.keys(originalCandidateItems).length
+      ? [[CANDIDATES_PATH, { ...candidateData, version: 1, items: candidateItems }]]
+      : []),
     ...Object.entries(COMPANIES).map(([key, company]) => [
       company.reviewPath,
       {
@@ -1082,6 +1104,7 @@ async function main() {
         .filter(([alias, primary]) => originalAliases[alias] !== primary)
         .map(([alias, primary]) => ({ alias, primary })),
       proposedSpecifications: changedEntries(originalSpecItems, specUpdates),
+      proposedCandidates: changedEntries(originalCandidateItems, candidateItems),
       proposedReviewAndUnresolved: proposedReviews,
       requestLimitReached
     }, null, 2));
