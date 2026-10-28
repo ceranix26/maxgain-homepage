@@ -26198,6 +26198,112 @@
         "Storage Temp Range (None Operating)": "-65°C to +125°C",
         "Harmonization": "8532.24.00.20"
       }
+    },
+    "TDCP101G100J1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "partNumbers": {
+        "primary": "TDCP101G100J1GV001T",
+        "legacy": [
+          "101R14N100JV4T"
+        ]
+      },
+      "lifecycle": "EOL",
+      "description": "Capacitors SMT, NP0/C0G, 0603, 100V, 10pF±5%, Ni/Sn (RoHS), 7\" Reel Paper Tape",
+      "source": {
+        "type": "manufacturer",
+        "name": "Johanson Dielectrics",
+        "title": "Johanson Dielectrics Product Data",
+        "url": "https://www.johansontechnology.com/part/TDCP101G100J1GV001T/"
+      },
+      "specs": {
+        "AEC Q200 Qualified": "No",
+        "Schedule B": "8532.24.00.20",
+        "ITAR": "No",
+        "ECCN": "EAR99",
+        "RoHS Compliance": "Yes, RoHS 10/10",
+        "REACH": "Yes",
+        "Country of Origin": "US, MX, or CN",
+        "Product Subfamily": "Capacitors Surface Mount < 500V",
+        "Capacitance Value": "10.000",
+        "Cap Unit of Meas": "pF",
+        "Tolerance": "±5%",
+        "Voltage": "100.0",
+        "Dielectric Temp Coefficient": "NP0/C0G",
+        "Termination": "68",
+        "Marking": "No Mark",
+        "Product Release Date": "Jan. 3, 2006",
+        "Web Page Link": "https://www.johansondielectrics.com/surface-mount-mlc-capacitors",
+        "Size for Capacitors (EIA)": "0603",
+        "NCNR": "No",
+        "Thickness (Max)": "0.035",
+        "End Band(Min)": "0.01",
+        "End Band (max)": "0.015",
+        "Standard Item": "Yes",
+        "Lead Time Typical (Weeks)*": "*This can vary significantly so it is important to obtain a quotation with lead time for production planning purposes. 12",
+        "Length (Min)": "0.055",
+        "Length (Max)": "0.071",
+        "Width (Min)": "0.024",
+        "Width (Max)": "0.040",
+        "Part Weight (mg)": "8.00",
+        "Packaging": "7\" Reel Paper Tape",
+        "Operating Temp Range": "-55°C to +125°C",
+        "Storage Temp Range (Packaged)": "+5°C to +40°C with RH 20% to 70%",
+        "Storage Temp Range (None Operating)": "-65°C to +125°C",
+        "Harmonization": "8532.24.00.20"
+      }
+    },
+    "TDCP101G101F1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "partNumbers": {
+        "primary": "TDCP101G101F1GV001T",
+        "legacy": [
+          "101R14N101FV4T"
+        ]
+      },
+      "lifecycle": "EOL",
+      "description": "Capacitors SMT, NP0/C0G, 0603, 100V, 100pF±1%, Ni/Sn (RoHS), 7\" Reel Paper Tape",
+      "source": {
+        "type": "manufacturer",
+        "name": "Johanson Dielectrics",
+        "title": "Johanson Dielectrics Product Data",
+        "url": "https://www.johansontechnology.com/part/TDCP101G101F1GV001T/"
+      },
+      "specs": {
+        "AEC Q200 Qualified": "No",
+        "Schedule B": "8532.24.00.20",
+        "ITAR": "No",
+        "ECCN": "EAR99",
+        "RoHS Compliance": "Yes, RoHS 10/10",
+        "REACH": "Yes",
+        "Country of Origin": "US, MX, or CN",
+        "Product Subfamily": "Capacitors Surface Mount < 500V",
+        "Capacitance Value": "100.000",
+        "Cap Unit of Meas": "pF",
+        "Tolerance": "±1%",
+        "Voltage": "100.0",
+        "Dielectric Temp Coefficient": "NP0/C0G",
+        "Termination": "68",
+        "Marking": "No Mark",
+        "Product Release Date": "Jan. 3, 2006",
+        "Web Page Link": "https://www.johansondielectrics.com/surface-mount-mlc-capacitors",
+        "Size for Capacitors (EIA)": "0603",
+        "NCNR": "No",
+        "Thickness (Max)": "0.035",
+        "End Band(Min)": "0.01",
+        "End Band (max)": "0.015",
+        "Standard Item": "Yes",
+        "Lead Time Typical (Weeks)*": "*This can vary significantly so it is important to obtain a quotation with lead time for production planning purposes. 12",
+        "Length (Min)": "0.055",
+        "Length (Max)": "0.071",
+        "Width (Min)": "0.024",
+        "Width (Max)": "0.040",
+        "Part Weight (mg)": "8.00",
+        "Packaging": "7\" Reel Paper Tape",
+        "Operating Temp Range": "-55°C to +125°C",
+        "Storage Temp Range (Packaged)": "+5°C to +40°C with RH 20% to 70%",
+        "Storage Temp Range (None Operating)": "-65°C to +125°C",
+        "Harmonization": "8532.24.00.20"
+      }
     }
   }
 }
