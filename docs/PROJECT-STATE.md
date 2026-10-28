@@ -188,11 +188,12 @@ cross-company ownership resolution을 마무리해.
 
 ## Johanson 업데이트 - 2026-10-27
 
-- 공식 회사 표기: Johanson Technology = JTI, Johanson Dielectrics = JDI.
-- updater가 JTI/JDI를 각각 올바른 회사로 판별하는 모의 검증을 통과했다.
-- 실제 Codespaces 요청은 양사 검색 모두 HTTP 403을 반환했다. 브라우저에서 확인된 결과만으로는 전체 live dry-run을 완료하지 못했다.
-- 브라우저에서 `0400LP15A0122001E` 상세 페이지의 Company가 JTI인 것을 확인했다. 양사 페이지가 검색/상세 도구를 공유하고 canonical 도메인이 Company 표기와 다를 수 있으므로, canonical 도메인만으로 소유 회사를 판정하지 않는다.
-- 한쪽 상세 요청만 성공한 경우에도 그 페이지에 명시된 JTI/JDI를 기준으로 소유권을 판정할 수 있다. 상세 페이지가 보고한 canonical URL은 규격 source로 사용한다. 명시 회사 코드가 서로 충돌하면 cross-company review에 남긴다.
-- Google VM에서는 검색 2회와 상세 2회가 성공했지만, 이전 파서는 `Johanson Company` 라벨을 읽지 못해 동일 GPN을 review에 남겼다. 제품 상세의 `li`/`span` 필드를 읽어 JTI/JDI를 회사 근거로 사용하고, 회사/품번 메타데이터를 기술 규격에서 제외한다. 모의 dry-run에서 JTI 소유권 및 canonical 상세 URL을 확인하고 실제 기술 필드만 보존하는 테스트를 통과했다.
-- Google VM의 최신 dry-run에서 `0400LP15A0122E`가 Johanson Technology의 Legacy PN으로 검증됐고, Global PN `0400LP15A0122001E`에 manufacturer/spec 제안이 생성됐다. 제안에는 `None` 값과 download 버튼 텍스트가 섞여 있어 이를 제외하도록 추가 정리했으며 모의 테스트를 통과했다. 실제 파일 기록은 아직 하지 않았다.
-- 데이터 JSON은 변경하지 않았다.
+- 공식 회사 코드: Johanson Technology = `JTI`, Johanson Dielectrics = `JDI`.
+- 공식 상세 페이지의 `Johanson Company` 필드는 `<li>라벨: <span>값</span></li>` 형태다. 파서는 이 list 구조를 읽고 `JTI`/`JDI`를 명시적 소유권 근거로 사용한다.
+- 양사의 검색 도구 및 상세 페이지는 결과를 공유할 수 있다. 검색 결과의 회사명이나 페이지 도메인/canonical만으로 소유권을 추정하지 않는다.
+- 동일 normalized Global PN이 양쪽 검색에서 반환되면 상세 페이지의 명시 회사 코드로 소유권을 판정한다. 한 상세 요청만 성공해도 그 상세에 명시된 코드가 유일하고 모순이 없으면 해당 소유권을 사용할 수 있다. `JTI`/`JDI` 증거가 서로 충돌하거나 명시 코드가 없으면 `cross-company-exact-match` review로 남긴다.
+- 상세 페이지의 안전한 official canonical URL은 specifications source URL로 사용한다. `Johanson Company`, PN 라벨, 제품군 등의 식별 메타데이터는 기술 specs에 넣지 않는다.
+- 빈 값 `None` 및 링크 버튼 텍스트 `Download`는 specs에서 제외한다. 실제 기술 필드만 보존한다.
+- `0400LP15A0122E`는 Legacy PN, `0400LP15A0122001E`는 확인된 Technology GPN이다. Google VM에서 2026-10-27 실행한 이전 커밋의 dry-run은 양쪽 검색/상세 요청 성공 후 이 관계를 찾았으나 당시 출력에는 빈 specs 값과 Download 텍스트가 포함돼 있었다.
+- 최신 정리 커밋 `a86b7ad`는 push 완료됐으나, Google VM에서 아직 pull 및 재검증하지 않았다. 다음 작업은 VM에서 `git pull --ff-only` 후 동일 PN을 `--dry-run --retry`로 재실행하고, 제안된 specs에 `None`/`Download`/회사 및 PN 메타데이터가 없는지 확인하는 것이다.
+- 확인 전에는 real write를 실행하지 않는다. 현재까지 `product-manufacturers.json`, `product-aliases.json`, `product-specs.json`은 수정하지 않았다.
