@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-28T04:41:58.817Z",
+  "updatedAt": "2026-10-28T04:42:11.339Z",
   "items": {
     "0402B102J500CT": {
       "manufacturer": "Walsin",
@@ -13068,6 +13068,26 @@
       "confidence": "verified"
     },
     "TDCP101G120F1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "101R14N121FV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP101G121F1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "101R14N121GV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP101G121G1GV001T": {
       "manufacturer": "Johanson Dielectrics",
       "source": "manufacturer-product-search",
       "confidence": "verified"
