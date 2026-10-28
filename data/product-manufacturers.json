@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-28T00:26:04.878Z",
+  "updatedAt": "2026-10-28T00:56:32.008Z",
   "items": {
     "0402B102J500CT": {
       "manufacturer": "Walsin",
@@ -8868,6 +8868,156 @@
       "confidence": "verified"
     },
     "TDCP101W222J1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "101R14W561KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP101W561K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "101R15W123KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCT101W123K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "101R15W153KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCT101W153K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "101R15W222KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCT101W222K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "101R15W223KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCT101W223K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "101R15W331KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCT101W331K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "101R15W472KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCT101W472K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "101R15W473KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCT101W473K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "101R18N101JV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDDD101G101J1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "101R18W104KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDDD101W104K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "101R18W223KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDDD101W223K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "101R18W333KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDDD101W333K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "101R18W823KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDDD101W823K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "101S43W105KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TCDR101W105K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "101S43W334KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDDR101W334K1GV001E": {
       "manufacturer": "Johanson Dielectrics",
       "source": "manufacturer-product-search",
       "confidence": "verified"
