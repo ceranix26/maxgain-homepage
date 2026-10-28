@@ -197,3 +197,17 @@ cross-company ownership resolution을 마무리해.
 - `0400LP15A0122E`는 Legacy PN, `0400LP15A0122001E`는 확인된 Technology GPN이다. Google VM에서 2026-10-27 실행한 이전 커밋의 dry-run은 양쪽 검색/상세 요청 성공 후 이 관계를 찾았으나 당시 출력에는 빈 specs 값과 Download 텍스트가 포함돼 있었다.
 - 최신 정리 커밋 `a86b7ad`는 push 완료됐으나, Google VM에서 아직 pull 및 재검증하지 않았다. 다음 작업은 VM에서 `git pull --ff-only` 후 동일 PN을 `--dry-run --retry`로 재실행하고, 제안된 specs에 `None`/`Download`/회사 및 PN 메타데이터가 없는지 확인하는 것이다.
 - 확인 전에는 real write를 실행하지 않는다. 현재까지 `product-manufacturers.json`, `product-aliases.json`, `product-specs.json`은 수정하지 않았다.
+
+## Johanson 업데이트 - 2026-10-28 (수집 완료)
+
+- VM에서 `--limit 100` batch를 후보 소진까지 반복했고 `a86b7ad` 이후 모든 결과를 push했다. 소진 신호는 요청 1~2회, `limit: false`, `added: 0`이다.
+- 저장 상태: 제조사 매핑 2,630개(Johanson Technology verified 525, Johanson Dielectrics verified 355, Walsin 1,388, Viking Tech 361, Coilcraft 1), alias 448개, spec 509개, 후보 18건.
+- 남은 review: `no-exact-match`는 Johanson 제품이 아닌 PN이라 정상이다. 후보가 여럿인 `ambiguous-exact-matches` 18건은 후보 표시로 처리한다.
+- 일반 MLCC 모호 GPN 규칙(Johanson 공식 답변): 500V 이상은 `VB`, 미만은 `TF`로 시작하는 GPN이 검색 결과에 나온다. 설명이 `Capacitors SMT`로 시작하고 전압이 일치하며 후보가 정확히 하나일 때만 확정하고, 그 외에는 review로 남긴다.
+- 한 Legacy PN이 여러 GPN으로 나오고 규칙으로 가려지지 않으면 alias/manufacturer/spec을 Legacy PN에 만들지 않는다. 후보 GPN과 공식 URL을 `data/product-candidates.json`에 기록하고, 후보 GPN별 공식 spec만 GPN 키로 `product-specs.json`에 저장한다.
+- `-BME` 접미사 Legacy PN은 `electrode: "BME"` 후보로 기록하고 화면에 `(BME)`를 붙인다. PME는 공식 필드가 없어 표기하지 않는다.
+- 이미 `verified`인 Johanson PN은 후보에서 제외한다. 후보 파일은 항목이 해결되면 제거될 수 있어 기존 데이터 변경 검사 대상에서 제외한다.
+- 화면(`product-search.html`): "변경된 Part Number" 후보 링크를 규격보다 위에 표시한다. 후보 규격은 모든 후보에서 같은 값은 "공통 규격"으로 한 번만, 다른 값은 후보별 비교 표로 보여준다. 링크는 https와 Johanson 두 도메인만 허용한다.
+- Johanson 형식 PN(`0400LP15…`, `101R14…` 등)을 후보 앞쪽에 정렬하고 Walsin 패턴(`^\d{4}[NX]`)은 뒤로 보낸다. 제외는 하지 않는다.
+- 운영 절차: Codespaces는 Johanson에서 403이라 조회는 VM에서만 한다. 요청 한도는 실행당 200회, 간격 1초다. 일반 batch는 dry-run 없이 실행하고, 실행 후 제조사/alias/spec의 기존 항목 `removed 0, changed 0`을 확인한 뒤 데이터 파일만 `git add`한다. review/backup 파일은 commit하지 않는다. 대화형 shell에서 `set -e`를 쓰면 세션이 닫히므로 `bash -c`로 감싼다.
+- 다음 작업: Samsung(`CL03A104K03NNNC` 단일 PN dry-run부터).
