@@ -444,6 +444,15 @@ function isCandidatePartNumber(partNumber) {
     /^\d{3,5}[A-Z]{1,}[A-Z0-9._/+\\-]{2,}$/i.test(value);
 }
 
+// Ordering hint only: candidates are never excluded, official search decides ownership.
+function johansonPatternRank(partNumber) {
+  const value = partNumber.trim().toUpperCase();
+  if (/^\d{4}[NX]/.test(value)) return 1;
+  if (/^\d{4}[A-Z]{2}\d{2}[A-Z]\d/.test(value)) return 0;
+  if (/^\d{3}[RSUXPCNWQ]\d{2}[A-Z]\d/.test(value)) return 0;
+  return 1;
+}
+
 function isJohansonManufacturer(record) {
   return typeof record?.manufacturer === 'string' &&
     /^Johanson (Technology|Dielectrics)$/i.test(record.manufacturer.trim());
@@ -671,6 +680,7 @@ async function main() {
     candidates = exact;
   }
   candidates.sort((left, right) =>
+    johansonPatternRank(left) - johansonPatternRank(right) ||
     Number(isInStock(inventory[right])) - Number(isInStock(inventory[left])) ||
     (left < right ? -1 : left > right ? 1 : 0)
   );
