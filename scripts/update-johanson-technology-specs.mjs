@@ -689,7 +689,8 @@ async function main() {
   let candidates = inventoryPartNumbers.filter(partNumber =>
     isCandidatePartNumber(partNumber) &&
     (!manufacturerItems[partNumber]?.manufacturer ||
-      isJohansonManufacturer(manufacturerItems[partNumber]))
+      (isJohansonManufacturer(manufacturerItems[partNumber]) &&
+        manufacturerItems[partNumber].confidence !== 'verified'))
   );
   if (options.partNumber) {
     const exact = inventoryPartNumbers.filter(partNumber =>
