@@ -511,6 +511,12 @@ function normalizeOfficialRecords(results, inventoryPartNumber) {
   ])).values()];
 }
 
+// Official Legacy PN with a "-BME" suffix marks the BME electrode variant of the same legacy number.
+function bmeVariantRecords(results, inventoryPartNumber) {
+  const bmeKey = `${normalizePartNumber(inventoryPartNumber)}-BME`;
+  return results.filter(result => normalizePartNumber(result.legacyPartNumber) === bmeKey);
+}
+
 function canonicalGlobalPartNumber(result) {
   return normalizePartNumber(result.globalPartNumber);
 }
@@ -770,12 +776,18 @@ async function main() {
         summary.review += 1;
         ambiguousCompanies.add(key);
         const known = candidateItems[inventoryPartNumber] ?? { candidates: [] };
-        for (const result of exactResults) {
-          if (!known.candidates.some(item =>
-            normalizePartNumber(item.partNumber) === normalizePartNumber(result.globalPartNumber))) {
+        const bmeResults = bmeVariantRecords(results, inventoryPartNumber);
+        for (const result of [...exactResults, ...bmeResults]) {
+          const electrode = bmeResults.includes(result) ? 'BME' : undefined;
+          const existing = known.candidates.find(item =>
+            normalizePartNumber(item.partNumber) === normalizePartNumber(result.globalPartNumber));
+          if (existing) {
+            if (electrode) existing.electrode = electrode;
+          } else {
             known.candidates.push({
               partNumber: result.globalPartNumber,
-              url: result.detailUrl
+              url: result.detailUrl,
+              ...(electrode ? { electrode } : {})
             });
           }
         }
