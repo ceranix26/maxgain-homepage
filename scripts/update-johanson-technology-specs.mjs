@@ -453,6 +453,19 @@ function johansonPatternRank(partNumber) {
   return 1;
 }
 
+// Official Johanson answer: for general MLCCs, >=500V maps to a VB global PN, <500V to TF.
+function resolveGeneralMlccByVoltage(exactResults) {
+  const matching = exactResults.filter(result => {
+    const description = result.description ?? '';
+    if (!/^Capacitors SMT\b/i.test(description)) return false;
+    const voltage = description.match(/,\s*(\d+(?:\.\d+)?)\s*V\b/i);
+    if (!voltage) return false;
+    const prefix = Number(voltage[1]) >= 500 ? 'VB' : 'TF';
+    return result.globalPartNumber.toUpperCase().startsWith(prefix);
+  });
+  return matching.length === 1 ? matching[0] : null;
+}
+
 function isJohansonManufacturer(record) {
   return typeof record?.manufacturer === 'string' &&
     /^Johanson (Technology|Dielectrics)$/i.test(record.manufacturer.trim());
@@ -741,7 +754,12 @@ async function main() {
         continue;
       }
       const exactResults = normalizeOfficialRecords(results, inventoryPartNumber);
-      if (exactResults.length > 1) {
+      const voltageResolved = exactResults.length > 1
+        ? resolveGeneralMlccByVoltage(exactResults)
+        : null;
+      if (voltageResolved) {
+        matchesByCompany.set(key, voltageResolved);
+      } else if (exactResults.length > 1) {
         summary.review += 1;
         ambiguousCompanies.add(key);
         updatedReviewItems[key][inventoryPartNumber] = {
