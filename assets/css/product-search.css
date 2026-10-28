@@ -244,6 +244,15 @@
   overflow-wrap: anywhere;
 }
 
+.product-detail-candidates {
+  margin-top: 0;
+  margin-bottom: 20px;
+}
+
+.product-detail-candidates a {
+  font-size: .67em;
+}
+
 .product-detail-documents a:focus-visible {
   outline: 3px solid #a84300;
   outline-offset: 3px;
