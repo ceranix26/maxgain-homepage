@@ -1,6 +1,18 @@
 {
   "version": 1,
   "items": {
+    "251R14S0R7AV4T": {
+      "candidates": [
+        {
+          "partNumber": "QSCP251Q0R7A1GV001T",
+          "url": "https://www.johansontechnology.com/part/QSCP251Q0R7A1GV001T/"
+        },
+        {
+          "partNumber": "QSCP251Q0R7A1GV004T",
+          "url": "https://www.johansontechnology.com/part/QSCP251Q0R7A1GV004T/"
+        }
+      ]
+    },
     "101R15W103KV4T": {
       "candidates": [
         {
@@ -68,18 +80,6 @@
           "partNumber": "TFCF250W103K1GV001T",
           "url": "https://www.johansontechnology.com/part/TFCF250W103K1GV001T/",
           "electrode": "BME"
-        }
-      ]
-    },
-    "251R14S0R7AV4T": {
-      "candidates": [
-        {
-          "partNumber": "QSCP251Q0R7A1GV001T",
-          "url": "https://www.johansontechnology.com/part/QSCP251Q0R7A1GV001T/"
-        },
-        {
-          "partNumber": "QSCP251Q0R7A1GV004T",
-          "url": "https://www.johansontechnology.com/part/QSCP251Q0R7A1GV004T/"
         }
       ]
     }
