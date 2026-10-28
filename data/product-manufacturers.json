@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-28T02:24:53.213Z",
+  "updatedAt": "2026-10-28T03:52:28.131Z",
   "items": {
     "0402B102J500CT": {
       "manufacturer": "Walsin",
@@ -10174,6 +10174,1366 @@
     },
     "QSCP251Q560J1GV001T": {
       "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R14S6R2CV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCP251Q6R2C1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R14S7R5CV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCP251Q7R5C1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R14S9R1CV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCP251Q9R1C1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S0R2BV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q0R2B1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S0R3BV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q0R3B1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S0R4BV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q0R4B1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S0R5AV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q0R5A1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S0R6BV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q0R6B1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S0R7AV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q0R7A1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S0R7BV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q0R7B1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S0R8BV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q0R8B1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S110GV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q110G1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S110JV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q110J1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S121JV6E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q121J2GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S150JV6E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q150J2GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S151JV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q151J1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S180JV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q180J1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S1R1BV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q1R1B1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S1R2BV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q1R2B1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S1R3BV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q1R3B1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S1R3BV6E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q1R3B2GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S1R5BV6E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q1R5B2GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S1R5CV4Z": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q1R5C1GV001K": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S1R9BV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q1R9B1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S220JV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q220J1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S221JV6E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q221J2GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S270JV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q270J1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S2R2BV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q2R2B1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S2R2CV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q2R2C1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S2R2CV6E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q2R2C2GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S2R4BV6Z": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q2R4B2GV001K": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S2R4CV6E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q2R4C2GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S2R7CV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q2R7C1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S2R7CV6E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q2R7C2GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S300JV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q300J1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S360JV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q360J1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S390JV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q390J1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S3R0BV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q3R0B1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S3R0CV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q3R0C1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S3R3BV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q3R3B1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S3R3CV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q3R3C1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S3R3CV6E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q3R3C2GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S3R6CV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q3R6C1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S3R6DV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q3R6D1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S3R9CV4Z": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q3R9C1GV001K": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S3R9CV6E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q3R9C2GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S430JV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q430J1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S4R3CV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q4R3C1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S4R3CV6E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q4R3C2GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S4R7BV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q4R7B1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S560JV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q560J1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S560JV6E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q560J2GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S5R6BV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q5R6B1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S6R8BV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q6R8B1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S750JV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q750J1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S7R5CV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q7R5C1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15S9R1CV4Z": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCT251Q9R1C1GV001K": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15W102KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCT251W102K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15W103KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCT251W103K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15W121KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCT251W121K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15W223KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCT251W223K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251R15W392KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCT251W392K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251S41W104KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDDF251W104K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251S41W124KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDDF251W124K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251S43W333KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDDR251W333K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "251S48W105KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TCEH251W105K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "2600BP14M0200001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "302R29N100JV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "VPDP302G100J1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "302R29N120JV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "VPDP302G120J1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "302R29N150JV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "VPDP302G150J1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "302R29N180JV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "VPDP302G180J1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "302R29N270JV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "VPDP302G270J1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "302R29N330JV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "VPDP302G330J1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "302R29N390JV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "VPDP302G390J1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "302R29N470JV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "VPDP302G470J1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "302R29N560JV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "VPDP302G560J1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "302R29W471KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "VPDP302W471K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "302S43W102KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "VPDR302W102K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "302S47W472KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "VPEF302W472K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "3600BP15M600-EB-SMA": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "3600BP15M0600001CE1": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "3600BP15P0600E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "3600BP15P0600001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "3960BP39A1584E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "3960BP39A1584001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "4400BL15A0050001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "4400BL15A0100001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "4700BP14A0600001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07N151GV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCF500G151G1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07N1R2BV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCF500G1R2B1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07N1R8BV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCF500G1R8B1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07N560JV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCF500G560J1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07N680JV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCF500G680J1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S0R2BV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q0R2B1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S0R4BV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q0R4B1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S0R5BV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q0R5B1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S0R9AV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q0R9A1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S110JV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q110J1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S120JV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q120J1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S150JV4Y": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q150J1GV001Y": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S1R0AV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q1R0A1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S1R0BV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q1R0B1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S1R3AV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q1R3A1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S1R6BV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q1R6B1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S1R8AV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q1R8A1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S1R8BV4Y": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q1R8B1GV001Y": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S300FV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q300F1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S300JV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q300J1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S330GV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q330G1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S3R6BV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q3R6B1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S3R9BV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q3R9B1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S3R9BV4Y": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q3R9B1GV001Y": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S4R7CV4Y": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q4R7C1GV001Y": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S5R1CV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q5R1C1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S5R6BV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q5R6B1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S5R6CV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q5R6C1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S6R8CV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q6R8C1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S7R5BV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q7R5B1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S7R5CV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q7R5C1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S9R1BV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q9R1B1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R07S9R1CV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF500Q9R1C1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14N120FV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500G120F1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14N151FV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500G151F1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14N1R0CV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500G1R0C1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14N1R2BV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500G1R2B1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14N1R2CV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500G1R2C1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14N1R8CV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500G1R8C1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14N2R2BV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500G2R2B1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14N390FV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500G390F1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14N4R7BV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500G4R7B1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14N560JV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500G560J1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14N681JV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500G681J1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14N820JV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500G820J1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14W102JV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500W102J1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14W102KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500W102K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14W104KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500W104K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14W182JV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500W182J1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14W471JV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500W471J1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14W471KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500W471K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14W472JV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500W472J1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "500R14W472KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP500W472K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
       "source": "manufacturer-product-search",
       "confidence": "verified"
     }

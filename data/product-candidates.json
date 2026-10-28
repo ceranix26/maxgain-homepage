@@ -82,6 +82,85 @@
           "electrode": "BME"
         }
       ]
+    },
+    "251R14S820JV4T": {
+      "candidates": [
+        {
+          "partNumber": "QSCP251Q820J1GV001T",
+          "url": "https://www.johansontechnology.com/part/QSCP251Q820J1GV001T/"
+        },
+        {
+          "partNumber": "QSCP251Q820J1GV003T",
+          "url": "https://www.johansontechnology.com/part/QSCP251Q820J1GV003T/"
+        }
+      ]
+    },
+    "251R15S0R1BV4E": {
+      "candidates": [
+        {
+          "partNumber": "QSCT251Q0R1B1GV001E",
+          "url": "https://www.johansontechnology.com/part/QSCT251Q0R1B1GV001E/"
+        },
+        {
+          "partNumber": "QSCT251Q0R1B1GV003E",
+          "url": "https://www.johansontechnology.com/part/QSCT251Q0R1B1GV003E/"
+        }
+      ]
+    },
+    "302S47W102KV4E": {
+      "candidates": [
+        {
+          "partNumber": "VPEF302W102K1GV001E-202603242247479666",
+          "url": "https://www.johansontechnology.com/part/VPEF302W102K1GV001E-202603242247479666/"
+        },
+        {
+          "partNumber": "VPEF302W102K1GV001E",
+          "url": "https://www.johansontechnology.com/part/VPEF302W102K1GV001E/"
+        },
+        {
+          "partNumber": "VBEF302W102K1GV001E",
+          "url": "https://www.johansontechnology.com/part/VBEF302W102K1GV001E/",
+          "electrode": "BME"
+        }
+      ]
+    },
+    "500R14N220JV4T": {
+      "candidates": [
+        {
+          "partNumber": "TJCP500G220J1GV001T",
+          "url": "https://www.johansontechnology.com/part/TJCP500G220J1GV001T/"
+        },
+        {
+          "partNumber": "TDCP500G220J1GV001T-202608251914189137",
+          "url": "https://www.johansontechnology.com/part/TDCP500G220J1GV001T-202608251914189137/"
+        },
+        {
+          "partNumber": "TFCP500G220J1GV001T",
+          "url": "https://www.johansontechnology.com/part/TFCP500G220J1GV001T/",
+          "electrode": "BME"
+        }
+      ]
+    },
+    "500R14N221JV4T": {
+      "candidates": [
+        {
+          "partNumber": "TJCP500G221J1GV001T",
+          "url": "https://www.johansontechnology.com/part/TJCP500G221J1GV001T/"
+        },
+        {
+          "partNumber": "TDCP500G221J1GV001T",
+          "url": "https://www.johansontechnology.com/part/TDCP500G221J1GV001T/"
+        },
+        {
+          "partNumber": "TDCP500G221J1GV001T-202609212316445536",
+          "url": "https://www.johansontechnology.com/part/TDCP500G221J1GV001T-202609212316445536/"
+        },
+        {
+          "partNumber": "TFCP500G221J1GV001T",
+          "url": "https://www.johansontechnology.com/part/TFCP500G221J1GV001T/",
+          "electrode": "BME"
+        }
+      ]
     }
   }
 }
