@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-28T02:12:24.250Z",
+  "updatedAt": "2026-10-28T02:16:51.875Z",
   "items": {
     "0402B102J500CT": {
       "manufacturer": "Walsin",
@@ -9713,6 +9713,36 @@
       "confidence": "verified"
     },
     "VPDR202G471J1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R07S0R7BV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF201Q0R7B1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R07S1R4BV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF201Q1R4B1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "202S43W152KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "VPDR202W152K1GV001E": {
       "manufacturer": "Johanson Dielectrics",
       "source": "manufacturer-product-search",
       "confidence": "verified"
