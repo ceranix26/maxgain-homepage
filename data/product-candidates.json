@@ -231,6 +231,30 @@
           "url": "https://www.johansontechnology.com/part/S0AP500W500K1S2001W/"
         }
       ]
+    },
+    "501S42E820FV4E": {
+      "candidates": [
+        {
+          "partNumber": "QEDB501Q820F2GV001E-202404162226275826",
+          "url": "https://www.johansontechnology.com/part/QEDB501Q820F2GV001E-202404162226275826/"
+        },
+        {
+          "partNumber": "QEDB501Q820F1GV001E",
+          "url": "https://www.johansontechnology.com/part/QEDB501Q820F1GV001E/"
+        }
+      ]
+    },
+    "0900BL18B100E": {
+      "candidates": [
+        {
+          "partNumber": "0900BL18B0100001R",
+          "url": "https://www.johansontechnology.com/part/0900BL18B0100001R/"
+        },
+        {
+          "partNumber": "0900BL18B0100001E",
+          "url": "https://www.johansontechnology.com/part/0900BL18B0100001E/"
+        }
+      ]
     }
   }
 }
