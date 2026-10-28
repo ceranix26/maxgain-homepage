@@ -253,14 +253,28 @@
   font-size: .67em;
 }
 
-.product-detail-candidate-specs {
-  margin-top: 12px;
+.product-detail-subtitle {
+  margin: 16px 0 8px;
+  font-size: .95em;
+}
+
+.product-detail-diff {
+  overflow-x: auto;
+}
+
+.product-detail-diff table {
+  width: 100%;
+  border-collapse: collapse;
   font-size: .85em;
 }
 
-.product-detail-candidate-specs summary {
-  cursor: pointer;
-  font-weight: 700;
+.product-detail-diff th,
+.product-detail-diff td {
+  padding: 6px 8px;
+  border-bottom: 1px solid var(--line);
+  text-align: left;
+  vertical-align: top;
+  overflow-wrap: anywhere;
 }
 
 .product-detail-documents a:focus-visible {
