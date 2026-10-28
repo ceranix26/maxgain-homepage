@@ -161,6 +161,76 @@
           "electrode": "BME"
         }
       ]
+    },
+    "500R15W103KV4T": {
+      "candidates": [
+        {
+          "partNumber": "TJCT500W103K1GV001T",
+          "url": "https://www.johansontechnology.com/part/TJCT500W103K1GV001T/"
+        },
+        {
+          "partNumber": "TDCT500W103K1GV001T",
+          "url": "https://www.johansontechnology.com/part/TDCT500W103K1GV001T/"
+        },
+        {
+          "partNumber": "TFCT500W103K1GV001T",
+          "url": "https://www.johansontechnology.com/part/TFCT500W103K1GV001T/",
+          "electrode": "BME"
+        }
+      ]
+    },
+    "500R18W104KV4T": {
+      "candidates": [
+        {
+          "partNumber": "TJDD500W104K1GV001T",
+          "url": "https://www.johansontechnology.com/part/TJDD500W104K1GV001T/"
+        },
+        {
+          "partNumber": "TDDD500W104K1GV001T",
+          "url": "https://www.johansontechnology.com/part/TDDD500W104K1GV001T/"
+        },
+        {
+          "partNumber": "TFDD500W104K1GV001T",
+          "url": "https://www.johansontechnology.com/part/TFDD500W104K1GV001T/",
+          "electrode": "BME"
+        }
+      ]
+    },
+    "500U10K0R2AT4W": {
+      "candidates": [
+        {
+          "partNumber": "S0AA500G0R2A1S2001W",
+          "url": "https://www.johansontechnology.com/part/S0AA500G0R2A1S2001W/"
+        },
+        {
+          "partNumber": "S0AC500G0R2A1S2001W",
+          "url": "https://www.johansontechnology.com/part/S0AC500G0R2A1S2001W/"
+        }
+      ]
+    },
+    "500U20T101KT4W": {
+      "candidates": [
+        {
+          "partNumber": "S0AP500W101K1S2003W",
+          "url": "https://www.johansontechnology.com/part/S0AP500W101K1S2003W/"
+        },
+        {
+          "partNumber": "S0AR500W101K1S2001W",
+          "url": "https://www.johansontechnology.com/part/S0AR500W101K1S2001W/"
+        }
+      ]
+    },
+    "500U20W500KT4W": {
+      "candidates": [
+        {
+          "partNumber": "S0AR500W500K1S2001W",
+          "url": "https://www.johansontechnology.com/part/S0AR500W500K1S2001W/"
+        },
+        {
+          "partNumber": "S0AP500W500K1S2001W",
+          "url": "https://www.johansontechnology.com/part/S0AP500W500K1S2001W/"
+        }
+      ]
     }
   }
 }
