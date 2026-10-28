@@ -3103,6 +3103,59 @@
         "Storage Temp Range (None Operating)": "-65°C to +150°C",
         "Harmonization": "8532.24.00.20"
       }
+    },
+    "VPDR102W473K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "partNumbers": {
+        "primary": "VPDR102W473K1GV001E",
+        "legacy": [
+          "102S43W473KV4E"
+        ]
+      },
+      "lifecycle": "Active",
+      "description": "Capacitors High Voltage PME SMD ≥ 500V, 1812, X7R, 1,000.0V, 0.047µF±10%, Ni/Sn (RoHS), 7\" Reel Embossed Tape",
+      "source": {
+        "type": "manufacturer",
+        "name": "Johanson Dielectrics",
+        "title": "Johanson Dielectrics Product Data",
+        "url": "https://www.johansontechnology.com/part/VPDR102W473K1GV001E/"
+      },
+      "specs": {
+        "AEC Q200 Qualified": "No",
+        "Schedule B": "8532.24.00.20",
+        "ITAR": "No",
+        "ECCN": "EAR99",
+        "RoHS Compliance": "Yes, RoHS 10/10",
+        "REACH": "Yes",
+        "Country of Origin": "US, MX, TW, or CN",
+        "Product Subfamily": "Capacitors High Voltage SMD ≥ 500V",
+        "Capacitance Value": "0.047",
+        "Cap Unit of Meas": "µF",
+        "Tolerance": "±10%",
+        "Voltage": "1000.0",
+        "Dielectric Temp Coefficient": "X7R",
+        "Termination": "68",
+        "Marking": "No Mark",
+        "Product Release Date": "Jan. 3, 2006",
+        "Web Page Link": "https://www.johansondielectrics.com/high-voltage-mlc-capacitors",
+        "Size for Capacitors (EIA)": "1812",
+        "NCNR": "No",
+        "Thickness (Max)": "0.110",
+        "End Band(Min)": "0.01",
+        "End Band (max)": "0.040",
+        "Standard Item": "Yes",
+        "Lead Time Typical (Weeks)*": "*This can vary significantly so it is important to obtain a quotation with lead time for production planning purposes. 17",
+        "Length (Min)": "0.165",
+        "Length (Max)": "0.189",
+        "Width (Min)": "0.115",
+        "Width (Max)": "0.135",
+        "Packaging": "7\" Reel Embossed Tape",
+        "Packaging Qty": "1000",
+        "Operating Temp Range": "-55°C to +125°C",
+        "Storage Temp Range (Packaged)": "+5°C to +40°C with RH 20% to 70%",
+        "Storage Temp Range (None Operating)": "-65°C to +125°C",
+        "Harmonization": "8532.24.00.20"
+      }
     }
   }
 }

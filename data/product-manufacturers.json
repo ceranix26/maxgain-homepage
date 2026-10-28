@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-28T01:13:52.946Z",
+  "updatedAt": "2026-10-28T01:18:36.195Z",
   "items": {
     "0402B102J500CT": {
       "manufacturer": "Walsin",
@@ -9259,6 +9259,16 @@
     },
     "QEDB102Q6R8C1GV001E": {
       "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "102S43W473KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "VPDR102W473K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
       "source": "manufacturer-product-search",
       "confidence": "verified"
     }
