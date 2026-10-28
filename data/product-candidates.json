@@ -29,6 +29,18 @@
           "url": "https://www.johansontechnology.com/part/VPDD102W331K1GV001E/"
         }
       ]
+    },
+    "202R18W331KV4E": {
+      "candidates": [
+        {
+          "partNumber": "VPDD202W331K1GV001E",
+          "url": "https://www.johansontechnology.com/part/VPDD202W331K1GV001E/"
+        },
+        {
+          "partNumber": "VBDD202W331K1GV001E",
+          "url": "https://www.johansontechnology.com/part/VBDD202W331K1GV001E/"
+        }
+      ]
     }
   }
 }

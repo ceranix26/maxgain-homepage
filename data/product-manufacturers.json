@@ -1,6 +1,6 @@
 {
   "version": 1,
-  "updatedAt": "2026-10-28T01:18:36.195Z",
+  "updatedAt": "2026-10-28T02:12:24.250Z",
   "items": {
     "0402B102J500CT": {
       "manufacturer": "Walsin",
@@ -9268,6 +9268,451 @@
       "confidence": "verified"
     },
     "VPDR102W473K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "102S48W104KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "VPEH102W104K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "1407DP15A2450001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "160R18W225KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TCDD160W225K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "1720BL15B0050001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "1800BL18B200E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "1800BL18B200001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "1905BP18A0050E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "1905BP18A0050001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "1988BP41A0600001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R07S0R2AV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF201Q0R2A1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R07S100JV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF201Q100J1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R07S1R0BV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF201Q1R0B1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R07S1R7BV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF201Q1R7B1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R07S1R9BV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF201Q1R9B1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R07S220GV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF201Q220G1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R07S270JV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF201Q270J1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R07S2R2BV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF201Q2R2B1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R07S2R7CV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF201Q2R7C1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R07S3R9CV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF201Q3R9C1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R07S4R7CV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF201Q4R7C1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R07S7R5CV4T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QSCF201Q7R5C1GV001T": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R14W103KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP201W103K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R14W472KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCP201W472K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R15N470JV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCT201G470J1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R15W102KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCT201W102K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R15W221KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCT201W221K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R15W223KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCT201W223K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R15W332KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCT201W332K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R15W471KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDCT201W471K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R18N101JV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDDD201G101J1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R18W103KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDDD201W103K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R18W153KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDDD201W153K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R18W183KV4T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDDD201W183K1GV001T": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201R18W473KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDDD201W473K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201S41W683KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDDF201W683K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201S42E102JV3E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QEDB201Q102J3GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201S42E102JV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QEDB201Q102J1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201S42E102JV4Z": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QEDB201Q102J1GV001K": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201S42E221FV4Z": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QEDB201Q221F1GV001K": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201S42E331FV3Z": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QEDB201Q331F3GV001K": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201S42E331FV4Z": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QEDB201Q331F1GV001K": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201S42E471FV4E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QEDB201Q471F1GV001E": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201S42E471FV4Z": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "QEDB201Q471F1GV001K": {
+      "manufacturer": "Johanson Technology",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "201S43W224MV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "TDDR201W224M1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "202R29W392KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "VPDP202W392K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "202S41W222KV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "VPDF202W222K1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "202S43N221JV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "VPDR202G221J1GV001E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "202S43N471JV4E": {
+      "manufacturer": "Johanson Dielectrics",
+      "source": "manufacturer-product-search",
+      "confidence": "verified"
+    },
+    "VPDR202G471J1GV001E": {
       "manufacturer": "Johanson Dielectrics",
       "source": "manufacturer-product-search",
       "confidence": "verified"
