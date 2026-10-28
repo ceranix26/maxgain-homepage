@@ -17,6 +17,18 @@
           "electrode": "BME"
         }
       ]
+    },
+    "102R18W331KV4E": {
+      "candidates": [
+        {
+          "partNumber": "VBDD102W331K1GV001E",
+          "url": "https://www.johansontechnology.com/part/VBDD102W331K1GV001E/"
+        },
+        {
+          "partNumber": "VPDD102W331K1GV001E",
+          "url": "https://www.johansontechnology.com/part/VPDD102W331K1GV001E/"
+        }
+      ]
     }
   }
 }
