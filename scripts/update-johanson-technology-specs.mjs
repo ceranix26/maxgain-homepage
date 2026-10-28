@@ -793,6 +793,40 @@ async function main() {
           }
         }
         candidateItems[inventoryPartNumber] = known;
+        // Candidate GPN specs only: no alias or manufacturer mapping until the GPN is confirmed.
+        for (const result of [...exactResults, ...bmeResults]) {
+          if (totalRequests >= MAX_REQUESTS) break;
+          const gpn = result.globalPartNumber;
+          if (specUpdates[gpn]) continue;
+          try {
+            const detail = await fetchAuthoritativeDetail(company, result, summary);
+            const ownerKey = explicitCompanyKey(detail) || key;
+            const owner = COMPANIES[ownerKey];
+            if (!Object.keys(detail.specs).length) continue;
+            specUpdates[gpn] = {
+              manufacturer: owner.name,
+              partNumbers: { primary: gpn, legacy: [] },
+              ...(result.lifecycle ? { lifecycle: result.lifecycle } : {}),
+              ...(result.description ? { description: result.description } : {}),
+              source: {
+                type: 'manufacturer',
+                name: owner.name,
+                title: `${owner.name} Product Data`,
+                url: detail.source
+              },
+              ...(detail.infoPdf ? {
+                sourceDocument: { title: 'Product Information PDF', url: detail.infoPdf }
+              } : {}),
+              ...(detail.datasheetUrl ? {
+                datasheet: { title: `${owner.name} Datasheet`, url: detail.datasheetUrl }
+              } : {}),
+              specs: detail.specs
+            };
+            summary.specsAdded += 1;
+          } catch (error) {
+            summary.errors += 1;
+          }
+        }
         updatedReviewItems[key][inventoryPartNumber] = {
           status: 'ambiguous-exact-matches',
           originalPartNumber: inventoryPartNumber,

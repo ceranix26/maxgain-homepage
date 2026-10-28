@@ -253,6 +253,16 @@
   font-size: .67em;
 }
 
+.product-detail-candidate-specs {
+  margin-top: 12px;
+  font-size: .85em;
+}
+
+.product-detail-candidate-specs summary {
+  cursor: pointer;
+  font-weight: 700;
+}
+
 .product-detail-documents a:focus-visible {
   outline: 3px solid #a84300;
   outline-offset: 3px;
