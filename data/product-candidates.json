@@ -10,6 +10,11 @@
         {
           "partNumber": "TJCT101W103K1GV001T",
           "url": "https://www.johansontechnology.com/part/TJCT101W103K1GV001T/"
+        },
+        {
+          "partNumber": "TFCT101W103K1GV001T",
+          "url": "https://www.johansontechnology.com/part/TFCT101W103K1GV001T/",
+          "electrode": "BME"
         }
       ]
     }
