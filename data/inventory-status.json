@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-28T23:00:24.072Z",
-  "baseDate": "20261029",
+  "updatedAt": "2026-10-29T23:00:26.057Z",
+  "baseDate": "20261030",
   "source": "ECOUNT",
   "totalPartNumbers": 22034,
   "items": {
@@ -31505,9 +31505,9 @@
       "stockLevel": "재고 없음"
     },
     "ATMEGA64A-AU": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "소량"
     },
     "ATMEGA8535-16AI": {
       "status": "out-of-stock",
@@ -66027,7 +66027,7 @@
     "M031SD2AE": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "100+"
+      "stockLevel": "500+"
     },
     "M031TD2AE": {
       "status": "out-of-stock",
@@ -76765,21 +76765,21 @@
       "stockLevel": "1,000+"
     },
     "QEDB501Q750J3GV001E": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "QEFM362Q331J1GU001W": {
       "status": "out-of-stock",
       "label": "재고 없음",
       "stockLevel": "재고 없음"
     },
-    "QEFM722Q100J1GU001E": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+    "QEFM722Q100J1GU001W": {
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
-    "QEFM722Q220J1GU001E": {
+    "QEFM722Q220J1GU001W": {
       "status": "out-of-stock",
       "label": "재고 없음",
       "stockLevel": "재고 없음"
@@ -77555,9 +77555,9 @@
       "stockLevel": "1,000+"
     },
     "QSCT251Q5R6C1GV003E": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "QSCT251Q5R6C2GV001E": {
       "status": "in-stock",
@@ -92850,9 +92850,9 @@
       "stockLevel": "재고 없음"
     },
     "SPEAKER 1W": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "100+"
     },
     "SPF5043Z": {
       "status": "out-of-stock",
