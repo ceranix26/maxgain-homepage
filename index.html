@@ -203,149 +203,85 @@
         const touchMarquee = window.matchMedia("(max-width: 800px) and (pointer: coarse)");
         const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
 
+        // On touch screens the marquee is a native horizontal scroller that auto-advances and loops.
         if (partnerMarquee) {
-            let resumeTimer;
-            let activePointerId = null;
-            let startX = 0;
-            let lastX = 0;
-            let partnerAnimation = null;
-            let cycleWidth = 0;
-            let isDragging = false;
-            let suppressClick = false;
+            const PAUSE_AFTER_TOUCH_MS = 3000;
+            let position = 0;
+            let lastFrame = 0;
+            let frameId = 0;
+            let pausedUntil = 0;
+            let touching = false;
 
-            function touchInteractionEnabled() {
-                return touchMarquee.matches && !reducedMotion.matches;
+            const cycleWidth = () => partnerTrack.scrollWidth / 2;
+
+            function wrap() {
+                const cycle = cycleWidth();
+                if (!cycle) return;
+                if (partnerMarquee.scrollLeft >= cycle * 1.5) partnerMarquee.scrollLeft -= cycle;
+                else if (partnerMarquee.scrollLeft <= cycle * 0.5) partnerMarquee.scrollLeft += cycle;
+                position = partnerMarquee.scrollLeft;
             }
 
-            function pauseForInteraction() {
-                if (!touchInteractionEnabled()) return;
-
-                window.clearTimeout(resumeTimer);
-                partnerTrack.classList.add("is-paused");
+            function holdAutoScroll() {
+                pausedUntil = performance.now() + PAUSE_AFTER_TOUCH_MS;
             }
 
-            function resumeAfterInactivity() {
-                if (!touchInteractionEnabled()) return;
-
-                window.clearTimeout(resumeTimer);
-                resumeTimer = window.setTimeout(() => {
-                    if (touchInteractionEnabled() && !partnerMarquee.contains(document.activeElement)) {
-                        partnerTrack.classList.remove("is-paused");
-                    }
-                }, 4000);
-            }
-
-            function moveTrack(distance) {
-                const duration = partnerAnimation?.effect?.getComputedTiming().duration;
-
-                if (!partnerAnimation || typeof duration !== "number" || cycleWidth === 0) return;
-
-                const currentTime = Number(partnerAnimation.currentTime ?? 0);
-                const nextTime = (currentTime - distance / cycleWidth * duration) % duration;
-                partnerAnimation.currentTime = (nextTime + duration) % duration;
-            }
-
-            partnerMarquee.addEventListener("pointerdown", event => {
-                if (!touchInteractionEnabled()) return;
-                if (!event.isPrimary || event.button !== 0) return;
-
-                pauseForInteraction();
-                activePointerId = event.pointerId;
-                startX = event.clientX;
-                lastX = event.clientX;
-                partnerAnimation = partnerTrack.getAnimations().find(
-                    item => item.animationName === "partner-scroll"
-                );
-                cycleWidth = partnerTrack.getBoundingClientRect().width / 2;
-                isDragging = false;
-            });
-
-            document.addEventListener("pointermove", event => {
-                if (!touchInteractionEnabled() || event.pointerId !== activePointerId) return;
-
-                window.clearTimeout(resumeTimer);
-                const distanceFromStart = event.clientX - startX;
-
-                if (!isDragging && Math.abs(distanceFromStart) > 10) {
-                    isDragging = true;
-                    partnerTrack.classList.add("is-dragging");
-                    moveTrack(distanceFromStart);
-                } else if (isDragging) {
-                    moveTrack(event.clientX - lastX);
+            function frame(now) {
+                frameId = window.requestAnimationFrame(frame);
+                const elapsed = Math.min(now - lastFrame, 50);
+                lastFrame = now;
+                const cycle = cycleWidth();
+                if (touching || now < pausedUntil || document.hidden || !cycle ||
+                    partnerMarquee.contains(document.activeElement)) {
+                    position = partnerMarquee.scrollLeft;
+                    return;
                 }
-
-                lastX = event.clientX;
-
-                if (isDragging) event.preventDefault();
-            }, { passive: false });
-
-            function finishPointerInteraction(event) {
-                if (event.pointerId !== activePointerId) return;
-
-                activePointerId = null;
-                partnerTrack.classList.remove("is-dragging");
-                partnerAnimation = null;
-                cycleWidth = 0;
-
-                if (isDragging && event.type === "pointerup") {
-                    suppressClick = true;
-                    window.setTimeout(() => {
-                        suppressClick = false;
-                    }, 0);
-                }
-
-                isDragging = false;
-                resumeAfterInactivity();
+                position += cycle / 30000 * elapsed;
+                partnerMarquee.scrollLeft = position;
+                wrap();
             }
 
-            document.addEventListener("pointerup", finishPointerInteraction);
-            document.addEventListener("pointercancel", finishPointerInteraction);
+            function start() {
+                if (frameId || !touchMarquee.matches) return;
+                partnerMarquee.scrollLeft = cycleWidth();
+                position = partnerMarquee.scrollLeft;
+                lastFrame = performance.now();
+                frameId = window.requestAnimationFrame(frame);
+            }
 
-            partnerMarquee.addEventListener("click", event => {
-                if (!touchInteractionEnabled() || !suppressClick) return;
+            function stop() {
+                window.cancelAnimationFrame(frameId);
+                frameId = 0;
+                partnerMarquee.scrollLeft = 0;
+            }
 
-                event.preventDefault();
-                event.stopImmediatePropagation();
-                suppressClick = false;
-            }, true);
-
-            partnerMarquee.addEventListener("focusin", pauseForInteraction);
-            partnerMarquee.addEventListener("focusout", () => {
-                window.setTimeout(() => {
-                    if (!partnerMarquee.contains(document.activeElement)) {
-                        resumeAfterInactivity();
-                    }
-                }, 0);
+            partnerMarquee.addEventListener("touchstart", () => {
+                touching = true;
+                holdAutoScroll();
+            }, { passive: true });
+            ["touchend", "touchcancel"].forEach(type => {
+                partnerMarquee.addEventListener(type, () => {
+                    touching = false;
+                    holdAutoScroll();
+                }, { passive: true });
             });
-            partnerMarquee.addEventListener("keydown", () => {
-                pauseForInteraction();
-                resumeAfterInactivity();
-            });
+            partnerMarquee.addEventListener("scroll", () => {
+                if (Math.abs(partnerMarquee.scrollLeft - position) > 2) {
+                    holdAutoScroll();
+                    wrap();
+                }
+            }, { passive: true });
 
             touchMarquee.addEventListener("change", event => {
-                if (event.matches) return;
-
-                window.clearTimeout(resumeTimer);
-                activePointerId = null;
-                isDragging = false;
-                partnerTrack.classList.remove("is-dragging");
-
-                if (!reducedMotion.matches) {
-                    partnerTrack.classList.remove("is-paused");
-                }
+                if (event.matches && !reducedMotion.matches) start();
+                else stop();
             });
-
             reducedMotion.addEventListener("change", event => {
-                if (event.matches) {
-                    window.clearTimeout(resumeTimer);
-                    activePointerId = null;
-                    isDragging = false;
-                    partnerTrack.classList.remove("is-dragging");
-                    if (touchMarquee.matches) partnerTrack.classList.add("is-paused");
-                } else if (touchMarquee.matches) {
-                    partnerTrack.classList.remove("is-paused");
-                }
+                if (event.matches) stop();
+                else start();
             });
+
+            if (!reducedMotion.matches) start();
         }
     </script>
     <script>
