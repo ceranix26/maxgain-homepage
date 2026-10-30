@@ -168,23 +168,6 @@
   margin-top: 24px;
 }
 
-.partner-motion-toggle {
-  min-height: 44px;
-  padding: 0 12px;
-  border: 1px solid var(--accent-text);
-  border-radius: 3px;
-  background: transparent;
-  color: var(--accent-text);
-  font: inherit;
-  font-weight: 700;
-  cursor: pointer;
-}
-
-.partner-motion-toggle:hover {
-  background: var(--accent-text);
-  color: #fff;
-}
-
 @keyframes partner-scroll {
   from {
     transform: translateX(0);
@@ -244,17 +227,8 @@
     animation: none;
   }
 
-  .partner-motion-toggle {
-    display: none;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
+  @media (prefers-reduced-motion: reduce) {
   .partner-track {
     animation: none;
-  }
-
-  .partner-motion-toggle {
-    display: none;
   }
 }

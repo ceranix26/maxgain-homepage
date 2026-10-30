@@ -119,9 +119,6 @@
                     </div>
                 </div>
                 <div class="partner-actions">
-                    <button class="partner-motion-toggle" type="button" aria-controls="partner-track"
-                        data-pause-ko="로고 움직임 일시정지" data-pause-en="Pause logo motion"
-                        data-resume-ko="로고 움직임 재개" data-resume-en="Resume logo motion">로고 움직임 일시정지</button>
                     <a class="link partner-more" href="manufacturers.html" data-ko="전체 제조사 보기 →"
                         data-en="View All Manufacturers →">전체 제조사 보기 →</a>
                 </div>
@@ -180,24 +177,6 @@
     <script src="assets/js/main.js"></script>
     <script>
         const partnerTrack = document.querySelector("#partner-track");
-        const partnerMotionToggle = document.querySelector(".partner-motion-toggle");
-
-        function updatePartnerMotionLabel(language = document.documentElement.lang) {
-            const paused = partnerTrack.classList.contains("is-paused");
-            const label = partnerMotionToggle.dataset[`${paused ? "resume" : "pause"}${language === "en" ? "En" : "Ko"}`];
-            partnerMotionToggle.textContent = label;
-        }
-
-        partnerMotionToggle.addEventListener("click", function () {
-            partnerTrack.classList.toggle("is-paused");
-            updatePartnerMotionLabel();
-        });
-
-        window.addEventListener("maxgain:languagechange", event => {
-            updatePartnerMotionLabel(event.detail.language);
-        });
-
-        updatePartnerMotionLabel();
 
         const partnerMarquee = document.querySelector(".partner-marquee");
         const touchMarquee = window.matchMedia("(max-width: 800px) and (pointer: coarse)");
