@@ -211,3 +211,10 @@ cross-company ownership resolution을 마무리해.
 - Johanson 형식 PN(`0400LP15…`, `101R14…` 등)을 후보 앞쪽에 정렬하고 Walsin 패턴(`^\d{4}[NX]`)은 뒤로 보낸다. 제외는 하지 않는다.
 - 운영 절차: Codespaces는 Johanson에서 403이라 조회는 VM에서만 한다. 요청 한도는 실행당 200회, 간격 1초다. 일반 batch는 dry-run 없이 실행하고, 실행 후 제조사/alias/spec의 기존 항목 `removed 0, changed 0`을 확인한 뒤 데이터 파일만 `git add`한다. review/backup 파일은 commit하지 않는다. 대화형 shell에서 `set -e`를 쓰면 세션이 닫히므로 `bash -c`로 감싼다.
 - 다음 작업: Samsung(`CL03A104K03NNNC` 단일 PN dry-run부터).
+
+## 업데이트 - 2026-10-30
+
+- Walsin: `scripts/update-walsin-chip-resistor-specs.mjs` 신규. 공식 `https://www.passivecomponent.com/product-search/ChipR/?partnumber=…`(끝 슬래시 필수)를 조회한다. 공식 PN에 공백이 있을 수 있어 공백 제거 후 비교하고, 결과 `<td>`가 닫히지 않아 `<td` 기준으로 파싱한다. 옵션: `--dry-run`, `--retry`, `--limit`, `--part-number`. 결과: Chip Resistor 1,108개 spec + MLCC 39개, 해당 매핑은 `verified`. exact 불일치 17건은 `data/walsin-chip-resistor-review.json`에 보존한다(임의 매핑 금지). `0402B104K500CT`는 중복 매칭으로 review.
+- Johanson 검토: 매핑 880개(재고 464개) 모두 spec·공식 URL·lifecycle이 있고 제조사/출처/매핑 불일치는 없다. `QSCP251Q7R5C1GV003T`처럼 재고에만 있고 공식 DB에 없는 GPN은 정확 검색 결과가 없어 spec을 만들지 않는다(유사 `…001T`/`…002T`에 연결 금지). GPN 형식이면서 데이터가 없는 재고 PN이 약 241개 있고, 필요하면 VM에서 batch로 공식 DB 존재 여부를 확인한다.
+- 화면: index 모바일 파트너 로고 마키는 네이티브 가로 스크롤 + 자동 이동으로 변경, 일시정지 버튼 제거. Product Search 추천 재고 제품은 Johanson 재고 제품에서만 30개 추출(`data/product-manufacturers.json` 기준). spec이 없는 제품은 "제조사 공식 데이터베이스에서 확인되지 않은 번호이거나 규격 정보가 준비 중" 안내를 표시한다.
+- 다음 작업: Viking Tech(361 pattern-high, spec 미수집), Samsung(`CL03A104K03NNNC` 단일 PN dry-run부터). Johanson 형식 재고 PN 62개의 VM review 상태 확인.
