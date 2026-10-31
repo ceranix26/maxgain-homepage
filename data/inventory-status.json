@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-30T23:00:26.348Z",
-  "baseDate": "20261031",
+  "updatedAt": "2026-10-31T23:00:23.755Z",
+  "baseDate": "20261101",
   "source": "ECOUNT",
   "totalPartNumbers": 22040,
   "items": {
@@ -109670,14 +109670,14 @@
       "stockLevel": "재고 없음"
     },
     "샘플컷팅(c2012)": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "100+"
     },
     "샘플컷팅(C3216)": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "소량"
+      "stockLevel": "100+"
     },
     "샘플컷팅(C4532)": {
       "status": "out-of-stock",
@@ -109715,14 +109715,14 @@
       "stockLevel": "재고 없음"
     },
     "샘플컷팅(R2012)": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "500+"
     },
     "샘플컷팅(R3216)": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "100+"
+      "stockLevel": "1,000+"
     },
     "샘플컷팅(R3225)": {
       "status": "in-stock",
