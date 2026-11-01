@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-10-31T23:00:23.755Z",
-  "baseDate": "20261101",
+  "updatedAt": "2026-11-01T23:00:23.950Z",
+  "baseDate": "20261102",
   "source": "ECOUNT",
   "totalPartNumbers": 22040,
   "items": {
@@ -3090,9 +3090,9 @@
       "stockLevel": "1,000+"
     },
     "0805B333K500CT": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "0805B392K500CT": {
       "status": "in-stock",
@@ -4515,9 +4515,9 @@
       "stockLevel": "재고 없음"
     },
     "0910CF15B0100001E": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "0915AT43A0026E": {
       "status": "in-stock",
@@ -9000,9 +9000,9 @@
       "stockLevel": "재고 없음"
     },
     "12252104ANG0S280001": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "12340200PT": {
       "status": "in-stock",
@@ -11605,9 +11605,9 @@
       "stockLevel": "재고 없음"
     },
     "2.0 HEADER ST 2*05P": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "2.0 HEADER ST 2*07P": {
       "status": "in-stock",
@@ -16005,9 +16005,9 @@
       "stockLevel": "1,000+"
     },
     "251R14S1R8BV4T": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "251R14S200GV4T": {
       "status": "out-of-stock",
@@ -16035,9 +16035,9 @@
       "stockLevel": "재고 없음"
     },
     "251R14S2R0BV4T": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "251R14S2R2BV4T": {
       "status": "out-of-stock",
@@ -16137,7 +16137,7 @@
     "251R14S4R7BV4T": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "stockLevel": "500+"
     },
     "251R14S4R7CV4T": {
       "status": "out-of-stock",
@@ -18275,9 +18275,9 @@
       "stockLevel": "재고 없음"
     },
     "2N5551S-RTK0": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "2N7000": {
       "status": "in-stock",
@@ -20740,9 +20740,9 @@
       "stockLevel": "재고 없음"
     },
     "4400BL15A0100001E": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "446MHz": {
       "status": "out-of-stock",
@@ -27110,9 +27110,9 @@
       "stockLevel": "100+"
     },
     "74HC595D": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "74HC595N": {
       "status": "out-of-stock",
@@ -28215,9 +28215,9 @@
       "stockLevel": "재고 없음"
     },
     "ACM70V-701-2PL-TL00": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "ACMS100505A100 2A(S)": {
       "status": "out-of-stock",
@@ -29625,14 +29625,14 @@
       "stockLevel": "재고 없음"
     },
     "AO3407A": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "AO4407A": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "AO4435": {
       "status": "out-of-stock",
@@ -30910,9 +30910,9 @@
       "stockLevel": "재고 없음"
     },
     "AR05FTC1371": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "AR05FTC1500": {
       "status": "out-of-stock",
@@ -30960,9 +30960,9 @@
       "stockLevel": "재고 없음"
     },
     "AR05FTC3740": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "AR05FTC4022": {
       "status": "out-of-stock",
@@ -30975,9 +30975,9 @@
       "stockLevel": "재고 없음"
     },
     "AR05FTC8062": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "AR05FTD4202N": {
       "status": "in-stock",
@@ -30995,9 +30995,9 @@
       "stockLevel": "재고 없음"
     },
     "AR05FTS2001": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "AR05FTS2400": {
       "status": "out-of-stock",
@@ -31505,9 +31505,9 @@
       "stockLevel": "재고 없음"
     },
     "ATMEGA64A-AU": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "ATMEGA8535-16AI": {
       "status": "out-of-stock",
@@ -33250,9 +33250,9 @@
       "stockLevel": "재고 없음"
     },
     "BLM21PG331SN1D": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "BLM21SP111SN1D": {
       "status": "out-of-stock",
@@ -33625,9 +33625,9 @@
       "stockLevel": "100+"
     },
     "BS200D-4045-14G/2×07(C)": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "100+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "BS200D-4045-16G": {
       "status": "in-stock",
@@ -33680,9 +33680,9 @@
       "stockLevel": "재고 없음"
     },
     "BS32c 20A": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "BSC040N10NS5ATMA1": {
       "status": "out-of-stock",
@@ -34210,9 +34210,9 @@
       "stockLevel": "재고 없음"
     },
     "C/CAP 50V CH7D": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "C0402C102K5RACTU": {
       "status": "out-of-stock",
@@ -35225,9 +35225,9 @@
       "stockLevel": "재고 없음"
     },
     "CC0402KRX7R7BB104": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "CC0402KRX7R8BB104": {
       "status": "out-of-stock",
@@ -35370,9 +35370,9 @@
       "stockLevel": "재고 없음"
     },
     "CC0603JRNP09BN150": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "CC0603JRNP09BN180": {
       "status": "out-of-stock",
@@ -35410,9 +35410,9 @@
       "stockLevel": "재고 없음"
     },
     "CC0603JRNPO9BN101": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "CC0603JRNPO9BN120": {
       "status": "out-of-stock",
@@ -35550,9 +35550,9 @@
       "stockLevel": "재고 없음"
     },
     "CC0603KRX7R9BB473": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "CC0603KRX7R9BB474": {
       "status": "out-of-stock",
@@ -37890,9 +37890,9 @@
       "stockLevel": "재고 없음"
     },
     "CL10B154K08NNNC": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "CL10B154KO8NNNC": {
       "status": "out-of-stock",
@@ -38005,9 +38005,9 @@
       "stockLevel": "재고 없음"
     },
     "CL10C020CB8NNNC": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "CL10C030CB8NNNC": {
       "status": "out-of-stock",
@@ -38020,9 +38020,9 @@
       "stockLevel": "재고 없음"
     },
     "CL10C050CB8NNNC": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "CL10C060CB8NNNC": {
       "status": "in-stock",
@@ -38190,9 +38190,9 @@
       "stockLevel": "재고 없음"
     },
     "CL10C2R5CB8NNNC": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "CL10C2R7CB8NNNC": {
       "status": "out-of-stock",
@@ -38515,9 +38515,9 @@
       "stockLevel": "재고 없음"
     },
     "CL21B106KAYQNNE": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "CL21B106KOQNFNE": {
       "status": "out-of-stock",
@@ -39095,9 +39095,9 @@
       "stockLevel": "1,000+"
     },
     "CL31B473KBCNNNC": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "CL31B474KBHNNNE": {
       "status": "in-stock",
@@ -39155,9 +39155,9 @@
       "stockLevel": "1,000+"
     },
     "CL32A107MPVNNNE": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "100+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "CL32A226K0JNNNE": {
       "status": "out-of-stock",
@@ -39175,9 +39175,9 @@
       "stockLevel": "재고 없음"
     },
     "CL32A476KPJNNNE": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "100+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "CL32B105KCJSNNE": {
       "status": "out-of-stock",
@@ -39252,7 +39252,7 @@
     "CLE 100V 100": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "stockLevel": "100+"
     },
     "CLF10040T-100M-D": {
       "status": "out-of-stock",
@@ -39690,9 +39690,9 @@
       "stockLevel": "재고 없음"
     },
     "CR 1/2-10 J": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "100+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "CR 1/2-100": {
       "status": "out-of-stock",
@@ -39835,9 +39835,9 @@
       "stockLevel": "재고 없음"
     },
     "CR 1/4-22J": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "100+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "CR 1/4-22K": {
       "status": "out-of-stock",
@@ -39940,9 +39940,9 @@
       "stockLevel": "재고 없음"
     },
     "CR 1/4-680 J": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "100+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "CR 1/4-68K J": {
       "status": "out-of-stock",
@@ -39950,9 +39950,9 @@
       "stockLevel": "재고 없음"
     },
     "CR 1/4-6K8 J": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "100+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "CR 1／8-0R0 J": {
       "status": "out-of-stock",
@@ -48265,9 +48265,9 @@
       "stockLevel": "1,000+"
     },
     "CSR0204FTDV0100": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "CSR0204FTDV0120": {
       "status": "in-stock",
@@ -48680,9 +48680,9 @@
       "stockLevel": "재고 없음"
     },
     "CT357B": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "500+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "CTB1140": {
       "status": "out-of-stock",
@@ -49180,9 +49180,9 @@
       "stockLevel": "재고 없음"
     },
     "DA2GYE102M": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "DAC081S101CIMK": {
       "status": "out-of-stock",
@@ -49927,7 +49927,7 @@
     "DMS3R3204R": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "500+"
+      "stockLevel": "100+"
     },
     "DMS3R3224R": {
       "status": "out-of-stock",
@@ -51470,9 +51470,9 @@
       "stockLevel": "재고 없음"
     },
     "EKB3A102K08BS5N": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "500+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "EKB3A102K08FK5N": {
       "status": "out-of-stock",
@@ -52522,7 +52522,7 @@
     "EST-1109SB-3 (5mm)": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "stockLevel": "500+"
     },
     "EST-1121C-2": {
       "status": "out-of-stock",
@@ -53005,9 +53005,9 @@
       "stockLevel": "재고 없음"
     },
     "FA431ZCS": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "500+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "FAC2576DD5-5.0": {
       "status": "out-of-stock",
@@ -53695,9 +53695,9 @@
       "stockLevel": "재고 없음"
     },
     "FILM-BOX(X-2,SUNG-HO) 104": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "100+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "FILM-CL21": {
       "status": "out-of-stock",
@@ -54607,7 +54607,7 @@
     "G2401CG": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "stockLevel": "500+"
     },
     "G24125CE": {
       "status": "in-stock",
@@ -55385,9 +55385,9 @@
       "stockLevel": "재고 없음"
     },
     "GRM1555C1H1R5BA01D": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "GRM1555C1H200JA01D": {
       "status": "out-of-stock",
@@ -55515,9 +55515,9 @@
       "stockLevel": "재고 없음"
     },
     "GRM1555C1H8R0CA01D": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "GRM1555C1H9R0CA01D": {
       "status": "out-of-stock",
@@ -57990,9 +57990,9 @@
       "stockLevel": "재고 없음"
     },
     "HP1-P25": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "100+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "HP1-P36": {
       "status": "out-of-stock",
@@ -59035,9 +59035,9 @@
       "stockLevel": "재고 없음"
     },
     "IR13파이-470": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "IR15파이-221": {
       "status": "out-of-stock",
@@ -59050,9 +59050,9 @@
       "stockLevel": "재고 없음"
     },
     "IR2104STRPBF": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "IR2110PBF": {
       "status": "out-of-stock",
@@ -59085,9 +59085,9 @@
       "stockLevel": "재고 없음"
     },
     "IRF540NPBF": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "IRF540NS": {
       "status": "out-of-stock",
@@ -60785,9 +60785,9 @@
       "stockLevel": "100+"
     },
     "KMG 35 VB 470 (M)": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "500+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "KMG 35.470 10X16": {
       "status": "out-of-stock",
@@ -60902,7 +60902,7 @@
     "KMG 50 VB 10 (M)": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "stockLevel": "500+"
     },
     "KMG 50 VB 100 (M)": {
       "status": "out-of-stock",
@@ -60930,9 +60930,9 @@
       "stockLevel": "소량"
     },
     "KMG 50 VB 47 (M)": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "100+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "KMG 50 VB 470 (M)": {
       "status": "in-stock",
@@ -62865,9 +62865,9 @@
       "stockLevel": "재고 없음"
     },
     "LM1117GS-1.8": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "LM1117GS-2.5": {
       "status": "out-of-stock",
@@ -64950,9 +64950,9 @@
       "stockLevel": "1,000+"
     },
     "LRP12FTWRR010": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "LRP12FTWSR010": {
       "status": "in-stock",
@@ -66035,9 +66035,9 @@
       "stockLevel": "재고 없음"
     },
     "M031SD2AE": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "500+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "M031TD2AE": {
       "status": "out-of-stock",
@@ -69900,9 +69900,9 @@
       "stockLevel": "재고 없음"
     },
     "MLZ2012N6R8LT000-PF": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "MM3Z3V3B": {
       "status": "out-of-stock",
@@ -70275,9 +70275,9 @@
       "stockLevel": "재고 없음"
     },
     "MOR 1T-0R33 J": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "MOR 1T-0R47 J": {
       "status": "out-of-stock",
@@ -70495,9 +70495,9 @@
       "stockLevel": "100+"
     },
     "MOR 1T-47K J": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "MOR 1T-4K3 J": {
       "status": "out-of-stock",
@@ -70605,9 +70605,9 @@
       "stockLevel": "재고 없음"
     },
     "MOR 2T-100K J": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "500+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "MOR 2T-11K": {
       "status": "out-of-stock",
@@ -72585,9 +72585,9 @@
       "stockLevel": "100+"
     },
     "NFA 3.5TP 400 VB 4.7 (M)": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "NFA 400 VB 150 (M)": {
       "status": "out-of-stock",
@@ -72602,7 +72602,7 @@
     "NFA 400 VB 4.7 (M)": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "stockLevel": "100+"
     },
     "NFA 5.0TP 400 VB 6.8": {
       "status": "out-of-stock",
@@ -72690,9 +72690,9 @@
       "stockLevel": "재고 없음"
     },
     "NHA 400 VB 100 (M)": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "100+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "NHA 400V 150uF 18X35.5": {
       "status": "out-of-stock",
@@ -73315,9 +73315,9 @@
       "stockLevel": "재고 없음"
     },
     "NPX 7.5V 470uF": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "NRC02J471TRF": {
       "status": "out-of-stock",
@@ -73510,9 +73510,9 @@
       "stockLevel": "재고 없음"
     },
     "NW-XH2.5-2A": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "100+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "NW3-A03-07": {
       "status": "in-stock",
@@ -73647,7 +73647,7 @@
     "NXH 3.5TP 16 VB 470 (M)": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "stockLevel": "100+"
     },
     "NXH 3.5TP 25 VB 330 (M)": {
       "status": "in-stock",
@@ -73755,9 +73755,9 @@
       "stockLevel": "재고 없음"
     },
     "NXH 50 VB 10 (S)": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "NXH 50 VB 100 (M)": {
       "status": "out-of-stock",
@@ -74240,9 +74240,9 @@
       "stockLevel": "재고 없음"
     },
     "P5L45F-A": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "500+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "P6SMB39AT3GOSCT": {
       "status": "out-of-stock",
@@ -77250,9 +77250,9 @@
       "stockLevel": "1,000+"
     },
     "QSCP251Q680J1GV001T": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "QSCP251Q680J1GV003T": {
       "status": "in-stock",
@@ -77275,9 +77275,9 @@
       "stockLevel": "재고 없음"
     },
     "QSCP251Q8R2C1GV001T": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "QSCP251Q8R2C1GV003T": {
       "status": "in-stock",
@@ -77467,7 +77467,7 @@
     "QSCT251Q2R0B1GV001E": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "stockLevel": "100+"
     },
     "QSCT251Q2R0B1GV003E": {
       "status": "in-stock",
@@ -89090,9 +89090,9 @@
       "stockLevel": "재고 없음"
     },
     "RWFS 1T-J/10R": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "500+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "RWN 1N J 0R2": {
       "status": "out-of-stock",
@@ -89995,9 +89995,9 @@
       "stockLevel": "재고 없음"
     },
     "SCE2E332M12BW7": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "500+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "SCEF502W222K4GV001E": {
       "status": "out-of-stock",
@@ -90005,9 +90005,9 @@
       "stockLevel": "재고 없음"
     },
     "SCF2E103Z14BW7": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "500+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "SCF2E472M10BW7N": {
       "status": "out-of-stock",
@@ -91310,9 +91310,9 @@
       "stockLevel": "재고 없음"
     },
     "SK36C": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "SK510C": {
       "status": "out-of-stock",
@@ -92840,14 +92840,14 @@
       "stockLevel": "재고 없음"
     },
     "SP3232EEY-L/TR": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "SP3485EN-L/TR": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "100+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "SP400 - 220(13*18)회색": {
       "status": "out-of-stock",
@@ -93082,7 +93082,7 @@
     "SS-5-2A-AP": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "stockLevel": "100+"
     },
     "SS-7B-VDE-4.8": {
       "status": "out-of-stock",
@@ -93142,7 +93142,7 @@
     "SS14": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "100+"
+      "stockLevel": "소량"
     },
     "SS16": {
       "status": "out-of-stock",
@@ -95375,9 +95375,9 @@
       "stockLevel": "소량"
     },
     "TD62083AFG": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "TDA 200 VN 220 (M)": {
       "status": "out-of-stock",
@@ -97275,9 +97275,9 @@
       "stockLevel": "소량"
     },
     "TS01S": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "TS0227": {
       "status": "out-of-stock",
@@ -97405,9 +97405,9 @@
       "stockLevel": "재고 없음"
     },
     "TSC2003IPWR": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "TSK 3.5*2": {
       "status": "out-of-stock",
@@ -102585,9 +102585,9 @@
       "stockLevel": "1,000+"
     },
     "WR06X101JTL": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "WR06X1022FTL": {
       "status": "out-of-stock",
@@ -102595,14 +102595,14 @@
       "stockLevel": "재고 없음"
     },
     "WR06X102JTL": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "WR06X103JTL": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "WR06X104JTL": {
       "status": "out-of-stock",
@@ -103795,9 +103795,9 @@
       "stockLevel": "1,000+"
     },
     "WR06X471JTL": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "WR06X472JTL": {
       "status": "out-of-stock",
@@ -104520,9 +104520,9 @@
       "stockLevel": "1,000+"
     },
     "WR08X1002FTL": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "WR08X1003FTL": {
       "status": "out-of-stock",
@@ -107095,9 +107095,9 @@
       "stockLevel": "재고 없음"
     },
     "WR148SE/W": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "WR148SR/W": {
       "status": "out-of-stock",
@@ -107110,19 +107110,19 @@
       "stockLevel": "재고 없음"
     },
     "WR201UB/W": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "WR201UE/W": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "WR201UW/W": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "WR20W1R00FTL": {
       "status": "out-of-stock",
@@ -108410,9 +108410,9 @@
       "stockLevel": "1,000+"
     },
     "YC104RT-101M": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "YC104RT-1R0N": {
       "status": "out-of-stock",
@@ -109122,7 +109122,7 @@
     "YW396-02V": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "stockLevel": "소량"
     },
     "YW396-03AV": {
       "status": "out-of-stock",
@@ -109140,9 +109140,9 @@
       "stockLevel": "재고 없음"
     },
     "YW396-05V": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "YW396-06V": {
       "status": "out-of-stock",
@@ -109670,9 +109670,9 @@
       "stockLevel": "재고 없음"
     },
     "샘플컷팅(c2012)": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "100+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "샘플컷팅(C3216)": {
       "status": "in-stock",
