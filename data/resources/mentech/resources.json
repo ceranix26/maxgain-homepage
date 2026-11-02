@@ -7,7 +7,9 @@
       "description": "Mentech 공식 Automotive Grade Molding SMD Power Inductor 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/MHAF1264SG%20SERIES.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for Automotive Grade Molding SMD Power Inductors",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -16,7 +18,9 @@
       "description": "Mentech 공식 Automotive Grade Molding SMD Power Inductor 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/MHAF1770SG%20SERIES.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for Automotive Grade Molding SMD Power Inductors",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -25,7 +29,9 @@
       "description": "Mentech 공식 Molding SMD Power Inductor 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/MHA2213SG%20SERIES.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for Molding SMD Power Inductors",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -34,7 +40,9 @@
       "description": "Mentech 공식 Power Inductor 시리즈 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/MHB1005SG%20SERIES.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for the Power Inductor series",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -43,7 +51,9 @@
       "description": "Mentech 공식 Power Inductor 시리즈 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/MHB1206SG%20SERIES.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for the Power Inductor series",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -52,7 +62,9 @@
       "description": "Mentech 공식 Power Inductor 시리즈 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/MHB1308SG%20SERIES.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for the Power Inductor series",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -61,7 +73,9 @@
       "description": "Mentech 공식 고전류 Power Inductor 시리즈 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/MHB1304SG%20SERIES.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for the high-current Power Inductor series",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -70,7 +84,9 @@
       "description": "Mentech 공식 Common Mode Choke 시리즈 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/CM0903SG%20SERIES.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for the Common Mode Choke series",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -79,7 +95,9 @@
       "description": "Mentech 공식 Common Mode Choke 시리즈 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/CMB3307DG%20SERIES.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for the Common Mode Choke series",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -88,7 +106,9 @@
       "description": "Mentech 공식 Chip Common Mode Choke 시리즈 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/CC2012A-900.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for the Chip Common Mode Choke series",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -97,7 +117,9 @@
       "description": "Mentech 공식 10µH Power Inductor 제품 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/MHW2012SG100KA.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for the 10µH Power Inductor product",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -106,7 +128,9 @@
       "description": "Mentech 공식 150W급 Planar Transformer 시리즈 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/TPEIR19-0198SG.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for the 150W-class Planar Transformer series",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -115,7 +139,9 @@
       "description": "Mentech 공식 400W Planar Transformer 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/TPEIR34-0066SG.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for the 400W Planar Transformer",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -124,7 +150,9 @@
       "description": "Mentech 공식 Power Line Communication Transformer 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/RFT-002DG.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for the Power Line Communication Transformer",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -133,7 +161,9 @@
       "description": "Mentech 공식 RF Transmission Line Transformer 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/RFT-134SG.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for the RF Transmission Line Transformer",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -142,7 +172,9 @@
       "description": "Mentech 공식 10/100/1000 Base-T Dual-Port Magnetics 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/G4802CG.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for 10/100/1000 Base-T Dual-Port Magnetics",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -151,7 +183,9 @@
       "description": "Mentech 공식 10/100/1000 Base-T Single-Port Magnetics 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/G2488CE.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for 10/100/1000 Base-T Single-Port Magnetics",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -160,7 +194,9 @@
       "description": "Mentech 공식 AEC-Q200 10/100/1000 Base-T LAN Transformer 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/GJ1011G.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for the AEC-Q200 10/100/1000 Base-T LAN Transformer",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -169,7 +205,9 @@
       "description": "Mentech 공식 AEC-Q200 10/100/1000 Base-T LAN Transformer 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/GJ1021G.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for the AEC-Q200 10/100/1000 Base-T LAN Transformer",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -178,7 +216,9 @@
       "description": "Mentech 공식 AEC-Q200 10/100 Base-T LAN Transformer 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/HE1011G.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for the AEC-Q200 10/100 Base-T LAN Transformer",
+      "buttonLabelEn": "View PDF"
     },
     {
       "manufacturer": "Mentech",
@@ -187,7 +227,9 @@
       "description": "Mentech 공식 AEC-Q200 10/100 Base-T LAN Magnetics 사양서",
       "file": "https://www.mentech-magnetic.com/upload/pdf/HB1013G.pdf",
       "external": true,
-      "buttonLabel": "PDF 보기"
+      "buttonLabel": "PDF 보기",
+      "descriptionEn": "Official Mentech specification sheet for AEC-Q200 10/100 Base-T LAN Magnetics",
+      "buttonLabelEn": "View PDF"
     }
   ]
 }

@@ -5,7 +5,14 @@ function syncLocalizedControls(language) {
   if (menu) {
     const state = menu.getAttribute('aria-expanded') === 'true';
     const label = state ? 'menuClose' : 'menuOpen';
-    menu.setAttribute('aria-label', menu.dataset[`${label}${language === 'en' ? 'En' : 'Ko'}`]);
+    const fallback = {
+      menuOpen: { ko: '메뉴 열기', en: 'Open menu' },
+      menuClose: { ko: '메뉴 닫기', en: 'Close menu' }
+    };
+    menu.setAttribute(
+      'aria-label',
+      menu.dataset[`${label}${language === 'en' ? 'En' : 'Ko'}`] || fallback[label][language]
+    );
   }
 
   const heroVideo = document.querySelector('.hero-video');

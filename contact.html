@@ -272,12 +272,12 @@
                                     id="phone" name="phone" type="tel" maxlength="40"></div>
                             <div class="field"><label for="type" data-ko="문의 유형 *" data-en="Inquiry Type *">문의 유형
                                     *</label><select id="type" name="inquiry_type" required>
-                                    <option value="">선택</option>
-                                    <option value="quotation">견적 문의</option>
-                                    <option value="sample">샘플 문의</option>
-                                    <option value="technical">기술 문의</option>
-                                    <option value="delivery">납기 문의</option>
-                                    <option value="other">기타</option>
+                                    <option value="" data-ko="선택" data-en="Select">선택</option>
+                                    <option value="quotation" data-ko="견적 문의" data-en="Request a Quote">견적 문의</option>
+                                    <option value="sample" data-ko="샘플 문의" data-en="Sample Inquiry">샘플 문의</option>
+                                    <option value="technical" data-ko="기술 문의" data-en="Technical Inquiry">기술 문의</option>
+                                    <option value="delivery" data-ko="납기 문의" data-en="Lead Time Inquiry">납기 문의</option>
+                                    <option value="other" data-ko="기타" data-en="Other">기타</option>
                                 </select></div>
                             <div class="field"><label for="quantity" data-ko="예상 수량" data-en="Estimated Quantity">예상
                                     수량</label><input id="quantity" name="quantity" maxlength="50"></div>
@@ -345,7 +345,7 @@
                         <li>sales@maxgain.co.kr</li>
                         <li>Tel. 02-430-3927</li>
                         <li>Fax. 02-430-3928</li>
-                        <li>서울 구로구 경인로53길 15, 업무A동 508호</li>
+                        <li data-ko="서울 구로구 경인로53길 15, 업무A동 508호" data-en="Room 508, Building A, 15 Gyeongin-ro 53-gil, Guro-gu, Seoul">서울 구로구 경인로53길 15, 업무A동 508호</li>
                     </ul>
                 </div>
             </div>
@@ -355,7 +355,7 @@
     </footer>
     <script src="assets/js/main.js"></script>
     <script>
-        (() => { const form = document.getElementById('contactForm'), btn = document.getElementById('submitBtn'), status = document.getElementById('formStatus'); form.addEventListener('submit', async e => { e.preventDefault(); if (!form.reportValidity()) return; btn.disabled = true; const original = btn.textContent; btn.textContent = '전송 중...'; status.className = 'form-status'; status.textContent = ''; try { const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } }); if (!res.ok) throw new Error('Form submission failed'); form.reset(); status.className = 'form-status success'; status.textContent = '문의가 정상적으로 접수되었습니다. 확인 후 회신드리겠습니다.'; } catch (err) { console.error(err); status.className = 'form-status error'; status.textContent = '문의 전송에 실패했습니다. 잠시 후 다시 시도하거나 sales@maxgain.co.kr로 문의해 주세요.'; } finally { btn.disabled = false; btn.textContent = original; } }); })();
+        (() => { const msg = (ko, en) => document.documentElement.lang === 'en' ? en : ko; const form = document.getElementById('contactForm'), btn = document.getElementById('submitBtn'), status = document.getElementById('formStatus'); form.addEventListener('submit', async e => { e.preventDefault(); if (!form.reportValidity()) return; btn.disabled = true; const original = btn.textContent; btn.textContent = msg('전송 중...', 'Sending...'); status.className = 'form-status'; status.textContent = ''; try { const res = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } }); if (!res.ok) throw new Error('Form submission failed'); form.reset(); status.className = 'form-status success'; status.textContent = msg('문의가 정상적으로 접수되었습니다. 확인 후 회신드리겠습니다.', 'Your inquiry has been received. We will review it and reply.'); } catch (err) { console.error(err); status.className = 'form-status error'; status.textContent = msg('문의 전송에 실패했습니다. 잠시 후 다시 시도하거나 sales@maxgain.co.kr로 문의해 주세요.', 'Failed to send your inquiry. Please try again shortly or email sales@maxgain.co.kr.'); } finally { btn.disabled = false; btn.textContent = original; } }); })();
     </script>
 </body>
 

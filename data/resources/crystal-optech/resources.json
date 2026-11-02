@@ -7,7 +7,9 @@
       "description": "Crystal-Optech 공식 제품 및 기술 포트폴리오",
       "file": "https://www.crystal-optech.com/en/product.html",
       "external": true,
-      "buttonLabel": "전체 제품 보기 ↗"
+      "buttonLabel": "전체 제품 보기 ↗",
+      "descriptionEn": "Crystal-Optech official product and technology portfolio",
+      "buttonLabelEn": "View all products ↗"
     },
     {
       "manufacturer": "Crystal-Optech",
@@ -16,7 +18,9 @@
       "description": "광학 웨이브가이드와 Micro Light Engine 등 Metaverse Optics 제품군",
       "file": "https://www.crystal-optech.com/en/product_165.html#d1",
       "external": true,
-      "buttonLabel": "제품군 보기 ↗"
+      "buttonLabel": "제품군 보기 ↗",
+      "descriptionEn": "Metaverse Optics product line including optical waveguides and Micro Light Engines",
+      "buttonLabelEn": "View product groups ↗"
     },
     {
       "manufacturer": "Crystal-Optech",
@@ -25,7 +29,9 @@
       "description": "HUD, 자동차 프로젝션, 카메라 및 LiDAR 광학부품 제품군",
       "file": "https://www.crystal-optech.com/en/product_166.html#d1",
       "external": true,
-      "buttonLabel": "제품군 보기 ↗"
+      "buttonLabel": "제품군 보기 ↗",
+      "descriptionEn": "Optical component line for HUD, automotive projection, cameras and LiDAR",
+      "buttonLabelEn": "View product groups ↗"
     },
     {
       "manufacturer": "Crystal-Optech",
@@ -34,7 +40,9 @@
       "description": "카메라 부품, 광학 필터와 정밀 광학부품 제품군",
       "file": "https://www.crystal-optech.com/en/product_167.html#d1",
       "external": true,
-      "buttonLabel": "제품군 보기 ↗"
+      "buttonLabel": "제품군 보기 ↗",
+      "descriptionEn": "Optical component line for camera parts, optical filters and precision optics",
+      "buttonLabelEn": "View product groups ↗"
     },
     {
       "manufacturer": "Crystal-Optech",
@@ -43,7 +51,9 @@
       "description": "Periscope 구조의 망원 카메라용 Micro Prism Assembly 제품 정보",
       "file": "https://www.crystal-optech.com/en/product_det_2055.html",
       "external": true,
-      "buttonLabel": "제품 정보 보기 ↗"
+      "buttonLabel": "제품 정보 보기 ↗",
+      "descriptionEn": "Product information on Micro Prism Assemblies for periscope-structure telephoto cameras",
+      "buttonLabelEn": "View product information ↗"
     },
     {
       "manufacturer": "Crystal-Optech",
@@ -52,7 +62,9 @@
       "description": "근접 및 주변광 센서용 Patterned Wafer 제품 정보",
       "file": "https://www.crystal-optech.com/en/product_det_2043.html",
       "external": true,
-      "buttonLabel": "제품 정보 보기 ↗"
+      "buttonLabel": "제품 정보 보기 ↗",
+      "descriptionEn": "Product information on Patterned Wafers for proximity and ambient light sensors",
+      "buttonLabelEn": "View product information ↗"
     },
     {
       "manufacturer": "Crystal-Optech",
@@ -61,7 +73,9 @@
       "description": "Micro LED 기반 AR 광학용 Micro Light Engine 제품 정보",
       "file": "https://www.crystal-optech.com/en/product_det_2040.html",
       "external": true,
-      "buttonLabel": "제품 정보 보기 ↗"
+      "buttonLabel": "제품 정보 보기 ↗",
+      "descriptionEn": "Product information on Micro Light Engines for Micro LED-based AR optics",
+      "buttonLabelEn": "View product information ↗"
     },
     {
       "manufacturer": "Crystal-Optech",
@@ -70,7 +84,9 @@
       "description": "기하학적 반사 원리를 사용하는 Reflective Optical Waveguide 제품 정보",
       "file": "https://www.crystal-optech.com/en/product_det_2039.html",
       "external": true,
-      "buttonLabel": "제품 정보 보기 ↗"
+      "buttonLabel": "제품 정보 보기 ↗",
+      "descriptionEn": "Product information on Reflective Optical Waveguides using geometric reflection",
+      "buttonLabelEn": "View product information ↗"
     },
     {
       "manufacturer": "Crystal-Optech",
@@ -79,7 +95,9 @@
       "description": "광학 회절 원리를 사용하는 Diffractive Optical Waveguide Lens 제품 정보",
       "file": "https://www.crystal-optech.com/en/product_det_2038.html",
       "external": true,
-      "buttonLabel": "제품 정보 보기 ↗"
+      "buttonLabel": "제품 정보 보기 ↗",
+      "descriptionEn": "Product information on Diffractive Optical Waveguide Lenses using optical diffraction",
+      "buttonLabelEn": "View product information ↗"
     },
     {
       "manufacturer": "Crystal-Optech",
@@ -88,7 +106,9 @@
       "description": "TFT 디스플레이 기술 기반 자동차용 Windshield Head-Up Display 제품 정보",
       "file": "https://www.crystal-optech.com/en/product_det_2023.html",
       "external": true,
-      "buttonLabel": "제품 정보 보기 ↗"
+      "buttonLabel": "제품 정보 보기 ↗",
+      "descriptionEn": "Product information on automotive Windshield Head-Up Displays based on TFT display technology",
+      "buttonLabelEn": "View product information ↗"
     },
     {
       "manufacturer": "Crystal-Optech",
@@ -97,7 +117,9 @@
       "description": "DLP 기술 기반 자동차 HUD용 Picture Generation Unit 제품 정보",
       "file": "https://www.crystal-optech.com/en/product_det_2020.html",
       "external": true,
-      "buttonLabel": "제품 정보 보기 ↗"
+      "buttonLabel": "제품 정보 보기 ↗",
+      "descriptionEn": "Product information on Picture Generation Units for DLP-based automotive HUDs",
+      "buttonLabelEn": "View product information ↗"
     },
     {
       "manufacturer": "Crystal-Optech",
@@ -106,7 +128,9 @@
       "description": "패턴 투사 및 감지용 Diffractive Optical Element 제품 정보",
       "file": "https://www.crystal-optech.com/en/product_det_2046.html",
       "external": true,
-      "buttonLabel": "제품 정보 보기 ↗"
+      "buttonLabel": "제품 정보 보기 ↗",
+      "descriptionEn": "Product information on Diffractive Optical Elements for pattern projection and sensing",
+      "buttonLabelEn": "View product information ↗"
     },
     {
       "manufacturer": "Crystal-Optech",
@@ -115,7 +139,9 @@
       "description": "자동차 HUD용 가시광 반사 및 적외선·자외선 투과 Flat Reflector 제품 정보",
       "file": "https://www.crystal-optech.com/en/product_det_2030.html",
       "external": true,
-      "buttonLabel": "제품 정보 보기 ↗"
+      "buttonLabel": "제품 정보 보기 ↗",
+      "descriptionEn": "Product information on Flat Reflectors for automotive HUDs that reflect visible light and transmit infrared and ultraviolet",
+      "buttonLabelEn": "View product information ↗"
     },
     {
       "manufacturer": "Crystal-Optech",
@@ -124,7 +150,9 @@
       "description": "근적외선 대역의 선택적 투과를 위한 Narrow Bandpass Filter 제품 정보",
       "file": "https://www.crystal-optech.com/en/product_det_2042.html",
       "external": true,
-      "buttonLabel": "제품 정보 보기 ↗"
+      "buttonLabel": "제품 정보 보기 ↗",
+      "descriptionEn": "Product information on Narrow Bandpass Filters for selective near-infrared transmission",
+      "buttonLabelEn": "View product information ↗"
     },
     {
       "manufacturer": "Crystal-Optech",
@@ -133,7 +161,9 @@
       "description": "Biconvex, Biconcave 및 접합 렌즈 등 정밀 광학 렌즈 제품 정보",
       "file": "https://www.crystal-optech.com/en/product_det_2035.html",
       "external": true,
-      "buttonLabel": "제품 정보 보기 ↗"
+      "buttonLabel": "제품 정보 보기 ↗",
+      "descriptionEn": "Product information on precision optical lenses including biconvex, biconcave and cemented lenses",
+      "buttonLabelEn": "View product information ↗"
     },
     {
       "manufacturer": "Crystal-Optech",
@@ -142,7 +172,9 @@
       "description": "Crystal-Optech의 광학 기술 및 제조 역량 소개",
       "file": "https://www.crystal-optech.com/en/technology.html",
       "external": true,
-      "buttonLabel": "기술 정보 보기 ↗"
+      "buttonLabel": "기술 정보 보기 ↗",
+      "descriptionEn": "Introduction to Crystal-Optech's optical technology and manufacturing capabilities",
+      "buttonLabelEn": "View technology information ↗"
     }
   ]
 }
