@@ -106,14 +106,6 @@
   background-image: url("../images/manufacture/viking-images/inductors.png");
 }
 
-.viking-card:nth-child(3)::before {
-  background-image: url("../images/manufacture/viking-images/capacitors.png");
-}
-
-.viking-card:nth-child(4)::before {
-  background-image: url("../images/manufacture/viking-images/specialty.png");
-}
-
 .viking-card:hover {
   transform: translateY(-4px);
   border-color: #f3b17e;

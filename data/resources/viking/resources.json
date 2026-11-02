@@ -2,15 +2,6 @@
   "items": [
     {
       "manufacturer": "Viking",
-      "title": "Capacitor Catalog",
-      "type": "Catalog",
-      "description": "Viking 공식 Capacitor 제품 카탈로그",
-      "file": "https://www.viking.com.tw/Templates/att/Capacitor%20Catalog.pdf?lng=zh-TW",
-      "external": true,
-      "buttonLabel": "카탈로그 보기"
-    },
-    {
-      "manufacturer": "Viking",
       "title": "Inductor Catalog",
       "type": "Catalog",
       "description": "Viking 공식 Inductor 제품 카탈로그",

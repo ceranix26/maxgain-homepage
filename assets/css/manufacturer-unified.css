@@ -42,6 +42,10 @@
     margin-top: 42px
 }
 
+.mf-grid.viking-products {
+    grid-template-columns: repeat(2, minmax(0, 1fr))
+}
+
 .mf-card {
     position: relative;
     isolation: isolate;
@@ -183,7 +187,8 @@
 }
 
 @media(max-width:560px) {
-    .mf-grid {
+    .mf-grid,
+    .mf-grid.viking-products {
         grid-template-columns: 1fr
     }
 
