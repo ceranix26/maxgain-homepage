@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Noto+Sans+KR:wght@400;500;600;700;800&display=swap");
+
 :root {
     --orange: #f5822a;
     --orange2: #ffad45;
@@ -156,6 +158,7 @@ select {
 }
 
 .nav-links>a {
+    white-space: nowrap;
     padding: 33px 0 29px;
     border-bottom: 3px solid transparent
 }
