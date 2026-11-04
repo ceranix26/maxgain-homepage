@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-03T23:00:26.580Z",
-  "baseDate": "20261104",
+  "updatedAt": "2026-11-04T23:00:24.001Z",
+  "baseDate": "20261105",
   "source": "ECOUNT",
-  "totalPartNumbers": 22055,
+  "totalPartNumbers": 22056,
   "items": {
     "2": {
       "status": "out-of-stock",
@@ -8062,7 +8062,7 @@
     "10D471BSBB250": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "100+"
+      "stockLevel": "1,000+"
     },
     "10G APD용 Header": {
       "status": "out-of-stock",
@@ -20712,7 +20712,7 @@
     "436D [275V 105K 22C]": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "소량"
+      "stockLevel": "1,000+"
     },
     "436D [275V 224K 10C]": {
       "status": "in-stock",
@@ -20837,7 +20837,7 @@
     "460S": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "500+"
+      "stockLevel": "1,000+"
     },
     "460S [2J 224J 15C]": {
       "status": "in-stock",
@@ -20950,9 +20950,9 @@
       "stockLevel": "소량"
     },
     "497B [1000V 223J 15C]": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "497B [3A 223J 15C]": {
       "status": "out-of-stock",
@@ -24945,9 +24945,9 @@
       "stockLevel": "재고 없음"
     },
     "501S42E3R6CV3E": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "501S42E3R6CVE": {
       "status": "out-of-stock",
@@ -26320,9 +26320,9 @@
       "stockLevel": "재고 없음"
     },
     "598B": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "500+"
     },
     "598B [1250V 223J 15C]": {
       "status": "in-stock",
@@ -27430,9 +27430,9 @@
       "stockLevel": "재고 없음"
     },
     "8052 - AIR CAPR": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "80H85": {
       "status": "out-of-stock",
@@ -33772,7 +33772,7 @@
     "BSS138": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "100+"
+      "stockLevel": "500+"
     },
     "BSS138-7-F": {
       "status": "in-stock",
@@ -34220,9 +34220,9 @@
       "stockLevel": "재고 없음"
     },
     "C/CAP 3KV B102K": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "C/CAP 50V CH7D": {
       "status": "out-of-stock",
@@ -53870,9 +53870,9 @@
       "stockLevel": "재고 없음"
     },
     "FL7733AMX": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "FLANGE": {
       "status": "in-stock",
@@ -63139,6 +63139,11 @@
       "label": "재고 없음",
       "stockLevel": "재고 없음"
     },
+    "LM2903P": {
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "소량"
+    },
     "LM2903QDR": {
       "status": "in-stock",
       "label": "재고 있음",
@@ -63175,9 +63180,9 @@
       "stockLevel": "재고 없음"
     },
     "LM2904P": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "소량"
     },
     "LM29302T": {
       "status": "out-of-stock",
@@ -64150,9 +64155,9 @@
       "stockLevel": "재고 없음"
     },
     "LP5907MFX-3.3": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "LP5907SNX-2.8/NOPB": {
       "status": "out-of-stock",
@@ -67314,10 +67319,10 @@
       "label": "재고 없음",
       "stockLevel": "재고 없음"
     },
-    "MC7905": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+    "MC7905CTG": {
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "소량"
     },
     "MC7906": {
       "status": "out-of-stock",
@@ -71870,9 +71875,9 @@
       "stockLevel": "재고 없음"
     },
     "MUR460-GPP": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "500+"
     },
     "MUR860": {
       "status": "out-of-stock",
@@ -76590,9 +76595,9 @@
       "stockLevel": "재고 없음"
     },
     "PW550": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "PW550 SOT-89": {
       "status": "out-of-stock",
@@ -89500,9 +89505,9 @@
       "stockLevel": "재고 없음"
     },
     "S3225A 24.000MHz": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "100+"
     },
     "S3225A 25.000MHz": {
       "status": "out-of-stock",
@@ -89520,9 +89525,9 @@
       "stockLevel": "재고 없음"
     },
     "S3225A 8.000MHz": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "100+"
     },
     "S34ML01G200TFI00": {
       "status": "out-of-stock",
@@ -92087,7 +92092,7 @@
     "SMG8342M1": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "500+"
+      "stockLevel": "100+"
     },
     "SMH200-02": {
       "status": "out-of-stock",
