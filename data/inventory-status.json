@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-05T23:00:24.195Z",
-  "baseDate": "20261106",
+  "updatedAt": "2026-11-07T23:00:25.406Z",
+  "baseDate": "20261108",
   "source": "ECOUNT",
-  "totalPartNumbers": 22056,
+  "totalPartNumbers": 22059,
   "items": {
     "2": {
       "status": "out-of-stock",
@@ -2920,9 +2920,9 @@
       "stockLevel": "재고 없음"
     },
     "0805B102K500CT": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "0805B103K101CT": {
       "status": "out-of-stock",
@@ -53494,10 +53494,10 @@
       "label": "재고 없음",
       "stockLevel": "재고 없음"
     },
-    "FH01-40DS 2285-1-2*20": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+    "FH01-40DS": {
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "소량"
     },
     "FH01-40SS": {
       "status": "out-of-stock",
@@ -54360,9 +54360,9 @@
       "stockLevel": "재고 없음"
     },
     "FUSE 20mm 250V 1A": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "500+"
     },
     "FUSE 20mm 250V 20A": {
       "status": "out-of-stock",
@@ -75612,7 +75612,7 @@
     "PH03-16DS": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "100+"
+      "stockLevel": "500+"
     },
     "PH03-20DS": {
       "status": "out-of-stock",
@@ -75628,6 +75628,11 @@
       "status": "out-of-stock",
       "label": "재고 없음",
       "stockLevel": "재고 없음"
+    },
+    "PH03-40DR": {
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "소량"
     },
     "PH03-40SS": {
       "status": "in-stock",
@@ -76825,9 +76830,9 @@
       "stockLevel": "1,000+"
     },
     "QEFM722Q220J1GU001W": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "100+"
     },
     "QMIN3075 N15": {
       "status": "out-of-stock",
@@ -77668,6 +77673,11 @@
       "status": "in-stock",
       "label": "재고 있음",
       "stockLevel": "1,000+"
+    },
+    "QSCT251Q820J3GV001E": {
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "QSCT251Q8R2C1GV001E": {
       "status": "in-stock",
@@ -89510,9 +89520,9 @@
       "stockLevel": "100+"
     },
     "S3225A 25.000MHz": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "S3225A 25.000MHz -40+125": {
       "status": "out-of-stock",
@@ -93153,6 +93163,11 @@
       "status": "out-of-stock",
       "label": "재고 없음",
       "stockLevel": "재고 없음"
+    },
+    "SS-12D07V-G4": {
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "소량"
     },
     "SS-22D01G7": {
       "status": "in-stock",
