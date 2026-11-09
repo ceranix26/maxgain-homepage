@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-08T23:00:24.304Z",
-  "baseDate": "20261109",
+  "updatedAt": "2026-11-09T23:00:25.940Z",
+  "baseDate": "20261110",
   "source": "ECOUNT",
-  "totalPartNumbers": 22059,
+  "totalPartNumbers": 22064,
   "items": {
     "2": {
       "status": "out-of-stock",
@@ -2920,9 +2920,9 @@
       "stockLevel": "재고 없음"
     },
     "0805B102K500CT": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "0805B103K101CT": {
       "status": "out-of-stock",
@@ -4470,9 +4470,9 @@
       "stockLevel": "재고 없음"
     },
     "0900AT43A0070001E": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "0900BL15A100E": {
       "status": "out-of-stock",
@@ -33158,6 +33158,11 @@
       "status": "out-of-stock",
       "label": "재고 없음",
       "stockLevel": "재고 없음"
+    },
+    "BLM18EG121SN1D": {
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "BLM18HB221SN1D": {
       "status": "out-of-stock",
@@ -64169,6 +64174,11 @@
       "label": "재고 있음",
       "stockLevel": "소량"
     },
+    "LP724116ANL": {
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
+    },
     "LP82440ANL": {
       "status": "in-stock",
       "label": "재고 있음",
@@ -74499,6 +74509,11 @@
       "label": "재고 없음",
       "stockLevel": "재고 없음"
     },
+    "PC 완본체": {
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
+    },
     "PC-17K1(CB)": {
       "status": "out-of-stock",
       "label": "재고 없음",
@@ -76825,14 +76840,14 @@
       "stockLevel": "재고 없음"
     },
     "QEFM722Q100J1GU001W": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "QEFM722Q220J1GU001W": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "100+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "QMIN3075 N15": {
       "status": "out-of-stock",
@@ -90485,9 +90500,9 @@
       "stockLevel": "소량"
     },
     "SG850": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "SGM2019-2.8YN5G/TR": {
       "status": "out-of-stock",
@@ -97290,9 +97305,9 @@
       "stockLevel": "재고 없음"
     },
     "TR35FDD0120": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "TR35FDE0120": {
       "status": "out-of-stock",
@@ -97555,6 +97570,11 @@
       "stockLevel": "소량"
     },
     "TSR-3362P-503LF": {
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
+    },
+    "TSR1GTJ201V": {
       "status": "out-of-stock",
       "label": "재고 없음",
       "stockLevel": "재고 없음"
@@ -108453,6 +108473,11 @@
       "status": "out-of-stock",
       "label": "재고 없음",
       "stockLevel": "재고 없음"
+    },
+    "XTR111AIDG": {
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "소량"
     },
     "XTR117AIDGKR": {
       "status": "out-of-stock",
