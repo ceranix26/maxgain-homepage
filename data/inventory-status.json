@@ -1,8 +1,8 @@
 {
-  "updatedAt": "2026-11-17T23:00:25.593Z",
-  "baseDate": "20261118",
+  "updatedAt": "2026-11-18T23:00:23.002Z",
+  "baseDate": "20261119",
   "source": "ECOUNT",
-  "totalPartNumbers": 22103,
+  "totalPartNumbers": 22106,
   "items": {
     "2": {
       "status": "out-of-stock",
@@ -16100,9 +16100,9 @@
       "stockLevel": "100+"
     },
     "251R14S3R6BV4T": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "251R14S3R6CV4T": {
       "status": "out-of-stock",
@@ -26325,9 +26325,9 @@
       "stockLevel": "재고 없음"
     },
     "598B": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "500+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "598B [1250V 223J 15C]": {
       "status": "in-stock",
@@ -28317,7 +28317,7 @@
     "ACMS322513A600(S)": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "stockLevel": "100+"
     },
     "ACPL-217-50BE": {
       "status": "out-of-stock",
@@ -31250,9 +31250,9 @@
       "stockLevel": "재고 없음"
     },
     "ASL41S9": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "ASMK025ZM174S11": {
       "status": "out-of-stock",
@@ -45245,9 +45245,9 @@
       "stockLevel": "재고 없음"
     },
     "CR-03JL7--130R": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "CR-03JL7--150R": {
       "status": "out-of-stock",
@@ -49254,6 +49254,11 @@
       "label": "재고 없음",
       "stockLevel": "재고 없음"
     },
+    "DAMC-101": {
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
+    },
     "DAMC-102": {
       "status": "out-of-stock",
       "label": "재고 없음",
@@ -52914,6 +52919,11 @@
       "label": "재고 없음",
       "stockLevel": "재고 없음"
     },
+    "F4431": {
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "소량"
+    },
     "F4444": {
       "status": "out-of-stock",
       "label": "재고 없음",
@@ -52928,6 +52938,11 @@
       "status": "out-of-stock",
       "label": "재고 없음",
       "stockLevel": "재고 없음"
+    },
+    "F4486": {
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "소량"
     },
     "F4491": {
       "status": "out-of-stock",
@@ -78270,9 +78285,9 @@
       "stockLevel": "재고 없음"
     },
     "RC0805FR-0710KL": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "RC0805FR-0710RL": {
       "status": "out-of-stock",
@@ -78335,9 +78350,9 @@
       "stockLevel": "재고 없음"
     },
     "RC0805FR-0715KL": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "RC0805FR-0716KL": {
       "status": "out-of-stock",
@@ -99020,9 +99035,9 @@
       "stockLevel": "재고 없음"
     },
     "VFB4532-510": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "소량"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "VG035CHXT": {
       "status": "out-of-stock",
