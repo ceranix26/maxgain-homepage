@@ -26,12 +26,12 @@ jobs:
         run: node scripts/update-ecount-inventory-integrated.mjs
       - name: Commit inventory status when changed
         run: |
-          if git diff --quiet -- data/inventory-status.json; then
-            echo "No inventory status changes."
+          if git diff --quiet -- data/inventory-status.json data/product-item-groups.json; then
+            echo "No inventory or product group changes."
             exit 0
           fi
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/inventory-status.json
-          git commit -m "Update ECOUNT inventory status"
+          git add data/inventory-status.json data/product-item-groups.json
+          git commit -m "Update ECOUNT inventory and product groups"
           git push

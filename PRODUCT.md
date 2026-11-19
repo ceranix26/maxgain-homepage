@@ -27,6 +27,7 @@ Visitors browse manufacturer and product-category coverage, search by part numbe
 - Part Number is the primary product search key and must remain easy to find and use.
 - Product discovery includes manufacturer and category browsing, product specifications, and suitable or alternative part information where validated.
 - Public inventory should communicate availability or stock-level bands, not exact internal quantities. Confirm band definitions and freshness expectations before changing how stock status is presented.
+- For the explicitly requested product-group search, the public Product Search may use and display only the ECOUNT item-group code (`CLASS_CD`) mapped to customer-facing Part Numbers. Do not include ECOUNT product codes, transaction details, costs, or other ERP fields in this index.
 - Product, manufacturer, specification, catalog, datasheet, and technical-resource information must come from validated manufacturer or otherwise reliable sources. Do not invent, infer, or silently correct it.
 - Represent only manufacturers and product categories MAXGAIN actually handles. Do not add or remove them, or change business claims, without explicit approval.
 - Do not expose purchasing cost, sales pricing, customer or supplier-sensitive information, ERP data, or other internal business data.

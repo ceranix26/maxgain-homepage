@@ -153,7 +153,8 @@ async function getAllProducts(sessionId) {
         partNumber,
         size: String(row.SIZE_DES ?? '').trim(),
         balFlag: String(row.BAL_FLAG ?? '').trim(),
-        prodType: String(row.PROD_TYPE ?? '').trim()
+        prodType: String(row.PROD_TYPE ?? '').trim(),
+        itemGroupCode: String(row.CLASS_CD ?? '').trim()
       });
     }
 
@@ -265,6 +266,8 @@ async function updateInventory(testSession) {
 
   console.log('PRODUCT MASTER RAW ROWS:', rawRowCount);
   console.log('UNIQUE PRODUCT CODES:', productMap.size);
+  const productsWithItemGroup = [...productMap.values()].filter(product => product.itemGroupCode).length;
+  console.log('PRODUCT MASTER ROWS WITH CLASS_CD ITEM GROUP:', productsWithItemGroup);
   if (productMap.size < 10_000) {
     console.warn(`WARNING: Product Master returned only ${productMap.size} unique products.`);
   }
@@ -329,11 +332,13 @@ async function updateInventory(testSession) {
     if (!existing) {
       partNumberMap.set(product.partNumber, {
         quantity,
-        productCodes: [product.prodCd]
+        productCodes: [product.prodCd],
+        itemGroupCodes: new Set(product.itemGroupCode ? [product.itemGroupCode] : [])
       });
     } else {
       existing.quantity += quantity;
       existing.productCodes.push(product.prodCd);
+      if (product.itemGroupCode) existing.itemGroupCodes.add(product.itemGroupCode);
     }
   }
 
@@ -387,6 +392,18 @@ async function updateInventory(testSession) {
     items
   };
 
+  const productGroupsOutput = {
+    version: 1,
+    updatedAt: output.updatedAt,
+    source: 'ECOUNT Product Master',
+    items: Object.fromEntries(
+      [...partNumberMap.entries()]
+        .filter(([, info]) => info.itemGroupCodes.size)
+        .sort(([a], [b]) => a.localeCompare(b))
+        .map(([partNumber, info]) => [partNumber, [...info.itemGroupCodes].sort()])
+    )
+  };
+
   const fs = await import('node:fs/promises');
   await fs.mkdir('data', { recursive: true });
 
@@ -400,14 +417,26 @@ async function updateInventory(testSession) {
     const temporaryOutput = JSON.parse(await fs.readFile(temporaryPath, 'utf8'));
     validateInventoryOutput(temporaryOutput, productMap.size, inStock, outOfStock);
     await fs.rename(temporaryPath, 'data/inventory-status.json');
+    const groupsTemporaryPath = `data/product-item-groups.json.${process.pid}.tmp`;
+    await fs.writeFile(groupsTemporaryPath, JSON.stringify(productGroupsOutput, null, 2) + '\n', {
+      encoding: 'utf8',
+      flag: 'wx'
+    });
+    const temporaryGroupsOutput = JSON.parse(await fs.readFile(groupsTemporaryPath, 'utf8'));
+    if (!temporaryGroupsOutput.items || typeof temporaryGroupsOutput.items !== 'object' || Array.isArray(temporaryGroupsOutput.items)) {
+      throw new Error('Cannot write product item groups: invalid items object.');
+    }
+    await fs.rename(groupsTemporaryPath, 'data/product-item-groups.json');
   } catch (error) {
     await fs.rm(temporaryPath, { force: true });
+    await fs.rm(`data/product-item-groups.json.${process.pid}.tmp`, { force: true });
     throw error;
   }
 
   console.log(
     `Integrated inventory JSON created: ${Object.keys(items).length} Part Numbers`
   );
+  console.log(`ECOUNT item groups mapped: ${Object.keys(productGroupsOutput.items).length} Part Numbers`);
 }
 
 function validateInventoryOutput(output, uniqueProductCount, inStock, outOfStock) {
