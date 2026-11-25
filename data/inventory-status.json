@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-11-25T04:43:04.366720Z",
-  "baseDate": "20261125",
+  "updatedAt": "2026-11-25T23:00:03.485374Z",
+  "baseDate": "20261126",
   "source": "ECOUNT",
   "totalPartNumbers": 13166,
   "items": {
@@ -4435,9 +4435,9 @@
       "stockLevel": "재고 없음"
     },
     "1608KL-05W-B39-L02": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "소량"
     },
     "1608R12JT": {
       "status": "out-of-stock",
@@ -11180,9 +11180,9 @@
       "stockLevel": "소량"
     },
     "7D471BSAA250": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "8*75": {
       "status": "out-of-stock",
@@ -12510,9 +12510,9 @@
       "stockLevel": "재고 없음"
     },
     "AL02-R82 K": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "AL02GT10N": {
       "status": "out-of-stock",
@@ -14287,7 +14287,7 @@
     "B10S": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "500+"
+      "stockLevel": "1,000+"
     },
     "B1205XT-1WR3": {
       "status": "out-of-stock",
@@ -19445,9 +19445,9 @@
       "stockLevel": "소량"
     },
     "CL21B563KBCNNNC": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "CL21B682KBANNNC": {
       "status": "out-of-stock",
@@ -26285,9 +26285,9 @@
       "stockLevel": "재고 없음"
     },
     "DA2GYE102M": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "DAC081S101CIMK": {
       "status": "out-of-stock",
@@ -29765,9 +29765,9 @@
       "stockLevel": "재고 없음"
     },
     "FILM-BOX(X-2,SUNG-HO) 104": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "FILM-CL21": {
       "status": "out-of-stock",
@@ -44030,9 +44030,9 @@
       "stockLevel": "재고 없음"
     },
     "P1 NI": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "P25Q80U-SSH-IT": {
       "status": "out-of-stock",
@@ -52390,9 +52390,9 @@
       "stockLevel": "재고 없음"
     },
     "SK310B": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "SK34B": {
       "status": "out-of-stock",
@@ -53792,7 +53792,7 @@
     "SS-5-2A-AP": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "100+"
+      "stockLevel": "1,000+"
     },
     "SS-7B-VDE-4.8": {
       "status": "out-of-stock",
@@ -59445,9 +59445,9 @@
       "stockLevel": "재고 없음"
     },
     "WR04X270JTL": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "WR04X271JTL": {
       "status": "in-stock",
@@ -60030,9 +60030,9 @@
       "stockLevel": "재고 없음"
     },
     "WR04X750JTL": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "WR04X751JTL": {
       "status": "out-of-stock",
@@ -60260,9 +60260,9 @@
       "stockLevel": "1,000+"
     },
     "WR06X103JTL": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "WR06X104JTL": {
       "status": "in-stock",
@@ -62350,9 +62350,9 @@
       "stockLevel": "재고 없음"
     },
     "WR08X3902FTL": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "WR08X3903FTL": {
       "status": "out-of-stock",
