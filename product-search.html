@@ -7,6 +7,7 @@
   <title>Product Search | MAXGAIN SYSTEMS</title>
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/product-search.css">
+  <link rel="stylesheet" href="assets/css/spec-facets.css">
 </head>
 
 <body>
@@ -39,6 +40,12 @@
             <button class="btn btn-primary" id="searchBtn" type="button" data-ko="검색" data-en="Search">검색</button>
           </div>
           <p data-ko="부품번호, 제조사, 규격값 또는 ECOUNT DB 품목그룹 코드로 검색할 수 있습니다." data-en="Search by part number, manufacturer, specification value, or ECOUNT item group code.">부품번호, 제조사, 규격값 또는 ECOUNT DB 품목그룹 코드로 검색할 수 있습니다.</p>
+        </section>
+
+        <section class="spec-facets" aria-labelledby="specFacetsTitle">
+          <h2 id="specFacetsTitle" data-ko="규격으로 찾기" data-en="Find by specifications">규격으로 찾기</h2>
+          <p id="specFacetsStatus" role="status" aria-live="polite">규격 정보를 확인하는 중입니다.</p>
+          <div id="specFacetsSteps"></div>
         </section>
 
         <section class="results-section" aria-labelledby="resultsTitle">
@@ -115,7 +122,7 @@
   <script>
     (() => {
       const $ = id => document.getElementById(id), keywordInput = $('keyword'), summary = $('searchSummary'), results = $('results'), featuredTrack = $('featuredTrack'), featuredViewport = $('featuredViewport');
-      let inventoryItems = [], featuredItems = [], productSpecs = {}, productAliasMap = {}, productAliasData = { aliases: {} }, productCandidates = {}, manufacturerMap = {}, productItemGroups = {}, productByPartNumberKey = new Map(), inventorySource = {}, loaded = false, featuredAutoTimer = null, featuredAutoPaused = false, selectedPartNumber = '', exclusionDiagnosticLogged = false, currentMatches = [], currentMatchExact = false, currentMatchMode = 'part-number';
+      let inventoryItems = [], featuredItems = [], productSpecs = {}, productAliasMap = {}, productAliasData = { aliases: {} }, productCandidates = {}, manufacturerMap = {}, productItemGroups = {}, productByPartNumberKey = new Map(), inventorySource = {}, loaded = false, featuredAutoTimer = null, featuredAutoPaused = false, selectedPartNumber = '', exclusionDiagnosticLogged = false, currentMatches = [], currentMatchExact = false, currentMatchMode = 'part-number', approvedFacetByInventoryPart = new Map();
       const nonProductPatterns = ['택배', '배송', '운임', '수수료', '포장비', '작업비', '가공비', '금형비','샘플', 'SHIPPING', 'FREIGHT', 'DELIVERY', 'HANDLING', 'TOOLING', 'SAMPLE', 'FILTER TAPE', 'ADAPTER', 'TOOL', 'CHIP외'];
       const productDetailContent = $('productDetailContent');
       const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -270,18 +277,40 @@
         renderFeatured();
         renderSearch(true);
       }
+      function approvedFacetForItem(item) {
+        const matches = new Set(item.inventoryPartNumbers.map(part => approvedFacetByInventoryPart.get(part)).filter(Boolean));
+        return matches.size === 1 ? [...matches][0] : null;
+      }
+      function setApprovedFacets(index, rows, { synthetic = false } = {}) {
+        const next = new Map();
+        const byRow = new Map();
+        for (const row of rows) {
+          const source = index.items[row.canonicalPartNumber];
+          if (!source) throw new Error('Approved facet source missing');
+          const display = { row, source, synthetic };
+          byRow.set(row, display);
+          for (const part of row.inventoryPartNumbers) {
+            if (next.has(part)) throw new Error(`Conflicting approved facet for ${part}`);
+            next.set(part, display);
+          }
+        }
+        approvedFacetByInventoryPart = next;
+        const visible = new Set(inventoryItems.map(approvedFacetForItem).filter(Boolean));
+        if (loaded && keywordInput.value.trim()) renderSearch(true);
+        return rows.filter(row => visible.has(byRow.get(row)));
+      }
       function renderProductDetail(item) {
         if (!item) {
           productDetailContent.innerHTML = `<p>${msg('제품을 선택하면 상세 규격을 확인할 수 있습니다.', 'Select a product to view detailed specifications.')}</p>`;
           return;
         }
-        const inStock = item.status === 'in-stock', details = getPartNumberDetails(item.partNumber);
+        const inStock = item.status === 'in-stock', details = getPartNumberDetails(item.partNumber), approved = approvedFacetForItem(item);
         const specs = details?.specs && typeof details.specs === 'object' && !Array.isArray(details.specs)
           ? Object.entries(details.specs).filter(([name, value]) => name && ['string', 'number', 'boolean'].includes(typeof value) && String(value).trim() !== '')
           : [];
         const metadata = [
-          ['manufacturer', msg('제조사', 'Manufacturer'), manufacturerMap[partNumberKey(item.partNumber)] || details?.manufacturer],
-          ['category', msg('카테고리', 'Category'), details?.category]
+          ['manufacturer', msg('제조사', 'Manufacturer'), approved?.row.manufacturer || manufacturerMap[partNumberKey(item.partNumber)] || details?.manufacturer],
+          ['category', msg('카테고리', 'Category'), approved?.row.family || details?.category]
         ].filter(([, , value]) => typeof value === 'string' && value.trim());
         const legacyPartNumbers = Array.isArray(details?.partNumbers?.legacy)
           ? details.partNumbers.legacy.filter(value => typeof value === 'string' && value.trim())
@@ -334,6 +363,22 @@
           .map(candidate => ({ ...candidate, specs: productSpecs[candidate.partNumber]?.specs }))
           .filter(candidate => candidate.specs && typeof candidate.specs === 'object');
         const specRows = rows => `<dl class="product-detail-specs">${rows.map(([name, value]) => `<div class="product-detail-spec"><dt>${esc(name)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>`;
+        const approvedFacetHtml = approved ? (() => {
+          const facets = approved.source.facets;
+          const quantity = approved.row.family === 'MLCC' ? facets.capacitance : facets.resistance;
+          const fields = [facets.family, facets.size, quantity, facets.tolerance];
+          const evidenceUrls = approved.synthetic ? [] : [...new Set(fields.flatMap(field => field.evidence.map(proof => proof.sourceUrl)))];
+          const values = [
+            [msg('제품군', 'Product family'), `${approved.row.family} · ${facets.family.raw}`],
+            [msg('크기', 'Size'), `${approved.row.sizeLabel} · ${facets.size.raw}`],
+            [msg('정전용량 / 저항값', 'Capacitance / resistance'), `${approved.row.valueLabel} · ${quantity.raw}`],
+            [msg('허용오차', 'Tolerance'), `${approved.row.toleranceLabel} · ${facets.tolerance.raw}`]
+          ];
+          const title = approved.synthetic
+            ? msg('합성 규격 예시 · 실제 승인 아님', 'Synthetic specification example · not an actual approval')
+            : msg('검토 승인된 제조사 규격', 'Reviewed manufacturer specifications');
+          return `<section class="approved-facet-detail"><h3>${title}</h3>${specRows(values)}${evidenceUrls.length ? `<div class="product-detail-documents"><h3>${msg('공식 규격 근거', 'Official specification sources')}</h3>${evidenceUrls.map((url, index) => `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${msg('공식 출처', 'Official source')} ${index + 1}</a>`).join('')}</div>` : ''}</section>`;
+        })() : '';
         const candidateSpecHtml = { links: '', body: '' };
         if (candidateSpecList.length) {
           const names = [...new Set(candidateSpecList.flatMap(candidate => Object.keys(candidate.specs)))];
@@ -384,7 +429,7 @@
         const productImage = safeImageSource
           ? `<div style="display:grid;justify-items:end;gap:4px;max-width:160px;min-width:0"><img class="product-detail-image" src="${esc(safeImageSource)}" alt="${esc(`${item.partNumber} ${msg('제품 이미지', 'product image')}`)}">${imageLabels.map(label => `<small>${esc(label)}</small>`).join('')}</div>`
           : '';
-        productDetailContent.innerHTML = `<div class="product-detail-overview${productImage ? ' has-product-image' : ''}"><div class="product-detail-overview-info"><div class="product-detail-part"><span>${msg('Part Number', 'Part Number')}</span><strong>${esc(item.partNumber)}</strong></div><div class="product-detail-stock"><span>${msg('현재 재고 상태', 'Current stock status')}</span><span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${inStock ? msg('재고 있음', 'In stock') : msg('재고 없음', 'Out of stock')}</span>${inStock && item.stockLevel ? `<span class="stock-level">${esc(item.stockLevel)}</span>` : ''}</div></div>${productImage}</div>${metadata.length ? `<div class="product-detail-meta">${metadata.map(([, label, value]) => `<div class="product-detail-spec"><strong>${label}</strong><span>${esc(value.trim())}</span></div>`).join('')}</div>` : ''}${candidateLinks.length ? `<div class="product-detail-documents product-detail-candidates"><h3>${msg('변경된 Part Number', 'Changed Part Number')}</h3>${candidateLinks.map(candidate => `<a href="${esc(candidate.url)}" target="_blank" rel="noopener noreferrer">${esc(candidate.partNumber)}${candidate.electrode ? ` (${candidate.electrode})` : ''}</a>`).join('')}${candidateSpecHtml.links}</div>` : ''}${candidateSpecHtml.body}${specs.length ? `<dl class="product-detail-specs">${specs.map(([name, value]) => `<div class="product-detail-spec"><dt>${esc(name)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>` : candidateSpecHtml.body ? '' : `<p class="product-detail-pending">${msg('제조사 공식 데이터베이스에서 확인되지 않은 번호이거나 규격 정보가 준비 중입니다. 정확한 규격은 문의해 주세요.', 'This part number is not listed in the manufacturer\'s official database, or its specifications are still being prepared. Please contact us for confirmed specifications.')}</p>`}${technicalDocuments.length ? `<div class="product-detail-documents"><h3>${msg('기술 자료', 'Technical Documents')}</h3>${technicalDocuments.map(document => `<a href="${esc(document.url)}" title="${esc(document.title)}" target="_blank" rel="noopener noreferrer">${document.label}</a>`).join('')}</div>` : ''}<a class="detail-inquiry" href="contact.html?partNumber=${encodeURIComponent(item.partNumber)}">${msg('이 제품 문의하기', 'Inquire about this part')}</a>`;
+        productDetailContent.innerHTML = `<div class="product-detail-overview${productImage ? ' has-product-image' : ''}"><div class="product-detail-overview-info"><div class="product-detail-part"><span>${msg('Part Number', 'Part Number')}</span><strong>${esc(item.partNumber)}</strong></div><div class="product-detail-stock"><span>${msg('현재 재고 상태', 'Current stock status')}</span><span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${inStock ? msg('재고 있음', 'In stock') : msg('재고 없음', 'Out of stock')}</span>${inStock && item.stockLevel ? `<span class="stock-level">${esc(item.stockLevel)}</span>` : ''}</div></div>${productImage}</div>${metadata.length ? `<div class="product-detail-meta">${metadata.map(([, label, value]) => `<div class="product-detail-spec"><strong>${label}</strong><span>${esc(value.trim())}</span></div>`).join('')}</div>` : ''}${candidateLinks.length ? `<div class="product-detail-documents product-detail-candidates"><h3>${msg('변경된 Part Number', 'Changed Part Number')}</h3>${candidateLinks.map(candidate => `<a href="${esc(candidate.url)}" target="_blank" rel="noopener noreferrer">${esc(candidate.partNumber)}${candidate.electrode ? ` (${candidate.electrode})` : ''}</a>`).join('')}${candidateSpecHtml.links}</div>` : ''}${approvedFacetHtml}${candidateSpecHtml.body}${specs.length ? `<dl class="product-detail-specs">${specs.map(([name, value]) => `<div class="product-detail-spec"><dt>${esc(name)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>` : candidateSpecHtml.body || approvedFacetHtml ? '' : `<p class="product-detail-pending">${msg('제조사 공식 데이터베이스에서 확인되지 않은 번호이거나 규격 정보가 준비 중입니다. 정확한 규격은 문의해 주세요.', 'This part number is not listed in the manufacturer\'s official database, or its specifications are still being prepared. Please contact us for confirmed specifications.')}</p>`}${technicalDocuments.length ? `<div class="product-detail-documents"><h3>${msg('기술 자료', 'Technical Documents')}</h3>${technicalDocuments.map(document => `<a href="${esc(document.url)}" title="${esc(document.title)}" target="_blank" rel="noopener noreferrer">${document.label}</a>`).join('')}</div>` : ''}<a class="detail-inquiry" href="contact.html?partNumber=${encodeURIComponent(item.partNumber)}">${msg('이 제품 문의하기', 'Inquire about this part')}</a>`;
         productDetailContent.querySelector('.product-detail-image')?.addEventListener('error', event => {
           event.currentTarget.parentElement.hidden = true;
         }, { once: true });
@@ -432,14 +477,17 @@
       function renderFeatured() { if (!featuredItems.length) { featuredTrack.innerHTML = `<p class="featured-loading">${msg('표시할 재고 제품이 없습니다.', 'No in-stock products are available.')}</p>`; return; } featuredTrack.innerHTML = featuredItems.map(item => `<button class="featured-card" type="button" data-part-number="${esc(item.partNumber)}"><strong>${esc(item.partNumber)}</strong><span class="stock-badge stock-in">${msg('재고 있음', 'In stock')}</span></button>`).join(''); featuredTrack.querySelectorAll('.featured-card').forEach(card => card.addEventListener('click', () => { keywordInput.value = card.dataset.partNumber || ''; renderSearch(); summary.scrollIntoView({ behavior: 'smooth', block: 'center' }); })); }
       function productMeta(item) {
         const details = getPartNumberDetails(item.partNumber) || {};
-        const manufacturer = manufacturerMap[partNumberKey(item.partNumber)] || details.manufacturer || '';
-        const category = typeof details.category === 'string' ? details.category : '';
+        const approved = approvedFacetForItem(item);
+        const manufacturer = approved?.row.manufacturer || manufacturerMap[partNumberKey(item.partNumber)] || details.manufacturer || '';
+        const category = approved?.row.family || (typeof details.category === 'string' ? details.category : '');
         const specs = details.specs && typeof details.specs === 'object' ? details.specs : {};
         const itemGroupCodes = [...new Set([item.partNumber, ...(item.inventoryPartNumbers || []), ...(item.partNumbers || [])]
           .flatMap(part => productItemGroups[partNumberKey(part)] || []))];
         const summaryKeys = ['Case Size', 'Capacitance', 'Resistance', 'Rated Voltage', 'Series'];
-        const specSummary = summaryKeys.map(key => specs[key]).filter(value => typeof value === 'string' && value.trim()).slice(0, 3).join(' · ');
-        return { manufacturer, category, specSummary, itemGroupCodes, hasDocument: Boolean(details.source?.url || details.ecd?.url) };
+        const specSummary = approved
+          ? [approved.row.sizeLabel, approved.row.valueLabel, approved.row.toleranceLabel].join(' · ')
+          : summaryKeys.map(key => specs[key]).filter(value => typeof value === 'string' && value.trim()).slice(0, 3).join(' · ');
+        return { manufacturer, category, specSummary, itemGroupCodes, hasDocument: Boolean(approved || details.source?.url || details.ecd?.url) };
       }
       function productSearchFields(item) {
         const details = getPartNumberDetails(item.partNumber) || {};
@@ -461,6 +509,8 @@
         }
         summary.textContent = currentMatchExact
           ? msg(`${visible.length}개 정확 일치 결과`, `${visible.length} exact matches`)
+          : currentMatchMode === 'facet'
+            ? msg(`${visible.length}개 승인 규격 검색 결과`, `${visible.length} approved specification matches`)
           : currentMatchMode === 'specification'
             ? msg(`${visible.length}개 규격/품목그룹 검색 결과`, `${visible.length} specification/item-group matches`)
             : currentMatchMode === 'mixed'
@@ -473,7 +523,18 @@
         }).join('')}</tbody></table>`;
         renderProductDetail(visible.find(item => item.partNumber === selectedPartNumber) || null);
       }
+      function showFacetResults(rows) {
+        keywordInput.value = '';
+        const exactInventoryKeys = new Set(rows.flatMap(row => row.inventoryPartNumbers));
+        currentMatches = inventoryItems.filter(item => item.inventoryPartNumbers.some(part => exactInventoryKeys.has(part))).slice(0, 50);
+        currentMatchMode = 'facet'; currentMatchExact = false; selectedPartNumber = '';
+        if (!currentMatches.length) {
+          results.innerHTML = ''; renderProductDetail(null);
+          summary.textContent = msg('일치하는 승인 규격 제품이 없습니다.', 'No products match the approved specifications.');
+        } else renderMatchedResults();
+      }
       function renderSearch(preserveSelection = false) {
+        window.__maxgainFacetSearch?.onNormalSearch();
         const previousSelection = preserveSelection ? selectedPartNumber : '';
         const raw = keywordInput.value.trim(), keyword = normalize(raw);
         if (!loaded) {
@@ -541,6 +602,8 @@
           inventorySource = inventoryData.items || {};
           loaded = true;
           refreshInventoryProducts();
+          window.__maxgainFacetSearchReady = { inventoryData, showFacetResults, setApprovedFacets, showNormalSearch: () => renderSearch(true) };
+          document.dispatchEvent(new Event('maxgain-facet-search-ready'));
           startFeaturedAutoSlide();
         } catch (error) {
           console.error('Inventory load failed:', error);
@@ -552,6 +615,7 @@
       $('searchBtn').addEventListener('click', renderSearch); keywordInput.addEventListener('keydown', e => { if (e.key === 'Enter') renderSearch(); }); $('featuredPrev').addEventListener('click', () => scrollFeatured(-1)); $('featuredNext').addEventListener('click', () => scrollFeatured(1)); featuredViewport.addEventListener('mouseenter', () => { featuredAutoPaused = true; }); featuredViewport.addEventListener('mouseleave', () => { featuredAutoPaused = false; }); featuredViewport.addEventListener('touchstart', () => { featuredAutoPaused = true; }, { passive: true }); featuredViewport.addEventListener('touchend', () => { featuredAutoPaused = false; }, { passive: true }); featuredViewport.addEventListener('focusin', () => { featuredAutoPaused = true; }); featuredViewport.addEventListener('focusout', () => { featuredAutoPaused = false; }); document.addEventListener('visibilitychange', () => { featuredAutoPaused = document.hidden; }); syncSearchAriaLabels(); document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => setTimeout(() => { renderFeatured(); renderSearch(true); syncSearchAriaLabels(); }, 0))); initialize();
     })();
   </script>
+  <script type="module" src="assets/js/spec-facets-ui.mjs"></script>
 </body>
 
 </html>

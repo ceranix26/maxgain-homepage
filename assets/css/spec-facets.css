@@ -1,0 +1,21 @@
+.spec-facets {
+  margin: 24px 0;
+  padding: 20px;
+  border: 1px solid #cad8df;
+  border-radius: 12px;
+  background: #f6fafb;
+}
+
+.spec-facets h2 { margin: 0 0 8px; }
+.spec-facets p { margin: 0 0 14px; }
+.spec-facets-step { margin: 14px 0; padding: 12px; border: 1px solid #cad8df; border-radius: 10px; }
+.spec-facets-step legend { padding: 0 6px; font-weight: 700; }
+.spec-facets-choices { display: flex; flex-wrap: wrap; gap: 8px; }
+.spec-facets-choices button { padding: 8px 12px; border: 1px solid #7493a0; border-radius: 999px; background: white; cursor: pointer; }
+.spec-facets-choices button[aria-pressed="true"] { color: white; background: #07576f; }
+.spec-facets-choices button:focus-visible { outline: 3px solid #007ca8; outline-offset: 2px; }
+
+@media (max-width: 700px) {
+  .spec-facets { padding: 14px; }
+  .spec-facets-choices button { max-width: 100%; white-space: normal; text-align: left; }
+}
