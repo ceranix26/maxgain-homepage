@@ -48,13 +48,6 @@
               <p id="searchSummary" aria-live="polite" data-ko="재고 정보를 불러오는 중입니다." data-en="Loading stock information...">재고 정보를 불러오는 중입니다.</p>
             </div>
           </div>
-          <div class="search-filters" aria-label="검색 필터" data-aria-ko="검색 필터" data-aria-en="Search filters">
-            <label><span data-ko="재고 상태" data-en="Availability">재고 상태</span><select id="stockFilter"><option value="all" data-ko="전체" data-en="All">전체</option><option value="in-stock" data-ko="재고 있음" data-en="In stock">재고 있음</option><option value="out-of-stock" data-ko="재고 없음" data-en="Out of stock">재고 없음</option></select></label>
-            <label><span data-ko="제조사" data-en="Manufacturer">제조사</span><select id="manufacturerFilter"><option value="all" data-ko="전체 제조사" data-en="All manufacturers">전체 제조사</option></select></label>
-            <label><span data-ko="카테고리" data-en="Category">카테고리</span><select id="categoryFilter"><option value="all" data-ko="전체 카테고리" data-en="All categories">전체 카테고리</option></select></label>
-            <label><span data-ko="DB 품목그룹" data-en="Database item group">DB 품목그룹</span><select id="itemGroupFilter" disabled><option value="all" data-ko="DB 품목그룹 데이터 대기 중" data-en="Waiting for item group data">DB 품목그룹 데이터 대기 중</option></select></label>
-            <label><span data-ko="정렬" data-en="Sort by">정렬</span><select id="sortOrder"><option value="relevance" data-ko="관련도" data-en="Relevance">관련도</option><option value="part-number" data-ko="Part Number" data-en="Part Number">Part Number</option></select></label>
-          </div>
           <div id="results" class="results-table-wrap"></div>
         </section>
 
@@ -121,7 +114,7 @@
   <script src="assets/js/main.js"></script>
   <script>
     (() => {
-      const $ = id => document.getElementById(id), keywordInput = $('keyword'), summary = $('searchSummary'), results = $('results'), featuredTrack = $('featuredTrack'), featuredViewport = $('featuredViewport'), stockFilter = $('stockFilter'), manufacturerFilter = $('manufacturerFilter'), categoryFilter = $('categoryFilter'), itemGroupFilter = $('itemGroupFilter'), sortOrder = $('sortOrder');
+      const $ = id => document.getElementById(id), keywordInput = $('keyword'), summary = $('searchSummary'), results = $('results'), featuredTrack = $('featuredTrack'), featuredViewport = $('featuredViewport');
       let inventoryItems = [], featuredItems = [], productSpecs = {}, productAliasMap = {}, productAliasData = { aliases: {} }, productCandidates = {}, manufacturerMap = {}, productItemGroups = {}, productByPartNumberKey = new Map(), inventorySource = {}, loaded = false, featuredAutoTimer = null, featuredAutoPaused = false, selectedPartNumber = '', exclusionDiagnosticLogged = false, currentMatches = [], currentMatchExact = false, currentMatchMode = 'part-number';
       const nonProductPatterns = ['택배', '배송', '운임', '수수료', '포장비', '작업비', '가공비', '금형비','샘플', 'SHIPPING', 'FREIGHT', 'DELIVERY', 'HANDLING', 'TOOLING', 'SAMPLE', 'FILTER TAPE', 'ADAPTER', 'TOOL', 'CHIP외'];
       const productDetailContent = $('productDetailContent');
@@ -181,6 +174,12 @@
       function createProductInventory(items) {
         const groups = new Map();
         const excludedPartNumbers = new Set();
+        const aliasesByPrimary = new Map();
+        for (const [alias, primary] of Object.entries(productAliasMap)) {
+          const key = partNumberKey(primary);
+          if (!aliasesByPrimary.has(key)) aliasesByPrimary.set(key, []);
+          aliasesByPrimary.get(key).push(alias);
+        }
         for (const [partNumber, info] of Object.entries(items || {})) {
           if (isNonProductPartNumber(partNumber)) {
             excludedPartNumbers.add(partNumber.trim().toLocaleUpperCase());
@@ -216,9 +215,7 @@
           product.partNumbers.push(declaredPrimary);
           product.partNumbers.push(...(Array.isArray(partNumbers?.legacy) ? partNumbers.legacy : []));
           product.partNumbers.push(...(Array.isArray(partNumbers?.aliases) ? partNumbers.aliases : []));
-          for (const [alias, primary] of Object.entries(productAliasMap)) {
-            if (partNumberKey(primary) === partNumberKey(declaredPrimary)) product.partNumbers.push(alias);
-          }
+          product.partNumbers.push(...(aliasesByPrimary.get(partNumberKey(declaredPrimary)) || []));
           product.partNumbers = [...new Map(product.partNumbers
             .filter(value => typeof value === 'string' && value.trim())
             .map(value => [partNumberKey(value), value.trim()])).values()];
@@ -244,18 +241,17 @@
       }
       async function loadProductManufacturers() {
         try {
-          const response = await fetch('data/product-manufacturers.json', { cache: 'no-store' });
+          const response = await fetch('data/product-manufacturers.json');
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
           const data = await response.json();
           manufacturerMap = Object.fromEntries(Object.entries(data.items || {}).map(([part, info]) => [partNumberKey(part), info?.manufacturer || '']));
-          if (loaded) refreshInventoryProducts();
         } catch (error) {
           console.warn('Product manufacturers could not be loaded:', error);
         }
       }
       async function loadProductItemGroups() {
         try {
-          const response = await fetch('data/product-item-groups.json', { cache: 'no-store' });
+          const response = await fetch('data/product-item-groups.json');
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
           const data = await response.json();
           if (!data.items || typeof data.items !== 'object' || Array.isArray(data.items)) throw new Error('Invalid product item groups format');
@@ -263,10 +259,8 @@
             partNumberKey(part),
             [...new Set((Array.isArray(groups) ? groups : [groups]).map(group => String(group ?? '').trim()).filter(Boolean))]
           ]));
-          if (loaded) refreshInventoryProducts();
         } catch (error) {
           console.warn('ECOUNT item groups could not be loaded:', error);
-          itemGroupFilter.disabled = true;
         }
       }
       function refreshInventoryProducts() {
@@ -397,7 +391,7 @@
       }
       async function loadProductSpecs() {
         try {
-          const response = await fetch('data/product-specs.json', { cache: 'no-store' });
+          const response = await fetch('data/product-specs.json');
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
           const data = await response.json();
           if (!data.items || typeof data.items !== 'object' || Array.isArray(data.items)) {
@@ -405,14 +399,13 @@
           }
           productSpecs = data.items;
           buildProductAliasMap();
-          if (loaded) refreshInventoryProducts();
         } catch (error) {
           console.warn('Product specifications could not be loaded:', error);
         }
       }
       async function loadProductAliases() {
         try {
-          const response = await fetch('data/product-aliases.json', { cache: 'no-store' });
+          const response = await fetch('data/product-aliases.json');
           if (!response.ok) throw new Error(`HTTP ${response.status}`);
           const data = await response.json();
           if (!data.aliases || typeof data.aliases !== 'object' || Array.isArray(data.aliases)) {
@@ -420,19 +413,17 @@
           }
           productAliasData = data;
           buildProductAliasMap(data);
-          if (loaded) refreshInventoryProducts();
         } catch (error) {
           console.warn('Product aliases could not be loaded:', error);
         }
       }
       async function loadProductCandidates() {
         try {
-          const response = await fetch('data/product-candidates.json', { cache: 'no-store' });
+          const response = await fetch('data/product-candidates.json');
           if (!response.ok) return;
           const data = await response.json();
           if (!data.items || typeof data.items !== 'object' || Array.isArray(data.items)) return;
           productCandidates = data.items;
-          if (loaded) refreshInventoryProducts();
         } catch (error) {
           console.warn('Product candidates could not be loaded:', error);
         }
@@ -458,62 +449,29 @@
           : [];
         return [...item.searchTerms, meta.manufacturer, meta.category, ...specs, ...meta.itemGroupCodes];
       }
-      function updateFilterOptions() {
-        const update = (select, values, allKo, allEn) => {
-          const previous = select.value;
-          const distinct = [...new Set(values.filter(Boolean))].sort((a, b) => a.localeCompare(b));
-          select.innerHTML = `<option value="all">${msg(allKo, allEn)}</option>${distinct.map(value => `<option value="${esc(value)}">${esc(value)}</option>`).join('')}`;
-          if (distinct.includes(previous)) select.value = previous;
-        };
-        const meta = currentMatches.map(productMeta);
-        update(manufacturerFilter, meta.map(item => item.manufacturer), '전체 제조사', 'All manufacturers');
-        update(categoryFilter, meta.map(item => item.category), '전체 카테고리', 'All categories');
-        const itemGroups = [...new Set(meta.flatMap(item => item.itemGroupCodes))].sort((a, b) => a.localeCompare(b));
-        update(itemGroupFilter, itemGroups, '전체 품목그룹', 'All item groups');
-        if (!itemGroups.length) {
-          const groupIndexAvailable = Object.keys(productItemGroups).length > 0;
-          itemGroupFilter.options[0].textContent = groupIndexAvailable
-            ? msg('검색 결과에 품목그룹 없음', 'No item groups in these results')
-            : msg('DB 품목그룹 데이터 대기 중', 'Waiting for item group data');
-        }
-        itemGroupFilter.disabled = itemGroups.length === 0;
-      }
       function renderMatchedResults() {
-        const selected = currentMatches.find(item => item.partNumber === selectedPartNumber);
-        const manufacturer = manufacturerFilter.value, category = categoryFilter.value, itemGroup = itemGroupFilter.value, stock = stockFilter.value;
-        let visible = currentMatches.filter(item => {
-          const meta = productMeta(item);
-          return (stock === 'all' || item.status === stock) &&
-            (manufacturer === 'all' || meta.manufacturer === manufacturer) &&
-            (category === 'all' || meta.category === category) &&
-            (itemGroup === 'all' || meta.itemGroupCodes.includes(itemGroup));
-        });
-        if (sortOrder.value === 'part-number') visible.sort((a, b) => a.partNumber.localeCompare(b.partNumber));
-        if (selected && visible.some(item => item.partNumber === selectedPartNumber)) {
-          selectedPartNumber = selected.partNumber;
-        } else if (!visible.some(item => item.partNumber === selectedPartNumber)) {
-          selectedPartNumber = visible[0]?.partNumber || '';
-        }
+        const visible = currentMatches;
+        const selected = visible.find(item => item.partNumber === selectedPartNumber);
+        if (selected) selectedPartNumber = selected.partNumber;
+        else selectedPartNumber = visible[0]?.partNumber || '';
         if (!visible.length) {
-          results.innerHTML = `<p class="results-empty">${msg('선택한 조건에 맞는 제품이 없습니다.', 'No products match the selected filters.')}</p>`;
-          summary.textContent = msg('필터 조건에 맞는 제품이 없습니다.', 'No products match the selected filters.');
+          results.innerHTML = '';
           renderProductDetail(null);
           return;
         }
         summary.textContent = currentMatchExact
-          ? msg(`${currentMatches.length}개 결과 중 ${visible.length}개 표시 · 정확히 일치`, `${visible.length} of ${currentMatches.length} results · exact match`)
+          ? msg(`${visible.length}개 정확 일치 결과`, `${visible.length} exact matches`)
           : currentMatchMode === 'specification'
-            ? msg(`${currentMatches.length}개 규격/품목그룹 검색 결과 중 ${visible.length}개 표시`, `${visible.length} of ${currentMatches.length} specification/item-group matches`)
+            ? msg(`${visible.length}개 규격/품목그룹 검색 결과`, `${visible.length} specification/item-group matches`)
             : currentMatchMode === 'mixed'
-              ? msg(`${currentMatches.length}개 Part Number/제품정보 검색 결과 중 ${visible.length}개 표시`, `${visible.length} of ${currentMatches.length} part-number/product-information matches`)
-            : msg(`${currentMatches.length}개 유사 Part Number 중 ${visible.length}개 표시`, `${visible.length} of ${currentMatches.length} similar part numbers`);
+              ? msg(`${visible.length}개 Part Number/제품정보 검색 결과`, `${visible.length} part-number/product-information matches`)
+              : msg(`${visible.length}개 유사 Part Number 검색 결과`, `${visible.length} similar part-number matches`);
         const headers = [msg('Part Number', 'Part Number'), msg('제조사', 'Manufacturer'), msg('품목그룹', 'Item group'), msg('제품 정보', 'Product information'), msg('재고 상태', 'Availability'), msg('문서', 'Documents')];
         results.innerHTML = `<table class="results-table"><thead><tr>${headers.map(header => `<th scope="col">${header}</th>`).join('')}</tr></thead><tbody>${visible.map(item => {
           const meta = productMeta(item), inStock = item.status === 'in-stock', selectedRow = item.partNumber === selectedPartNumber;
           return `<tr class="${selectedRow ? 'is-selected' : ''}"><td><button class="product-row-button" type="button" data-part-number="${esc(item.partNumber)}" aria-pressed="${selectedRow}">${esc(item.partNumber)}</button></td><td class="result-manufacturer">${esc(meta.manufacturer || msg('정보 없음', 'Not listed'))}</td><td class="result-category">${meta.itemGroupCodes.length ? meta.itemGroupCodes.map(esc).join(', ') : '—'}</td><td><span class="result-category">${esc(meta.category || '')}</span>${meta.category && meta.specSummary ? ' · ' : ''}<span class="result-spec-summary">${esc(meta.specSummary)}</span>${!meta.category && !meta.specSummary ? `<span class="result-spec-summary">${msg('제품 정보 미등록', 'Product information unavailable')}</span>` : ''}</td><td><span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${inStock ? msg('재고 있음', 'In stock') : msg('재고 없음', 'Out of stock')}</span></td><td>${meta.hasDocument ? `<button class="result-document document-select" type="button" data-part-number="${esc(item.partNumber)}">${msg('규격 보기', 'View specs')}</button>` : `<span class="result-document is-empty">—</span>`}</td></tr>`;
         }).join('')}</tbody></table>`;
-        const selectedItem = visible.find(item => item.partNumber === selectedPartNumber);
-        renderProductDetail(selectedItem || null);
+        renderProductDetail(visible.find(item => item.partNumber === selectedPartNumber) || null);
       }
       function renderSearch(preserveSelection = false) {
         const previousSelection = preserveSelection ? selectedPartNumber : '';
@@ -526,7 +484,7 @@
         if (!keyword) {
           currentMatches = []; selectedPartNumber = ''; renderProductDetail(null); results.innerHTML = '';
           summary.textContent = msg(`${inventoryItems.length.toLocaleString()}개 Part Number를 검색할 수 있습니다.`, `Search across ${inventoryItems.length.toLocaleString()} part numbers.`);
-          updateFilterOptions(); return;
+          return;
         }
         const exact = inventoryItems.filter(item => item.searchTerms.includes(keyword));
         const partMatches = exact.length ? [] : inventoryItems.filter(item => item.searchTerms.some(term =>
@@ -549,10 +507,9 @@
         if (!currentMatches.length) {
           selectedPartNumber = ''; renderProductDetail(null);
           summary.textContent = msg(`“${raw}”와 일치하는 Part Number를 찾을 수 없습니다.`, `No part number matching “${raw}” was found.`);
-          results.innerHTML = ''; updateFilterOptions(); return;
+          results.innerHTML = ''; return;
         }
         selectedPartNumber = currentMatches.length === 1 ? currentMatches[0].partNumber : currentMatches.find(item => item.partNumber === previousSelection)?.partNumber || '';
-        updateFilterOptions();
         summary.textContent = currentMatchExact
           ? msg('정확히 일치하는 Part Number를 찾았습니다.', 'An exact part number match was found.')
           : currentMatchMode === 'specification'
@@ -567,9 +524,32 @@
       function stopFeaturedAutoSlide() { if (featuredAutoTimer) { clearInterval(featuredAutoTimer); featuredAutoTimer = null; } }
       function startFeaturedAutoSlide() { stopFeaturedAutoSlide(); if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return; featuredAutoTimer = setInterval(() => { if (featuredAutoPaused) return; const card = featuredTrack.querySelector('.featured-card'); if (!card) return; const step = cardStep(), maxScroll = featuredViewport.scrollWidth - featuredViewport.clientWidth; if (featuredViewport.scrollLeft >= maxScroll - step * .5) { featuredViewport.scrollTo({ left: 0, behavior: 'smooth' }); } else { featuredViewport.scrollBy({ left: step, behavior: 'smooth' }); } }, 4000); }
       function syncSearchAriaLabels() { document.querySelectorAll('[data-aria-ko][data-aria-en]').forEach(element => element.setAttribute('aria-label', lang() === 'en' ? element.dataset.ariaEn : element.dataset.ariaKo)); }
-      async function initialize() { try { const response = await fetch('data/inventory-status.json', { cache: 'no-store' }); if (!response.ok) throw new Error(`HTTP ${response.status}`); const data = await response.json(); inventorySource = data.items || {}; loaded = true; refreshInventoryProducts(); startFeaturedAutoSlide(); } catch (error) { console.error('Inventory load failed:', error); featuredTrack.innerHTML = `<p class="featured-loading">${msg('추천 제품을 불러오지 못했습니다.', 'Featured products could not be loaded.')}</p>`; summary.textContent = msg('재고 정보를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.', 'Inventory data could not be loaded. Please try again later.'); } }
+      async function initialize() {
+        try {
+          const inventoryPromise = fetch('data/inventory-status.json').then(async response => {
+            if (!response.ok) throw new Error(`HTTP ${response.status}`);
+            return response.json();
+          });
+          const [inventoryData] = await Promise.all([
+            inventoryPromise,
+            loadProductSpecs(),
+            loadProductAliases(),
+            loadProductCandidates(),
+            loadProductManufacturers(),
+            loadProductItemGroups()
+          ]);
+          inventorySource = inventoryData.items || {};
+          loaded = true;
+          refreshInventoryProducts();
+          startFeaturedAutoSlide();
+        } catch (error) {
+          console.error('Inventory load failed:', error);
+          featuredTrack.innerHTML = `<p class="featured-loading">${msg('추천 제품을 불러오지 못했습니다.', 'Featured products could not be loaded.')}</p>`;
+          summary.textContent = msg('재고 정보를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.', 'Inventory data could not be loaded. Please try again later.');
+        }
+      }
       results.addEventListener('click', event => { const button = event.target.closest('.product-row-button, .document-select'); if (!button) return; const item = currentMatches.find(product => product.partNumber === button.dataset.partNumber); if (!item) return; selectedPartNumber = item.partNumber; renderMatchedResults(); });
-      $('searchBtn').addEventListener('click', renderSearch); keywordInput.addEventListener('keydown', e => { if (e.key === 'Enter') renderSearch(); }); [stockFilter, manufacturerFilter, categoryFilter, itemGroupFilter, sortOrder].forEach(select => select.addEventListener('change', renderMatchedResults)); $('featuredPrev').addEventListener('click', () => scrollFeatured(-1)); $('featuredNext').addEventListener('click', () => scrollFeatured(1)); featuredViewport.addEventListener('mouseenter', () => { featuredAutoPaused = true; }); featuredViewport.addEventListener('mouseleave', () => { featuredAutoPaused = false; }); featuredViewport.addEventListener('touchstart', () => { featuredAutoPaused = true; }, { passive: true }); featuredViewport.addEventListener('touchend', () => { featuredAutoPaused = false; }, { passive: true }); featuredViewport.addEventListener('focusin', () => { featuredAutoPaused = true; }); featuredViewport.addEventListener('focusout', () => { featuredAutoPaused = false; }); document.addEventListener('visibilitychange', () => { featuredAutoPaused = document.hidden; }); syncSearchAriaLabels(); document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => setTimeout(() => { renderFeatured(); renderSearch(true); syncSearchAriaLabels(); }, 0))); loadProductSpecs(); loadProductAliases(); loadProductCandidates(); loadProductManufacturers(); loadProductItemGroups(); initialize();
+      $('searchBtn').addEventListener('click', renderSearch); keywordInput.addEventListener('keydown', e => { if (e.key === 'Enter') renderSearch(); }); $('featuredPrev').addEventListener('click', () => scrollFeatured(-1)); $('featuredNext').addEventListener('click', () => scrollFeatured(1)); featuredViewport.addEventListener('mouseenter', () => { featuredAutoPaused = true; }); featuredViewport.addEventListener('mouseleave', () => { featuredAutoPaused = false; }); featuredViewport.addEventListener('touchstart', () => { featuredAutoPaused = true; }, { passive: true }); featuredViewport.addEventListener('touchend', () => { featuredAutoPaused = false; }, { passive: true }); featuredViewport.addEventListener('focusin', () => { featuredAutoPaused = true; }); featuredViewport.addEventListener('focusout', () => { featuredAutoPaused = false; }); document.addEventListener('visibilitychange', () => { featuredAutoPaused = document.hidden; }); syncSearchAriaLabels(); document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => setTimeout(() => { renderFeatured(); renderSearch(true); syncSearchAriaLabels(); }, 0))); initialize();
     })();
   </script>
 </body>
