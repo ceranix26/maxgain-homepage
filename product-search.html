@@ -8,6 +8,7 @@
   <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="assets/css/product-search.css">
   <link rel="stylesheet" href="assets/css/spec-facets.css">
+  <link rel="stylesheet" href="assets/css/catalog-display-specs.css">
 </head>
 
 <body>
@@ -122,7 +123,7 @@
   <script>
     (() => {
       const $ = id => document.getElementById(id), keywordInput = $('keyword'), summary = $('searchSummary'), results = $('results'), featuredTrack = $('featuredTrack'), featuredViewport = $('featuredViewport');
-      let inventoryItems = [], featuredItems = [], productSpecs = {}, productAliasMap = {}, productAliasData = { aliases: {} }, productCandidates = {}, manufacturerMap = {}, productItemGroups = {}, productByPartNumberKey = new Map(), inventorySource = {}, loaded = false, featuredAutoTimer = null, featuredAutoPaused = false, selectedPartNumber = '', exclusionDiagnosticLogged = false, currentMatches = [], currentMatchExact = false, currentMatchMode = 'part-number', approvedFacetByInventoryPart = new Map();
+      let inventoryItems = [], featuredItems = [], productSpecs = {}, productAliasMap = {}, productAliasData = { aliases: {} }, productCandidates = {}, manufacturerMap = {}, productItemGroups = {}, productByPartNumberKey = new Map(), inventorySource = {}, loaded = false, featuredAutoTimer = null, featuredAutoPaused = false, selectedPartNumber = '', exclusionDiagnosticLogged = false, currentMatches = [], currentMatchExact = false, currentMatchMode = 'part-number', approvedFacetByInventoryPart = new Map(), displaySpecsByInventoryPart = new Map();
       const nonProductPatterns = ['택배', '배송', '운임', '수수료', '포장비', '작업비', '가공비', '금형비','샘플', 'SHIPPING', 'FREIGHT', 'DELIVERY', 'HANDLING', 'TOOLING', 'SAMPLE', 'FILTER TAPE', 'ADAPTER', 'TOOL', 'CHIP외'];
       const productDetailContent = $('productDetailContent');
       const esc = v => String(v ?? '').replace(/[&<>"']/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
@@ -281,6 +282,63 @@
         const matches = new Set(item.inventoryPartNumbers.map(part => approvedFacetByInventoryPart.get(part)).filter(Boolean));
         return matches.size === 1 ? [...matches][0] : null;
       }
+      function displaySpecsForItem(item) {
+        const matches = new Set(item.inventoryPartNumbers.map(part => displaySpecsByInventoryPart.get(part)).filter(Boolean));
+        if (matches.size > 1) return null;
+        const display = [...matches][0], facet = approvedFacetForItem(item);
+        if (facet && display && facet.row.manufacturer !== display.manufacturer) return null;
+        const supplemental = !facet?.synthetic && Array.isArray(facet?.source.supplemental_specs)
+          ? facet.source.supplemental_specs : [];
+        if (!display && !supplemental.length) return null;
+        const values = new Map();
+        for (const spec of [...(display?.specifications || []), ...supplemental]) {
+          const key = JSON.stringify([spec.label, spec.raw_value]);
+          if (!values.has(key)) values.set(key, spec);
+        }
+        return { manufacturer: display?.manufacturer || facet.row.manufacturer, specifications: [...values.values()] };
+      }
+      function setDisplaySpecs(joined) {
+        if (!(joined instanceof Map)) throw new Error('Display specifications map required');
+        displaySpecsByInventoryPart = joined;
+        if (currentMatches.length) renderMatchedResults();
+      }
+      function displaySpecsTableHtml(item) {
+        const display = displaySpecsForItem(item);
+        if (!display) return '';
+        return `<details class="display-specs-table"><summary>${msg('추가 규격', 'Additional specifications')} ${display.specifications.length}${msg('건', '')}</summary><dl>${display.specifications.map(spec => `<div><dt>${esc(spec.label)}</dt><dd>${esc(spec.raw_value)}</dd></div>`).join('')}</dl></details>`;
+      }
+      function appendDisplaySpecsDetail(item) {
+        const display = displaySpecsForItem(item);
+        if (!display) return;
+        productDetailContent.querySelector('.product-detail-pending')?.remove();
+        const section = document.createElement('section');
+        section.className = 'display-specs-detail';
+        const heading = document.createElement('h3');
+        heading.textContent = msg(`추가 승인 규격 ${display.specifications.length}건`, `${display.specifications.length} additional approved specifications`);
+        const list = document.createElement('dl');
+        list.className = 'display-specs-detail-list';
+        for (const spec of display.specifications) {
+          const row = document.createElement('div');
+          const label = document.createElement('dt');
+          label.textContent = spec.label;
+          const value = document.createElement('dd');
+          value.textContent = spec.raw_value;
+          row.append(label, value);
+          for (const evidence of spec.evidence) {
+            const source = document.createElement('small');
+            const link = document.createElement('a');
+            link.href = evidence.sourceUrl;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            link.textContent = msg('출처 보기', 'View source');
+            source.append(link);
+            row.append(source);
+          }
+          list.append(row);
+        }
+        section.append(heading, list);
+        productDetailContent.insertBefore(section, productDetailContent.querySelector('.detail-inquiry'));
+      }
       function setApprovedFacets(index, rows, { synthetic = false } = {}) {
         const next = new Map();
         const byRow = new Map();
@@ -304,12 +362,12 @@
           productDetailContent.innerHTML = `<p>${msg('제품을 선택하면 상세 규격을 확인할 수 있습니다.', 'Select a product to view detailed specifications.')}</p>`;
           return;
         }
-        const inStock = item.status === 'in-stock', details = getPartNumberDetails(item.partNumber), approved = approvedFacetForItem(item);
+        const inStock = item.status === 'in-stock', details = getPartNumberDetails(item.partNumber), approved = approvedFacetForItem(item), display = displaySpecsForItem(item);
         const specs = details?.specs && typeof details.specs === 'object' && !Array.isArray(details.specs)
           ? Object.entries(details.specs).filter(([name, value]) => name && ['string', 'number', 'boolean'].includes(typeof value) && String(value).trim() !== '')
           : [];
         const metadata = [
-          ['manufacturer', msg('제조사', 'Manufacturer'), approved?.row.manufacturer || manufacturerMap[partNumberKey(item.partNumber)] || details?.manufacturer],
+          ['manufacturer', msg('제조사', 'Manufacturer'), approved?.row.manufacturer || display?.manufacturer || manufacturerMap[partNumberKey(item.partNumber)] || details?.manufacturer],
           ['category', msg('카테고리', 'Category'), approved?.row.family || details?.category]
         ].filter(([, , value]) => typeof value === 'string' && value.trim());
         const legacyPartNumbers = Array.isArray(details?.partNumbers?.legacy)
@@ -374,6 +432,11 @@
             [msg('정전용량 / 저항값', 'Capacitance / resistance'), `${approved.row.valueLabel} · ${quantity.raw}`],
             [msg('허용오차', 'Tolerance'), `${approved.row.toleranceLabel} · ${facets.tolerance.raw}`]
           ];
+          if (facets.size.normalization_reference?.authority === 'USER_CONFIRMED_MAPPING') {
+            values.push([msg('크기 매핑', 'Size mapping'),
+              msg('사용자 확인: 1206(EIA-inch) / 3216(metric). 참고 PDF 원본 해시 미확인.',
+                'User-confirmed: 1206 (EIA-inch) / 3216 (metric). Reference PDF hash not captured.')]);
+          }
           const title = approved.synthetic
             ? msg('합성 규격 예시 · 실제 승인 아님', 'Synthetic specification example · not an actual approval')
             : msg('검토 승인된 제조사 규격', 'Reviewed manufacturer specifications');
@@ -433,6 +496,7 @@
         productDetailContent.querySelector('.product-detail-image')?.addEventListener('error', event => {
           event.currentTarget.parentElement.hidden = true;
         }, { once: true });
+        appendDisplaySpecsDetail(item);
       }
       async function loadProductSpecs() {
         try {
@@ -478,7 +542,8 @@
       function productMeta(item) {
         const details = getPartNumberDetails(item.partNumber) || {};
         const approved = approvedFacetForItem(item);
-        const manufacturer = approved?.row.manufacturer || manufacturerMap[partNumberKey(item.partNumber)] || details.manufacturer || '';
+        const display = displaySpecsForItem(item);
+        const manufacturer = approved?.row.manufacturer || display?.manufacturer || manufacturerMap[partNumberKey(item.partNumber)] || details.manufacturer || '';
         const category = approved?.row.family || (typeof details.category === 'string' ? details.category : '');
         const specs = details.specs && typeof details.specs === 'object' ? details.specs : {};
         const itemGroupCodes = [...new Set([item.partNumber, ...(item.inventoryPartNumbers || []), ...(item.partNumbers || [])]
@@ -487,15 +552,17 @@
         const specSummary = approved
           ? [approved.row.sizeLabel, approved.row.valueLabel, approved.row.toleranceLabel].join(' · ')
           : summaryKeys.map(key => specs[key]).filter(value => typeof value === 'string' && value.trim()).slice(0, 3).join(' · ');
-        return { manufacturer, category, specSummary, itemGroupCodes, hasDocument: Boolean(approved || details.source?.url || details.ecd?.url) };
+        return { manufacturer, category, specSummary, itemGroupCodes, hasDocument: Boolean(approved || display || details.source?.url || details.ecd?.url) };
       }
       function productSearchFields(item) {
         const details = getPartNumberDetails(item.partNumber) || {};
         const meta = productMeta(item);
+        const searchableManufacturer = approvedFacetForItem(item)?.row.manufacturer ||
+          manufacturerMap[partNumberKey(item.partNumber)] || details.manufacturer || '';
         const specs = details.specs && typeof details.specs === 'object' && !Array.isArray(details.specs)
           ? Object.entries(details.specs).flatMap(([name, value]) => [name, value])
           : [];
-        return [...item.searchTerms, meta.manufacturer, meta.category, ...specs, ...meta.itemGroupCodes];
+        return [...item.searchTerms, searchableManufacturer, meta.category, ...specs, ...meta.itemGroupCodes];
       }
       function renderMatchedResults() {
         const visible = currentMatches;
@@ -519,7 +586,7 @@
         const headers = [msg('Part Number', 'Part Number'), msg('제조사', 'Manufacturer'), msg('품목그룹', 'Item group'), msg('제품 정보', 'Product information'), msg('재고 상태', 'Availability'), msg('문서', 'Documents')];
         results.innerHTML = `<table class="results-table"><thead><tr>${headers.map(header => `<th scope="col">${header}</th>`).join('')}</tr></thead><tbody>${visible.map(item => {
           const meta = productMeta(item), inStock = item.status === 'in-stock', selectedRow = item.partNumber === selectedPartNumber;
-          return `<tr class="${selectedRow ? 'is-selected' : ''}"><td><button class="product-row-button" type="button" data-part-number="${esc(item.partNumber)}" aria-pressed="${selectedRow}">${esc(item.partNumber)}</button></td><td class="result-manufacturer">${esc(meta.manufacturer || msg('정보 없음', 'Not listed'))}</td><td class="result-category">${meta.itemGroupCodes.length ? meta.itemGroupCodes.map(esc).join(', ') : '—'}</td><td><span class="result-category">${esc(meta.category || '')}</span>${meta.category && meta.specSummary ? ' · ' : ''}<span class="result-spec-summary">${esc(meta.specSummary)}</span>${!meta.category && !meta.specSummary ? `<span class="result-spec-summary">${msg('제품 정보 미등록', 'Product information unavailable')}</span>` : ''}</td><td><span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${inStock ? msg('재고 있음', 'In stock') : msg('재고 없음', 'Out of stock')}</span></td><td>${meta.hasDocument ? `<button class="result-document document-select" type="button" data-part-number="${esc(item.partNumber)}">${msg('규격 보기', 'View specs')}</button>` : `<span class="result-document is-empty">—</span>`}</td></tr>`;
+          return `<tr class="${selectedRow ? 'is-selected' : ''}"><td><button class="product-row-button" type="button" data-part-number="${esc(item.partNumber)}" aria-pressed="${selectedRow}">${esc(item.partNumber)}</button><div class="display-specs-mobile">${displaySpecsTableHtml(item)}</div></td><td class="result-manufacturer">${esc(meta.manufacturer || msg('정보 없음', 'Not listed'))}</td><td class="result-category">${meta.itemGroupCodes.length ? meta.itemGroupCodes.map(esc).join(', ') : '—'}</td><td><span class="result-category">${esc(meta.category || '')}</span>${meta.category && meta.specSummary ? ' · ' : ''}<span class="result-spec-summary">${esc(meta.specSummary)}</span>${!meta.category && !meta.specSummary && !displaySpecsForItem(item) ? `<span class="result-spec-summary">${msg('제품 정보 미등록', 'Product information unavailable')}</span>` : ''}${displaySpecsTableHtml(item)}</td><td><span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${inStock ? msg('재고 있음', 'In stock') : msg('재고 없음', 'Out of stock')}</span></td><td>${meta.hasDocument ? `<button class="result-document document-select" type="button" data-part-number="${esc(item.partNumber)}">${msg('규격 보기', 'View specs')}</button>` : `<span class="result-document is-empty">—</span>`}</td></tr>`;
         }).join('')}</tbody></table>`;
         renderProductDetail(visible.find(item => item.partNumber === selectedPartNumber) || null);
       }
@@ -602,7 +669,7 @@
           inventorySource = inventoryData.items || {};
           loaded = true;
           refreshInventoryProducts();
-          window.__maxgainFacetSearchReady = { inventoryData, showFacetResults, setApprovedFacets, showNormalSearch: () => renderSearch(true) };
+          window.__maxgainFacetSearchReady = { inventoryData, showFacetResults, setApprovedFacets, setDisplaySpecs, showNormalSearch: () => renderSearch(true) };
           document.dispatchEvent(new Event('maxgain-facet-search-ready'));
           startFeaturedAutoSlide();
         } catch (error) {
@@ -616,6 +683,7 @@
     })();
   </script>
   <script type="module" src="assets/js/spec-facets-ui.mjs"></script>
+  <script type="module" src="assets/js/catalog-display-specs-ui.mjs"></script>
 </body>
 
 </html>

@@ -70,12 +70,21 @@ function validateEvidence(values, path, datasetKind, reviewTargetVersion) {
   });
 }
 
-function validateField(value, path, datasetKind, reviewTargetVersion, type) {
+const WR12_SIZE_REFERENCE = Object.freeze({
+  policy_id: 'walsin-wr12-user-confirmed-size.v1',
+  authority: 'USER_CONFIRMED_MAPPING',
+  reference_url: 'https://www.passivecomponent.com/wp-content/uploads/chipR/ASC_WR.pdf',
+  reference_document: 'ASC_WR_V34 Oct-2025',
+  reference_pages: '3-4',
+  pdf_capture_status: 'NOT_CAPTURED_NO_SHA_CLAIM'
+});
+
+function validateField(value, path, datasetKind, reviewTargetVersion, type, context = null) {
   const required = type === 'size' ? ['raw', 'normalized', 'system', 'evidence']
     : type === 'quantity' ? ['raw', 'normalizedValue', 'unit', 'evidence']
       : type === 'tolerance' ? ['raw', 'plusPercent', 'minusPercent', 'evidence']
         : ['raw', 'normalized', 'evidence'];
-  requireKeys(value, required, required, path);
+  requireKeys(value, required, type === 'size' ? [...required, 'normalization_reference'] : required, path);
   requireText(value.raw, `${path}.raw`);
   if (type === 'quantity') {
     requireDecimal(value.normalizedValue, `${path}.normalizedValue`, value.unit === 'F');
@@ -89,6 +98,17 @@ function validateField(value, path, datasetKind, reviewTargetVersion, type) {
     if (type === 'size' && !SIZE_SYSTEMS.has(value.system)) throw new Error(`${path}.system: required`);
   }
   validateEvidence(value.evidence, `${path}.evidence`, datasetKind, reviewTargetVersion);
+  if (type === 'size' && OWN(value, 'normalization_reference')) {
+    const reference = value.normalization_reference;
+    const keys = Object.keys(WR12_SIZE_REFERENCE);
+    requireKeys(reference, keys, keys, `${path}.normalization_reference`);
+    if (keys.some(key => reference[key] !== WR12_SIZE_REFERENCE[key]) ||
+        context?.manufacturer !== 'Walsin' || !context.partNumber.startsWith('WR12X') ||
+        value.raw !== '1206(3216)' || value.normalized !== '1206' || value.system !== 'EIA-inch' ||
+        value.evidence.some(proof => proof.sourceLabel !== 'size' || proof.rawValue !== '1206(3216)')) {
+      throw new Error(`${path}.normalization_reference: unsupported or mismatched policy`);
+    }
+  }
 }
 
 export function validateFacetIndex(index, { expectedKind } = {}) {
@@ -104,7 +124,7 @@ export function validateFacetIndex(index, { expectedKind } = {}) {
     requireText(partNumber, 'index.items key');
     const path = `index.items[${partNumber}]`;
     requireKeys(item, ['manufacturer', 'aliases', 'parseStatus', 'reviewTargetVersion', 'reviewStatus', 'facets'],
-      ['manufacturer', 'aliases', 'parseStatus', 'reviewTargetVersion', 'reviewStatus', 'facets'], path);
+      ['manufacturer', 'aliases', 'parseStatus', 'reviewTargetVersion', 'reviewStatus', 'facets', 'supplemental_specs'], path);
     requireText(item.manufacturer, `${path}.manufacturer`);
     requireText(item.reviewTargetVersion, `${path}.reviewTargetVersion`);
     if (!Array.isArray(item.aliases)) throw new Error(`${path}.aliases: array required`);
@@ -122,13 +142,35 @@ export function validateFacetIndex(index, { expectedKind } = {}) {
     }
     if (!['PARSED_EXACT', 'REVIEW_REQUIRED'].includes(item.parseStatus)) throw new Error(`${path}.parseStatus: unsupported`);
     if (!REVIEW_STATES.has(item.reviewStatus)) throw new Error(`${path}.reviewStatus: unsupported`);
+    if (OWN(item, 'supplemental_specs')) {
+      if (!Array.isArray(item.supplemental_specs) || !item.supplemental_specs.length || item.supplemental_specs.length > 100) {
+        throw new Error(`${path}.supplemental_specs: invalid list`);
+      }
+      const pairs = new Set();
+      item.supplemental_specs.forEach((spec, position) => {
+        const at = `${path}.supplemental_specs[${position}]`;
+        const keys = ['label', 'raw_value', 'review_status', 'evidence'];
+        requireKeys(spec, keys, keys, at);
+        requireText(spec.label, `${at}.label`);
+        requireText(spec.raw_value, `${at}.raw_value`);
+        if (spec.label.length > 200 || spec.raw_value.length > 2000 || spec.review_status !== 'APPROVED') {
+          throw new Error(`${at}: unapproved or oversized`);
+        }
+        const pair = JSON.stringify([spec.label, spec.raw_value]);
+        if (pairs.has(pair)) throw new Error(`${at}: duplicate value`);
+        pairs.add(pair);
+        validateEvidence(spec.evidence, `${at}.evidence`, index.datasetKind, item.reviewTargetVersion);
+        if (spec.evidence.some(proof => proof.reviewStatus !== 'APPROVED')) throw new Error(`${at}: unapproved evidence`);
+      });
+    }
     const f = item.facets;
     requireObject(f, `${path}.facets`);
     validateField(f.family, `${path}.facets.family`, index.datasetKind, item.reviewTargetVersion, 'family');
     const quantityKey = f.family.normalized === 'MLCC' ? 'capacitance' : 'resistance';
     requireKeys(f, ['family', 'size', quantityKey, 'tolerance'],
       ['family', 'size', quantityKey, 'tolerance'], `${path}.facets`);
-    validateField(f.size, `${path}.facets.size`, index.datasetKind, item.reviewTargetVersion, 'size');
+    validateField(f.size, `${path}.facets.size`, index.datasetKind, item.reviewTargetVersion, 'size',
+      { partNumber, manufacturer: item.manufacturer });
     validateField(f[quantityKey], `${path}.facets.${quantityKey}`, index.datasetKind, item.reviewTargetVersion, 'quantity');
     validateField(f.tolerance, `${path}.facets.tolerance`, index.datasetKind, item.reviewTargetVersion, 'tolerance');
     if (f[quantityKey].unit !== (quantityKey === 'capacitance' ? 'F' : 'ohm')) {
