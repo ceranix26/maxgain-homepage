@@ -348,12 +348,6 @@
       function specRowsHtml(rows, className = 'product-detail-specs') {
         return `<dl class="${className}">${rows.map(row => `<div class="product-detail-spec"><dt>${esc(row.label)}</dt><dd>${esc(row.value)}</dd></div>`).join('')}</dl>`;
       }
-      function displaySpecsTableHtml(item) {
-        const display = displaySpecsForItem(item);
-        if (!display) return '';
-        const rows = formatSpecRows(display.specifications.map(spec => [spec.label, spec.raw_value]));
-        return `<details class="display-specs-table"><summary>${msg('규격 보기', 'View specifications')}</summary>${specRowsHtml(rows.primary, 'display-specs-table-list')}</details>`;
-      }
       function setApprovedFacets(index, rows, { synthetic = false } = {}) {
         const next = new Map();
         const byRow = new Map();
@@ -570,7 +564,7 @@
         const specSummary = approved
           ? [approved.row.sizeLabel, approved.row.valueLabel, approved.row.toleranceLabel].join(' · ')
           : summaryKeys.map(key => specs[key]).filter(value => typeof value === 'string' && value.trim()).slice(0, 3).join(' · ');
-        return { manufacturer, category, specSummary, itemGroupCodes, hasDocument: Boolean(approved || display || details.source?.url || details.ecd?.url) };
+        return { manufacturer, category, specSummary, itemGroupCodes };
       }
       function productSearchFields(item) {
         const details = getPartNumberDetails(item.partNumber) || {};
@@ -601,10 +595,10 @@
             : currentMatchMode === 'mixed'
               ? msg(`${visible.length}개 Part Number/제품정보 검색 결과`, `${visible.length} part-number/product-information matches`)
               : msg(`${visible.length}개 유사 Part Number 검색 결과`, `${visible.length} similar part-number matches`);
-        const headers = [msg('Part Number', 'Part Number'), msg('제조사', 'Manufacturer'), msg('품목그룹', 'Item group'), msg('제품 정보', 'Product information'), msg('재고 상태', 'Availability'), msg('문서', 'Documents')];
+        const headers = [msg('Part Number', 'Part Number'), msg('제조사', 'Manufacturer'), msg('품목그룹', 'Item group'), msg('제품 정보', 'Product information'), msg('재고 상태', 'Availability')];
         results.innerHTML = `<table class="results-table"><thead><tr>${headers.map(header => `<th scope="col">${header}</th>`).join('')}</tr></thead><tbody>${visible.map(item => {
           const meta = productMeta(item), inStock = item.status === 'in-stock', selectedRow = item.partNumber === selectedPartNumber;
-          return `<tr class="${selectedRow ? 'is-selected' : ''}"><td><button class="product-row-button" type="button" data-part-number="${esc(item.partNumber)}" aria-pressed="${selectedRow}">${esc(item.partNumber)}</button><div class="display-specs-mobile">${displaySpecsTableHtml(item)}</div></td><td class="result-manufacturer">${esc(meta.manufacturer || msg('정보 없음', 'Not listed'))}</td><td class="result-category">${meta.itemGroupCodes.length ? meta.itemGroupCodes.map(esc).join(', ') : '—'}</td><td><span class="result-category">${esc(meta.category || '')}</span>${meta.category && meta.specSummary ? ' · ' : ''}<span class="result-spec-summary">${esc(meta.specSummary)}</span>${!meta.category && !meta.specSummary && !displaySpecsForItem(item) ? `<span class="result-spec-summary">${msg('제품 정보 미등록', 'Product information unavailable')}</span>` : ''}${displaySpecsTableHtml(item)}</td><td><span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${inStock ? msg('재고 있음', 'In stock') : msg('재고 없음', 'Out of stock')}</span></td><td>${meta.hasDocument ? `<button class="result-document document-select" type="button" data-part-number="${esc(item.partNumber)}">${msg('규격 보기', 'View specs')}</button>` : `<span class="result-document is-empty">—</span>`}</td></tr>`;
+          return `<tr class="${selectedRow ? 'is-selected' : ''}"><td><button class="product-row-button" type="button" data-part-number="${esc(item.partNumber)}" aria-pressed="${selectedRow}">${esc(item.partNumber)}</button></td><td class="result-manufacturer">${esc(meta.manufacturer || msg('정보 없음', 'Not listed'))}</td><td class="result-category">${meta.itemGroupCodes.length ? meta.itemGroupCodes.map(esc).join(', ') : '—'}</td><td><span class="result-category">${esc(meta.category || '')}</span>${meta.category && meta.specSummary ? ' · ' : ''}<span class="result-spec-summary">${esc(meta.specSummary)}</span>${!meta.category && !meta.specSummary && !displaySpecsForItem(item) ? `<span class="result-spec-summary">${msg('제품 정보 미등록', 'Product information unavailable')}</span>` : ''}</td><td><span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${inStock ? msg('재고 있음', 'In stock') : msg('재고 없음', 'Out of stock')}</span></td></tr>`;
         }).join('')}</tbody></table>`;
         renderProductDetail(visible.find(item => item.partNumber === selectedPartNumber) || null);
       }
@@ -696,7 +690,7 @@
           summary.textContent = msg('재고 정보를 불러오지 못했습니다. 잠시 후 다시 시도해 주세요.', 'Inventory data could not be loaded. Please try again later.');
         }
       }
-      results.addEventListener('click', event => { const button = event.target.closest('.product-row-button, .document-select'); if (!button) return; const item = currentMatches.find(product => product.partNumber === button.dataset.partNumber); if (!item) return; selectedPartNumber = item.partNumber; renderMatchedResults(); });
+      results.addEventListener('click', event => { const button = event.target.closest('.product-row-button'); if (!button) return; const item = currentMatches.find(product => product.partNumber === button.dataset.partNumber); if (!item) return; selectedPartNumber = item.partNumber; renderMatchedResults(); });
       $('searchBtn').addEventListener('click', renderSearch); keywordInput.addEventListener('keydown', e => { if (e.key === 'Enter') renderSearch(); }); $('featuredPrev').addEventListener('click', () => scrollFeatured(-1)); $('featuredNext').addEventListener('click', () => scrollFeatured(1)); featuredViewport.addEventListener('mouseenter', () => { featuredAutoPaused = true; }); featuredViewport.addEventListener('mouseleave', () => { featuredAutoPaused = false; }); featuredViewport.addEventListener('touchstart', () => { featuredAutoPaused = true; }, { passive: true }); featuredViewport.addEventListener('touchend', () => { featuredAutoPaused = false; }, { passive: true }); featuredViewport.addEventListener('focusin', () => { featuredAutoPaused = true; }); featuredViewport.addEventListener('focusout', () => { featuredAutoPaused = false; }); document.addEventListener('visibilitychange', () => { featuredAutoPaused = document.hidden; }); syncSearchAriaLabels(); document.querySelectorAll('[data-lang]').forEach(button => button.addEventListener('click', () => setTimeout(() => { renderFeatured(); renderSearch(true); syncSearchAriaLabels(); }, 0))); initialize();
     })();
   </script>
