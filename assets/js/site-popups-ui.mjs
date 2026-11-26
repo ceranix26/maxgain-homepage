@@ -3,6 +3,7 @@ import { hiddenToday, hideAllToday, validatePopupManifest } from './site-popups-
 const dialog = document.getElementById('maxgainSitePopupDialog');
 const status = document.getElementById('maxgainSitePopupStatus');
 const fallbackFocus = document.querySelector('a.brand');
+const mobileViewport = window.matchMedia('(max-width: 800px), (hover: none) and (pointer: coarse) and (max-width: 1024px)');
 const storage = () => { try { return window.localStorage; } catch { return null; } };
 const say = (ko, en) => document.documentElement.lang === 'en' ? en : ko;
 let queue = [];
@@ -20,7 +21,7 @@ function restoreFocus() {
 }
 
 function renderCurrent() {
-  if (stopQueue || position >= queue.length) return;
+  if (stopQueue || mobileViewport.matches || position >= queue.length) return;
   const item = queue[position];
   dialog.replaceChildren();
 
@@ -38,12 +39,6 @@ function renderCurrent() {
   image.decoding = 'async';
   image.addEventListener('error', () => { if (dialog.open) dialog.close(); }, { once: true });
   content.append(count, heading, image);
-  if (item.linkUrl) {
-    const link = document.createElement('a');
-    link.href = item.linkUrl;
-    link.textContent = say('자세히 보기', 'Learn more');
-    content.append(link);
-  }
 
   const closeIcon = document.createElement('button');
   closeIcon.type = 'button';
@@ -91,8 +86,15 @@ dialog?.addEventListener('close', () => {
   restoreFocus();
 });
 
+mobileViewport.addEventListener('change', event => {
+  if (event.matches && dialog?.open) {
+    stopQueue = true;
+    dialog.close();
+  }
+});
+
 async function start() {
-  if (!dialog || hiddenToday(storage())) return;
+  if (!dialog || mobileViewport.matches || hiddenToday(storage())) return;
   try {
     const response = await fetch('data/site-popups.v1.json', { cache: 'no-store' });
     if (!response.ok) return;

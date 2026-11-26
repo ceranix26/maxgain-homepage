@@ -17,23 +17,25 @@
   border: 0;
   border-radius: 16px;
   padding: 0;
+  overflow: hidden;
   color: #172b39;
   background: #fff;
   box-shadow: 0 18px 48px #10263855;
 }
+.site-popup-dialog[open] { display: flex; flex-direction: column; }
 .site-popup-dialog::backdrop { background: #071924a8; }
-.site-popup-content { padding: 20px 20px 8px; overflow: auto; }
+.site-popup-content { flex: 1 1 auto; min-height: 0; padding: 20px 20px 8px; overflow-y: auto; }
 .site-popup-count { margin: 0 0 8px; color: #536977; font-size: .85rem; }
-.site-popup-content h2 { margin: 0 0 16px; font-size: clamp(1.1rem, 3vw, 1.5rem); }
+.site-popup-content h2 { margin: 0 0 16px; padding-right: 44px; font-size: clamp(1.1rem, 3vw, 1.5rem); }
 .site-popup-content img {
   display: block;
-  width: 100%;
-  max-height: 60vh;
+  width: 70%;
+  max-height: 42vh;
+  margin-inline: auto;
   object-fit: contain;
   border-radius: 8px;
   background: #eef3f7;
 }
-.site-popup-content a { display: inline-block; margin-top: 12px; color: #0b5c85; }
 .site-popup-close-icon {
   position: absolute;
   top: 8px;
@@ -50,6 +52,7 @@
 }
 .site-popup-actions {
   display: flex;
+  flex: none;
   flex-wrap: wrap;
   justify-content: flex-end;
   gap: 10px;
@@ -67,8 +70,7 @@
   cursor: pointer;
 }
 .site-popup-actions button:last-child { background: #18384b; color: #fff; }
-.site-popup-dialog button:focus-visible,
-.site-popup-dialog a:focus-visible { outline: 3px solid #f39c39; outline-offset: 2px; }
+.site-popup-dialog button:focus-visible { outline: 3px solid #f39c39; outline-offset: 2px; }
 
 @media (max-width: 420px) {
   .site-popup-content { padding: 16px 16px 8px; }
