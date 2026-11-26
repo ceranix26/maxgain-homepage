@@ -28,13 +28,13 @@ function render() {
     return;
   }
   if (!rows.length) {
-    status.textContent = message('승인된 규격 0건입니다. Part Number 검색은 계속 사용할 수 있습니다.',
-      'No approved specifications yet. Part Number search remains available.');
+    status.textContent = message('조건 검색 정보가 준비 중입니다. 품번으로 검색해 주세요.',
+      'Specification filters are being prepared. Please search by part number.');
     return;
   }
   const selected = selection.family ? applySelection(rows, selection).length : rows.length;
-  status.textContent = message(`승인 규격 ${rows.length}건 · 현재 선택 ${selected}건`,
-    `${rows.length} approved specifications · ${selected} current matches`);
+  status.textContent = message(`검색 대상 ${rows.length}건 · 현재 선택 ${selected}건`,
+    `${rows.length} searchable products · ${selected} current matches`);
   const options = getStepOptions(rows, selection);
   for (const key of order) {
     if (!options[key].length) continue;

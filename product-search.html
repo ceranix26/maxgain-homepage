@@ -302,42 +302,57 @@
         displaySpecsByInventoryPart = joined;
         if (currentMatches.length) renderMatchedResults();
       }
+      function specKey(label) {
+        const key = String(label).toLowerCase().replace(/[^a-z0-9가-힣]+/g, ' ').trim();
+        if (/^(size|case size|size for capacitors eia|크기)$/.test(key)) return 'size';
+        if (/^(resistance|resistance value|저항값)$/.test(key)) return 'resistance';
+        if (/^(capacitance|capacitance value|정전용량)$/.test(key)) return 'capacitance';
+        if (/^(tolerance|허용오차|공차)$/.test(key)) return 'tolerance';
+        if (/^(tcr|temperature coefficient|temp coefficient)$/.test(key)) return 'tcr';
+        if (/^(rated power|power rating)$/.test(key)) return 'power';
+        if (/^(voltage|rated voltage)$/.test(key)) return 'voltage';
+        if (/^(operating temp range|operating temperature)$/.test(key)) return 'operating-temperature';
+        if (/^(product subfamily|product family|family)$/.test(key)) return 'family';
+        return key;
+      }
+      function formatSpecRows(rows) {
+        const order = ['size', 'resistance', 'capacitance', 'tolerance', 'tcr', 'dielectric temp coefficient', 'power', 'voltage',
+          'operating-temperature', 'family', 'series', 'termination', 'packaging'];
+        const secondary = /^(schedule b|itar|eccn|harmonization|country of origin|rohs compliance|reach|aec q200 qualified|part weight mg|packaged weight lb|product release date|lead time typical weeks|ncnr|marking|standard item|packaging qty|storage temp range|specification number)/;
+        const capUnit = rows.find(([label]) => specKey(label) === 'cap unit of meas')?.[1];
+        const explicitUnit = typeof capUnit === 'string' && /^(F|mF|uF|µF|μF|nF|pF)$/.test(capUnit.trim())
+          ? capUnit.trim() : '';
+        const canPairUnit = explicitUnit && rows.some(([label, value]) =>
+          specKey(label) === 'capacitance' && /^\d+(?:\.\d+)?$/.test(String(value).trim()));
+        const seen = new Set(), formatted = [];
+        for (const [label, value] of rows) {
+          const name = String(label).trim(), key = specKey(name);
+          if (key === 'cap unit of meas' && canPairUnit) continue;
+          const original = String(value).trim();
+          const raw = key === 'capacitance' && canPairUnit && /^\d+(?:\.\d+)?$/.test(original)
+            ? `${original} ${explicitUnit}` : original;
+          if (key === 'web page link') continue;
+          if (!name || !raw || seen.has(JSON.stringify([key, raw]))) continue;
+          seen.add(JSON.stringify([key, raw]));
+          formatted.push({ label: name, value: raw, key, position: formatted.length });
+        }
+        formatted.sort((a, b) => {
+          const rank = row => order.includes(row.key) ? order.indexOf(row.key) : secondary.test(row.key) ? 100 : 30;
+          return rank(a) - rank(b) || a.position - b.position;
+        });
+        return {
+          primary: formatted.filter(row => !secondary.test(row.key)),
+          other: formatted.filter(row => secondary.test(row.key))
+        };
+      }
+      function specRowsHtml(rows, className = 'product-detail-specs') {
+        return `<dl class="${className}">${rows.map(row => `<div class="product-detail-spec"><dt>${esc(row.label)}</dt><dd>${esc(row.value)}</dd></div>`).join('')}</dl>`;
+      }
       function displaySpecsTableHtml(item) {
         const display = displaySpecsForItem(item);
         if (!display) return '';
-        return `<details class="display-specs-table"><summary>${msg('추가 규격', 'Additional specifications')} ${display.specifications.length}${msg('건', '')}</summary><dl>${display.specifications.map(spec => `<div><dt>${esc(spec.label)}</dt><dd>${esc(spec.raw_value)}</dd></div>`).join('')}</dl></details>`;
-      }
-      function appendDisplaySpecsDetail(item) {
-        const display = displaySpecsForItem(item);
-        if (!display) return;
-        productDetailContent.querySelector('.product-detail-pending')?.remove();
-        const section = document.createElement('section');
-        section.className = 'display-specs-detail';
-        const heading = document.createElement('h3');
-        heading.textContent = msg(`추가 승인 규격 ${display.specifications.length}건`, `${display.specifications.length} additional approved specifications`);
-        const list = document.createElement('dl');
-        list.className = 'display-specs-detail-list';
-        for (const spec of display.specifications) {
-          const row = document.createElement('div');
-          const label = document.createElement('dt');
-          label.textContent = spec.label;
-          const value = document.createElement('dd');
-          value.textContent = spec.raw_value;
-          row.append(label, value);
-          for (const evidence of spec.evidence) {
-            const source = document.createElement('small');
-            const link = document.createElement('a');
-            link.href = evidence.sourceUrl;
-            link.target = '_blank';
-            link.rel = 'noopener noreferrer';
-            link.textContent = msg('출처 보기', 'View source');
-            source.append(link);
-            row.append(source);
-          }
-          list.append(row);
-        }
-        section.append(heading, list);
-        productDetailContent.insertBefore(section, productDetailContent.querySelector('.detail-inquiry'));
+        const rows = formatSpecRows(display.specifications.map(spec => [spec.label, spec.raw_value]));
+        return `<details class="display-specs-table"><summary>${msg('규격 보기', 'View specifications')}</summary>${specRowsHtml(rows.primary, 'display-specs-table-list')}</details>`;
       }
       function setApprovedFacets(index, rows, { synthetic = false } = {}) {
         const next = new Map();
@@ -366,6 +381,12 @@
         const specs = details?.specs && typeof details.specs === 'object' && !Array.isArray(details.specs)
           ? Object.entries(details.specs).filter(([name, value]) => name && ['string', 'number', 'boolean'].includes(typeof value) && String(value).trim() !== '')
           : [];
+        const visibleSpecs = formatSpecRows([
+          ...specs,
+          ...(display?.specifications || []).map(spec => [spec.label, spec.raw_value])
+        ]);
+        const specSections = (visibleSpecs.primary.length ? specRowsHtml(visibleSpecs.primary) : '') +
+          (visibleSpecs.other.length ? `<details class="product-detail-other"><summary>${msg('기타 정보', 'Other information')}</summary>${specRowsHtml(visibleSpecs.other)}</details>` : '');
         const metadata = [
           ['manufacturer', msg('제조사', 'Manufacturer'), approved?.row.manufacturer || display?.manufacturer || manufacturerMap[partNumberKey(item.partNumber)] || details?.manufacturer],
           ['category', msg('카테고리', 'Category'), approved?.row.family || details?.category]
@@ -420,12 +441,10 @@
         const candidateSpecList = candidateLinks
           .map(candidate => ({ ...candidate, specs: productSpecs[candidate.partNumber]?.specs }))
           .filter(candidate => candidate.specs && typeof candidate.specs === 'object');
-        const specRows = rows => `<dl class="product-detail-specs">${rows.map(([name, value]) => `<div class="product-detail-spec"><dt>${esc(name)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>`;
-        const approvedFacetHtml = approved ? (() => {
+        const specRows = rows => specRowsHtml(formatSpecRows(rows).primary);
+        const approvedFacetHtml = approved && !display ? (() => {
           const facets = approved.source.facets;
           const quantity = approved.row.family === 'MLCC' ? facets.capacitance : facets.resistance;
-          const fields = [facets.family, facets.size, quantity, facets.tolerance];
-          const evidenceUrls = approved.synthetic ? [] : [...new Set(fields.flatMap(field => field.evidence.map(proof => proof.sourceUrl)))];
           const values = [
             [msg('제품군', 'Product family'), `${approved.row.family} · ${facets.family.raw}`],
             [msg('크기', 'Size'), `${approved.row.sizeLabel} · ${facets.size.raw}`],
@@ -439,8 +458,8 @@
           }
           const title = approved.synthetic
             ? msg('합성 규격 예시 · 실제 승인 아님', 'Synthetic specification example · not an actual approval')
-            : msg('검토 승인된 제조사 규격', 'Reviewed manufacturer specifications');
-          return `<section class="approved-facet-detail"><h3>${title}</h3>${specRows(values)}${evidenceUrls.length ? `<div class="product-detail-documents"><h3>${msg('공식 규격 근거', 'Official specification sources')}</h3>${evidenceUrls.map((url, index) => `<a href="${esc(url)}" target="_blank" rel="noopener noreferrer">${msg('공식 출처', 'Official source')} ${index + 1}</a>`).join('')}</div>` : ''}</section>`;
+            : msg('규격', 'Specifications');
+          return `<section class="approved-facet-detail"><h3>${title}</h3>${specRows(values)}</section>`;
         })() : '';
         const candidateSpecHtml = { links: '', body: '' };
         if (candidateSpecList.length) {
@@ -492,11 +511,10 @@
         const productImage = safeImageSource
           ? `<div style="display:grid;justify-items:end;gap:4px;max-width:160px;min-width:0"><img class="product-detail-image" src="${esc(safeImageSource)}" alt="${esc(`${item.partNumber} ${msg('제품 이미지', 'product image')}`)}">${imageLabels.map(label => `<small>${esc(label)}</small>`).join('')}</div>`
           : '';
-        productDetailContent.innerHTML = `<div class="product-detail-overview${productImage ? ' has-product-image' : ''}"><div class="product-detail-overview-info"><div class="product-detail-part"><span>${msg('Part Number', 'Part Number')}</span><strong>${esc(item.partNumber)}</strong></div><div class="product-detail-stock"><span>${msg('현재 재고 상태', 'Current stock status')}</span><span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${inStock ? msg('재고 있음', 'In stock') : msg('재고 없음', 'Out of stock')}</span>${inStock && item.stockLevel ? `<span class="stock-level">${esc(item.stockLevel)}</span>` : ''}</div></div>${productImage}</div>${metadata.length ? `<div class="product-detail-meta">${metadata.map(([, label, value]) => `<div class="product-detail-spec"><strong>${label}</strong><span>${esc(value.trim())}</span></div>`).join('')}</div>` : ''}${candidateLinks.length ? `<div class="product-detail-documents product-detail-candidates"><h3>${msg('변경된 Part Number', 'Changed Part Number')}</h3>${candidateLinks.map(candidate => `<a href="${esc(candidate.url)}" target="_blank" rel="noopener noreferrer">${esc(candidate.partNumber)}${candidate.electrode ? ` (${candidate.electrode})` : ''}</a>`).join('')}${candidateSpecHtml.links}</div>` : ''}${approvedFacetHtml}${candidateSpecHtml.body}${specs.length ? `<dl class="product-detail-specs">${specs.map(([name, value]) => `<div class="product-detail-spec"><dt>${esc(name)}</dt><dd>${esc(value)}</dd></div>`).join('')}</dl>` : candidateSpecHtml.body || approvedFacetHtml ? '' : `<p class="product-detail-pending">${msg('제조사 공식 데이터베이스에서 확인되지 않은 번호이거나 규격 정보가 준비 중입니다. 정확한 규격은 문의해 주세요.', 'This part number is not listed in the manufacturer\'s official database, or its specifications are still being prepared. Please contact us for confirmed specifications.')}</p>`}${technicalDocuments.length ? `<div class="product-detail-documents"><h3>${msg('기술 자료', 'Technical Documents')}</h3>${technicalDocuments.map(document => `<a href="${esc(document.url)}" title="${esc(document.title)}" target="_blank" rel="noopener noreferrer">${document.label}</a>`).join('')}</div>` : ''}<a class="detail-inquiry" href="contact.html?partNumber=${encodeURIComponent(item.partNumber)}">${msg('이 제품 문의하기', 'Inquire about this part')}</a>`;
+        productDetailContent.innerHTML = `<div class="product-detail-overview${productImage ? ' has-product-image' : ''}"><div class="product-detail-overview-info"><div class="product-detail-part"><span>${msg('Part Number', 'Part Number')}</span><strong>${esc(item.partNumber)}</strong></div><div class="product-detail-stock"><span>${msg('현재 재고 상태', 'Current stock status')}</span><span class="stock-badge ${inStock ? 'stock-in' : 'stock-out'}">${inStock ? msg('재고 있음', 'In stock') : msg('재고 없음', 'Out of stock')}</span>${inStock && item.stockLevel ? `<span class="stock-level">${esc(item.stockLevel)}</span>` : ''}</div></div>${productImage}</div>${metadata.length ? `<div class="product-detail-meta">${metadata.map(([, label, value]) => `<div class="product-detail-spec"><strong>${label}</strong><span>${esc(value.trim())}</span></div>`).join('')}</div>` : ''}${candidateLinks.length ? `<div class="product-detail-documents product-detail-candidates"><h3>${msg('변경된 Part Number', 'Changed Part Number')}</h3>${candidateLinks.map(candidate => `<a href="${esc(candidate.url)}" target="_blank" rel="noopener noreferrer">${esc(candidate.partNumber)}${candidate.electrode ? ` (${candidate.electrode})` : ''}</a>`).join('')}${candidateSpecHtml.links}</div>` : ''}${approvedFacetHtml}${candidateSpecHtml.body}${specSections || candidateSpecHtml.body || approvedFacetHtml ? specSections : `<p class="product-detail-pending">${msg('제조사 공식 데이터베이스에서 확인되지 않은 번호이거나 규격 정보가 준비 중입니다. 정확한 규격은 문의해 주세요.', 'This part number is not listed in the manufacturer\'s official database, or its specifications are still being prepared. Please contact us for confirmed specifications.')}</p>`}${technicalDocuments.length ? `<div class="product-detail-documents"><h3>${msg('기술 자료', 'Technical Documents')}</h3>${technicalDocuments.map(document => `<a href="${esc(document.url)}" title="${esc(document.title)}" target="_blank" rel="noopener noreferrer">${document.label}</a>`).join('')}</div>` : ''}<a class="detail-inquiry" href="contact.html?partNumber=${encodeURIComponent(item.partNumber)}">${msg('이 제품 문의하기', 'Inquire about this part')}</a>`;
         productDetailContent.querySelector('.product-detail-image')?.addEventListener('error', event => {
           event.currentTarget.parentElement.hidden = true;
         }, { once: true });
-        appendDisplaySpecsDetail(item);
       }
       async function loadProductSpecs() {
         try {
@@ -577,7 +595,7 @@
         summary.textContent = currentMatchExact
           ? msg(`${visible.length}개 정확 일치 결과`, `${visible.length} exact matches`)
           : currentMatchMode === 'facet'
-            ? msg(`${visible.length}개 승인 규격 검색 결과`, `${visible.length} approved specification matches`)
+            ? msg(`${visible.length}개 규격 검색 결과`, `${visible.length} specification matches`)
           : currentMatchMode === 'specification'
             ? msg(`${visible.length}개 규격/품목그룹 검색 결과`, `${visible.length} specification/item-group matches`)
             : currentMatchMode === 'mixed'
@@ -597,7 +615,7 @@
         currentMatchMode = 'facet'; currentMatchExact = false; selectedPartNumber = '';
         if (!currentMatches.length) {
           results.innerHTML = ''; renderProductDetail(null);
-          summary.textContent = msg('일치하는 승인 규격 제품이 없습니다.', 'No products match the approved specifications.');
+          summary.textContent = msg('일치하는 규격의 제품이 없습니다.', 'No products match these specifications.');
         } else renderMatchedResults();
       }
       function renderSearch(preserveSelection = false) {
