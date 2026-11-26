@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-11-25T23:00:03.485374Z",
-  "baseDate": "20261126",
+  "updatedAt": "2026-11-26T23:00:03.260057Z",
+  "baseDate": "20261127",
   "source": "ECOUNT",
   "totalPartNumbers": 13166,
   "items": {
@@ -45785,9 +45785,9 @@
       "stockLevel": "재고 없음"
     },
     "PW350": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "PW370": {
       "status": "out-of-stock",
@@ -45810,9 +45810,9 @@
       "stockLevel": "재고 없음"
     },
     "PW550": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "PWS3S1P-3.5A": {
       "status": "out-of-stock",
@@ -54955,9 +54955,9 @@
       "stockLevel": "재고 없음"
     },
     "TAJD476K025RNJ": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "500+"
     },
     "TAJD476M025RNJ": {
       "status": "out-of-stock",
@@ -65045,9 +65045,9 @@
       "stockLevel": "소량"
     },
     "ZJ0003": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "ZM4732A": {
       "status": "out-of-stock",
