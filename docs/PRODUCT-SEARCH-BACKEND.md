@@ -21,6 +21,17 @@
 3. **미완료:** 조건검색용 승인 facet 산출물과 Hub trusted 게시기 결합. Hub에서 `tolerance_percent=±1%`가 승인됐다는 이전 운영 READ 기록과 별개로, `tolerance_bounds_percent`의 게시 해석과 현행 revision/review chain을 발행 시 검증해야 한다. 기존 승인을 다시 요청하거나 미승인 값을 승인으로 바꾸지 않는다.
 4. **이미지 후속:** Hub의 실제 제품이미지 core 합성 후보 6파일을 private에서 SHA 교차 검증했지만, 실운영 이미지 수집·검토·게시 경로로 승격된 것은 아니다. 옛 이미지 Action과 Hub 수집 경로의 운영 절체도 미확인이다.
 
+### 11월 28일 로컬 준비 현황
+
+격리 브랜치에는 공개 전 facet 소비검사 `verify-facet-release.mjs`와 합성 7회귀, 제품이미지 SHA 후보검사, 고정 Git 커밋의 private 백업·손상 후 원바이트 정정 리허설이 있다. 이는 Hub의 현행 승인 lineage·원본 receipt 검증이나 실제 게시 성공을 대신하지 않는다. 실제 승인 facet 후보 파일을 아직 받지 못했으므로 공개 `data/catalog-facet-index.v1.json`은 생성하거나 추가하지 않았다.
+
+### 정리 기록
+
+- 삭제: `SETUP-ECOUNT-INVENTORY.md` 1파일. 옛 GitHub Actions의 ECOUNT 직접호출·Secrets 등록·수동 실행을 현재 설정처럼 안내해 운영 경로와 충돌했다. 파일은 원격 `main`의 이전 Git 기록 `dbdf160`에서 `git show dbdf160:SETUP-ECOUNT-INVENTORY.md`로 재현할 수 있다. 고유 승인·실패 근거는 포함하지 않았다.
+- 과거 [프로젝트 기록](PROJECT-STATE.md)의 폐기된 “New Copilot Chat Start Prompt” 실행문만 제거했다. 10월 Johanson/Walsin 수집 수치·원문 판정·실패·검토 기록은 역사 자료로 남겼다.
+- `.private-backups/public-search-dbdf160`의 정상본 바이트 백업과 `.private-backups/hub-image-synthetic`의 합성 fixture는 **삭제하지 않았다**. 둘 다 Git 제외 경로이며 원본/업무 DB·원장·기존 dirty 작업도 정리 대상이 아니다.
+- 현재 Git 추적 변경에 재생성 캐시나 임시 로그는 없었다. 출처를 확인할 수 없는 파일을 불필요하다고 추정해 삭제하지 않았다.
+
 ## 문서 지도
 
 - [11월 27일 운영 상태 기록](OPERATIONS-STATUS-20261127.md): 공개 재고·표시규격·팝업·VM 관련 **당일 읽기 근거**. 최신 상태 대신 쓰지 않는다.

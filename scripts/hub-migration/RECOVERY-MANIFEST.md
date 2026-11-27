@@ -25,6 +25,6 @@
 
 1. root의 공차 검색 계약과 trusted publisher를 대조한다. 사용자가 이미 승인한 `±1%` 원문/`tolerance_percent`를 재승인 요청하지 않는다. `tolerance_bounds_percent` 승인 상태를 임의 변경하거나 기존 공개 JSON에 새 facet을 만들어 게시하지 않는다.
 2. root와 publication ID·입력 snapshot SHA·현재 리뷰 버전·Git fast-forward·pending/공개 SHA ACK·복구 계약을 맞춘 다음에만 절체를 판단한다. 이 브랜치와 원래 dirty 작업 폴더는 계속 분리한다.
-3. 원격 보존을 검토할 때 대상은 PUBLIC 저장소 `ceranix26/maxgain-homepage`이며 최소 신규 추적 파일은 `scripts/hub-migration/RECOVERY-MANIFEST.md`, `backup-public-search-snapshot.mjs` 및 시험, `verify-public-search-snapshot.mjs` 및 시험, `verify-product-image-bundle.mjs` 및 시험, 그리고 백업 제외 규칙 `.gitignore`다. 원격에 이미 있던 감사 4파일은 별도 중복전송 대상이 아니다. private 백업·합성 fixture·현재 공개 data JSON은 전송 대상에서 제외한다. 현재 외부 push는 없다.
+3. 원격 보존을 검토할 때 대상은 PUBLIC 저장소 `ceranix26/maxgain-homepage`이며 최소 신규 추적 파일은 `scripts/hub-migration/RECOVERY-MANIFEST.md`, `backup-public-search-snapshot.mjs` 및 시험, `verify-public-search-snapshot.mjs` 및 시험, `verify-product-image-bundle.mjs` 및 시험, 그리고 백업 제외 규칙 `.gitignore`다. 원격에 이미 있던 감사 4파일은 별도 중복전송 대상이 아니다. private 백업·합성 fixture·현재 공개 data JSON은 전송 대상에서 제외한다. 이 기록의 절체 단계에서는 공개 `main` push가 없었다.
 
 이후 로컬로 추가한 facet 사전검사와 [이미지 절체 절차](../../docs/PRODUCT-IMAGE-HUB-CUTOVER.md)도 공개 후보가 아닌 **검토용 로컬 문서·도구**다. 위 3번은 당시 원격 보존 최소범위를 기록한 것이며, 실제 전송 범위는 다시 확정해야 한다.
