@@ -2,6 +2,8 @@
 
 Last updated: 2026-10-27
 
+> 이 문서의 수치와 Google VM 설명은 2026-10-27 당시 기록이다. 최신 운영 상태는 [OPERATIONS-STATUS-20261127.md](OPERATIONS-STATUS-20261127.md)를 확인한다. 아래의 VM cron·22,030품번 기록을 현재 운영 설정으로 사용하지 않는다.
+
 ## Stable Systems
 
 ### ECOUNT
