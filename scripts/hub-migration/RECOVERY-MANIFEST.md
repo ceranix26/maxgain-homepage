@@ -11,6 +11,7 @@
 
 - `verify-public-search-snapshot.mjs`: 기존 소비기 `validateInventory`, `validateDisplaySpecs`, `validateFacetIndex`를 재사용해 공개 입력의 구조·승인 필드·정확 PN 결합·로컬 WebP/이미지 index·선택적 facet 상태를 검사한다. 예상 SHA를 지정하면 바이트 교체도 차단한다. Hub DB 승인 이력 자체를 증명하는 도구는 아니다.
 - `backup-public-search-snapshot.mjs`: 지정한 전체 40자 Git 커밋에서 공개 검색 6개 JSON과 참조된 제품 WebP, 존재하는 경우 facet을 비공개 폴더에 원본 바이트대로 복사하고 SHA manifest를 남긴다. 같은 대상 경로 재사용을 거절한다. 복구는 별도 깨끗한 복사본에서만 리허설했다.
+- 실제 고정 바이트 백업은 격리 복사본의 Git 제외 경로 `.private-backups/public-search-dbdf160`에 7파일과 manifest로 남겼다. 이 로컬 백업은 공개 배포나 Hub 원장으로 간주하지 않는다.
 - `verify-product-image-bundle.mjs`: Hub private 후보의 원본/후보 JSON, WebP 바이트 SHA, 원본 SHA 기반 공개 경로, 정확 품번·회사·환경·재고 snapshot 결합, `UNREVIEWED/readyForPublication=false`를 검사한다. 이 검증은 공식 출처 확인이나 게시 승인으로 승격시키지 않는다. 현재 시험은 로컬 합성 fixture만 사용했으며 Hub 원래 합성 묶음 바이트와의 교차 검증은 대기 중이다.
 
 ## 실제 검증 범위

@@ -20,3 +20,6 @@ data/product-manufacturers.backup-*.json
 
 # Local manufacturer reference catalogs
 references/
+
+# Private local cutover rehearsal bytes, never part of Cloudflare output
+/.private-backups/
