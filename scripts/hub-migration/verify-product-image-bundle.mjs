@@ -15,7 +15,12 @@ export function verifyProductImageBundle(root, { expectedCompanyId, expectedEnvi
   if (m.schemaVersion !== 'hub-product-image-candidate.v1' ||
       m.companyId !== expectedCompanyId || m.environment !== expectedEnvironment ||
       m.exactPN !== expectedExactPN || m.readyForPublication !== false ||
-      m.reviewStatus !== 'UNREVIEWED' || !object(m.input) || !object(m.output) || !object(m.artifacts)) {
+      m.reviewStatus !== 'UNREVIEWED' || !object(m.input) || !object(m.output) || !object(m.artifacts) ||
+      m.output.readyForPublication !== false || m.output.reviewStatus !== 'UNREVIEWED' ||
+      m.output.officialSourceVerified !== false ||
+      !['UNVERIFIED', 'NOT_PROVIDED'].includes(m.output.sourceUrlVerification) ||
+      m.input.sourceUrl !== m.output.sourceUrl ||
+      !/^[a-f0-9]{40}$/.test(m.input.sourceGitCommit) || !hash(m.input.masterSha256)) {
     throw new Error('Candidate envelope or scope is invalid');
   }
   if (inventory) {

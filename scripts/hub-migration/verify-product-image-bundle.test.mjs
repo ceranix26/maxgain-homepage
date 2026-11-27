@@ -29,8 +29,11 @@ function fixture(fn) {
     const inventory = Buffer.from(JSON.stringify({ items: { [pn]: {} } }));
     const m = { schemaVersion: 'hub-product-image-candidate.v1', companyId: company,
       environment: 'PRODUCTION', exactPN: pn, readyForPublication: false, reviewStatus: 'UNREVIEWED',
-      input: { sourceFileSha256: sourceSpecs, sourceImageIndexSha256: sourceIndex, originalBytesSha256: original },
-      output: { originalSha256: original, processedSha256: processed, publicPath: path, optimizedBytes: image.length },
+      input: { sourceGitCommit: 'a'.repeat(40), masterSha256: 'b'.repeat(64), sourceUrl: null,
+        sourceFileSha256: sourceSpecs, sourceImageIndexSha256: sourceIndex, originalBytesSha256: original },
+      output: { originalSha256: original, processedSha256: processed, publicPath: path, optimizedBytes: image.length,
+        sourceUrl: null, sourceUrlVerification: 'NOT_PROVIDED', officialSourceVerified: false,
+        readyForPublication: false, reviewStatus: 'UNREVIEWED' },
       artifacts: { productSpecsSha256: specs, imageIndexSha256: index, webpSha256: processed } };
     write('candidate.json', m);
     return fn({ root, write, m, pn, company, inventory, inventorySha: sha(inventory), path });
