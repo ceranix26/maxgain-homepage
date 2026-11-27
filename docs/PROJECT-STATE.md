@@ -2,7 +2,7 @@
 
 Last updated: 2026-10-27
 
-> 이 문서의 수치와 Google VM 설명은 2026-10-27 당시 기록이다. 최신 운영 상태는 [OPERATIONS-STATUS-20261127.md](OPERATIONS-STATUS-20261127.md)를 확인한다. 아래의 VM cron·22,030품번 기록을 현재 운영 설정으로 사용하지 않는다.
+> **역사 기록:** 이 문서의 수치·수집 명령·Google VM 설명·우선순위는 2026-10월 당시 판단이다. 실행 안내로 사용하지 않는다. 현재 상태와 문서 목차는 [제품검색 백엔드](PRODUCT-SEARCH-BACKEND.md), 11월 27일의 읽기 근거는 [운영 상태 기록](OPERATIONS-STATUS-20261127.md)을 확인한다. 아래 VM cron·22,030품번·직접 ECOUNT/제조사 수집 지시는 현재 운영 설정이 아니다.
 
 ## Stable Systems
 
@@ -159,7 +159,7 @@ Current:
 - CR/AR catalog rules included
 - review candidates remain unassigned
 
-## Next Priority
+## 2026-10월 당시 우선순위 — 현재 실행 목록 아님
 1. Finish Johanson cross-company ownership resolution.
 2. Run Johanson Technology single-PN dry-run.
 3. Run Johanson Dielectrics single-PN dry-run.
@@ -168,25 +168,6 @@ Current:
 6. Add Samsung official specifications.
 7. Add Walsin/Viking official specifications.
 8. Use Mouser only as fallback with a strict internal daily quota.
-
-## New Copilot Chat Start Prompt
-
-```text
-한국어로 계속 작업해줘.
-
-먼저 다음 파일을 읽고 현재 프로젝트 상태와 작업 원칙을 이해해:
-- .github/copilot-instructions.md
-- docs/PROJECT-STATE.md
-
-기존 정상 구조를 변경하지 말고 현재 중단 지점부터 이어가.
-
-첫 작업:
-scripts/update-johanson-technology-specs.mjs의
-Johanson Technology / Johanson Dielectrics 동일 Global PN
-cross-company ownership resolution을 마무리해.
-
-데이터 파일은 수정하지 말고 dry-run 가능한 상태까지만 작업해.
-```
 
 ## Johanson 업데이트 - 2026-10-27
 

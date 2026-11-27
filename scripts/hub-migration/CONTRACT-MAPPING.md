@@ -1,6 +1,6 @@
 # Hub provisional 수신 계약 대조 (2026-11-27)
 
-이 파일은 `hub-homepage-legacy-audit.v1` **dry-run 감사 봉투**의 필드 대응표다. Hub의 원본 수신 API와 DB 적재는 아직 구현·호출되지 않았다.
+이 파일은 `hub-homepage-legacy-audit.v1` **dry-run 감사 봉투**의 2026-11-27 필드 대응표다. 작성 당시 Hub의 원본 수신 API와 DB 적재는 구현·호출되지 않았다. 이후 Hub 후보 구현 여부는 이 문서가 아닌 [현재 상태 목차](../../docs/PRODUCT-SEARCH-BACKEND.md)와 Hub의 실제 코드·운영 상태로 확인한다.
 
 | Hub 검토 항목 | 감사 필드 | 판정 |
 |---|---|---|
