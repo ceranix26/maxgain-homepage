@@ -25,6 +25,7 @@
 
 - [11월 27일 운영 상태 기록](OPERATIONS-STATUS-20261127.md): 공개 재고·표시규격·팝업·VM 관련 **당일 읽기 근거**. 최신 상태 대신 쓰지 않는다.
 - [격리 복구 기록](../scripts/hub-migration/RECOVERY-MANIFEST.md): 원격에 남은 감사 커밋과 소실된 미푸시 절체 후보의 차이, 재구성 코드와 검증 범위.
+- [제품이미지 Hub 절체 준비](PRODUCT-IMAGE-HUB-CUTOVER.md): 옛 Action 중단 순서, 새 게시기 관문, 실패·결과 불명확 때 복구 기준. 아직 운영 절체 아님.
 - [Hub 이전 감사 도구](../scripts/hub-migration/README.md), [필드 대응표](../scripts/hub-migration/CONTRACT-MAPPING.md): 7개 legacy + 3개 생성 산출물의 dry-run. 감사는 Hub 적재·승인·게시의 증거가 아니다.
 - [2026-10월 프로젝트 기록](PROJECT-STATE.md): Johanson/Walsin 수집 결과·실패·판정의 역사 기록. VM 및 직접수집 명령은 현재 운영 절차가 아니다.
 - [제품검색 화면 설계 기록](product-search-wireframe.md): 11월 19일 구현 전 와이어프레임. 실제 화면 계약은 현재 소스와 공개 응답으로 판단한다.
