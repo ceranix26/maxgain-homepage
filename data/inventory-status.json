@@ -1,6 +1,6 @@
 {
-  "updatedAt": "2026-11-26T23:00:03.260057Z",
-  "baseDate": "20261127",
+  "updatedAt": "2026-11-27T23:00:03.398354Z",
+  "baseDate": "20261128",
   "source": "ECOUNT",
   "totalPartNumbers": 13166,
   "items": {
@@ -140,9 +140,9 @@
       "stockLevel": "재고 없음"
     },
     "0201N150F500CT": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "0201N150J500CT": {
       "status": "out-of-stock",
@@ -150,9 +150,9 @@
       "stockLevel": "재고 없음"
     },
     "0201N180F500CT": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "0201N1R2C500CT": {
       "status": "out-of-stock",
@@ -165,19 +165,19 @@
       "stockLevel": "재고 없음"
     },
     "0201N200F500CT": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "0201N220F500CT": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "0201N270F500CT": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "0201N4R7C500CT": {
       "status": "out-of-stock",
@@ -7525,9 +7525,9 @@
       "stockLevel": "소량"
     },
     "2N7002": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "소량"
     },
     "2N7002-7-F": {
       "status": "out-of-stock",
@@ -11735,9 +11735,9 @@
       "stockLevel": "소량"
     },
     "ACMS160808A601 1A": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "ACMS160808B121": {
       "status": "out-of-stock",
@@ -14815,9 +14815,9 @@
       "stockLevel": "재고 없음"
     },
     "BEAD AXIAL 3560": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "BEAD AXIAL 3565": {
       "status": "out-of-stock",
@@ -15050,9 +15050,9 @@
       "stockLevel": "재고 없음"
     },
     "BI-SJPFH-01F": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "BIG8": {
       "status": "out-of-stock",
@@ -19315,9 +19315,9 @@
       "stockLevel": "재고 없음"
     },
     "CL21B106KAYQNNE": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "CL21B106KOQNFNE": {
       "status": "out-of-stock",
@@ -19745,9 +19745,9 @@
       "stockLevel": "1,000+"
     },
     "CL31B473KBCNNNC": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "CL31B474KBHNNNE": {
       "status": "in-stock",
@@ -27672,7 +27672,7 @@
     "EBMS160808K152": {
       "status": "in-stock",
       "label": "재고 있음",
-      "stockLevel": "100+"
+      "stockLevel": "1,000+"
     },
     "EBMS322513AA600": {
       "status": "out-of-stock",
@@ -28795,9 +28795,9 @@
       "stockLevel": "500+"
     },
     "EST-1102A-3": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "EST-1102B-2": {
       "status": "out-of-stock",
@@ -33675,9 +33675,9 @@
       "stockLevel": "재고 없음"
     },
     "INCA S/W": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "IND 0201": {
       "status": "out-of-stock",
@@ -41090,9 +41090,9 @@
       "stockLevel": "재고 없음"
     },
     "MMZ1005S102CT000": {
-      "status": "out-of-stock",
-      "label": "재고 없음",
-      "stockLevel": "재고 없음"
+      "status": "in-stock",
+      "label": "재고 있음",
+      "stockLevel": "1,000+"
     },
     "MMZ1005Y121CT000": {
       "status": "out-of-stock",
@@ -43645,9 +43645,9 @@
       "stockLevel": "1,000+"
     },
     "NXH 2.5TP 35 VB 100 (M)": {
-      "status": "in-stock",
-      "label": "재고 있음",
-      "stockLevel": "1,000+"
+      "status": "out-of-stock",
+      "label": "재고 없음",
+      "stockLevel": "재고 없음"
     },
     "NXH 2.5TP 50 VB 1 (M)": {
       "status": "in-stock",
